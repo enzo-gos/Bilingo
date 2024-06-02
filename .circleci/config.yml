@@ -14,12 +14,15 @@ jobs:
       - image: cimg/ruby:3.3.0-node
         environment:
           BILINGO_DATABASE_URL: postgresql://bilingo@localhost/bilingo_test
+          REDIS_URL: redis://localhost:6379
           CC_TEST_REPORTER_ID: ${CC_TEST_REPORTER_ID}
 
       - image: cimg/postgres:9.6.22
         environment:
           POSTGRES_USER: bilingo
           POSTGRES_DB: bilingo_test
+
+      - image: cimg/redis:6.2.6
 
     environment:
       RAILS_ENV: test
@@ -31,6 +34,10 @@ jobs:
       - run:
           name: Waiting for database
           command: dockerize -wait tcp://localhost:5432 -timeout 1m
+
+      - run:
+          name: Waiting for redis
+          command: dockerize -wait tcp://localhost:6379 -timeout 1m
 
       - run:
           name: Database setup
@@ -73,6 +80,12 @@ jobs:
             echo BILINGO_DATABASE_URL=${DATABASE_URL} > .env
             echo REDIS_URL=${REDIS_URL} >> .env
             echo RAILS_MASTER_KEY=${RAILS_MASTER_KEY} >> .env
+            echo DATABASE_URL = ${DATABASE_URL} >> .env
+            echo REDIS_URL = ${BILINGO_REDIS_URL} >> .env
+            echo POSTGRES_HOST_AUTH_METHOD = ${POSTGRES_HOST_AUTH_METHOD} >> .env
+            echo POSTGRES_USER = ${POSTGRES_USER} >> .env
+            echo POSTGRES_DB = ${POSTGRES_DB} >> .env
+            echo PGUSER = ${PGUSER} >> .env
             docker network create proxy
             docker-compose -f docker-compose.prod.yml build --pull
 

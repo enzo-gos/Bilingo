@@ -5,6 +5,7 @@ x-webservice: &webservice
     context: .
   hostname: localhost
   networks:
+    - bilingo-net
     - proxy
   env_file:
     - .env
@@ -17,6 +18,32 @@ x-webservice: &webservice
   tty: true
 
 services:
+  bilingodb:
+    image: postgres
+    restart: always
+    healthcheck:
+      test: pg_isready -U $$POSTGRES_USER -d $$POSTGRES_DB
+      interval: 1s
+      timeout: 5s
+      retries: 5
+    env_file:
+      - .env
+    networks:
+      - bilingo-net
+
+  bilingords:
+    image: redis:latest
+    restart: always
+    env_file:
+      - .env
+    healthcheck:
+      test: ['CMD', 'redis-cli', '--raw', 'incr', 'ping']
+      interval: 1s
+      timeout: 5s
+      retries: 5
+    networks:
+      - bilingo-net
+
   bilingo:
     <<: *webservice
     image: wgmin/bilingo
@@ -30,6 +57,11 @@ services:
       - traefik.http.routers.bilingo.entrypoints=websecure
       - traefik.http.routers.bilingo.tls=true
       - traefik.http.routers.bilingo.tls.certresolver=letsencrypt
+    depends_on:
+      bilingodb:
+        condition: service_healthy
+      bilingords:
+        condition: service_healthy
 
   bilingo-sidekiq:
     <<: *webservice
@@ -40,5 +72,7 @@ services:
       - bilingo
 
 networks:
+  bilingo-net:
+    driver: bridge
   proxy:
     external: true
