@@ -1,0 +1,121 @@
+version: 2.1
+
+defaults: &defaults
+  filters:
+    branches:
+      only: develop
+
+orbs:
+  ruby: circleci/ruby@2.0.1
+
+jobs:
+  build-test-bilingo:
+    docker:
+      - image: cimg/ruby:3.3.0-node
+        environment:
+          BILINGO_DATABASE_URL: postgresql://bilingo@localhost/bilingo_test
+          CC_TEST_REPORTER_ID: ${CC_TEST_REPORTER_ID}
+
+      - image: cimg/postgres:9.6.22
+        environment:
+          POSTGRES_USER: bilingo
+          POSTGRES_DB: bilingo_test
+
+    environment:
+      RAILS_ENV: test
+
+    steps:
+      - checkout
+      - ruby/install-deps
+
+      - run:
+          name: Waiting for database
+          command: dockerize -wait tcp://localhost:5432 -timeout 1m
+
+      - run:
+          name: Database setup
+          command: bundle exec rake db:test:prepare
+
+      - run:
+          name: Setup code climate test-reporter
+          command: |
+            curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
+            chmod +x ./cc-test-reporter
+
+      - run:
+          name: Rspec coverage test
+          command: bundle exec rspec
+
+      - run:
+          name: Code climate upload test report
+          command: |
+            ./cc-test-reporter format-coverage -t simplecov $CIRCLE_ARTIFACTS/coverage/.resultset.json
+            ./cc-test-reporter upload-coverage
+
+      - persist_to_workspace:
+          root: .
+          paths:
+            - .
+
+  published-bilingo-staging-version:
+    docker:
+      - image: cimg/base:current-22.04
+
+    steps:
+      - attach_workspace:
+          at: .
+
+      - setup_remote_docker
+
+      - run:
+          name: Build staging image
+          command: |
+            echo BILINGO_DATABASE_URL=${DATABASE_URL} > .env
+            echo REDIS_URL=${REDIS_URL} >> .env
+            echo RAILS_MASTER_KEY=${RAILS_MASTER_KEY} >> .env
+            docker network create proxy
+            docker-compose -f docker-compose.prod.yml build --pull
+
+      - run:
+          name: Published staging image
+          command: |
+            docker login -u ${DOCKER_ACCOUNT} -p ${DOCKER_TOKEN}
+            docker-compose -f docker-compose.prod.yml push
+
+      - persist_to_workspace:
+          root: .
+          paths:
+            - .
+
+  deploy-bilingo-staging:
+    docker:
+      - image: cimg/base:stable
+    steps:
+      - attach_workspace:
+          at: .
+
+      - add_ssh_keys:
+          fingerprints:
+            - ${VPS_FINGERPRINT}
+
+      - run:
+          name: Deploy to staging cloud
+          command: |
+            ssh -o StrictHostKeyChecking=no -v root@mtech.id.vn -p 24700 "chmod +x ~/deploy.sh && ~/deploy.sh --service bilingo --service-path bilingo-app --mode init"
+            scp -P 24700 -o StrictHostKeyChecking=no -v docker-compose.prod.yml root@mtech.id.vn:bilingo-app/bilingo
+            scp -P 24700 -o StrictHostKeyChecking=no -v .env root@mtech.id.vn:bilingo-app/bilingo
+            ssh -o StrictHostKeyChecking=no -v root@mtech.id.vn -p 24700 "chmod +x ~/deploy.sh && ~/deploy.sh --service bilingo --service-path bilingo-app --mode all"
+
+workflows:
+  build-and-test:
+    jobs:
+      - build-test-bilingo:
+          <<: *defaults
+      - published-bilingo-staging-version:
+          <<: *defaults
+          requires:
+            - build-test-bilingo
+      - deploy-bilingo-staging:
+          <<: *defaults
+          requires:
+            - published-bilingo-staging-version

@@ -1,0 +1,44 @@
+version: '3'
+
+x-webservice: &webservice
+  build:
+    context: .
+  hostname: localhost
+  networks:
+    - proxy
+  env_file:
+    - .env
+  environment:
+    FORCE_COLOR: 1
+    DEBUG_COLORS: 'true'
+    TERM: xterm-256color
+    COLORTERM: truecolor
+  restart: on-failure:3
+  tty: true
+
+services:
+  bilingo:
+    <<: *webservice
+    image: wgmin/bilingo
+    container_name: bilingo
+    ports:
+      - 3001:3000
+    labels:
+      - traefik.enable=true
+      - traefik.docker.network=proxy
+      - traefik.http.routers.bilingo.rule=Host(`bilingo.mtech.id.vn`)
+      - traefik.http.routers.bilingo.entrypoints=websecure
+      - traefik.http.routers.bilingo.tls=true
+      - traefik.http.routers.bilingo.tls.certresolver=letsencrypt
+
+  bilingo-sidekiq:
+    <<: *webservice
+    image: wgmin/bilingo-sidekiq
+    container_name: bilingo-sidekiq
+    command: bundle exec sidekiq
+    depends_on:
+      - bilingo
+
+networks:
+  proxy:
+    external: true
