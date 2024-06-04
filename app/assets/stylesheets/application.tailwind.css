@@ -121,7 +121,9 @@
   }
 
   .navbar-container .dropdown {
-    @apply relative;
+    @apply relative
+    hidden
+    md:block;
   }
 
   .navbar-container .dropdown > .dropdown-list {
@@ -132,6 +134,8 @@
     invisible
     opacity-0
     p-2
+    md:right-0
+    lg:left-0
     shadow;
   }
 
@@ -143,8 +147,6 @@
     @apply opacity-100
     visible
     border
-    md:right-0
-    lg:left-0
     transition-all;
   }
 
