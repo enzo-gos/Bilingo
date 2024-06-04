@@ -6,9 +6,17 @@ header.sticky.top-0.z-max data-controller='navbar'
         .dropdown-btn
           .navbar-link.write-btn
             | Browse
-        .dropdown-list
-          .dropdown-list-left
-          .dropdown-list-right
+        .dropdown-list.browse-dropdown
+          .dropdown-list-wrapper
+            h1 Genres
+            .dropdown-list-genre
+              - fake_genres.each do |genre|
+                = link_to genre
+          .dropdown-list-wrapper
+            h1 Trending Topics
+            .dropdown-list-topic
+              - fake_topics.each do |topic|
+                = link_to topic
 
     .search-box
       = form_with url: '#search', method: :get, class:'search-form' do |f|
@@ -22,7 +30,7 @@ header.sticky.top-0.z-max data-controller='navbar'
           .navbar-link.write-btn
             | Write
             = mi.shape(:arrow_drop_down).md_18
-        .dropdown-list
+        .dropdown-list.write-dropdown
           .dropdown-item
             = link_to '#write', class: 'writer navbar-link' do
               = inline_svg_tag 'icons/writer_icon.svg'

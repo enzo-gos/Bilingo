@@ -130,13 +130,61 @@
     @apply absolute
     bg-white
     top-full
-    min-w-64
     invisible
     opacity-0
+    shadow;
+  }
+
+  .navbar-container .dropdown > .dropdown-list.browse-dropdown {
+    @apply min-w-[55vw]
+    flex
+    items-start
+    justify-between;
+  }
+
+  .navbar-container .dropdown > .dropdown-list.write-dropdown {
+    @apply min-w-64
     p-2
     md:right-0
-    lg:left-0
-    shadow;
+    lg:left-0;
+  }
+
+  .navbar-container .dropdown > .dropdown-list .dropdown-list-genre,
+  .navbar-container .dropdown > .dropdown-list .dropdown-list-topic {
+    @apply grid
+    grid-cols-4
+    gap-x-10
+    w-fit
+    p-2
+    pt-0
+    justify-between;
+  }
+
+  .navbar-container .dropdown > .dropdown-list .dropdown-list-wrapper {
+    @apply p-4;
+  }
+
+  .navbar-container .dropdown > .dropdown-list .dropdown-list-wrapper:last-child {
+    @apply bg-gray-100/70;
+  }
+
+  .navbar-container .dropdown > .dropdown-list .dropdown-list-wrapper h1 {
+    @apply mx-3
+    text-lg
+    mb-1;
+  }
+
+  .navbar-container .dropdown > .dropdown-list .dropdown-list-topic {
+    @apply grid-cols-3;
+  }
+
+  .navbar-container .dropdown > .dropdown-list .dropdown-list-genre a,
+  .navbar-container .dropdown > .dropdown-list .dropdown-list-topic a {
+    @apply p-2
+    text-sm
+    whitespace-nowrap
+    transition-all
+    hover:text-primary-500;
   }
 
   .navbar-container .dropdown:hover > .dropdown-btn > .navbar-link {
@@ -309,7 +357,7 @@
     height: calc(100vh - 60px);
     @apply flex
     mx-auto
-    gap-8
+    gap-16
     sm:h-[420px]
     text-center
     flex-col-reverse
@@ -333,7 +381,7 @@
   }
 
   .carousel .backdrop-fill.fill-background {
-    @apply opacity-50
+    @apply opacity-60
     bg-black;
   }
 
@@ -388,7 +436,7 @@
     rounded-md
     font-semibold
     transition-all
-    hover:bg-primary-800
+    hover:bg-primary-500
     hover:shadow-md;
   }
 
@@ -419,7 +467,7 @@
   .stories > .story-list {
     @apply flex
     flex-col
-    gap-5
+    gap-6
     w-[600px];
   }
 
@@ -597,6 +645,7 @@
 
   .view-story-book .story-title {
     @apply text-lg
-    font-semibold;
+    font-semibold
+    mt-2;
   }
 }
