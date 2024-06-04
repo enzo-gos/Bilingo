@@ -1,0 +1,18 @@
+footer.footer
+  .footer-container
+    p.footer-heading
+      | Bilingo Stories
+    p.footer-text
+      | Bilingo is a vibrant platform dedicated to bilingual storytelling.
+      br
+      | Writers can effortlessly compose and share stories in their languages, while readers explore a diverse collection of bilingual stories spanning various genres.
+    .footer-link-group
+      = link_to "Home", '#home', class: "footer-link"
+      = link_to "About", '#about', class: "footer-link"
+      = link_to "Contact", '#contact', class: "footer-link"
+      = link_to "Privacy Policy", 'policy', class: "footer-link"
+    .footer-social-icons
+      = link_to "#", class: "footer-social-icon" do
+        = mi.shape(:facebook)
+    p.footer-bottom-text
+      | &copy; 2024 Bilingo
