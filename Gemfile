@@ -56,4 +56,4 @@ gem 'pundit', '~> 2.3'
 
 gem 'pagy', '~> 8.4'
 
-gem "inline_svg", "~> 1.9"
+gem 'inline_svg', '~> 1.9'
