@@ -1,0 +1,27 @@
+.carousel.hidden data-controller='carousel'
+  - fake_top_story.map do |story|
+    .slider-wrapper
+      .backdrop-fill.blur-background
+        = image_tag story[:cover], class: 'backdrop-img', width: 220
+      .backdrop-fill.fill-background
+      .slider-item
+        .book-info
+          h1.book-title = story[:title]
+          .book-analysis
+            .counter
+              = mi.shape(:visibility).outlined  .md_18
+              = story[:views]
+            .counter
+              = mi.shape(:comment).outlined.md_18
+              = story[:comments]
+            .counter
+              = mi.shape(:format_list_bulleted).outlined.md_18
+              = story[:chapters]
+
+          p.book-description
+            b Description
+            br
+            == story[:description]
+
+          = link_to 'Reading', '#read', class: 'reading-btn'
+        = image_tag story[:cover], class: 'book-cover', width: 220

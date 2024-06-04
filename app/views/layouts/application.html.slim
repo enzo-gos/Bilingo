@@ -10,5 +10,7 @@ html lang='en'
     = javascript_importmap_tags
 
   body
-    main.container.mx-auto.mt-28.px-5.flex
+    = render 'shared/navbar'
+    main.main-content
       = yield
+    = render 'shared/footer'

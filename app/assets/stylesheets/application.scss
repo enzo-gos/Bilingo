@@ -12,11 +12,28 @@
  *
  *= require_tree .
  *= require_self
- 
+
  *= require material_icons
  *= require material_icons.outlined
  *= require material_icons.sharp
  *= require material_icons.round
  *= require material_icons.twotone
  *= require material_icons.helpers
+
+ *= require slick/slick
+ *= require slick/slick-theme
 */
+
+@font-face {
+  font-family: 'Montserrat';
+  src: url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+}
+
+* {
+  font-size: 14px;
+}
+
+body {
+  font-family: 'Montserrat', Arial, Helvetica, sans-serif;
+  overflow-x: hidden;
+}
