@@ -1,0 +1,46 @@
+header.sticky.top-0.z-max data-controller='navbar'
+  nav.navbar-container
+    .navbar-group__left
+      = link_to 'Bilingo', '#home', class: 'navbar-link navbar-title'
+      .dropdown
+        .dropdown-btn
+          .navbar-link.write-btn
+            | Browse
+        .dropdown-list.browse-dropdown
+          .dropdown-list-wrapper
+            h1 Genres
+            .dropdown-list-genre
+              - fake_genres.each do |genre|
+                = link_to genre
+          .dropdown-list-wrapper
+            h1 Trending Topics
+            .dropdown-list-topic
+              - fake_topics.each do |topic|
+                = link_to topic
+
+    .search-box
+      = form_with url: '#search', method: :get, class:'search-form' do |f|
+        = f.button :button, type: :submit, class: 'search-btn' do
+          = inline_svg_tag 'icons/search_icon.svg'
+        = f.text_field :query, class:'search-input', placeholder: 'Search'
+
+    .navbar-group__right
+      .dropdown
+        .dropdown-btn
+          .navbar-link.write-btn
+            | Write
+            = mi.shape(:arrow_drop_down).md_18
+        .dropdown-list.write-dropdown
+          .dropdown-item
+            = link_to '#write', class: 'writer navbar-link' do
+              = inline_svg_tag 'icons/writer_icon.svg'
+              .writer-title Write a new story
+          .dropdown-item
+            = link_to '#my-stories', class: 'writer navbar-link' do
+              .writer-title My Stories
+      = link_to 'Sign In', '#login', class: 'navbar-link'
+      = link_to 'Sign Up', '#signup', class: 'navbar-link'
+      .mobile-menu-btn data-navbar-target='mobileMenu'
+        = mi.shape(:menu).round
+
+  = render 'shared/mobile_sidebar', data_navbar_target: 'mobileSidebar'

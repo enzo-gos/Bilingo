@@ -1,0 +1,29 @@
+.story-list
+  h1.story-heading Stories
+  - fake_top_story.map do |story|
+    .story-book
+      .book-cover-wrapper
+        = link_to '#story-1' do
+          = image_tag story[:cover], class: 'book-cover'
+      .book-info
+        = link_to '#story-1' do
+          strong.book-title = story[:title]
+        .book-author
+          i by
+          = ' '
+          = link_to 'RHea Verma', '#story-1-author'
+        = link_to '#story-1' do
+          p.book-description == story[:description].truncate_words(35)
+        small.book-meta
+          | Drama •
+          = ' '
+          = story[:chapters]
+          |  chapters
+        .sharing
+          = link_to '#story-1-share', class: 'facebook-btn' do
+            = mi.shape(:facebook).outlined
+          = link_to '#story-1-flag', class: 'flag-btn' do
+            = mi.shape(:flag).outlined
+        = link_to '#story-1-share', class: 'read-btn'
+          span Reading Now
+          = mi.shape(:chevron_right).md_18

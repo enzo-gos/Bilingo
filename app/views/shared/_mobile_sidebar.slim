@@ -1,0 +1,37 @@
+.mobile-sidebar data-navbar-target=data_navbar_target data-controller='mobile-sidebar'
+    .sidebar-dropdown
+      .dropdown-btn data-mobile-sidebar-target='dropdownBtn'
+        span Browse
+        = mi.shape(:arrow_downward).round.css_class('dropdown-icon')
+      .dropdown-list data-mobile-sidebar-target='dropdownList'
+        .dropdown-item
+          .genres
+            b.genres-title Genres
+            .genres-list
+              - fake_genres.each do |genre|
+                = link_to genre
+        .dropdown-item
+          .topic
+            b.topic-title Trending Topics
+            .topic-list
+              - fake_topics.each do |topic|
+                = link_to topic
+
+    .sidebar-dropdown
+      .dropdown-btn
+        span Community
+        = mi.shape(:arrow_downward).round.css_class('dropdown-icon')
+
+    .sidebar-dropdown
+      .dropdown-btn data-mobile-sidebar-target='dropdownBtn'
+        span Write
+        = mi.shape(:arrow_downward).round.css_class('dropdown-icon')
+      .dropdown-list data-mobile-sidebar-target='dropdownList'
+        .dropdown-item
+          = link_to '#write', class: 'writer' do
+            = inline_svg_tag 'icons/writer_icon.svg'
+            .writer-title Write a new story
+        .dropdown-item
+          = link_to '#my-stories', class: 'writer' do
+            .writer-title My Stories
+

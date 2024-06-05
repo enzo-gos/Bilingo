@@ -1,0 +1,20 @@
+.story-list
+  h1.story-heading Just View
+  - fake_top_story.map do |story|
+    .view-story-book
+      .story-cover-wrapper
+        .backdrop-fill.blur-background
+          = image_tag story[:cover], class: 'backdrop-img'
+        .backdrop-fill.fill-background
+        = image_tag story[:cover], class: 'book-cover'
+
+      = link_to '#story-1' do
+        h1.story-title = story[:title]
+
+      = link_to '#story-1' do
+        p.story-description = story[:description].truncate_words(20)
+
+      .story-controls
+        = link_to '#story-1-share', class: 'read-btn'
+          span Reading Now
+          = mi.shape(:chevron_right).md_18
