@@ -1,11 +1,13 @@
-@import 'tailwind/carousel.css';
 @import 'tailwind/navbar.css';
 @import 'tailwind/mobile_sidebar.css';
-@import 'tailwind/stories.css';
-@import 'tailwind/footer.css';
-@import 'tailwind/auth_modal.css';
-@import 'tailwind/profile.css';
 @import 'tailwind/toast.css';
+@import 'tailwind/footer.css';
+
+@import 'tailwind/home/carousel.css';
+@import 'tailwind/home/stories.css';
+
+@import 'tailwind/modals/auth_modal.css';
+@import 'tailwind/profile/profile.css';
 
 @tailwind base;
 @tailwind components;
