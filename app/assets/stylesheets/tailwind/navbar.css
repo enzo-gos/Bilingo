@@ -1,0 +1,246 @@
+@layer components {
+  .navbar-container {
+    @apply flex
+    justify-between
+    items-center
+    w-full
+    border-b
+    px-2
+    gap-3
+    lg:px-8
+    lg:gap-5
+    bg-white;
+  }
+
+  .navbar-container > .navbar-group__left,
+  .navbar-container > .navbar-group__right {
+    @apply flex
+    items-center;
+  }
+
+  .navbar-container > .search-btn {
+    @apply items-center
+    mr-auto
+    inline-block
+    sm:hidden;
+  }
+
+  .navbar-container > .navbar-group__right > .mobile-menu-btn {
+    @apply flex
+    items-center
+    cursor-pointer
+    py-4
+    px-3
+    md:hidden;
+  }
+
+  .navbar-container > .navbar-group__right .navbar-link.sign-up-btn {
+    @apply hidden
+    lg:inline-block
+    font-semibold;
+  }
+
+  .navbar-container > .navbar-group__right .navbar-link.sign-in-btn {
+    @apply inline-block
+    font-semibold;
+  }
+
+  .navbar-container > .navbar-group__right .user-profile {
+    @apply rounded-full
+    flex
+    items-center
+    justify-center
+    bg-primary-700
+    ml-5
+    w-12
+    h-12
+    cursor-pointer
+    overflow-hidden;
+  }
+
+  .navbar-container > .navbar-group__right .user-profile .avatar-text {
+    @apply text-xl
+    font-semibold
+    text-white;
+  }
+
+  .navbar-container .navbar-link {
+    @apply items-center
+    whitespace-nowrap
+    py-4
+    px-3
+    hidden
+    transition-all
+    cursor-pointer
+    md:inline-block;
+  }
+
+  .navbar-container .navbar-link:hover,
+  .navbar-container .navbar-link:hover svg {
+    @apply text-primary-600
+    fill-primary-600;
+  }
+
+  .navbar-link.navbar-title {
+    @apply font-semibold
+    text-2xl
+    inline-block
+    md:mr-2
+    lg:mr-12
+    bg-gradient-to-r
+    from-primary-600
+    via-purple-500
+    to-indigo-400
+    text-transparent
+    bg-clip-text;
+  }
+
+  .navbar-container .write-btn {
+    @apply items-center
+    hidden
+    md:flex;
+  }
+
+  .navbar-container > .search-box {
+    @apply w-full
+    hidden
+    md:block;
+  }
+
+  .navbar-container > .search-box > .search-form {
+    @apply flex
+    items-center
+    border
+    border-gray-100
+    bg-slate-100/70
+    rounded-3xl
+    max-w-xl
+    overflow-hidden
+    px-2;
+  }
+
+  .navbar-container > .search-box > .search-form > .search-input {
+    @apply outline-none
+    ring-0
+    focus:ring-0
+    border-none
+    bg-transparent
+    p-2
+    w-full;
+  }
+
+  .navbar-container > .search-box > .search-form > .search-btn {
+    @apply flex
+    items-center
+    p-2;
+  }
+
+  .navbar-container .dropdown {
+    @apply relative
+    hidden
+    md:block;
+  }
+
+  .navbar-container .dropdown.profile-dropdown {
+    @apply inline-block;
+  }
+
+  .navbar-container .dropdown > .dropdown-list {
+    @apply absolute
+    bg-white
+    top-full
+    invisible
+    opacity-0
+    shadow;
+  }
+
+  .navbar-container .dropdown > .dropdown-list.browse-dropdown {
+    @apply min-w-[55vw]
+    flex
+    items-start
+    justify-between;
+  }
+
+  .navbar-container .dropdown > .dropdown-list.write-list {
+    @apply min-w-64
+    p-2
+    right-0;
+  }
+
+  .navbar-container .dropdown > .dropdown-list.profile-list {
+    @apply right-0;
+  }
+
+  .navbar-container .dropdown > .dropdown-list .dropdown-list-genre,
+  .navbar-container .dropdown > .dropdown-list .dropdown-list-topic {
+    @apply grid
+    grid-cols-4
+    gap-x-10
+    w-fit
+    p-2
+    pt-0
+    justify-between;
+  }
+
+  .navbar-container .dropdown > .dropdown-list .dropdown-list-wrapper {
+    @apply p-4;
+  }
+
+  .navbar-container .dropdown > .dropdown-list .dropdown-list-wrapper:last-child {
+    @apply bg-gray-100/70;
+  }
+
+  .navbar-container .dropdown > .dropdown-list .dropdown-list-wrapper h1 {
+    @apply mx-3
+    text-lg
+    mb-1;
+  }
+
+  .navbar-container .dropdown > .dropdown-list .dropdown-list-topic {
+    @apply grid-cols-3;
+  }
+
+  .navbar-container .dropdown > .dropdown-list .dropdown-list-genre a,
+  .navbar-container .dropdown > .dropdown-list .dropdown-list-topic a {
+    @apply p-2
+    text-sm
+    whitespace-nowrap
+    transition-all
+    hover:text-primary-500;
+  }
+
+  .navbar-container .dropdown:hover > .dropdown-btn > .navbar-link {
+    @apply text-primary-600;
+  }
+
+  .navbar-container .dropdown:hover > .dropdown-list {
+    @apply opacity-100
+    visible
+    border
+    transition-all;
+  }
+
+  .navbar-container .dropdown > .dropdown-list > .dropdown-item > .writer {
+    @apply flex
+    text-sm
+    gap-2
+    p-3
+    items-center;
+  }
+
+  .navbar-container .dropdown > .dropdown-list > .dropdown-item .account-option {
+    @apply flex
+    gap-2
+    p-4
+    px-5
+    min-w-52
+    items-center
+    whitespace-nowrap
+    hover:bg-gray-100;
+  }
+
+  .navbar-container .dropdown > .dropdown-list > .dropdown-item > .writer > .writer-title {
+    @apply whitespace-nowrap
+    text-sm;
+  }
+}

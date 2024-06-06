@@ -1,0 +1,116 @@
+@layer components {
+  .mobile-sidebar {
+    @apply h-0
+    fixed
+    top-16
+    bottom-0
+    left-0
+    right-0
+    overflow-y-auto
+    transition-all
+    ease-in
+    duration-200
+    bg-white
+    md:hidden;
+  }
+
+  .mobile-sidebar.open {
+    height: calc(100vh - 60px - 6px);
+  }
+
+  .mobile-sidebar > .sidebar-dropdown {
+    @apply relative
+    border-b
+    border-gray-200/80;
+  }
+
+  .mobile-sidebar > .sidebar-dropdown > .dropdown-btn {
+    @apply flex
+    items-center
+    justify-between
+    px-5
+    py-3;
+  }
+
+  .mobile-sidebar > .sidebar-dropdown > .dropdown-btn.open {
+    @apply text-primary-500/80;
+  }
+
+  .mobile-sidebar > .sidebar-dropdown > .dropdown-btn > .dropdown-icon {
+    @apply text-gray-500
+    text-xl
+    transition-all;
+  }
+
+  .mobile-sidebar > .sidebar-dropdown > .dropdown-btn > .dropdown-icon.open {
+    @apply rotate-180;
+  }
+
+  .mobile-sidebar > .sidebar-dropdown > .dropdown-list {
+    @apply w-full
+    max-h-0
+    transition-all
+    duration-500
+    overflow-hidden;
+  }
+
+  .mobile-sidebar > .sidebar-dropdown > .dropdown-list.open {
+    @apply max-h-[2e3px];
+  }
+
+  .mobile-sidebar > .sidebar-dropdown > .dropdown-list > .dropdown-item {
+    @apply bg-white;
+  }
+
+  .mobile-sidebar > .sidebar-dropdown > .dropdown-list > .dropdown-item > .genres,
+  .mobile-sidebar > .sidebar-dropdown > .dropdown-list > .dropdown-item > .topic {
+    @apply ml-8 border-b;
+  }
+
+  .mobile-sidebar > .sidebar-dropdown > .dropdown-list > .dropdown-item > .topic {
+    @apply border-none;
+  }
+
+  .mobile-sidebar > .sidebar-dropdown > .dropdown-list > .dropdown-item > .genres > .genres-title,
+  .mobile-sidebar > .sidebar-dropdown > .dropdown-list > .dropdown-item > .topic > .topic-title {
+    @apply text-xl
+    font-medium
+    block
+    mb-2
+    mx-1;
+  }
+
+  .mobile-sidebar > .sidebar-dropdown > .dropdown-list > .dropdown-item > .topic > .topic-title {
+    @apply mt-4;
+  }
+
+  .mobile-sidebar > .sidebar-dropdown > .dropdown-list > .dropdown-item > .genres > .genres-list,
+  .mobile-sidebar > .sidebar-dropdown > .dropdown-list > .dropdown-item > .topic > .topic-list {
+    @apply grid
+    grid-cols-2
+    p-2
+    pb-2
+    pt-0
+    justify-between;
+  }
+
+  .mobile-sidebar > .sidebar-dropdown > .dropdown-list > .dropdown-item > .genres > .genres-list > a,
+  .mobile-sidebar > .sidebar-dropdown > .dropdown-list > .dropdown-item > .topic > .topic-list > a {
+    @apply p-2;
+  }
+
+  .mobile-sidebar > .sidebar-dropdown > .dropdown-list > .dropdown-item > .writer {
+    @apply flex
+    gap-4
+    ml-8
+    px-4
+    pb-4
+    justify-start
+    items-center;
+  }
+
+  .mobile-sidebar > .sidebar-dropdown > .dropdown-list > .dropdown-item > .writer > .writer-title {
+    @apply text-lg
+    whitespace-nowrap;
+  }
+}

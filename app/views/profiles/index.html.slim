@@ -1,0 +1,38 @@
+.profile-container
+  .profile-heading
+    .wallpaper-color
+    .user-avatar
+      span.avatar-text = current_user.last_name.first
+    h1.profile-name = current_user.last_name + " " + current_user.first_name
+
+    .analysis
+      .analysis-item
+        span 01
+        span Published
+      .analysis-item
+        span 01
+        span Crafting
+      .analysis-item
+        span 0
+        span Reported
+
+  .profile-stories
+    h1.list-title Stories
+    .profile-stories-grid
+      - fake_top_story.map do |story|
+        .story-book
+          .story-cover
+            = image_tag story[:cover]
+          .story-name
+            = story[:title]
+          .story-analysis
+            .counter
+              = mi.shape(:visibility).outlined.md_18
+              = story[:views]
+            .counter
+              = mi.shape(:comment).outlined.md_18
+              = story[:comments]
+            .counter
+              = mi.shape(:format_list_bulleted).outlined.md_18
+              = story[:chapters]
+

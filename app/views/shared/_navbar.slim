@@ -1,7 +1,7 @@
 header.sticky.top-0.z-max data-controller='navbar'
   nav.navbar-container
     .navbar-group__left
-      = link_to 'Bilingo', '#home', class: 'navbar-link navbar-title'
+      = link_to 'Bilingo', root_path, class: 'navbar-link navbar-title'
       .dropdown
         .dropdown-btn
           .navbar-link.write-btn
@@ -30,7 +30,7 @@ header.sticky.top-0.z-max data-controller='navbar'
           .navbar-link.write-btn
             | Write
             = mi.shape(:arrow_drop_down).md_18
-        .dropdown-list.write-dropdown
+        .dropdown-list.write-list
           .dropdown-item
             = link_to '#write', class: 'writer navbar-link' do
               = inline_svg_tag 'icons/writer_icon.svg'
@@ -38,8 +38,29 @@ header.sticky.top-0.z-max data-controller='navbar'
           .dropdown-item
             = link_to '#my-stories', class: 'writer navbar-link' do
               .writer-title My Stories
-      = link_to 'Sign In', '#login', class: 'navbar-link'
-      = link_to 'Sign Up', '#signup', class: 'navbar-link'
+
+      - if user_signed_in?
+        .dropdown.profile-dropdown
+          .dropdown-btn.user-profile
+            span.avatar-text = current_user.last_name.first
+          .dropdown-list.profile-list
+            .dropdown-item
+              = link_to profile_path, class: 'account-option' do
+                = mi.shape(:account_circle).md_18
+                | User profile
+            .dropdown-item
+              = link_to '#setting', class: 'account-option' do
+                = mi.shape(:settings).md_18
+                | Settings
+            .px-2.my-1
+              .border-b.w-full
+            .dropdown-item
+              = button_to destroy_user_session_path, method: :delete, class: 'account-option' do
+                = mi.shape(:logout).md_18
+                | Logout
+      - else
+        = link_to 'Sign In', auth_sign_in_path, class: 'navbar-link sign-in-btn', data: { action: 'click->auth-modal#open', turbo_stream: true }
+        = link_to 'Sign Up', auth_sign_up_path, class: 'navbar-link sign-up-btn', data: { action: 'click->auth-modal#open', turbo_stream: true }
       .mobile-menu-btn data-navbar-target='mobileMenu'
         = mi.shape(:menu).round
 

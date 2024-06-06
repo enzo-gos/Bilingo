@@ -28,4 +28,10 @@
 #       enabled: "ON"
 
 en:
-  hello: "Hello world"
+  omniauth_callbacks:
+    facebook_error: 'Could not sign you in through Facebook. Please complete your registration manually.'
+    callback_error: 'There was a problem communicating with %{provider}. Please try again.'
+    record_invalid: 'There was a problem creating your account. Please try again.'
+    unexpected_error: 'An unexpected error occurred. Please try again.'
+    failure: 'Authentication failed. Please try again.'
+    success: 'Successfully authenticated from %{kind} account.'

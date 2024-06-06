@@ -57,3 +57,7 @@ gem 'pundit', '~> 2.3'
 gem 'pagy', '~> 8.4'
 
 gem 'inline_svg', '~> 1.9'
+
+gem 'omniauth-facebook', '~> 10.0'
+
+gem 'omniauth-rails_csrf_protection', '~> 1.0'
