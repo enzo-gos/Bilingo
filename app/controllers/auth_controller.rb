@@ -6,7 +6,7 @@ class AuthController < ApplicationController
       format.turbo_stream do
         render turbo_stream: [
           turbo_stream.update('auth-modal-title') { 'Login in to Bilingo' },
-          turbo_stream.update('auth-modal-body', partial: 'auth/modal-body/sign_in')
+          turbo_stream.update('auth-modal-body', partial: 'auth/modal_body/sign_in')
         ]
       end
     end
@@ -17,7 +17,7 @@ class AuthController < ApplicationController
       format.turbo_stream do
         render turbo_stream: [
           turbo_stream.update('auth-modal-title') { 'Join Bilingo' },
-          turbo_stream.update('auth-modal-body', partial: 'auth/modal-body/sign_up')
+          turbo_stream.update('auth-modal-body', partial: 'auth/modal_body/sign_up')
         ]
       end
     end
