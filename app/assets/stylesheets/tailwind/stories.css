@@ -13,7 +13,7 @@
   .stories > .story-list {
     @apply flex
     flex-col
-    gap-6
+    gap-4
     w-[640px];
   }
 
@@ -38,8 +38,8 @@
   .story-book > .book-cover-wrapper {
     @apply w-32
     min-w-32
-    sm:w-40
-    sm:min-w-40;
+    sm:w-[135px]
+    sm:min-w-[135px];
   }
 
   .story-book > .book-cover-wrapper > .book-cover {
@@ -47,7 +47,8 @@
   }
 
   .story-book > .book-info {
-    @apply w-auto;
+    @apply w-auto
+    p-2;
   }
 
   .story-book > .book-info .book-title {
@@ -61,16 +62,18 @@
   }
 
   .story-book > .book-info .book-author a {
-    @apply underline;
+    @apply text-sm
+    underline;
   }
 
   .story-book > .book-info .book-description {
-    @apply my-3;
+    @apply my-3
+    text-[12px];
   }
 
   .story-book > .book-info .sharing {
     @apply gap-1
-    my-2
+    mt-2
     hidden
     lg:flex;
   }
@@ -100,6 +103,7 @@
     items-center
     ml-auto
     w-fit
+    my-auto
     hover:text-primary-600;
   }
 
@@ -123,6 +127,10 @@
     h-28
     rounded-md
     overflow-hidden;
+  }
+
+  .view-story-book .story-description {
+    @apply text-[12px];
   }
 
   .view-story-book .backdrop-fill.blur-background {
