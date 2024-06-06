@@ -5,6 +5,7 @@
 @import 'tailwind/footer.css';
 @import 'tailwind/auth_modal.css';
 @import 'tailwind/profile.css';
+@import 'tailwind/toast.css';
 
 @tailwind base;
 @tailwind components;

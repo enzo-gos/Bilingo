@@ -1,0 +1,6 @@
+. data-controller='toast'
+  - if notice
+    = render 'shared/toast/success', message: notice
+
+  - if alert
+    = render 'shared/toast/alert', message: alert

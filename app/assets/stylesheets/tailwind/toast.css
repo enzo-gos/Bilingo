@@ -1,0 +1,44 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+  .toast {
+    @apply fixed
+    top-[62px]
+    right-2
+    z-max
+    max-w-xs
+    bg-white
+    border
+    border-gray-200
+    rounded-xl shadow-lg;
+  }
+
+  .toast-content {
+    @apply flex
+    p-4;
+  }
+
+  .toast-icon {
+    @apply flex-shrink-0
+    mt-0.5;
+  }
+
+  .toast-icon.success {
+    @apply text-teal-500;
+  }
+
+  .toast-icon.error {
+    @apply text-red-500;
+  }
+
+  .toast-message-container {
+    @apply ml-2;
+  }
+
+  .toast-message {
+    @apply text-base
+    text-gray-700;
+  }
+}
