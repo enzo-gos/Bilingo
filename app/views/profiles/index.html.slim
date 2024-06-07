@@ -3,21 +3,21 @@
     .wallpaper-color
     .user-avatar
       span.avatar-text = current_user.last_name.first
-    h1.profile-name = current_user.last_name + " " + current_user.first_name
+    h1.profile-name = "#{current_user.last_name} #{current_user.first_name}"
 
     .analysis
       .analysis-item
         span 01
-        span Published
+        span = t('profile.published')
       .analysis-item
         span 01
-        span Crafting
+        span = t('profile.crafting')
       .analysis-item
         span 0
-        span Reported
+        span = t('profile.reported')
 
   .profile-stories
-    h1.list-title Stories
+    h1.list-title = t('profile.stories_title')
     .profile-stories-grid
       - fake_top_story.map do |story|
         .story-book
@@ -35,4 +35,3 @@
             .counter
               = mi.shape(:format_list_bulleted).outlined.md_18
               = story[:chapters]
-

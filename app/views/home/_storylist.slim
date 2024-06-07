@@ -1,5 +1,5 @@
 .story-list
-  h1.story-heading Stories
+  h1.story-heading = t('story_list.heading')
   - fake_top_story.map do |story|
     .story-book
       .book-cover-wrapper
@@ -9,7 +9,7 @@
         = link_to '#story-1' do
           strong.book-title = story[:title]
         .book-author
-          i by
+          i = t('story_list.by')
           = ' '
           i = link_to story[:author], '#story-1-author'
         = link_to '#story-1' do
@@ -18,12 +18,13 @@
           | Drama •
           = ' '
           = story[:chapters]
-          |  chapters
+          = ' '
+          = t('story_list.chapters')
         .sharing
           = link_to '#story-1-share', class: 'facebook-btn' do
             = mi.shape(:facebook).outlined
           = link_to '#story-1-flag', class: 'flag-btn' do
             = mi.shape(:flag).outlined
-        = link_to '#story-1-share', class: 'read-btn'
-          span Reading Now
+        = link_to '#story-1-share', class: 'read-btn' do
+          span = t('story.reading_now')
           = mi.shape(:chevron_right).md_18

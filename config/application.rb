@@ -29,5 +29,8 @@ module Bilingo
 
     config.time_zone = 'Hanoi'
     config.active_record.default_timezone = :local # Or :utc
+
+    config.i18n.available_locales = %i[en vi zh]
+    config.i18n.default_locale = :vi
   end
 end

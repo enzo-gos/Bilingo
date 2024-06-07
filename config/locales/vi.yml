@@ -1,0 +1,74 @@
+vi:
+  navbar:
+    title: 'Bilingo'
+    browse: 'Phân loại'
+    genres: 'Thể loại'
+    trending_topics: 'Chủ đề thịnh hành'
+    search: 'Tìm kiếm'
+    write: 'Viết truyện'
+    write_new_story: 'Viết câu truyện mới'
+    my_stories: 'Câu truyện của tôi'
+    user_profile: 'Hồ sơ người dùng'
+    settings: 'Cài đặt'
+    logout: 'Đăng xuất'
+    sign_in: 'Đăng nhập'
+    sign_up: 'Đăng ký'
+
+  footer:
+    heading: 'Bilingo Stories'
+    description: 'Bilingo là một nền tảng sống động dành cho kể truyện song ngữ.'
+    description_continued: 'Các nhà văn có thể dễ dàng sáng tác và chia sẻ câu truyện bằng ngôn ngữ của họ, trong khi độc giả khám phá một bộ sưu tập đa dạng các câu truyện song ngữ trải dài qua nhiều thể loại.'
+    home: 'Trang Chủ'
+    about: 'Giới Thiệu'
+    contact: 'Liên Hệ'
+    privacy_policy: 'Chính Sách Bảo Mật'
+
+  carousel:
+    description: 'Mô tả'
+    reading: 'Bắt đầu đọc'
+
+  story:
+    reading_now: 'Đọc ngay'
+
+  story_list:
+    heading: 'Câu truyện'
+    by: 'bởi'
+    chapters: 'chương'
+
+  just_view_story_list:
+    heading: 'Đã xem'
+
+  auth:
+    sign_in:
+      title: 'Đăng nhập vào Bilingo'
+      facebook: 'Đăng nhập bằng Facebook'
+      google: 'Đăng nhập bằng Google'
+      or: 'HOẶC'
+      email: 'Đăng nhập bằng Email'
+      forgot_password: 'Quên mật khẩu?'
+      no_account: 'Chưa có tài khoản?'
+      no_account_link: 'Đăng ký'
+
+    sign_up:
+      title: 'Tham gia Bilingo'
+      description: 'Tham gia cộng đồng toàn cầu của người đọc và nhà văn, tất cả được kết nối thông qua sức mạnh của câu truyện.'
+      facebook: 'Đăng ký bằng Facebook'
+      google: 'Đăng ký bằng Google'
+      or: 'HOẶC'
+      email: 'Đăng ký bằng Email'
+      have_account: 'Nếu bạn đã có tài khoản,'
+      have_account_link: 'Đăng nhập'
+
+  profile:
+    published: 'Đã xuất bản'
+    crafting: 'Đang viết'
+    reported: 'Báo cáo'
+    stories_title: 'Câu truyện'
+
+  omniauth_callbacks:
+    facebook_error: 'Không thể đăng nhập thông qua Facebook. Vui lòng hoàn tất đăng ký của bạn theo cách thủ công.'
+    callback_error: 'Đã xảy ra sự cố khi giao tiếp với %{provider}. Vui lòng thử lại.'
+    record_invalid: 'Đã xảy ra sự cố khi tạo tài khoản của bạn. Vui lòng thử lại.'
+    unexpected_error: 'Đã xảy ra lỗi không mong muốn. Vui lòng thử lại.'
+    failure: 'Xác thực thất bại. Vui lòng thử lại.'
+    success: 'Xác thực thành công từ tài khoản %{kind}.'

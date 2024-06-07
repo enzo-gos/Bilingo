@@ -1,5 +1,5 @@
 .story-list
-  h1.story-heading Just View
+  h1.story-heading = t('just_view_story_list.heading')
   - fake_top_story.map do |story|
     .view-story-book
       .story-cover-wrapper
@@ -15,6 +15,6 @@
         p.story-description = story[:description].truncate_words(20)
 
       .story-controls
-        = link_to '#story-1-share', class: 'read-btn'
-          span Reading Now
+        = link_to '#story-1-share', class: 'read-btn' do
+          span = t('story.reading_now')
           = mi.shape(:chevron_right).md_18

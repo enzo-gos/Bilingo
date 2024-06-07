@@ -4,21 +4,23 @@ Rails.application.routes.draw do
   mount Sidekiq::Web => '/sidekiq'
   get 'up' => 'rails/health#show', as: :rails_health_check
 
-  devise_for :users,
-  controllers: { omniauth_callbacks: 'users/omniauth_callbacks' }
-
-  namespace :auth do
-    get 'sign-in'
-    get 'sign-up'
-  end
-
-  get 'profile' => 'profiles#index'
-
   namespace :api do
     namespace :v1 do
       resources :example, only: [:index, :show]
     end
   end
 
-  root 'home#index'
+  devise_for :users,
+  controllers: { omniauth_callbacks: 'users/omniauth_callbacks' }
+
+  available_locales = -> { I18n.available_locales.map(&:to_s).join('|') }
+
+  scope "(:locale)", locale: Regexp.new(available_locales.call) do
+    namespace :auth do
+      get 'sign-in'
+      get 'sign-up'
+    end
+    get 'profile' => 'profiles#index'
+    root 'home#index'
+  end
 end

@@ -1,0 +1,74 @@
+zh:
+  navbar:
+    title: 'Bilingo'
+    browse: '浏览'
+    genres: '流派'
+    trending_topics: '热门话题'
+    search: '搜索'
+    write: '写作'
+    write_new_story: '撰写新故事'
+    my_stories: '我的故事'
+    user_profile: '用户资料'
+    settings: '设置'
+    logout: '登出'
+    sign_in: '登录'
+    sign_up: '注册'
+
+  footer:
+    heading: 'Bilingo Stories'
+    description: 'Bilingo 是一个致力于双语讲故事的活跃平台。'
+    description_continued: '作家可以轻松地用自己的语言创作和分享故事，读者可以探索跨越各种流派的多样化双语故事集。'
+    home: '首页'
+    about: '关于'
+    contact: '联系我们'
+    privacy_policy: '隐私政策'
+
+  carousel:
+    description: '描述'
+    reading: '阅读'
+
+  story:
+    reading_now: '正在阅读'
+
+  story_list:
+    heading: '故事'
+    by: '作者'
+    chapters: '章节'
+
+  just_view_story_list:
+    heading: '仅查看'
+
+  auth:
+    sign_in:
+      title: '登录到 Bilingo'
+      facebook: '使用 Facebook 登录'
+      google: '使用 Google 登录'
+      or: '或'
+      email: '使用电子邮件登录'
+      forgot_password: '忘记密码？'
+      no_account: '还没有账号？'
+      no_account_link: '注册'
+
+    sign_up:
+      title: '加入 Bilingo'
+      description: '成为一个全球读者和作者的一部分，他们通过故事的力量联系在一起。'
+      facebook: '使用 Facebook 注册'
+      google: '使用 Google 注册'
+      or: '或'
+      email: '使用电子邮件注册'
+      have_account: '如果您已经有账号，'
+      have_account_link: '登录'
+
+  profile:
+    published: '已发布'
+    crafting: '创作中'
+    reported: '已举报'
+    stories_title: '故事'
+
+  omniauth_callbacks:
+    facebook_error: '无法通过 Facebook 登录。请手动完成您的注册。'
+    callback_error: '与 %{provider} 通信时出现问题。请重试。'
+    record_invalid: '创建您的帐户时出现问题。请重试。'
+    unexpected_error: '发生意外错误。请重试。'
+    failure: '身份验证失败。请重试。'
+    success: '已成功从 %{kind} 账户进行身份验证。'
