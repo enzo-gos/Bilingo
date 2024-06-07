@@ -1,0 +1,21 @@
+p#auth-modal-description.model-description Be part of a global community of readers and writers, all connected through the power of story.
+
+= button_to user_facebook_omniauth_authorize_path, class: 'auth-btn facebook-btn', method: :post, data: { turbo: false } do
+  = inline_svg_tag 'icons/facebook_icon.svg', class: 'auth-btn-icon'
+  span Sign up with Facebook
+
+button.auth-btn.google-btn
+  = inline_svg_tag 'icons/google_icon.svg', class: 'auth-btn-icon'
+  span Sign up with Google
+
+.alternative-devider
+  .line
+  | OR
+  .line
+
+button.auth-btn.email-btn
+  span Sign up with Email
+
+.has-account
+  | If you already have an account,
+  = link_to ' Sign in.', auth_sign_in_path, class: 'has-account-btn', data: { turbo_stream: true }

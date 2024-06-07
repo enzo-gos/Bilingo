@@ -1,0 +1,207 @@
+@layer components {
+  .stories {
+    @apply flex
+    w-full
+    max-w-7xl
+    mx-auto
+    gap-10
+    p-3
+    justify-center
+    md:justify-between;
+  }
+
+  .stories > .story-list {
+    @apply flex
+    flex-col
+    gap-4
+    w-[640px];
+  }
+
+  .stories > .story-list:last-child {
+    @apply w-[300px]
+    hidden
+    md:flex;
+  }
+
+  .stories > .story-list > .story-heading {
+    @apply uppercase
+    text-gray-500
+    font-normal;
+  }
+
+  .stories > .story-list > .story-book {
+    @apply flex
+    gap-3
+    mb-3;
+  }
+
+  .story-book > .book-cover-wrapper {
+    @apply w-32
+    min-w-32
+    sm:w-[135px]
+    sm:min-w-[135px];
+  }
+
+  .story-book > .book-cover-wrapper > .book-cover {
+    @apply w-full;
+  }
+
+  .story-book > .book-info {
+    @apply w-auto
+    p-2;
+  }
+
+  .story-book > .book-info .book-title {
+    @apply text-2xl
+    hover:underline;
+  }
+
+  .story-book > .book-info .book-author,
+  .story-book > .book-info .book-meta {
+    @apply text-sm text-gray-500;
+  }
+
+  .story-book > .book-info .book-author a {
+    @apply text-sm
+    underline;
+  }
+
+  .story-book > .book-info .book-description {
+    @apply my-3
+    text-[12px];
+  }
+
+  .story-book > .book-info .sharing {
+    @apply gap-1
+    mt-2
+    hidden
+    lg:flex;
+  }
+
+  .story-book > .book-info .sharing a {
+    @apply flex
+    items-center
+    p-1
+    text-gray-700
+    rounded-full
+    transition-all
+    hover:bg-slate-200/60
+    hover:text-red-500;
+  }
+
+  .story-book > .book-info .sharing a.facebook-btn {
+    @apply hover:text-blue-500;
+  }
+
+  .story-book > .book-info .sharing a.flag-btn {
+    @apply hover:text-red-500;
+  }
+
+  .story-book > .book-info .read-btn {
+    @apply text-gray-500
+    flex
+    items-center
+    ml-auto
+    w-fit
+    my-auto
+    hover:text-primary-600;
+  }
+
+  .story-book > .book-info .read-btn > span {
+    @apply underline;
+  }
+
+  .story-list > .view-story-book {
+    @apply flex-col
+    items-center
+    gap-2
+    my-1;
+  }
+
+  .view-story-book > .story-cover-wrapper {
+    @apply relative
+    flex
+    items-center
+    justify-center
+    w-full
+    h-28
+    rounded-md
+    overflow-hidden;
+  }
+
+  .view-story-book .story-description {
+    @apply text-[12px];
+  }
+
+  .view-story-book .backdrop-fill.blur-background {
+    @apply backdrop-blur-sm
+    bg-black;
+  }
+
+  .view-story-book .backdrop-fill {
+    @apply absolute
+    top-0
+    right-0
+    left-0
+    bottom-0
+    border
+    flex
+    -z-10;
+  }
+
+  .view-story-book .backdrop-fill .backdrop-img {
+    @apply w-full
+    object-center
+    object-cover
+    blur-sm;
+  }
+
+  .view-story-book .book-cover {
+    @apply w-16
+    rounded-none;
+  }
+
+  .view-story-book .story-controls {
+    @apply text-center;
+  }
+
+  .view-story-book .sharing {
+    @apply gap-1
+    my-2
+    hidden
+    lg:flex;
+  }
+
+  .view-story-book .sharing a {
+    @apply flex
+    items-center
+    p-1
+    rounded-full
+    transition-all
+    hover:bg-slate-200/60
+    hover:text-red-500;
+  }
+
+  .view-story-book .sharing a.facebook-btn {
+    @apply hover:text-blue-500;
+  }
+
+  .view-story-book .sharing a.flag-btn {
+    @apply hover:text-red-500;
+  }
+
+  .view-story-book .story-controls .read-btn {
+    @apply text-gray-500
+    flex
+    items-center
+    ml-auto
+    w-fit
+    hover:text-primary-600;
+  }
+
+  .view-story-book .story-title {
+    @apply text-lg
+    font-semibold
+    mt-2;
+  }
+}

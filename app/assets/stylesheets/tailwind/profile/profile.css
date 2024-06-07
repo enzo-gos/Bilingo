@@ -1,0 +1,140 @@
+@layer components {
+  .profile-container {
+    @apply min-h-screen;
+  }
+
+  .profile-container > .profile-heading {
+    @apply w-full
+    relative
+    pt-14
+    h-[290px]
+    bg-slate-50
+    border-b;
+  }
+
+  .profile-container > .profile-heading > .wallpaper-color {
+    @apply absolute
+    left-0
+    right-0
+    top-0
+    bottom-0
+    -z-10;
+  }
+
+  .profile-container > .profile-heading > .user-avatar {
+    @apply rounded-full
+    flex
+    items-center
+    justify-center
+    bg-primary-700
+    mx-auto
+    w-24
+    h-24
+    overflow-hidden;
+  }
+
+  .profile-container > .profile-heading .avatar-text {
+    @apply text-[40px]
+    font-semibold
+    text-white;
+  }
+
+  .profile-container > .profile-heading .profile-name {
+    @apply text-2xl
+    w-fit
+    block
+    mx-auto
+    my-4
+    font-bold;
+  }
+
+  .profile-container > .profile-heading .analysis {
+    @apply w-fit
+    flex
+    gap-16
+    my-8
+    mx-auto;
+  }
+
+  .profile-container > .profile-heading .analysis > .analysis-item {
+    @apply flex
+    flex-col
+    gap-1
+    items-center;
+  }
+
+  .profile-container > .profile-heading .analysis > .analysis-item > span {
+    @apply text-xl;
+  }
+
+  .profile-container > .profile-heading .analysis > .analysis-item > span:last-child {
+    @apply font-semibold
+    text-lg;
+  }
+
+  .profile-container > .profile-stories {
+    @apply max-w-7xl
+    mx-auto
+    h-96;
+  }
+
+  .profile-container > .profile-stories > .list-title {
+    @apply mx-auto
+    w-fit
+    uppercase
+    my-6
+    font-semibold
+    text-2xl;
+  }
+
+  .profile-stories-grid {
+    @apply grid
+    grid-cols-4
+    mt-12
+    place-items-center;
+  }
+
+  .profile-stories-grid > .story-book {
+    @apply w-fit
+    max-w-64
+    rounded
+    shadow
+    overflow-hidden
+    border;
+  }
+
+  .profile-stories-grid > .story-book > .story-cover {
+    @apply w-full
+    h-64
+    overflow-hidden;
+  }
+
+  .profile-stories-grid > .story-book > .story-cover > img {
+    @apply w-full
+    object-cover
+    object-center;
+  }
+
+  .profile-stories-grid > .story-book > .story-name {
+    @apply text-center
+    text-xl
+    font-semibold
+    my-3
+    truncate
+    px-4
+    whitespace-nowrap;
+  }
+
+  .profile-stories-grid > .story-book > .story-analysis {
+    @apply flex
+    px-4
+    pb-6
+    justify-between;
+  }
+
+  .profile-stories-grid > .story-book > .story-analysis > .counter {
+    @apply flex
+    gap-1
+    items-center;
+  }
+}

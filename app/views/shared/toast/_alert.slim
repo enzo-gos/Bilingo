@@ -1,0 +1,6 @@
+.toast role='alert' data-toast-target='errorToast'
+  .toast-content
+    = mi.shape(:cancel).round.md_18.css_class('toast-icon error')
+    .toast-message-container
+      p.toast-message
+        = message

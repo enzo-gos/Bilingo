@@ -1,0 +1,7 @@
+.modal-backdrop.modal-hidden data-auth-modal-target='backdrop'
+.auth-modal.modal-hidden data-auth-modal-target='modal'
+  button.close-btn type='button' data-action='click->auth-modal#close'
+    = mi.shape(:close).md_18
+
+  h1#auth-modal-title.modal-title
+  div#auth-modal-body

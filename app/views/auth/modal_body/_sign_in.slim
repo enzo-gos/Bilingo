@@ -1,0 +1,23 @@
+= button_to user_facebook_omniauth_authorize_path, class: 'auth-btn facebook-btn', method: :post, data: { turbo: false } do
+  = inline_svg_tag 'icons/facebook_icon.svg', class: 'auth-btn-icon'
+  span Sign in with Facebook
+
+button.auth-btn.google-btn
+  = inline_svg_tag 'icons/google_icon.svg', class: 'auth-btn-icon'
+  span Sign in with Google
+
+.alternative-devider
+  .line
+  | OR
+  .line
+
+button.auth-btn.email-btn
+  span Sign in with Email
+
+.forgot-password
+  = link_to 'Forgot password?', '#forgot-password'
+
+.has-account
+  | Don't have an account?
+  = ' '
+  = link_to ' Sign up.', auth_sign_up_path, class: 'has-account-btn', data: { turbo_stream: true }
