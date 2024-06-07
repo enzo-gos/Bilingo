@@ -28,6 +28,72 @@
 #       enabled: "ON"
 
 en:
+  navbar:
+    title: 'Bilingo'
+    browse: 'Browse'
+    genres: 'Genres'
+    trending_topics: 'Trending Topics'
+    search: 'Search'
+    write: 'Write'
+    write_new_story: 'Write a new story'
+    my_stories: 'My Stories'
+    user_profile: 'User profile'
+    settings: 'Settings'
+    logout: 'Logout'
+    sign_in: 'Sign In'
+    sign_up: 'Sign Up'
+
+  footer:
+    heading: 'Bilingo Stories'
+    description: 'Bilingo is a vibrant platform dedicated to bilingual storytelling.'
+    description_continued: 'Writers can effortlessly compose and share stories in their languages, while readers explore a diverse collection of bilingual stories spanning various genres.'
+    home: 'Home'
+    about: 'About'
+    contact: 'Contact'
+    privacy_policy: 'Privacy Policy'
+
+  carousel:
+    description: 'Description'
+    reading: 'Reading'
+
+  story:
+    reading_now: 'Reading Now'
+
+  story_list:
+    heading: 'Stories'
+    by: 'by'
+    chapters: 'chapters'
+
+  just_view_story_list:
+    heading: 'Just View'
+
+  auth:
+    sign_in:
+      title: 'Login in to Bilingo'
+      facebook: 'Sign in with Facebook'
+      google: 'Sign in with Google'
+      or: 'OR'
+      email: 'Sign in with Email'
+      forgot_password: 'Forgot password?'
+      no_account: "Don't have an account?"
+      no_account_link: 'Sign up'
+
+    sign_up:
+      title: 'Join Bilingo'
+      description: 'Be part of a global community of readers and writers, all connected through the power of story.'
+      facebook: 'Sign up with Facebook'
+      google: 'Sign up with Google'
+      or: 'OR'
+      email: 'Sign up with Email'
+      have_account: 'If you already have an account,'
+      have_account_link: 'Sign in'
+
+  profile:
+    published: 'Published'
+    crafting: 'Crafting'
+    reported: 'Reported'
+    stories_title: 'Stories'
+
   omniauth_callbacks:
     facebook_error: 'Could not sign you in through Facebook. Please complete your registration manually.'
     callback_error: 'There was a problem communicating with %{provider}. Please try again.'

@@ -1,21 +1,22 @@
-p#auth-modal-description.model-description Be part of a global community of readers and writers, all connected through the power of story.
+p#auth-modal-description.model-description = t('auth.sign_up.description')
 
 = button_to user_facebook_omniauth_authorize_path, class: 'auth-btn facebook-btn', method: :post, data: { turbo: false } do
   = inline_svg_tag 'icons/facebook_icon.svg', class: 'auth-btn-icon'
-  span Sign up with Facebook
+  span = t('auth.sign_up.facebook')
 
-button.auth-btn.google-btn
+.button.auth-btn.google-btn
   = inline_svg_tag 'icons/google_icon.svg', class: 'auth-btn-icon'
-  span Sign up with Google
+  span = t('auth.sign_up.google')
 
 .alternative-devider
   .line
-  | OR
+  = t('auth.sign_up.or')
   .line
 
-button.auth-btn.email-btn
-  span Sign up with Email
+.button.auth-btn.email-btn
+  span = t('auth.sign_up.email')
 
 .has-account
-  | If you already have an account,
-  = link_to ' Sign in.', auth_sign_in_path, class: 'has-account-btn', data: { turbo_stream: true }
+  = t('auth.sign_up.have_account')
+  = ' '
+  = link_to t('auth.sign_up.have_account_link'), auth_sign_in_path, class: 'has-account-btn', data: { turbo_stream: true }

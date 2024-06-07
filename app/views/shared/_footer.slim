@@ -1,16 +1,16 @@
 footer.footer
   .footer-container
     p.footer-heading
-      | Bilingo Stories
+      = t('footer.heading')
     p.footer-text
-      | Bilingo is a vibrant platform dedicated to bilingual storytelling.
+      = t('footer.description')
       br
-      | Writers can effortlessly compose and share stories in their languages, while readers explore a diverse collection of bilingual stories spanning various genres.
+      = t('footer.description_continued')
     .footer-link-group
-      = link_to "Home", '#home', class: "footer-link"
-      = link_to "About", '#about', class: "footer-link"
-      = link_to "Contact", '#contact', class: "footer-link"
-      = link_to "Privacy Policy", 'policy', class: "footer-link"
+      = link_to t('footer.home'), root_path, class: "footer-link"
+      = link_to t('footer.about'), '#about', class: "footer-link"
+      = link_to t('footer.contact'), '#contact', class: "footer-link"
+      = link_to t('footer.privacy_policy'), '#policy', class: "footer-link"
     .footer-social-icons
       = link_to "#", class: "footer-social-icon" do
         = mi.shape(:facebook)

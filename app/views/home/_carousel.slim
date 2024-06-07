@@ -9,7 +9,7 @@
           h1.book-title = story[:title]
           .book-analysis
             .counter
-              = mi.shape(:visibility).outlined  .md_18
+              = mi.shape(:visibility).outlined.md_18
               = story[:views]
             .counter
               = mi.shape(:comment).outlined.md_18
@@ -19,9 +19,9 @@
               = story[:chapters]
 
           p.book-description
-            b Description
+            b = t('carousel.description')
             br
             == story[:description]
 
-          = link_to 'Reading', '#read', class: 'reading-btn'
+          = link_to t('carousel.reading'), '#read', class: 'reading-btn'
         = image_tag story[:cover], class: 'book-cover', width: 220

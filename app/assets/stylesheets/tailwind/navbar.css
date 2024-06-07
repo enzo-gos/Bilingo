@@ -45,6 +45,10 @@
     font-semibold;
   }
 
+  .navbar-container > .navbar-group__right .dropdown.localization-dropdown {
+    @apply flex;
+  }
+
   .navbar-container > .navbar-group__right .user-profile {
     @apply rounded-full
     flex
@@ -101,6 +105,15 @@
     md:flex;
   }
 
+  .navbar-container .localization-btn {
+    @apply flex
+    items-center;
+  }
+
+  .navbar-container .localization-btn > span {
+    @apply uppercase;
+  }
+
   .navbar-container > .search-box {
     @apply w-full
     hidden
@@ -155,16 +168,22 @@
   }
 
   .navbar-container .dropdown > .dropdown-list.browse-dropdown {
-    @apply min-w-[55vw]
+    @apply lg:min-w-[800px]
+    sm:min-w-[86vw]
     flex
     items-start
     justify-between;
   }
 
-  .navbar-container .dropdown > .dropdown-list.write-list {
+  .navbar-container .dropdown > .dropdown-list.write-list,
+  .navbar-container .dropdown > .dropdown-list.localization-list {
     @apply min-w-64
     p-2
     right-0;
+  }
+
+  .navbar-container .dropdown > .dropdown-list.localization-list {
+    @apply min-w-44;
   }
 
   .navbar-container .dropdown > .dropdown-list.profile-list {
@@ -220,12 +239,21 @@
     transition-all;
   }
 
-  .navbar-container .dropdown > .dropdown-list > .dropdown-item > .writer {
+  .navbar-container .dropdown > .dropdown-list > .dropdown-item > .writer,
+  .navbar-container .dropdown > .dropdown-list > .dropdown-item > .localization {
     @apply flex
     text-sm
     gap-2
     p-3
     items-center;
+  }
+
+  .navbar-container .dropdown > .dropdown-list > .dropdown-item > .localization {
+    @apply gap-3;
+  }
+
+  .navbar-container .dropdown > .dropdown-list > .dropdown-item > .localization .locale-icon {
+    @apply text-2xl;
   }
 
   .navbar-container .dropdown > .dropdown-list > .dropdown-item .account-option {

@@ -1,43 +1,43 @@
 header.sticky.top-0.z-max data-controller='navbar'
   nav.navbar-container
     .navbar-group__left
-      = link_to 'Bilingo', root_path, class: 'navbar-link navbar-title'
+      = link_to t('navbar.title'), root_path, class: 'navbar-link navbar-title'
       .dropdown
         .dropdown-btn
           .navbar-link.write-btn
-            | Browse
+            = t('navbar.browse')
         .dropdown-list.browse-dropdown
           .dropdown-list-wrapper
-            h1 Genres
+            h1 = t('navbar.genres')
             .dropdown-list-genre
               - fake_genres.each do |genre|
                 = link_to genre
           .dropdown-list-wrapper
-            h1 Trending Topics
+            h1 = t('navbar.trending_topics')
             .dropdown-list-topic
               - fake_topics.each do |topic|
                 = link_to topic
 
     .search-box
-      = form_with url: '#search', method: :get, class:'search-form' do |f|
+      = form_with url: '#search', method: :get, class: 'search-form' do |f|
         = f.button :button, type: :submit, class: 'search-btn' do
           = inline_svg_tag 'icons/search_icon.svg'
-        = f.text_field :query, class:'search-input', placeholder: 'Search'
+        = f.text_field :query, class: 'search-input', placeholder: t('navbar.search')
 
     .navbar-group__right
       .dropdown
         .dropdown-btn
           .navbar-link.write-btn
-            | Write
+            = t('navbar.write')
             = mi.shape(:arrow_drop_down).md_18
         .dropdown-list.write-list
           .dropdown-item
             = link_to '#write', class: 'writer navbar-link' do
               = inline_svg_tag 'icons/writer_icon.svg'
-              .writer-title Write a new story
+              .writer-title = t('navbar.write_new_story')
           .dropdown-item
             = link_to '#my-stories', class: 'writer navbar-link' do
-              .writer-title My Stories
+              .writer-title = t('navbar.my_stories')
 
       - if user_signed_in?
         .dropdown.profile-dropdown
@@ -47,21 +47,37 @@ header.sticky.top-0.z-max data-controller='navbar'
             .dropdown-item
               = link_to profile_path, class: 'account-option' do
                 = mi.shape(:account_circle).md_18
-                | User profile
+                = t('navbar.user_profile')
             .dropdown-item
               = link_to '#setting', class: 'account-option' do
                 = mi.shape(:settings).md_18
-                | Settings
+                = t('navbar.settings')
             .px-2.my-1
               .border-b.w-full
             .dropdown-item
               = button_to destroy_user_session_path, method: :delete, class: 'account-option' do
                 = mi.shape(:logout).md_18
-                | Logout
+                = t('navbar.logout')
       - else
-        = link_to 'Sign In', auth_sign_in_path, class: 'navbar-link sign-in-btn', data: { action: 'click->auth-modal#open', turbo_stream: true }
-        = link_to 'Sign Up', auth_sign_up_path, class: 'navbar-link sign-up-btn', data: { action: 'click->auth-modal#open', turbo_stream: true }
+        = link_to t('navbar.sign_in'), auth_sign_in_path, class: 'navbar-link sign-in-btn', data: { action: 'click->auth-modal#open', turbo_stream: true }
+        = link_to t('navbar.sign_up'), auth_sign_up_path, class: 'navbar-link sign-up-btn', data: { action: 'click->auth-modal#open', turbo_stream: true }
+
       .mobile-menu-btn data-navbar-target='mobileMenu'
         = mi.shape(:menu).round
+
+      .h-6.border-l.mx-2
+
+      .dropdown.localization-dropdown
+        .dropdown-btn
+          .navbar-link.localization-btn
+            span = current_locale
+            = mi.shape(:arrow_drop_down).md_18
+        .dropdown-list.localization-list
+          - locales.map do |locale|
+            .dropdown-item
+              = link_to({ locale: locale[:code] }, { class: 'localization navbar-link' }) do
+                = inline_svg_tag locale[:flag], class: 'locale-icon'
+                span = "#{locale[:name]} (#{locale[:code].upcase})"
+                = mi.shape(:check).round.md_18.css_class('text-green-600') if current_locale.to_s.downcase == locale[:code].to_s.downcase
 
   = render 'shared/mobile_sidebar', data_navbar_target: 'mobileSidebar'

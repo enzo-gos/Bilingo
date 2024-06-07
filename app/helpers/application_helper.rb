@@ -34,4 +34,28 @@ module ApplicationHelper
       }
     ]
   end
+
+  def locales
+    [
+      {
+        name: 'Tiếng việt',
+        code: 'vi',
+        flag: 'icons/locales/vi.svg'
+      },
+      {
+        name: 'English',
+        code: 'en',
+        flag: 'icons/locales/en.svg'
+      },
+      {
+        name: '中文',
+        code: 'zh',
+        flag: 'icons/locales/zh.svg'
+      }
+    ]
+  end
+
+  def current_locale
+    I18n.locale
+  end
 end
