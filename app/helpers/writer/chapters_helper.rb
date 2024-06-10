@@ -1,0 +1,2 @@
+module Writer::ChaptersHelper
+end

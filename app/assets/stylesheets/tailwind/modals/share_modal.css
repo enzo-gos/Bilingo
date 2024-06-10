@@ -1,0 +1,150 @@
+@layer components {
+  .share-modal {
+    @apply base-modal
+    p-6;
+  }
+
+  .share-modal .close-btn {
+    @apply flex
+    items-center
+    rounded-full
+    text-gray-500;
+  }
+
+  .share-modal .share-modal-heading {
+    @apply flex
+    w-full
+    justify-between;
+  }
+
+  .share-modal .share-modal-heading > .heading-title {
+    @apply text-lg
+    font-semibold
+    text-gray-500;
+  }
+
+  .share-modal .modal-title {
+    @apply text-center
+    text-xl
+    font-bold
+    mb-6;
+  }
+
+  .share-modal .link-option {
+    @apply mt-6 mb-1;
+  }
+
+  .share-modal .link-option > .share-link {
+    @apply flex
+    items-center
+    gap-3
+    bg-gray-100/70
+    py-3.5
+    px-5
+    mt-3
+    rounded-xl;
+  }
+
+  .share-modal .link-option > .share-link > .url {
+    @apply text-[12px]
+    w-full
+    bg-transparent
+    border-none
+    outline-none
+    text-gray-500;
+  }
+
+  .share-modal .link-option > .share-link > .copy-btn,
+  .share-modal .link-option > .share-link > #copy-success,
+  .share-modal .link-option > .share-link > #copy-error {
+    @apply flex
+    justify-center
+    items-center;
+  }
+
+  .share-modal .link-option > .alternative-title {
+    @apply text-center
+    font-semibold
+    text-gray-500;
+  }
+
+  .share-modal .social-options {
+    @apply flex
+    gap-6
+    justify-center
+    sm:justify-between
+    sm:px-8
+    mt-8;
+  }
+
+  .share-modal .social-options .share-option {
+    @apply flex
+    justify-center
+    gap-3
+    border
+    p-3
+    rounded-full
+    cursor-pointer
+    transition-all
+    duration-100;
+  }
+
+  .share-modal .social-options .share-option > .share-icon {
+    @apply text-4xl
+    rounded
+    transition-all
+    duration-100;
+  }
+
+  .share-modal .social-options .share-option.facebook-option {
+    @apply border-blue-500
+    hover:bg-[#316FF6];
+  }
+
+  .share-modal .social-options .share-option.instagram-option {
+    @apply border-pink-400
+    hover:bg-pink-500;
+  }
+
+  .share-modal .social-options .share-option.twitter-option {
+    @apply border-gray-700
+    hover:bg-black;
+  }
+
+  .share-modal .social-options .share-option.linkedin-option {
+    @apply border-sky-600
+    hover:bg-[#007EBB];
+  }
+
+  .share-modal .social-options .share-option > .share-icon.fb-icon {
+    @apply fill-[#316FF6];
+  }
+
+  .share-modal .social-options .share-option > .share-icon.ins-icon {
+    @apply fill-pink-500;
+  }
+
+  .share-modal .social-options .share-option > .share-icon.x-icon {
+    @apply fill-black;
+  }
+
+  .share-modal .social-options .share-option > .share-icon.in-icon {
+    @apply fill-[#007EBB];
+  }
+
+  .share-modal .social-options .share-option.facebook-option:hover > .share-icon.fb-icon {
+    @apply fill-white;
+  }
+
+  .share-modal .social-options .share-option.instagram-option:hover > .share-icon.ins-icon {
+    @apply fill-white;
+  }
+
+  .share-modal .social-options .share-option.twitter-option:hover > .share-icon.x-icon {
+    @apply fill-white;
+  }
+
+  .share-modal .social-options .share-option.linkedin-option:hover > .share-icon.in-icon {
+    @apply fill-white;
+  }
+}

@@ -53,7 +53,7 @@
   }
 
   .carousel .backdrop-fill.fill-background {
-    @apply opacity-60
+    @apply opacity-70
     bg-black;
   }
 

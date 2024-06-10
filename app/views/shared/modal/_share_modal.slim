@@ -1,0 +1,10 @@
+.modal-backdrop.modal-hidden data-share-modal-target='backdrop'
+.share-modal.modal-hidden data-share-modal-target='modal'
+  .share-modal-heading
+    h1.heading-title = t('share_modal.heading_title')
+    button.close-btn type='button' data-action='click->share-modal#close'
+      = mi.shape(:close).md_18.css_class('close-icon')
+
+  h1#share-modal-title.modal-title
+  div#share-modal-body
+    div.loader

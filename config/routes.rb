@@ -14,13 +14,23 @@ Rails.application.routes.draw do
   controllers: { omniauth_callbacks: 'users/omniauth_callbacks' }
 
   available_locales = -> { I18n.available_locales.map(&:to_s).join('|') }
-
   scope "(:locale)", locale: Regexp.new(available_locales.call) do
     namespace :auth do
       get 'sign-in'
       get 'sign-up'
     end
+
+    get 'share' => 'share#index'
+
     get 'profile' => 'profiles#index'
+
+    namespace :writer do
+      resources :stories do
+        resources :chapters do
+        end
+      end
+    end
+
     root 'home#index'
   end
 end

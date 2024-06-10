@@ -7,13 +7,41 @@
 @import 'tailwind/home/stories.css';
 
 @import 'tailwind/modals/auth_modal.css';
+@import 'tailwind/modals/share_modal.css';
 @import 'tailwind/profile/profile.css';
+
+@import 'tailwind/writer/toolbar.css';
+
+@import 'tailwind/writer/writer.css';
+@import 'tailwind/writer/story.css';
+@import 'tailwind/writer/chapter.css';
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 @layer components {
+  .base-modal {
+    @apply fixed
+    bg-white
+    sm:w-[380px]
+    max-w-[380px]
+    w-screen
+    py-10
+    px-10
+    sm:px-20
+    border
+    border-gray-400
+    shadow-md
+    z-max
+    rounded-xl
+    left-1/2
+    top-1/2
+    -translate-x-1/2
+    -translate-y-1/2
+    transition-all;
+  }
+
   .modal-backdrop {
     @apply bg-black
     fixed
@@ -32,5 +60,6 @@
   }
 
   .main-content {
+    @apply min-h-screen;
   }
 }
