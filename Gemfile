@@ -61,3 +61,7 @@ gem 'inline_svg', '~> 1.9'
 gem 'omniauth-facebook', '~> 10.0'
 
 gem 'omniauth-rails_csrf_protection', '~> 1.0'
+
+gem "stackprof", "~> 0.2.26"
+gem "sentry-ruby", "~> 5.17"
+gem "sentry-rails", "~> 5.17"
