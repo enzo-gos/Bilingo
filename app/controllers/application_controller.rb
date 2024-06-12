@@ -8,8 +8,8 @@ class ApplicationController < ActionController::Base
 
   include Pagy::Backend
 
-  def default_url_options
-    { locale: I18n.locale }
+  def default_url_options(options = {})
+    { locale: I18n.locale }.merge options
   end
 
   private

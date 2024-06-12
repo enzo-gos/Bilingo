@@ -11,9 +11,10 @@ html lang==I18n.locale
 
     link [href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet"]
 
-  body data-controller='auth-modal'
+  body data-controller='auth-modal share-modal'
     = render 'shared/navbar'
     = render 'shared/modal/auth_modal'
+    = render 'shared/modal/share_modal'
     = render 'shared/toast/container'
     main.main-content
       = yield

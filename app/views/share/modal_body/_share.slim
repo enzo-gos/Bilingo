@@ -1,0 +1,20 @@
+.social-options
+  .facebook-option.share-option
+    = inline_svg_tag 'icons/share/facebook.svg', class: 'share-icon fb-icon'
+  .instagram-option.share-option
+    = inline_svg_tag 'icons/share/instagram.svg', class: 'share-icon ins-icon'
+  .twitter-option.share-option
+    = inline_svg_tag 'icons/share/x.svg', class: 'share-icon x-icon'
+  .linkedin-option.share-option
+    = inline_svg_tag 'icons/share/linkedin.svg', class: 'share-icon in-icon'
+.link-option
+  .alternative-title
+    small = t('share_modal.or_share_with_link')
+  .share-link data-share-modal-target='shareLink'
+    input#share-story-link.url readonly=true value== 'http://localhost:3000/vi/writer/stories/123123123123123123123123123213123123'
+    button.copy-btn data-clipboard-target="#share-story-link" data-share-modal-target='copyBtn'
+      = mi.shape(:content_copy).md_18
+    #copy-success class='!hidden'
+      = mi.shape(:check).md_18.css_class('text-teal-500')
+    #copy-error class='!hidden'
+      = mi.shape(:close).md_18.css_class('text-red-500')

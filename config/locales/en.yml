@@ -90,9 +90,49 @@ en:
 
   profile:
     published: 'Published'
-    crafting: 'Crafting'
+    drafting: 'Drafting'
     reported: 'Reported'
     stories_title: 'Stories'
+
+  writer_space:
+    title: 'My Stories'
+    new_story: 'New story'
+    published: 'Published'
+    all_stories: 'All Stories'
+    chapters:
+      published: 'Published Chapter'
+      draft: 'Draft'
+    updated: 'Updated'
+    analysis:
+      views: 'views'
+      comments: 'comments'
+    continue_writing: 'Continue writing'
+    stats: 'Stats'
+    share: 'Share'
+
+  share_modal:
+    heading_title: 'Share with'
+    or_share_with_link: 'Or share with link'
+
+  new-story-form:
+    add_cover: 'Add a cover'
+    title: 'Title'
+    description: 'Description'
+    untitled_story: 'Untitled Story'
+    genres: 'Genres'
+    primary: 'Primary'
+    secondary: 'Secondary'
+    tags: 'Tags'
+    separate_tags_with_space: 'Separate tags with space'
+    language: 'Language'
+
+  writer_toolbar:
+    back: 'Back'
+    title: 'Add Story Info'
+    untitled_story: 'Untitled Story'
+    current_locale: 'Current Locale'
+    cancel: 'Cancel'
+    next: 'Next'
 
   omniauth_callbacks:
     facebook_error: 'Could not sign you in through Facebook. Please complete your registration manually.'

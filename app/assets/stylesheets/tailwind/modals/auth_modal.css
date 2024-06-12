@@ -1,23 +1,6 @@
 @layer components {
   .auth-modal {
-    @apply fixed
-    bg-white
-    sm:w-[380px]
-    max-w-[380px]
-    w-screen
-    py-10
-    px-10
-    sm:px-20
-    border
-    border-gray-400
-    shadow-md
-    z-max
-    rounded
-    left-1/2
-    top-1/2
-    -translate-x-1/2
-    -translate-y-1/2
-    transition-all;
+    @apply base-modal;
   }
 
   .auth-modal .close-btn {

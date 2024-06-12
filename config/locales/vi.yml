@@ -61,9 +61,48 @@ vi:
 
   profile:
     published: 'Đã xuất bản'
-    crafting: 'Đang viết'
+    drafting: 'Đang viết'
     reported: 'Báo cáo'
     stories_title: 'Câu truyện'
+
+  writer_space:
+    title: 'Truyện của tôi'
+    new_story: 'Truyện mới'
+    published: 'Đã xuất bản'
+    all_stories: 'Tất cả truyện'
+    chapters:
+      published: 'Chương đã xuất bản'
+      draft: 'Bản nháp'
+    updated: 'Cập nhật'
+    analysis:
+      views: 'lượt xem'
+      comments: 'bình luận'
+    continue_writing: 'Tiếp tục viết'
+    stats: 'Thống kê'
+    share: 'Chia sẻ'
+
+  share_modal:
+    heading_title: 'Chia sẻ với'
+    or_share_with_link: 'Hoặc chia sẻ bằng liên kết'
+
+  new-story-form:
+    add_cover: 'Thêm bìa'
+    title: 'Tiêu đề'
+    description: 'Mô tả'
+    untitled_story: 'Chưa có tiêu đề'
+    genres: 'Thể loại'
+    primary: 'Chính'
+    secondary: 'Phụ'
+    tags: 'Thẻ'
+    separate_tags_with_space: 'Ngăn cách thẻ bằng khoảng trắng'
+    language: 'Ngôn ngữ'
+
+  writer_toolbar:
+    back: 'Trở lại'
+    title: 'Thêm thông tin truyện'
+    untitled_story: 'Chưa có tiêu đề'
+    cancel: 'Hủy'
+    next: 'Tiếp tục'
 
   omniauth_callbacks:
     facebook_error: 'Không thể đăng nhập thông qua Facebook. Vui lòng hoàn tất đăng ký của bạn theo cách thủ công.'

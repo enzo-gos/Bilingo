@@ -1,0 +1,131 @@
+.new-story {
+  @apply writer-space
+  max-w-5xl
+  px-4
+  flex
+  flex-col
+  items-center
+  sm:items-start
+  sm:flex-row
+  gap-[40px]
+  md:gap-[60px];
+}
+
+.new-story > .story-cover {
+  @apply w-[200px]
+  min-w-[200px]
+  h-[300px]
+  min-h-[300px]
+  bg-gray-200/40
+  border-none
+  items-center
+  justify-center
+  relative
+  p-0;
+}
+
+.new-story > .story-cover > .added-info {
+  @apply absolute
+  left-1/2
+  top-1/2
+  -translate-x-1/2
+  -translate-y-1/2
+  text-center
+  text-gray-500
+  font-medium
+  pointer-events-none;
+}
+
+.new-story > .story-cover > .added-info > .notice {
+  @apply my-2
+  text-lg;
+}
+
+.new-story > .story-cover .dz-preview.dz-image-preview {
+  @apply w-full
+  flex
+  flex-col
+  bg-transparent
+  m-0;
+}
+
+.new-story > .story-cover .dz-preview .dz-image {
+  @apply w-full
+  h-full
+  rounded-none;
+}
+
+.new-story > .story-cover .dz-preview .dz-image img {
+  @apply w-full
+  h-full
+  object-center
+  object-cover;
+}
+
+.new-story > .story-cover .dz-remove {
+  @apply bg-white
+  py-4;
+}
+
+.new-story > .story-details {
+  @apply bg-white
+  border
+  border-gray-100
+  shadow
+  w-full
+  p-10;
+}
+
+.new-story > .story-details .info-wrapper {
+  @apply my-4;
+}
+
+.new-story > .story-details .info-wrapper:first-child {
+  @apply mt-0;
+}
+
+.new-story > .story-details .genres-info {
+  @apply flex
+  gap-10
+  mt-2;
+}
+.new-story > .story-details .genres-info .genres-wrapper {
+  @apply flex
+  flex-col
+  w-full
+  gap-2;
+}
+
+.new-story > .story-details .story-input {
+  @apply w-full
+  p-3
+  border-gray-200
+  outline-none
+  ring-primary-400
+  rounded;
+}
+
+.new-story > .story-details .story-label {
+  @apply text-lg
+  font-medium
+  inline-block
+  mb-2;
+}
+
+.new-story > .story-details .story-input.description {
+  @apply resize-none;
+}
+
+.new-story > .story-details .tagify {
+  @apply w-full;
+}
+
+.new-story > .story-details .tagify .tagify__input {
+  @apply m-0
+  py-3
+  mb-3
+  border-t-0
+  border-l-0
+  border-r-0
+  border-b;
+}

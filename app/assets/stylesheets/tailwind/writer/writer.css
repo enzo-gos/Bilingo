@@ -1,0 +1,227 @@
+@layer components {
+  .writer-space {
+    @apply max-w-3xl
+    w-full
+    mx-auto
+    my-10;
+  }
+
+  .writer-space > .space-heading {
+    @apply flex
+    justify-between
+    items-center
+    px-4;
+  }
+
+  .writer-space > .space-heading > .writer-space-title {
+    @apply text-[22px]
+    font-bold;
+  }
+
+  .writer-space > .space-heading > .new-btn {
+    @apply flex
+    items-center
+    justify-center
+    gap-1
+    p-3
+    pr-4
+    py-2
+    text-sm
+    capitalize
+    font-semibold
+    rounded-md
+    bg-primary-600
+    text-white
+    transition-all
+    hover:bg-primary-700;
+  }
+
+  .writer-space > .workspace {
+    @apply w-full
+    shadow-md
+    border
+    rounded
+    border-gray-100
+    my-5;
+  }
+
+  .writer-space > .workspace > .workspace-heading {
+    @apply flex
+    items-center
+    gap-5
+    border-b;
+  }
+
+  .writer-space > .workspace > .workspace-heading > .option-btn {
+    @apply capitalize
+    px-7
+    py-2.5
+    text-gray-800;
+  }
+
+  .writer-space > .workspace > .workspace-heading > .option-btn.active {
+    @apply border-b-[3px]
+    border-primary-500
+    font-semibold;
+  }
+
+  .writer-space > .workspace > .workspace-content {
+    @apply flex
+    flex-col
+    bg-gray-100;
+  }
+
+  .sortable-list .sortable-ghost {
+    @apply opacity-0;
+  }
+
+  .sortable-list .sortable-fallback {
+    @apply bg-white
+    !opacity-100
+    shadow-lg;
+  }
+
+  .sortable-list .sortable-item {
+    @apply flex
+    items-center
+    gap-4
+    p-4
+    border-b
+    border-gray-100
+    bg-white;
+  }
+
+  .sortable-list .sortable-item:last-child {
+    @apply border-none;
+  }
+
+  .sortable-list .sortable-item > .drag-indicator {
+    @apply cursor-grab
+    text-gray-600;
+  }
+
+  .sortable-list .sortable-item > .sortable-story {
+    @apply flex
+    flex-col
+    sm:flex-row
+    sm:justify-between
+    items-center
+    gap-5
+    sm:gap-0
+    w-full;
+  }
+
+  .sortable-list .sortable-item .story-wrapper {
+    @apply flex
+    gap-4
+    mr-auto;
+  }
+
+  .sortable-list .sortable-item .story-wrapper > .story-cover {
+    @apply w-20;
+  }
+
+  .writer-space .story-info {
+    @apply flex
+    flex-col
+    gap-1;
+  }
+
+  .writer-space .story-info > .story-name {
+    @apply text-gray-800;
+  }
+
+  .writer-space .story-info > .story-analysis {
+    @apply flex
+    items-center
+    gap-3;
+  }
+
+  .writer-space .story-info > .story-analysis > .analysis-info {
+    @apply flex
+    gap-1
+    items-center
+    text-sm
+    font-medium
+    text-gray-500;
+  }
+
+  .writer-space .story-info > .story-analysis > .analysis-info > .analysis-icon {
+    @apply text-base;
+  }
+
+  .writer-space .story-info > .story-name {
+    @apply text-lg;
+  }
+
+  .writer-space .story-info > .story-chapters b,
+  .writer-space .story-info > .story-updated {
+    @apply text-xs
+    whitespace-nowrap;
+  }
+
+  .writer-space .story-info > .story-updated {
+    @apply text-gray-500;
+  }
+
+  .writer-space .story-info > .story-chapters > .published-chapters {
+    @apply text-teal-500;
+  }
+
+  .writer-space .story-info > .story-chapters > .draft-chapters {
+    @apply text-gray-500;
+  }
+
+  .writer-space .story-action {
+    @apply flex
+    ml-auto
+    flex-col
+    self-start;
+  }
+
+  .writer-space .story-action > .action-group {
+    @apply flex
+    justify-between
+    gap-2
+    mt-3
+    items-center;
+  }
+
+  .writer-space .story-action > .writting-btn {
+    @apply flex
+    items-center
+    justify-center
+    gap-2
+    bg-primary-600
+    text-white
+    p-12
+    py-1.5
+    text-sm
+    font-semibold
+    rounded-md
+    hover:bg-primary-700
+    transition-all;
+  }
+
+  .writer-space .story-action > .writting-btn > .writting-btn-icon {
+    @apply text-lg;
+  }
+
+  .writer-space .story-action > .action-group > .action-btn {
+    @apply flex
+    items-center
+    gap-2
+    border
+    px-3
+    rounded
+    py-1
+    text-sm
+    whitespace-nowrap
+    transition-all
+    hover:bg-gray-100;
+  }
+
+  .writer-space .story-action > .action-group > .action-btn > .action-btn-icon {
+    @apply text-xl;
+  }
+}

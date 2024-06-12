@@ -1,0 +1,73 @@
+@layer components {
+  .writer-toolbar {
+    @apply w-full
+    sticky
+    top-0
+    border
+    px-6
+    py-3
+    z-max
+    flex
+    items-center
+    justify-between
+    bg-white;
+  }
+
+  .writer-toolbar > .toolbar-heading {
+    @apply flex
+    items-center
+    gap-5;
+  }
+
+  .writer-toolbar > .toolbar-heading .toolbar-heading-info {
+    @apply flex
+    flex-col;
+  }
+
+  .writer-toolbar > .toolbar-heading .back-btn {
+    @apply flex
+    items-center
+    justify-center;
+  }
+
+  .writer-toolbar > .toolbar-heading .title {
+    @apply text-gray-600
+    font-medium;
+  }
+
+  .writer-toolbar > .toolbar-heading .story-name {
+    @apply text-xl
+    font-semibold;
+  }
+
+  .writer-toolbar > .toolbar-heading .back-icon {
+    @apply text-gray-500;
+  }
+
+  .writer-toolbar > .toolbar-actions {
+    @apply flex
+    items-center
+    gap-3;
+  }
+
+  .writer-toolbar > .toolbar-actions .action-btn {
+    @apply bg-gray-200/60
+    text-sm
+    p-2
+    rounded-md
+    font-medium
+    px-5
+    transition-all;
+  }
+
+  .writer-toolbar > .toolbar-actions .action-btn.cancel-btn {
+    @apply hover:bg-gray-300/60;
+  }
+
+  .writer-toolbar > .toolbar-actions .action-btn.next-btn {
+    @apply bg-primary-600
+    text-white
+    font-bold
+    hover:bg-primary-700;
+  }
+}

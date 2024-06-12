@@ -61,9 +61,48 @@ zh:
 
   profile:
     published: '已发布'
-    crafting: '创作中'
+    drafting: '起草'
     reported: '已举报'
     stories_title: '故事'
+
+  writer_space:
+    title: '我的故事'
+    new_story: '新故事'
+    published: '已发布'
+    all_stories: '所有故事'
+    chapters:
+      published: '已发布章节'
+      draft: '草稿'
+    updated: '更新于'
+    analysis:
+      views: '浏览量'
+      comments: '评论'
+    continue_writing: '继续写作'
+    stats: '统计'
+    share: '分享'
+
+  share_modal:
+    heading_title: '分享给'
+    or_share_with_link: '或通过链接分享'
+
+  new-story-form:
+    add_cover: '添加封面'
+    title: '标题'
+    description: '描述'
+    untitled_story: '无标题故事'
+    genres: '类别'
+    primary: '主要'
+    secondary: '次要'
+    tags: '标签'
+    separate_tags_with_space: '用空格分隔标签'
+    language: '语言'
+
+  writer_toolbar:
+    back: '返回'
+    title: '添加故事信息'
+    untitled_story: '无标题故事'
+    cancel: '取消'
+    next: '下一步'
 
   omniauth_callbacks:
     facebook_error: '无法通过 Facebook 登录。请手动完成您的注册。'

@@ -32,11 +32,11 @@ header.sticky.top-0.z-max data-controller='navbar'
             = mi.shape(:arrow_drop_down).md_18
         .dropdown-list.write-list
           .dropdown-item
-            = link_to '#write', class: 'writer navbar-link' do
+            = link_to new_writer_story_path, class: 'writer navbar-link' do
               = inline_svg_tag 'icons/writer_icon.svg'
               .writer-title = t('navbar.write_new_story')
           .dropdown-item
-            = link_to '#my-stories', class: 'writer navbar-link' do
+            = link_to writer_stories_path, class: 'writer navbar-link' do
               .writer-title = t('navbar.my_stories')
 
       - if user_signed_in?
