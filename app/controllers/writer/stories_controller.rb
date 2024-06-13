@@ -18,8 +18,7 @@ class Writer::StoriesController < ApplicationController
   end
 
   def create
-    service = StoryService::Creator.new(params: story_params, author: current_user)
-    result = service.call
+    result = StoryService::Creator.call(params: story_params, author: current_user)
 
     @story = result.payload
 
@@ -39,8 +38,7 @@ class Writer::StoriesController < ApplicationController
   def edit; end
 
   def update
-    service = StoryService::Updater.new(params: story_params, story: @story)
-    result = service.call
+    result = StoryService::Updater.call(params: story_params, story: @story)
 
     if result.success?
       redirect_to edit_writer_story_path, notice: 'Story was successfully updated.'
