@@ -22,6 +22,9 @@ export default class extends Controller {
     data.append('position', event.newIndex + 1);
 
     fetch(url, {
+      headers: {
+        'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content'),
+      },
       method: 'PATCH',
       body: data,
     });
