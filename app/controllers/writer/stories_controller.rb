@@ -1,6 +1,7 @@
 class Writer::StoriesController < ApplicationController
   include TaggableHelper
 
+  before_action :auth_user
   before_action :prepare_story, except: [:new, :create, :index]
   before_action :set_updatable, only: [:edit, :update]
 
@@ -66,9 +67,17 @@ class Writer::StoriesController < ApplicationController
 
   def prepare_story
     @story = Story.find(params[:id])
+    authorize @story, policy_class: Writer::StoryPolicy
   end
 
   def set_updatable
     @updatable = true
+  end
+
+  def auth_user
+    unless user_signed_in?
+      flash[:info] = t('auth.not_signed_in')
+      redirect_to root_path
+    end
   end
 end

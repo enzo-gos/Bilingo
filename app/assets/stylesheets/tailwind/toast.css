@@ -36,6 +36,10 @@
     @apply text-teal-500;
   }
 
+  .toast-icon.info {
+    @apply text-sky-600;
+  }
+
   .toast-icon.error {
     @apply text-red-500;
   }

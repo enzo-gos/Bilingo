@@ -4,3 +4,6 @@
 
   - if alert
     = render 'shared/toast/alert', message: alert
+
+  - if flash[:info]
+    = render 'shared/toast/info', message: flash[:info]

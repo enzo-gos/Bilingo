@@ -88,6 +88,8 @@ en:
       have_account: 'If you already have an account,'
       have_account_link: 'Sign in'
 
+    not_signed_in: 'Please login to continue.'
+
   profile:
     published: 'Published'
     drafting: 'Drafting'
@@ -198,3 +200,6 @@ en:
       exclusion: 'is reserved'
       required: 'is required'
       other_than: 'must be other than %{count}'
+
+  policy:
+    unauthorized: 'You are not authorized to perform this action.'

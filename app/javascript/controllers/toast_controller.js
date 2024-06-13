@@ -2,7 +2,7 @@ import { Controller } from '@hotwired/stimulus';
 
 // Connects to data-controller="toast"
 export default class extends Controller {
-  static targets = ['successToast', 'errorToast'];
+  static targets = ['successToast', 'errorToast', 'infoToast'];
 
   successToastTargetConnected() {
     this.successTimeout = setTimeout(() => {
@@ -12,6 +12,16 @@ export default class extends Controller {
 
   successToastTargetDisconnected() {
     clearTimeout(this.successTimeout);
+  }
+
+  infoToastTargetConnected() {
+    this.infoTimeout = setTimeout(() => {
+      $(this.infoToastTarget).remove();
+    }, 2500);
+  }
+
+  infoToastTargetDisconnected() {
+    clearTimeout(this.infoTimeout);
   }
 
   errorToastTargetConnected() {

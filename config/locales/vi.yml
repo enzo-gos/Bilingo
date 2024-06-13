@@ -59,6 +59,8 @@ vi:
       have_account: 'Nếu bạn đã có tài khoản,'
       have_account_link: 'Đăng nhập'
 
+    not_signed_in: 'Vui lòng đăng nhập để tiếp tục.'
+
   profile:
     published: 'Đã xuất bản'
     drafting: 'Đang viết'
@@ -175,3 +177,6 @@ vi:
       only_integer: 'phải là số nguyên'
       odd: 'phải là số lẻ'
       even: 'phải là số chẵn'
+
+  policy:
+    unauthorized: 'Bạn không có quyền thực hiện hành động này.'

@@ -59,6 +59,8 @@ zh:
       have_account: '如果您已经有账号，'
       have_account_link: '登录'
 
+    not_signed_in: '请登录以继续。'
+
   profile:
     published: '已发布'
     drafting: '起草'
@@ -175,3 +177,6 @@ zh:
       only_integer: '必须是整数'
       odd: '必须是奇数'
       even: '必须是偶数'
+
+  policy:
+    unauthorized: '您无权执行此操作。'
