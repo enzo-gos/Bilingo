@@ -59,6 +59,8 @@ vi:
       have_account: 'Nếu bạn đã có tài khoản,'
       have_account_link: 'Đăng nhập'
 
+    not_signed_in: 'Vui lòng đăng nhập để tiếp tục.'
+
   profile:
     published: 'Đã xuất bản'
     drafting: 'Đang viết'
@@ -80,6 +82,15 @@ vi:
     continue_writing: 'Tiếp tục viết'
     stats: 'Thống kê'
     share: 'Chia sẻ'
+    nocontent: 'Chào, %{fullname}. Bạn chưa viết bất kỳ câu truyện nào.'
+
+  writer_stories:
+    destroy:
+      success: 'Truyện đã được xóa thành công.'
+      failure: 'Không thể xóa câu truyện.'
+
+    update:
+      success: 'Truyện đã được cập nhật thành công.'
 
   share_modal:
     heading_title: 'Chia sẻ với'
@@ -93,16 +104,29 @@ vi:
     genres: 'Thể loại'
     primary: 'Chính'
     secondary: 'Phụ'
-    tags: 'Thẻ'
+    tags: 'Gắn thẻ'
     separate_tags_with_space: 'Ngăn cách thẻ bằng khoảng trắng'
     language: 'Ngôn ngữ'
+    navigation:
+      story_details: 'Chi tiết'
+      table_of_contents: 'Mục lục'
 
   writer_toolbar:
     back: 'Trở lại'
     title: 'Thêm thông tin truyện'
+    editable_title: 'Sửa thông tin truyện'
     untitled_story: 'Chưa có tiêu đề'
     cancel: 'Hủy'
     next: 'Tiếp tục'
+    save: 'Lưu'
+
+  toast:
+    alert:
+      title: 'Có lỗi xảy ra:'
+
+  confirmation:
+    stories:
+      delete: 'Bạn chắc chắn muốn tiếp tục xóa câu chuyện này?'
 
   omniauth_callbacks:
     facebook_error: 'Không thể đăng nhập thông qua Facebook. Vui lòng hoàn tất đăng ký của bạn theo cách thủ công.'
@@ -111,3 +135,51 @@ vi:
     unexpected_error: 'Đã xảy ra lỗi không mong muốn. Vui lòng thử lại.'
     failure: 'Xác thực thất bại. Vui lòng thử lại.'
     success: 'Xác thực thành công từ tài khoản %{kind}.'
+
+  activerecord:
+    attributes:
+      story:
+        name: 'Tiêu đề'
+        description: 'Mô tả'
+        cover_image: 'Bìa'
+        primary_genre: 'Thể loại chính'
+        secondary_genre: 'Thể loại phụ'
+        tag_list: 'Thẻ'
+        language_code: 'Ngôn ngữ'
+        author: 'Tác giả'
+    errors:
+      messages:
+        record_invalid: 'Xác thực không thành công: %{errors}'
+  errors:
+    format: '%{attribute} %{message}'
+    messages:
+      attribute: 'không khớp với xác nhận'
+      accepted: 'phải được chấp nhận'
+      blank: 'không được để trống'
+      present: 'phải để trống'
+      within: 'không nằm trong độ dài cho phép'
+      in: 'không nằm trong phạm vi cho phép'
+      too_short: 'quá ngắn (tối thiểu là %{count} ký tự)'
+      too_long: 'quá dài (tối đa là %{count} ký tự)'
+      is: 'độ dài không đúng (phải là %{count} ký tự)'
+      wrong_length: 'độ dài không đúng'
+      minimum: 'dưới độ dài tối thiểu'
+      maximum: 'vượt quá độ dài tối đa'
+      taken: 'đã được sử dụng'
+      invalid: 'không hợp lệ'
+      inclusion: 'không nằm trong danh sách'
+      exclusion: 'đã được dành riêng'
+      required: 'bắt buộc'
+      not_a_number: 'không phải là số'
+      greater_than: 'phải lớn hơn %{count}'
+      greater_than_or_equal_to: 'phải lớn hơn hoặc bằng %{count}'
+      equal_to: 'phải bằng %{count}'
+      less_than: 'phải nhỏ hơn %{count}'
+      less_than_or_equal_to: 'phải nhỏ hơn hoặc bằng %{count}'
+      other_than: 'phải khác %{count}'
+      only_integer: 'phải là số nguyên'
+      odd: 'phải là số lẻ'
+      even: 'phải là số chẵn'
+
+  policy:
+    unauthorized: 'Bạn không có quyền thực hiện hành động này.'

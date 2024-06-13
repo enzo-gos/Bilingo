@@ -65,6 +65,22 @@
     font-semibold;
   }
 
+  .writer-space > .workspace > .workspace-nocontent {
+    @apply flex
+    flex-col
+    justify-center
+    items-center
+    gap-8
+    text-gray-600
+    py-12
+    px-4;
+  }
+
+  .writer-space > .workspace > .workspace-nocontent > .nocontent-icon {
+    @apply text-[70px]
+    text-gray-500/75;
+  }
+
   .writer-space > .workspace > .workspace-content {
     @apply flex
     flex-col
@@ -207,7 +223,7 @@
     @apply text-lg;
   }
 
-  .writer-space .story-action > .action-group > .action-btn {
+  .writer-space .story-action > .action-group .action-btn {
     @apply flex
     items-center
     gap-2
@@ -218,10 +234,50 @@
     text-sm
     whitespace-nowrap
     transition-all
+    bg-white
     hover:bg-gray-100;
   }
 
-  .writer-space .story-action > .action-group > .action-btn > .action-btn-icon {
+  .writer-space .story-action > .action-group .action-btn > .action-btn-icon {
     @apply text-xl;
+  }
+
+  .writer-space .dropdown {
+    @apply relative;
+  }
+
+  .writer-space .dropdown .dropdown-list {
+    @apply absolute
+    top-full
+    right-0
+    bg-white
+    border
+    rounded
+    shadow-lg
+    invisible
+    opacity-0
+    z-10;
+  }
+
+  .writer-space .dropdown .dropdown-list .dropdown-item {
+    @apply text-[11px]
+    px-4
+    pr-6
+    py-1
+    whitespace-nowrap
+    flex
+    items-center
+    gap-1
+    hover:bg-gray-100
+    w-full;
+  }
+
+  .writer-space .dropdown .dropdown-list .dropdown-item .action-btn-icon {
+    @apply text-lg;
+  }
+
+  .writer-space .dropdown:hover .dropdown-list {
+    @apply opacity-100
+    visible;
   }
 }

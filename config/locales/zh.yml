@@ -59,6 +59,8 @@ zh:
       have_account: '如果您已经有账号，'
       have_account_link: '登录'
 
+    not_signed_in: '请登录以继续。'
+
   profile:
     published: '已发布'
     drafting: '起草'
@@ -80,6 +82,15 @@ zh:
     continue_writing: '继续写作'
     stats: '统计'
     share: '分享'
+    nocontent: '你好，%{fullname}。您还没有写过任何故事。'
+
+  writer_stories:
+    destroy:
+      success: '故事已成功删除。'
+      failure: '删除故事失败。'
+
+    update:
+      success: '故事已成功更新。'
 
   share_modal:
     heading_title: '分享给'
@@ -96,13 +107,26 @@ zh:
     tags: '标签'
     separate_tags_with_space: '用空格分隔标签'
     language: '语言'
+    navigation:
+      story_details: '故事详情'
+      table_of_contents: '目录'
 
   writer_toolbar:
     back: '返回'
     title: '添加故事信息'
+    editable_title: '编辑故事信息'
     untitled_story: '无标题故事'
     cancel: '取消'
     next: '下一步'
+    save: '保存'
+
+  toast:
+    alert:
+      title: '发生错误:'
+
+  confirmation:
+    stories:
+      delete: '您确定要继续删除这个故事吗？'
 
   omniauth_callbacks:
     facebook_error: '无法通过 Facebook 登录。请手动完成您的注册。'
@@ -111,3 +135,51 @@ zh:
     unexpected_error: '发生意外错误。请重试。'
     failure: '身份验证失败。请重试。'
     success: '已成功从 %{kind} 账户进行身份验证。'
+
+  activerecord:
+    attributes:
+      story:
+        name: '标题'
+        description: '描述'
+        cover_image: '封面'
+        primary_genre: '主要类型'
+        secondary_genre: '次要类型'
+        tag_list: '标签'
+        language_code: '语言'
+        author: '作者'
+    errors:
+      messages:
+        record_invalid: '验证失败: %{errors}'
+  errors:
+    format: '%{attribute} %{message}'
+    messages:
+      attribute: '不匹配确认'
+      accepted: '必须被接受'
+      blank: '不能为空'
+      present: '必须为空'
+      within: '不在允许长度范围内'
+      in: '不在允许范围内'
+      too_short: '太短（最少为%{count}个字符）'
+      too_long: '太长（最多为%{count}个字符）'
+      is: '长度不正确（必须是%{count}个字符）'
+      wrong_length: '长度不正确'
+      minimum: '低于最小长度'
+      maximum: '超过最大长度'
+      taken: '已被使用'
+      invalid: '无效'
+      inclusion: '不在列表中'
+      exclusion: '已被保留'
+      required: '必填'
+      not_a_number: '不是数字'
+      greater_than: '必须大于%{count}'
+      greater_than_or_equal_to: '必须大于或等于%{count}'
+      equal_to: '必须等于%{count}'
+      less_than: '必须小于%{count}'
+      less_than_or_equal_to: '必须小于或等于%{count}'
+      other_than: '必须不等于%{count}'
+      only_integer: '必须是整数'
+      odd: '必须是奇数'
+      even: '必须是偶数'
+
+  policy:
+    unauthorized: '您无权执行此操作。'

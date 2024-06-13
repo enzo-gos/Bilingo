@@ -1,12 +1,10 @@
 class ApplicationService
-  TIME_ZONE = 'Asia/Ho_Chi_Minh'.freeze
-
-  def self.call(*args, &block)
-    new.call(*args, &block)
+  def self.call(*args)
+    new(*args).call
   end
 
   def call
-    raise(NotImplementedError, "You must define `call` as instance method in #{self.class.name} class")
+    raise NotImplementedError, "You must define `call` as instance method in #{self.class.name} class"
   end
 end
 

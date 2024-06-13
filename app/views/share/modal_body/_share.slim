@@ -11,7 +11,7 @@
   .alternative-title
     small = t('share_modal.or_share_with_link')
   .share-link data-share-modal-target='shareLink'
-    input#share-story-link.url readonly=true value== 'http://localhost:3000/vi/writer/stories/123123123123123123123123123213123123'
+    input#share-story-link.url readonly=true value==url
     button.copy-btn data-clipboard-target="#share-story-link" data-share-modal-target='copyBtn'
       = mi.shape(:content_copy).md_18
     #copy-success class='!hidden'

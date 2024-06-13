@@ -7,3 +7,21 @@
 #   ["Action", "Comedy", "Drama", "Horror"].each do |genre_name|
 #     MovieGenre.find_or_create_by!(name: genre_name)
 #   end
+
+def fake_genres
+  ['Sci-Fi', 'Fantasy', 'Adventure', 'Mystery', 'Action', 'Horror', 'Humor', 'Erotica', 'Poetry', 'Other', 'Thriller', 'Romance', 'Children', 'Drama']
+end
+
+def fake_topics
+  ['Love', 'Magic', 'Werewolf', 'Family', 'Friendships', 'Death', 'Supernatural', 'Mafia', 'Werewoles', 'ShortStory', 'Alpha', 'Murder']
+end
+
+# Seed genres
+fake_genres.each do |genre_name|
+  Genre.find_or_create_by(name: genre_name)
+end
+
+# Seed tags
+fake_topics.each do |tag|
+  ActsAsTaggableOn::Tag.new(:name => tag).save
+end

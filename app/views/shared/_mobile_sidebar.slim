@@ -8,13 +8,13 @@
         .genres
           b.genres-title = t('navbar.genres')
           .genres-list
-            - fake_genres.each do |genre|
-              = link_to genre
+            - all_genres.each do |genre|
+              = link_to genre.name
       .dropdown-item
         .topic
           b.topic-title = t('navbar.trending_topics')
           .topic-list
-            - fake_topics.each do |topic|
+            - all_topics.each do |topic|
               = link_to topic
 
   .sidebar-dropdown
@@ -28,9 +28,9 @@
       = mi.shape(:arrow_downward).round.css_class('dropdown-icon')
     .dropdown-list data-mobile-sidebar-target='dropdownList'
       .dropdown-item
-        = link_to '#write', class: 'writer' do
+        = link_to new_writer_story_path, class: 'writer' do
           = inline_svg_tag 'icons/writer_icon.svg'
           .writer-title = t('navbar.write_new_story')
       .dropdown-item
-        = link_to '#my-stories', class: 'writer' do
+        = link_to writer_stories_path, class: 'writer' do
           .writer-title = t('navbar.my_stories')

@@ -1,10 +1,10 @@
 module ApplicationHelper
-  def fake_genres
-    ['Sci-Fi', 'Fantasy', 'Adventure', 'Mystery', 'Action', 'Horror', 'Humor', 'Erotica', 'Poetry', 'Other', 'Thriller', 'Romance', 'Children', 'Drama']
+  def all_genres
+    Genre.all
   end
 
-  def fake_topics
-    ['# Love', '# Magic', '# Werewolf', '# Family', '# Friendships', '# Death', '# Supernatural', '# Mafia', '# Werewoles', '# Short Story', '# Alpha', '# Murder']
+  def all_topics
+    ActsAsTaggableOn::Tag.for_context(:tags).map { |tag| "# #{tag}" }
   end
 
   def fake_top_story
@@ -65,5 +65,9 @@ module ApplicationHelper
 
   def current_locale
     I18n.locale
+  end
+
+  def fullname
+    "#{current_user.first_name} #{current_user.last_name}"
   end
 end

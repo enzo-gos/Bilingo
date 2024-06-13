@@ -171,7 +171,7 @@
     @apply lg:min-w-[800px]
     sm:min-w-[86vw]
     flex
-    items-start
+    items-stretch
     justify-between;
   }
 

@@ -1,6 +1,6 @@
 class ApplicationController < ActionController::Base
-  # before_action :authenticate_user!
   before_action :set_locale
+  before_action :set_default_parser
   protect_from_forgery
 
   include Pundit::Authorization
@@ -15,11 +15,15 @@ class ApplicationController < ActionController::Base
   private
 
   def user_not_authorized
-    flash[:notice] = 'You are not authorized to perform this action.'
-    # redirect_to dashboard_path
+    flash[:info] = t('policy.unauthorized')
+    redirect_to root_path
   end
 
   def set_locale
     I18n.locale = params[:locale] || I18n.default_locale
+  end
+
+  def set_default_parser
+    ActsAsTaggableOn.default_parser = ActsAsTaggableOn::DefaultParser
   end
 end

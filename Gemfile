@@ -46,6 +46,7 @@ gem 'slim', '~> 5.2'
 gem 'slim-rails', '~> 3.6'
 gem 'sass-rails', '~> 6.0'
 gem 'simple_form', '~> 5.3'
+gem 'inline_svg', '~> 1.9'
 
 gem 'sidekiq', '~> 7.2'
 gem 'sidekiq-scheduler', '~> 5.0'
@@ -54,14 +55,14 @@ gem 'devise', '~> 4.9'
 gem 'rolify', '~> 6.0'
 gem 'pundit', '~> 2.3'
 
-gem 'pagy', '~> 8.4'
-
-gem 'inline_svg', '~> 1.9'
-
 gem 'omniauth-facebook', '~> 10.0'
-
 gem 'omniauth-rails_csrf_protection', '~> 1.0'
 
-gem "stackprof", "~> 0.2.26"
-gem "sentry-ruby", "~> 5.17"
-gem "sentry-rails", "~> 5.17"
+gem 'pagy', '~> 8.4'
+gem 'acts-as-taggable-on', '~> 10.0'
+
+gem 'stackprof', '~> 0.2.26'
+gem 'sentry-ruby', '~> 5.17'
+gem 'sentry-rails', '~> 5.17'
+
+gem 'acts_as_list', '~> 1.2'

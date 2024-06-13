@@ -1,0 +1,38 @@
+= simple_form_for story, url: url, html: { multipart: true, class: 'new-story', id: 'newStoryForm', autocomplete: 'off' }, defaults: { input_html: { class: 'story-input' }, label_html: { class: 'story-label' } } do |f|
+  .story-cover.dropzone.dropzone-default.dz-clickable data-controller='dropzone' data-dropzone-max-file-size='5' data-dropzone-max-files='1' data-dropzone-accepted-files='image/jpg,image/png,image/jpeg'
+
+    - if story.cover_image.attached?
+      #preview-info data-dropzone-preview-image==url_for(story.cover_image) data-dropzone-preview-filename==story.cover_image.blob.filename data-dropzone-preview-filesize==story.cover_image.blob.byte_size
+
+    .added-info
+      = mi.shape(:wallpaper).md_48
+      .notice = t('new-story-form.add_cover')
+    = f.input :cover_image, label: false, input_html: { data: { dropzone_target: 'input' }, hidden: true, disabled: true, direct_upload: true }
+
+  .story-details
+    - if @updatable
+      .navigation
+        = link_to t('new-story-form.navigation.story_details'), '#details', class: 'nav-btn active'
+        = link_to t('new-story-form.navigation.table_of_contents'), '#tablecontent', class: 'nav-btn'
+    .content
+      .info-wrapper
+        = f.input :name, label: t('new-story-form.title'), input_html: { placeholder: t('new-story-form.untitled_story') }
+
+      .info-wrapper
+        = f.input :description, as: :text, label: t('new-story-form.description'), input_html: { class: 'story-input description', rows: 5 }
+
+      hr
+      .info-wrapper
+        span.story-label = t('new-story-form.genres')
+        .genres-info
+          .genres-wrapper
+            = f.input :primary_genre_id, collection: all_genres, label: t('new-story-form.primary'), label_html: { class: false }
+          .genres-wrapper
+            = f.input :secondary_genre_id, collection: all_genres, include_blank: true, label: t('new-story-form.secondary'), label_html: { class: false }
+
+      hr
+      .info-wrapper data-controller='tagify' data-tagify-url==api_v1_meta_data_tags_path
+        = f.input :tag_list, label: t('new-story-form.tags'), input_html: { class: 'tagify--outside', placeholder: t('new-story-form.separate_tags_with_space'), data: { tagify_target: 'tagInput' } }
+
+      .info-wrapper
+        = f.input :language_code, collection: fake_languages, label: t('new-story-form.language')
