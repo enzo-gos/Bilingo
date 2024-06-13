@@ -21,7 +21,4 @@
               = mi.shape(:check).round.md_18.css_class('text-green-600') if current_locale.to_s.downcase == locale[:code].to_s.downcase
 
     = link_to t('writer_toolbar.cancel'), writer_stories_path, class: 'action-btn cancel-btn'
-    - if @updatable
-      button#submit-btn.action-btn.next-btn type='submit' form='newStoryForm' = t('writer_toolbar.save')
-    - else
-      button#submit-btn.action-btn.next-btn type='submit' form='newStoryForm' = t('writer_toolbar.next')
+    button#submit-btn.action-btn.next-btn type='submit' form='newStoryForm' = @updatable ? t('writer_toolbar.save') : t('writer_toolbar.next')

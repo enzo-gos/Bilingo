@@ -65,4 +65,4 @@ gem 'stackprof', '~> 0.2.26'
 gem 'sentry-ruby', '~> 5.17'
 gem 'sentry-rails', '~> 5.17'
 
-gem "acts_as_list", "~> 1.2"
+gem 'acts_as_list', '~> 1.2'
