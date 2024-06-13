@@ -118,6 +118,9 @@ en:
       success: 'Story was successfully deleted.'
       failure: 'Failed to delete the story.'
 
+    update:
+      success: 'Story was successfully updated.'
+
   share_modal:
     heading_title: 'Share with'
     or_share_with_link: 'Or share with link'

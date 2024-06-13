@@ -89,6 +89,9 @@ zh:
       success: '故事已成功删除。'
       failure: '删除故事失败。'
 
+    update:
+      success: '故事已成功更新。'
+
   share_modal:
     heading_title: '分享给'
     or_share_with_link: '或通过链接分享'

@@ -89,6 +89,9 @@ vi:
       success: 'Truyện đã được xóa thành công.'
       failure: 'Không thể xóa câu truyện.'
 
+    update:
+      success: 'Truyện đã được cập nhật thành công.'
+
   share_modal:
     heading_title: 'Chia sẻ với'
     or_share_with_link: 'Hoặc chia sẻ bằng liên kết'
