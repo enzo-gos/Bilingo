@@ -109,6 +109,12 @@ en:
     continue_writing: 'Continue writing'
     stats: 'Stats'
     share: 'Share'
+    nocontent: "Hi, %{fullname} You haven't written any stories yet."
+
+  writer_stories:
+    destroy:
+      success: 'Story was successfully deleted.'
+      failure: 'Failed to delete the story.'
 
   share_modal:
     heading_title: 'Share with'
@@ -125,14 +131,27 @@ en:
     tags: 'Tags'
     separate_tags_with_space: 'Separate tags with space'
     language: 'Language'
+    navigation:
+      story_details: 'Story Details'
+      table_of_contents: 'Table of Contents'
 
   writer_toolbar:
     back: 'Back'
     title: 'Add Story Info'
+    editable_title: 'Edit Story Info'
     untitled_story: 'Untitled Story'
     current_locale: 'Current Locale'
     cancel: 'Cancel'
     next: 'Next'
+    save: 'Save'
+
+  toast:
+    alert:
+      title: 'An error occurred:'
+
+  confirmation:
+    stories:
+      delete: 'Are you sure you want to continue deleting this story?'
 
   omniauth_callbacks:
     facebook_error: 'Could not sign you in through Facebook. Please complete your registration manually.'
@@ -141,3 +160,41 @@ en:
     unexpected_error: 'An unexpected error occurred. Please try again.'
     failure: 'Authentication failed. Please try again.'
     success: 'Successfully authenticated from %{kind} account.'
+
+  activerecord:
+    attributes:
+      story:
+        name: 'Title'
+        description: 'Description'
+        cover_image: 'Cover'
+        primary_genre: 'Primary'
+        secondary_genre: 'Secondary'
+        tag_list: 'Tags'
+        language_code: 'Language'
+        author: 'Author'
+
+  errors:
+    format: '%{attribute} %{message}'
+    messages:
+      confirmation: "doesn't match %{attribute}"
+      accepted: 'must be accepted'
+      blank: "can't be blank"
+      present: 'must be blank'
+      too_short: 'is too short (minimum is %{count} characters)'
+      too_long: 'is too long (maximum is %{count} characters)'
+      wrong_length: 'is the wrong length (should be %{count} characters)'
+      not_a_number: 'is not a number'
+      not_an_integer: 'must be an integer'
+      greater_than: 'must be greater than %{count}'
+      greater_than_or_equal_to: 'must be greater than or equal to %{count}'
+      equal_to: 'must be equal to %{count}'
+      less_than: 'must be less than %{count}'
+      less_than_or_equal_to: 'must be less than or equal to %{count}'
+      odd: 'must be odd'
+      even: 'must be even'
+      invalid: 'is invalid'
+      taken: 'has already been taken'
+      inclusion: 'is not included in the list'
+      exclusion: 'is reserved'
+      required: 'is required'
+      other_than: 'must be other than %{count}'

@@ -14,7 +14,7 @@ export default class extends Controller {
     clearTimeout(this.successTimeout);
   }
 
-  errorToastConnected() {
+  errorToastTargetConnected() {
     this.errorTimeout = setTimeout(() => {
       $(this.errorToastTarget).remove();
     }, 2500);

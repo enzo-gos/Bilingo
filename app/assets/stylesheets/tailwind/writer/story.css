@@ -24,6 +24,17 @@
   p-0;
 }
 
+.new-story > .story-cover .story_cover_image .error {
+  @apply absolute
+  -bottom-9
+  w-full
+  text-center
+  whitespace-nowrap
+  text-red-500/80
+  text-sm
+  font-semibold;
+}
+
 .new-story > .story-cover > .added-info {
   @apply absolute
   left-1/2
@@ -51,7 +62,7 @@
 
 .new-story > .story-cover .dz-preview .dz-image {
   @apply w-full
-  h-full
+  h-[300px]
   rounded-none;
 }
 
@@ -63,8 +74,11 @@
 }
 
 .new-story > .story-cover .dz-remove {
-  @apply bg-white
-  py-4;
+  @apply py-3
+  bg-primary-700
+  font-semibold
+  text-sm
+  text-white;
 }
 
 .new-story > .story-details {
@@ -72,16 +86,51 @@
   border
   border-gray-100
   shadow
-  w-full
-  p-10;
+  w-full;
+}
+
+.new-story > .story-details > .navigation {
+  @apply flex
+  border-b
+  border-gray-200;
+}
+
+.new-story > .story-details > .navigation .nav-btn {
+  @apply border-b-4
+  border-transparent
+  p-3
+  px-5
+  mx-1
+  pt-6;
+}
+
+.new-story > .story-details > .navigation .nav-btn.active {
+  @apply border-primary-600
+  font-semibold;
+}
+
+.new-story > .story-details > .content {
+  @apply px-10
+  py-6;
 }
 
 .new-story > .story-details .info-wrapper {
-  @apply my-4;
+  @apply my-4
+  relative;
 }
 
 .new-story > .story-details .info-wrapper:first-child {
   @apply mt-0;
+}
+
+.new-story > .story-details .info-wrapper .error {
+  @apply absolute
+  top-2
+  right-0
+  whitespace-nowrap
+  text-red-500/80
+  text-sm
+  font-semibold;
 }
 
 .new-story > .story-details .genres-info {
@@ -105,11 +154,16 @@
   rounded;
 }
 
+.new-story > .story-details .info-wrapper .field_with_errors .story-input {
+  @apply border-red-400;
+}
+
 .new-story > .story-details .story-label {
   @apply text-lg
   font-medium
+  mb-1
   inline-block
-  mb-2;
+  gap-1;
 }
 
 .new-story > .story-details .story-input.description {

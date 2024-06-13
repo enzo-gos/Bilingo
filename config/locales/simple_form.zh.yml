@@ -1,0 +1,8 @@
+zh:
+  simple_form:
+    'yes': '是'
+    'no': '否'
+    required:
+      html: '<small><font color="red">*</font></small>'
+    error_notification:
+      default_message: '请检查下面的问题：'

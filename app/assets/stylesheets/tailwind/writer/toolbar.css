@@ -66,6 +66,7 @@
 
   .writer-toolbar > .toolbar-actions .action-btn.next-btn {
     @apply bg-primary-600
+    cursor-pointer
     text-white
     font-bold
     hover:bg-primary-700;

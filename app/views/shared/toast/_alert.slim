@@ -2,5 +2,12 @@
   .toast-content
     = mi.shape(:cancel).round.md_18.css_class('toast-icon error')
     .toast-message-container
+      b.toast-title = t('toast.alert.title')
       p.toast-message
+      - if message.is_a?(Array)
+        ul.toast-message-list
+          - message.each do |error|
+            li = "#{error}."
+      - else
         = message
+

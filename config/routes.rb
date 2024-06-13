@@ -7,6 +7,9 @@ Rails.application.routes.draw do
   namespace :api do
     namespace :v1 do
       resources :example, only: [:index, :show]
+      namespace :meta_data do
+        get 'tags'
+      end
     end
   end
 
@@ -20,12 +23,15 @@ Rails.application.routes.draw do
       get 'sign-up'
     end
 
-    get 'share' => 'share#index'
+    get 'share/:id' => 'share#index', as: :share
 
     get 'profile' => 'profiles#index'
 
     namespace :writer do
       resources :stories do
+        member do
+          patch :order
+        end
         resources :chapters do
         end
       end

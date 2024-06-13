@@ -3,8 +3,8 @@
     = link_to writer_stories_path, class: 'back-btn' do
       = mi.shape(:arrow_back).css_class('back-icon')
     .toolbar-heading-info
-      small.title = t('writer_toolbar.title')
-      b.story-name = t('writer_toolbar.untitled_story')
+      small.title = @toolbar_title
+      b.story-name = @story[:name] || t('writer_toolbar.untitled_story')
 
   .toolbar-actions
     .dropdown.localization-dropdown
@@ -21,4 +21,7 @@
               = mi.shape(:check).round.md_18.css_class('text-green-600') if current_locale.to_s.downcase == locale[:code].to_s.downcase
 
     = link_to t('writer_toolbar.cancel'), writer_stories_path, class: 'action-btn cancel-btn'
-    = link_to t('writer_toolbar.next'), '#next', class: 'action-btn next-btn'
+    - if @updatable
+      button#submit-btn.action-btn.next-btn type='submit' form='newStoryForm' = t('writer_toolbar.save')
+    - else
+      button#submit-btn.action-btn.next-btn type='submit' form='newStoryForm' = t('writer_toolbar.next')

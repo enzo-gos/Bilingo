@@ -27,13 +27,9 @@ export default class extends Controller {
       file.controller?.xhr.abort();
     });
 
-    this.dropZone.on('processing', (file) => {
-      this.submitButton.disabled = true;
-    });
+    this.dropZone.on('processing', (file) => {});
 
-    this.dropZone.on('queuecomplete', (file) => {
-      this.submitButton.disabled = false;
-    });
+    this.dropZone.on('queuecomplete', (file) => {});
   }
 
   get headers() {
@@ -58,6 +54,18 @@ export default class extends Controller {
 
   get addRemoveLinks() {
     return this.data.get('addRemoveLinks') || true;
+  }
+
+  get previewImage() {
+    return $(this.element).find('#preview-info').data('dropzone-preview-image') || '';
+  }
+
+  get previewFilename() {
+    return $(this.element).find('#preview-info').data('dropzone-preview-filename') || '';
+  }
+
+  get previewFilesize() {
+    return $(this.element).find('#preview-info').data('dropzone-preview-filesize') || '';
   }
 
   get form() {
@@ -142,7 +150,7 @@ function createDirectUpload(file, url, controller) {
 }
 
 function createDropZone(controller) {
-  return new Dropzone(controller.element, {
+  const myDropzone = new Dropzone(controller.element, {
     url: controller.url,
     headers: controller.headers,
     maxFiles: controller.maxFiles,
@@ -154,4 +162,20 @@ function createDropZone(controller) {
     autoQueue: false,
     dictDefaultMessage: '',
   });
+
+  const previewImage = controller.previewImage;
+  const previewFilename = controller.previewFilename;
+  const previewFilesize = controller.previewFilesize;
+
+  if (previewImage && previewFilename && previewFilesize) {
+    myDropzone.displayExistingFile(
+      {
+        name: previewFilename,
+        size: previewFilesize,
+      },
+      previewImage
+    );
+  }
+
+  return myDropzone;
 }
