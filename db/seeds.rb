@@ -13,7 +13,7 @@ def fake_genres
 end
 
 def fake_topics
-  ['Love', 'Magic', 'Werewolf', 'Family', 'Friendships', 'Death', 'Supernatural', 'Mafia', 'Werewoles', 'Short Story', 'Alpha', 'Murder']
+  ['Love', 'Magic', 'Werewolf', 'Family', 'Friendships', 'Death', 'Supernatural', 'Mafia', 'Werewoles', 'ShortStory', 'Alpha', 'Murder']
 end
 
 # Seed genres

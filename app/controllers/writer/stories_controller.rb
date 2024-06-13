@@ -23,7 +23,7 @@ class Writer::StoriesController < ApplicationController
     @story = result.payload
 
     if result.success?
-      redirect_to writer_story_path(@story)
+      redirect_to edit_writer_story_path(@story)
     else
       flash.now[:alert] = result.errors
       render :new, status: :unprocessable_entity
