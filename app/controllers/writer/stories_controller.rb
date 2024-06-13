@@ -4,6 +4,8 @@ class Writer::StoriesController < ApplicationController
   before_action :auth_user
   before_action :prepare_story, except: [:new, :create, :index]
   before_action :set_updatable, only: [:edit, :update]
+  before_action :set_new_title, only: [:edit, :update]
+  before_action :set_edit_title, only: [:new, :create]
 
   layout 'writer/editor', except: [:index, :order, :destroy]
 
@@ -12,7 +14,6 @@ class Writer::StoriesController < ApplicationController
   end
 
   def new
-    @toolbar_title = t('writer_toolbar.title')
     @story = Story.new
   end
 
@@ -35,9 +36,7 @@ class Writer::StoriesController < ApplicationController
     head :ok
   end
 
-  def edit
-    @toolbar_title = t('writer_toolbar.editable_title')
-  end
+  def edit; end
 
   def update
     service = StoryService::Updater.new(params: story_params, story: @story)
@@ -72,6 +71,14 @@ class Writer::StoriesController < ApplicationController
 
   def set_updatable
     @updatable = true
+  end
+
+  def set_new_title
+    @toolbar_title = t('writer_toolbar.title')
+  end
+
+  def set_edit_title
+    @toolbar_title = t('writer_toolbar.editable_title')
   end
 
   def auth_user

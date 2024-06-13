@@ -4,7 +4,7 @@
       = mi.shape(:arrow_back).css_class('back-icon')
     .toolbar-heading-info
       small.title = @toolbar_title
-      b.story-name = @story[:name] || t('writer_toolbar.untitled_story')
+      b.story-name = @story[:name].nil? || @story[:name].empty? ? t('writer_toolbar.untitled_story') : @story[:name]
 
   .toolbar-actions
     .dropdown.localization-dropdown
