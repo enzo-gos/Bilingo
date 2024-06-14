@@ -112,6 +112,9 @@ en:
     stats: 'Stats'
     share: 'Share'
     nocontent: "Hi, %{fullname} You haven't written any stories yet."
+    delete: 'Delete'
+    unpublish: 'Unpublish'
+    view_as_reader: 'View as reader'
 
   writer_stories:
     destroy:
@@ -130,6 +133,7 @@ en:
     title: 'Title'
     description: 'Description'
     untitled_story: 'Untitled Story'
+    untitled_chapter: 'Untitled Chapter'
     genres: 'Genres'
     primary: 'Primary'
     secondary: 'Secondary'
@@ -145,10 +149,17 @@ en:
     title: 'Add Story Info'
     editable_title: 'Edit Story Info'
     untitled_story: 'Untitled Story'
+    untitled_chapter: 'Untitled Chapter'
     current_locale: 'Current Locale'
     cancel: 'Cancel'
     next: 'Next'
     save: 'Save'
+    publish: 'Publish'
+
+  chapter_status:
+    new_part: 'New Part'
+    published: 'Published'
+    draft: 'Draft'
 
   toast:
     alert:

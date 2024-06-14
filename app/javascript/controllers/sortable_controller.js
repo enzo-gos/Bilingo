@@ -15,18 +15,21 @@ export default class extends Controller {
   }
 
   end(event) {
-    const story_id = event.item.dataset.id;
-    const url = this.data.get('url').replace(':id', story_id);
+    const data_url = this.data.get('url');
+    if (data_url) {
+      const story_id = event.item.dataset.id;
+      const url = data_url.replace(':id', story_id);
 
-    const data = new FormData();
-    data.append('position', event.newIndex + 1);
+      const data = new FormData();
+      data.append('position', event.newIndex + 1);
 
-    fetch(url, {
-      headers: {
-        'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content'),
-      },
-      method: 'PATCH',
-      body: data,
-    });
+      fetch(url, {
+        headers: {
+          'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content'),
+        },
+        method: 'PATCH',
+        body: data,
+      });
+    }
   }
 }

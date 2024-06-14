@@ -1,0 +1,19 @@
+.chapter-sidebar.sortable-list.chapter-list data-controller='sortable'
+  .create-group
+    = link_to '#create-chapter', class: 'create-btn' do
+      = mi.shape(:add).round.md_18
+      = t('chapter_status.new_part')
+
+  - fake_chapters.map do |chapter|
+    .chapter-item
+      .drag-indicator
+        = mi.shape(:drag_indicator)
+      .chapter-info
+        b.chapter-title = chapter[:title]
+        .chapter-status
+          - if chapter[:published]
+            b.publish = t('chapter_status.published')
+          - else
+            b.draft = t('chapter_status.draft')
+          | -
+          small Jun 12, 2024

@@ -1,0 +1,27 @@
+.writer-toolbar.navbar-container
+  .toolbar-heading
+    = link_to writer_stories_path, class: 'back-btn' do
+      = mi.shape(:arrow_back).css_class('back-icon')
+    .toolbar-heading-wrapper
+      = image_tag @story.cover_image, width: 32
+      .toolbar-heading-info
+        small.title = @toolbar_title
+        b.story-name = t('writer_toolbar.untitled_chapter')
+
+  .toolbar-actions
+    .dropdown.localization-dropdown
+      .dropdown-btn
+        .navbar-link.localization-btn
+          span = current_locale
+          = mi.shape(:arrow_drop_down).md_18
+      .dropdown-list.localization-list
+        - locales.map do |locale|
+          .dropdown-item
+            = link_to({ locale: locale[:code] }, { class: 'localization navbar-link' }) do
+              = inline_svg_tag locale[:flag], class: 'locale-icon'
+              span = "#{locale[:name]} (#{locale[:code].upcase})"
+              = mi.shape(:check).round.md_18.css_class('text-green-600') if current_locale.to_s.downcase == locale[:code].to_s.downcase
+
+    button#submit-btn.action-btn.next-btn type='submit' form='newStoryForm'
+      = t('writer_toolbar.publish')
+    = link_to t('writer_toolbar.cancel'), writer_stories_path, class: 'action-btn cancel-btn'

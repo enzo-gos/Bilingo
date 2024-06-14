@@ -83,6 +83,9 @@ zh:
     stats: '统计'
     share: '分享'
     nocontent: '你好，%{fullname}。您还没有写过任何故事。'
+    delete: '删除'
+    unpublish: '取消发布'
+    view_as_reader: '作为读者查看'
 
   writer_stories:
     destroy:
@@ -101,6 +104,7 @@ zh:
     title: '标题'
     description: '描述'
     untitled_story: '无标题故事'
+    untitled_chapter: '无标题故事'
     genres: '类别'
     primary: '主要'
     secondary: '次要'
@@ -116,9 +120,16 @@ zh:
     title: '添加故事信息'
     editable_title: '编辑故事信息'
     untitled_story: '无标题故事'
+    untitled_chapter: '无标题故事'
     cancel: '取消'
     next: '下一步'
     save: '保存'
+    publish: '发布'
+
+  chapter_status:
+    new_part: '新部分'
+    published: '已发布'
+    draft: '草稿'
 
   toast:
     alert:

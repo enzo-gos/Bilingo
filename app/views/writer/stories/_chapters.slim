@@ -1,0 +1,44 @@
+.chapters
+  .create-group
+    = link_to '#create-chapter', class: 'create-btn' do
+      = mi.shape(:add).round.md_18
+      = t('chapter_status.new_part')
+
+  .sortable-list data-controller='sortable'
+    - chapters.map do |chapter|
+      .sortable-item data-id==chapter[:id]
+        .drag-indicator
+          = mi.shape(:drag_indicator)
+        .sortable-story
+          .story-wrapper
+            .story-info
+              = link_to edit_writer_story_chapter_path(chapter[:id]) do
+                strong.chapter-name = chapter[:title]
+              .chapter-info
+                .chapter-status
+                  strong = chapter[:published] ? t('chapter_status.published') : t('chapter_status.draft')
+                  span -
+                  small = chapter[:updated]
+                .chapter-analysis
+                  .analysis-info
+                    = mi.shape(:visibility).css_class('analysis-icon')
+                    = chapter[:views]
+                  .analysis-info
+                    = mi.shape(:comment).css_class('analysis-icon')
+                    = chapter[:comments]
+          .story-action
+            .action-group
+              .dropdown
+                .action-btn
+                  = mi.shape(:more_horiz).css_class('action-btn-icon')
+                .dropdown-list
+                  = button_to writer_story_path(chapter[:id]), class: 'dropdown-item', method: :delete, form: {data: { turbo_confirm: t('confirmation.stories.delete') } } do
+                    = mi.shape(:delete).md_18.css_class('action-btn-icon')
+                    = t('writer_space.delete')
+                  - if chapter[:published]
+                    button.dropdown-item
+                      = mi.shape(:unpublished).md_18.css_class('action-btn-icon')
+                      = t('writer_space.unpublish')
+                  button.dropdown-item
+                    = mi.shape(:visibility).md_18.css_class('action-btn-icon')
+                    = t('writer_space.view_as_reader')
