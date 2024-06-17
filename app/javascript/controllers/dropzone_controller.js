@@ -163,18 +163,20 @@ function createDropZone(controller) {
     dictDefaultMessage: '',
   });
 
-  const previewImage = controller.previewImage;
-  const previewFilename = controller.previewFilename;
-  const previewFilesize = controller.previewFilesize;
+  if ($('.dz-preview').length === 0) {
+    const previewImage = controller.previewImage;
+    const previewFilename = controller.previewFilename;
+    const previewFilesize = controller.previewFilesize;
 
-  if (previewImage && previewFilename && previewFilesize) {
-    myDropzone.displayExistingFile(
-      {
-        name: previewFilename,
-        size: previewFilesize,
-      },
-      previewImage
-    );
+    if (previewImage && previewFilename && previewFilesize) {
+      myDropzone.displayExistingFile(
+        {
+          name: previewFilename,
+          size: previewFilesize,
+        },
+        previewImage
+      );
+    }
   }
 
   return myDropzone;

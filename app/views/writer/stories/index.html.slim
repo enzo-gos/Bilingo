@@ -57,14 +57,13 @@
                       .dropdown-list
                         = button_to writer_story_path(story[:id]), class: 'dropdown-item', method: :delete, form: {data: { turbo_confirm: t('confirmation.stories.delete') } } do
                           = mi.shape(:delete).md_18.css_class('action-btn-icon')
-                          | Delete
+                          = t('writer_space.delete')
                         button.dropdown-item
                           = mi.shape(:unpublished).md_18.css_class('action-btn-icon')
-                          | Unpublish
+                          = t('writer_space.unpublish')
                         button.dropdown-item
                           = mi.shape(:visibility).md_18.css_class('action-btn-icon')
-                          | View as reader
-
+                          = t('writer_space.view_as_reader')
     - else
       .workspace-nocontent
         = mi.shape(:library_books).css_class('nocontent-icon')

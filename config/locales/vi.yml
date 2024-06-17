@@ -83,6 +83,9 @@ vi:
     stats: 'Thống kê'
     share: 'Chia sẻ'
     nocontent: 'Chào, %{fullname}. Bạn chưa viết bất kỳ câu truyện nào.'
+    delete: 'Xóa'
+    unpublish: 'Hủy xuất bản'
+    view_as_reader: 'Đọc thử'
 
   writer_stories:
     destroy:
@@ -101,6 +104,7 @@ vi:
     title: 'Tiêu đề'
     description: 'Mô tả'
     untitled_story: 'Chưa có tiêu đề'
+    untitled_chapter: 'Chưa có tiêu đề'
     genres: 'Thể loại'
     primary: 'Chính'
     secondary: 'Phụ'
@@ -116,9 +120,16 @@ vi:
     title: 'Thêm thông tin truyện'
     editable_title: 'Sửa thông tin truyện'
     untitled_story: 'Chưa có tiêu đề'
+    untitled_chapter: 'Chưa có tiêu đề'
     cancel: 'Hủy'
     next: 'Tiếp tục'
     save: 'Lưu'
+    publish: 'Xuất bản'
+
+  chapter_status:
+    new_part: 'Thêm mới'
+    published: 'Đã xuất bản'
+    draft: 'Bản nháp'
 
   toast:
     alert:

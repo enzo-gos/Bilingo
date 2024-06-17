@@ -1,4 +1,4 @@
-= simple_form_for story, url: url, html: { multipart: true, class: 'new-story', id: 'newStoryForm', autocomplete: 'off' }, defaults: { input_html: { class: 'story-input' }, label_html: { class: 'story-label' } } do |f|
+= simple_form_for story, url: url, html: { multipart: true, class: 'new-story', id: 'newStoryForm', autocomplete: 'off' }, defaults: { input_html: { class: 'story-input' }, label_html: { class: 'story-label' } }, data: { controller: 'writer-navigation' } do |f|
   .story-cover.dropzone.dropzone-default.dz-clickable data-controller='dropzone' data-dropzone-max-file-size='5' data-dropzone-max-files='1' data-dropzone-accepted-files='image/jpg,image/png,image/jpeg'
 
     - if story.cover_image.attached?
@@ -12,9 +12,12 @@
   .story-details
     - if @updatable
       .navigation
-        = link_to t('new-story-form.navigation.story_details'), '#details', class: 'nav-btn active'
-        = link_to t('new-story-form.navigation.table_of_contents'), '#tablecontent', class: 'nav-btn'
-    .content
+        .nav-btn data-writer-navigation-target='contentBtn' data-action='click->writer-navigation#showContent'
+          = t('new-story-form.navigation.story_details')
+        .nav-btn.active data-writer-navigation-target='chaptersBtn' data-action='click->writer-navigation#showChapters'
+          = t('new-story-form.navigation.table_of_contents')
+
+    div[data-writer-navigation-target='content' class== updatable_content(@updatable)]
       .info-wrapper
         = f.input :name, label: t('new-story-form.title'), input_html: { placeholder: t('new-story-form.untitled_story') }
 
@@ -36,3 +39,7 @@
 
       .info-wrapper
         = f.input :language_code, collection: fake_languages, label: t('new-story-form.language')
+
+    . data-writer-navigation-target='chapters'
+      = render 'chapters', chapters: fake_chapters if @updatable
+

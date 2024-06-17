@@ -1,0 +1,82 @@
+@layer components {
+  .chapter-sidebar {
+    @apply fixed
+    top-[73px]
+    left-0
+    bottom-0
+    w-[240px]
+    border-r
+    border-gray-200;
+  }
+
+  .chapter-sidebar.chapter-list {
+    @apply hidden
+    sm:flex
+    flex-col;
+  }
+
+  .chapter-sidebar.chapter-list .chapter-item {
+    @apply flex
+    items-center
+    gap-5
+    p-4
+    bg-white
+    border-b
+    border-gray-100;
+  }
+
+  .chapter-sidebar.chapter-list .chapter-item .drag-indicator {
+    @apply cursor-pointer;
+  }
+
+  .chapter-sidebar .chapter-info {
+    @apply flex
+    flex-col;
+  }
+
+  .chapter-sidebar .chapter-info .chapter-title {
+    @apply font-semibold;
+  }
+
+  .chapter-sidebar .chapter-info .chapter-status {
+    @apply flex
+    items-center
+    gap-2;
+  }
+
+  .chapter-sidebar .chapter-info .chapter-status .publish,
+  .chapter-sidebar .chapter-info .chapter-status .draft {
+    @apply text-sm
+    font-semibold;
+  }
+
+  .chapter-sidebar .chapter-info .chapter-status .publish {
+    @apply text-teal-500;
+  }
+
+  .chapter-sidebar .create-group {
+    @apply w-full
+    p-4
+    bg-white
+    border-b
+    border-gray-200;
+  }
+
+  .chapter-sidebar .create-group .create-btn {
+    @apply bg-primary-600
+    hover:bg-primary-700
+    text-white
+    flex
+    w-fit
+    mx-auto
+    items-center
+    justify-center
+    gap-1
+    px-2
+    py-1.5
+    pr-3.5
+    rounded-md
+    font-bold
+    text-xs;
+  }
+}

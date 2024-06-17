@@ -1,0 +1,36 @@
+@layer components {
+  .chapter {
+    @apply sm:ml-[240px];
+  }
+
+  .editor {
+    @apply max-w-5xl
+    mx-auto;
+  }
+
+  .chapter .chapter-cover {
+    @apply h-[180px]
+    bg-gray-100
+    mb-4;
+  }
+
+  .editor .chapter-title {
+    @apply text-2xl
+    font-semibold
+    text-center
+    border-b
+    p-4
+    border-gray-200
+    outline-none;
+  }
+
+  .editor .editable {
+    @apply px-2
+    py-4
+    outline-none;
+  }
+
+  .editor .editable p {
+    @apply mb-4;
+  }
+}

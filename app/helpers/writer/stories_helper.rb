@@ -67,12 +67,53 @@ module Writer::StoriesHelper
         language: story.language_code,
         description: story.description,
         cover: story.cover_image,
-        updated: story.updated_at.strftime('%b %d, %Y %I:%M%p'),
+        updated: story.updated_at.strftime('%b %d, %Y'),
         published: 1,
         draft: 8,
         views: '1M',
         comments: '10K'
       }
     end
+  end
+
+  def fake_chapters
+    [
+      {
+        id: 1,
+        title: 'Part 1',
+        views: 1000,
+        comments: 100,
+        updated: Time.now.strftime('%b %d, %Y'),
+        published: false
+      },
+      {
+        id: 2,
+        title: 'Part 2',
+        views: 400,
+        comments: 200,
+        updated: Time.now.strftime('%b %d, %Y'),
+        published: true
+      },
+      {
+        id: 3,
+        title: 'Part 3',
+        views: 200,
+        comments: 300,
+        updated: Time.now.strftime('%b %d, %Y'),
+        published: false
+      },
+      {
+        id: 4,
+        title: 'Part 4',
+        views: 500,
+        comments: 400,
+        updated: Time.now.strftime('%b %d, %Y'),
+        published: true
+      }
+    ]
+  end
+
+  def updatable_content(updatable)
+    updatable ? 'content hidden' : 'content'
   end
 end

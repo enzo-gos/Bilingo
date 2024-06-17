@@ -14,3 +14,5 @@ pin "clipboard" # @2.0.11
 pin "dropzone" # @6.0.0
 pin "just-extend" # @5.1.1
 pin "@yaireo/tagify", to: "@yaireo--tagify.js" # @4.26.5
+pin "medium-editor" # @5.23.3
+pin "process" # @2.0.1
