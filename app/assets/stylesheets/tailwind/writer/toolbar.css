@@ -76,4 +76,8 @@
     font-bold
     hover:bg-primary-700;
   }
+
+  .navbar-container .dropdown.localization-dropdown {
+    @apply !flex;
+  }
 }
