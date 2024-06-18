@@ -16,3 +16,6 @@ pin "just-extend" # @5.1.1
 pin "@yaireo/tagify", to: "@yaireo--tagify.js" # @4.26.5
 pin "medium-editor" # @5.23.3
 pin "process" # @2.0.1
+pin "trix"
+pin "@rails/actiontext", to: "actiontext.esm.js"
+pin "lodash.debounce" # @4.0.8

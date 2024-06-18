@@ -1,19 +1,19 @@
-.chapter-sidebar.sortable-list.chapter-list data-controller='sortable'
+.chapter-sidebar.chapter-list
   .create-group
-    = link_to '#create-chapter', class: 'create-btn' do
+    = link_to writer_story_chapters_path(@story), data: { turbo_method: :post }, class: 'create-btn' do
       = mi.shape(:add).round.md_18
       = t('chapter_status.new_part')
-
-  - fake_chapters.map do |chapter|
-    .chapter-item
-      .drag-indicator
-        = mi.shape(:drag_indicator)
-      .chapter-info
-        b.chapter-title = chapter[:title]
-        .chapter-status
-          - if chapter[:published]
-            b.publish = t('chapter_status.published')
-          - else
-            b.draft = t('chapter_status.draft')
-          | -
-          small Jun 12, 2024
+  .chapter-content.sortable-list data-controller='sortable' data-sortable-url==order_writer_story_chapter_path(story_id: @story.id, id: ':id')
+    - format_chapters(@story).map do |chapter|
+      div[data-id==chapter[:id] class== ((@chapter.id == chapter[:id]) ? 'chapter-item active' : 'chapter-item')]
+        .drag-indicator
+          = mi.shape(:drag_indicator)
+        = link_to edit_writer_story_chapter_path(story_id: @story.id, id: chapter[:id]), class: 'chapter-info'
+          b.chapter-title == optional_chapter_title(chapter)
+          .chapter-status
+            - if chapter[:published]
+              b.publish = t('chapter_status.published')
+            - else
+              b.draft = t('chapter_status.draft')
+            | -
+            small Jun 12, 2024

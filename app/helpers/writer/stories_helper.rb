@@ -68,52 +68,36 @@ module Writer::StoriesHelper
         description: story.description,
         cover: story.cover_image,
         updated: story.updated_at.strftime('%b %d, %Y'),
-        published: 1,
-        draft: 8,
+        published: story.number_of_published,
+        draft: story.number_of_draft,
         views: '1M',
         comments: '10K'
       }
     end
   end
 
-  def fake_chapters
-    [
+  def format_chapters(story)
+    story.chapters.map do |chapter|
       {
-        id: 1,
-        title: 'Part 1',
-        views: 1000,
-        comments: 100,
-        updated: Time.now.strftime('%b %d, %Y'),
-        published: false
-      },
-      {
-        id: 2,
-        title: 'Part 2',
-        views: 400,
-        comments: 200,
-        updated: Time.now.strftime('%b %d, %Y'),
-        published: true
-      },
-      {
-        id: 3,
-        title: 'Part 3',
-        views: 200,
-        comments: 300,
-        updated: Time.now.strftime('%b %d, %Y'),
-        published: false
-      },
-      {
-        id: 4,
-        title: 'Part 4',
-        views: 500,
-        comments: 400,
-        updated: Time.now.strftime('%b %d, %Y'),
-        published: true
+        id: chapter.id,
+        title: chapter.title,
+        updated: chapter.updated_at.strftime('%b %d, %Y'),
+        published: chapter.published,
+        views: chapter.views,
+        comments: 0
       }
-    ]
+    end
   end
 
   def updatable_content(updatable)
     updatable ? 'content hidden' : 'content'
+  end
+
+  def optional_story_title(story)
+    story[:name].nil? || story[:name].empty? ? t('writer_toolbar.untitled_story') : story[:name]
+  end
+
+  def optional_chapter_title(chapter)
+    chapter[:title].nil? || chapter[:title].empty? ? t('writer_toolbar.untitled_chapter') : chapter[:title]
   end
 end

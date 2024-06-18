@@ -65,18 +65,19 @@
     font-semibold;
   }
 
-  .writer-space > .workspace > .workspace-nocontent {
+  .writer-space > .workspace .workspace-nocontent {
     @apply flex
     flex-col
     justify-center
     items-center
     gap-8
+    bg-white
     text-gray-600
     py-12
     px-4;
   }
 
-  .writer-space > .workspace > .workspace-nocontent > .nocontent-icon {
+  .writer-space > .workspace .workspace-nocontent > .nocontent-icon {
     @apply text-[70px]
     text-gray-500/75;
   }
@@ -178,6 +179,11 @@
   .writer-space .chapter-info > .chapter-status strong {
     @apply text-sm
     font-medium;
+  }
+
+  .writer-space .chapter-info > .chapter-status .publish {
+    @apply text-teal-500
+    font-semibold;
   }
 
   .writer-space .story-info > .story-analysis,

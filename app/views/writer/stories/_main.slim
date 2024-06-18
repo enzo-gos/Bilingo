@@ -1,0 +1,59 @@
+- if !my_stories.present? || my_stories.empty?
+  .workspace-nocontent
+    = mi.shape(:library_books).css_class('nocontent-icon')
+    p = t('writer_space.nocontent', fullname: fullname)
+
+- format_my_stories(my_stories).map do |story|
+  .sortable-item data-id==story[:id]
+    .drag-indicator
+      = mi.shape(:drag_indicator)
+    .sortable-story
+      .story-wrapper
+        = image_tag story[:cover], class: 'story-cover'
+        .story-info
+          strong.story-name = story[:title]
+          .story-chapters
+            b.published-chapters
+              = story[:published]
+              = ' '
+              = t('writer_space.chapters.published')
+            = ' - '
+            b.draft-chapters
+              = story[:draft]
+              = ' '
+              = t('writer_space.chapters.draft')
+          .story-updated
+            = t('writer_space.updated')
+            = ' '
+            = story[:updated]
+          .story-analysis
+            .analysis-info
+              = mi.shape(:visibility).css_class('analysis-icon')
+              = story[:views]
+            .analysis-info
+              = mi.shape(:comment).css_class('analysis-icon')
+              = story[:comments]
+      .story-action
+        = link_to edit_writer_story_path(story[:id]), class: 'writting-btn'
+          | #{t('writer_space.continue_writing')}
+          = mi.shape(:arrow_forward).css_class('writting-btn-icon')
+        .action-group
+          button.action-btn
+            = mi.shape(:bar_chart).css_class('action-btn-icon')
+            | #{t('writer_space.stats')}
+          = link_to share_path(story[:id]), class: 'action-btn', data: { action: 'click->share-modal#open', turbo_stream: true } do
+            = mi.shape(:share).css_class('action-btn-icon')
+            | #{t('writer_space.share')}
+          .dropdown
+            button.action-btn
+              = mi.shape(:more_horiz).css_class('action-btn-icon')
+            .dropdown-list
+              = button_to writer_story_path(story[:id]), class: 'dropdown-item', method: :delete, form: {data: { turbo_confirm: t('confirmation.stories.delete') } } do
+                = mi.shape(:delete).md_18.css_class('action-btn-icon')
+                = t('writer_space.delete')
+              button.dropdown-item
+                = mi.shape(:unpublished).md_18.css_class('action-btn-icon')
+                = t('writer_space.unpublish')
+              button.dropdown-item
+                = mi.shape(:visibility).md_18.css_class('action-btn-icon')
+                = t('writer_space.view_as_reader')

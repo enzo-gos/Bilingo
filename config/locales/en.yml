@@ -155,11 +155,14 @@ en:
     next: 'Next'
     save: 'Save'
     publish: 'Publish'
+    publish_changes: 'Publish Changes'
 
   chapter_status:
     new_part: 'New Part'
     published: 'Published'
     draft: 'Draft'
+
+  auto_save_disabled: 'Notice: Auto save mode is disabled once the chapter is published.'
 
   toast:
     alert:
@@ -168,6 +171,8 @@ en:
   confirmation:
     stories:
       delete: 'Are you sure you want to continue deleting this story?'
+    chapters:
+      delete: 'Are you sure you want to continue deleting this chapter?'
 
   omniauth_callbacks:
     facebook_error: 'Could not sign you in through Facebook. Please complete your registration manually.'

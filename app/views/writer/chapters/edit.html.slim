@@ -1,5 +1,20 @@
-.chapter data-controller='editor'
-  .chapter-cover
-  .editor
-    h2.chapter-title contenteditable='true' = t('new-story-form.untitled_chapter')
-    .editable
+= simple_form_for @chapter, url: writer_story_chapter_path(story_id: @story.id, id: @chapter.id), html: { id: 'editableForm', data: { controller: 'editor', editor_autosave: !@chapter.published } } do |f|
+  .chapter
+    - if @chapter.published
+      .notice-alert = t('auto_save_disabled')
+
+    .chapter-cover.dropzone.dropzone-default.dz-clickable data-controller='dropzone' data-dropzone-max-file-size='5' data-dropzone-max-files='1' data-dropzone-accepted-files='image/jpg,image/png,image/jpeg'
+      - if @chapter.heading_image.attached?
+        #preview-info data-dropzone-preview-image==url_for(@chapter.heading_image) data-dropzone-preview-filename==@chapter.heading_image.blob.filename data-dropzone-preview-filesize==@chapter.heading_image.blob.byte_size
+
+      .added-info
+        = mi.shape(:wallpaper).md_48
+        .notice = t('new-story-form.add_cover')
+      = f.input :heading_image, label: false, input_html: { data: { dropzone_target: 'input' }, hidden: true, disabled: true, direct_upload: true }
+
+    .editor
+      = f.input :title, label: false, input_html: { data: { editor_target: 'title' }, hidden: true, class: 'hidden', value: optional_chapter_title(@chapter) }
+      h2.chapter-title contenteditable='true' data-editor-target='titleEditor' == optional_chapter_title(@chapter)
+      = f.input :content, label: false, input_html: { data: { editor_target: 'content' }, hidden: true, class: 'hidden' }
+      .editable
+        = @chapter.content

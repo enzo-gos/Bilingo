@@ -34,12 +34,12 @@
             = f.input :secondary_genre_id, collection: all_genres, include_blank: true, label: t('new-story-form.secondary'), label_html: { class: false }
 
       hr
-      .info-wrapper data-controller='tagify' data-tagify-url==api_v1_meta_data_tags_path
+      .info-wrapper data-controller='tagify' data-action='turbolinks:before-cache@window->tagify#teardown' data-tagify-url==api_v1_meta_data_tags_path
         = f.input :tag_list, label: t('new-story-form.tags'), input_html: { class: 'tagify--outside', placeholder: t('new-story-form.separate_tags_with_space'), data: { tagify_target: 'tagInput' } }
 
       .info-wrapper
         = f.input :language_code, collection: fake_languages, label: t('new-story-form.language')
 
     . data-writer-navigation-target='chapters'
-      = render 'chapters', chapters: fake_chapters if @updatable
+      = render 'chapters', story: @story if @updatable
 

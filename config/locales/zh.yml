@@ -125,11 +125,14 @@ zh:
     next: '下一步'
     save: '保存'
     publish: '发布'
+    publish_changes: '发布更改'
 
   chapter_status:
     new_part: '新部分'
     published: '已发布'
     draft: '草稿'
+
+  auto_save_disabled: '注意：章节一经发布后，自动保存模式将被禁用。'
 
   toast:
     alert:
@@ -138,6 +141,8 @@ zh:
   confirmation:
     stories:
       delete: '您确定要继续删除这个故事吗？'
+    chapters:
+      delete: '你确定要继续删除这章节吗？'
 
   omniauth_callbacks:
     facebook_error: '无法通过 Facebook 登录。请手动完成您的注册。'

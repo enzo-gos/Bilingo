@@ -3,20 +3,86 @@
     @apply sm:ml-[240px];
   }
 
+  .chapter .notice-alert {
+    @apply py-3
+    px-4
+    w-full
+    bg-blue-100
+    text-sky-700
+    border-y
+    sticky
+    top-[76px]
+    border-sky-500
+    font-medium
+    z-10;
+  }
+
   .editor {
     @apply max-w-5xl
     mx-auto;
   }
 
   .chapter .chapter-cover {
-    @apply h-[180px]
+    @apply bg-gray-200/40
+    border-none
+    items-center
+    justify-center
+    relative
+    p-0
+    min-h-[200px]
+    h-[200px]
     bg-gray-100
-    mb-4;
+    mb-14
+    z-0;
+  }
+
+  .chapter .chapter-cover .added-info {
+    @apply absolute
+    left-1/2
+    top-1/2
+    -translate-x-1/2
+    -translate-y-1/2
+    text-center
+    text-gray-500
+    font-medium
+    pointer-events-none;
+  }
+
+  .chapter .chapter-cover .dz-preview.dz-image-preview {
+    @apply w-full
+    flex
+    flex-col
+    bg-transparent
+    m-0;
+  }
+
+  .chapter .chapter-cover .dz-message {
+    @apply m-0
+    p-8;
+  }
+
+  .chapter .chapter-cover .dz-preview .dz-image {
+    @apply w-full
+    h-[200px]
+    rounded-none;
+  }
+
+  .chapter .chapter-cover .dz-preview .dz-image img {
+    @apply w-full
+    h-full
+    object-center
+    object-cover;
+  }
+
+  .chapter .chapter-cover .dz-remove {
+    @apply font-semibold
+    text-sm
+    py-3;
   }
 
   .editor .chapter-title {
-    @apply text-2xl
-    font-semibold
+    @apply text-3xl
+    font-bold
     text-center
     border-b
     p-4
@@ -24,10 +90,15 @@
     outline-none;
   }
 
+  .editor .chapter-title * {
+    @apply text-3xl;
+  }
+
   .editor .editable {
     @apply px-2
     py-4
-    outline-none;
+    outline-none
+    mb-20;
   }
 
   .editor .editable p {
