@@ -15,6 +15,10 @@ class Writer::StoryPolicy < ApplicationPolicy
     by_author?
   end
 
+  def unpublish_all?
+    by_author?
+  end
+
   private
 
   def by_author?

@@ -45,6 +45,11 @@ class Writer::StoriesController < ApplicationController
     head :ok
   end
 
+  def unpublish_all
+    @story.chapters.update_all(published: false)
+    redirect_back(fallback_location: root_path)
+  end
+
   def edit; end
 
   def update

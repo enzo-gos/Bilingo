@@ -68,6 +68,7 @@ module Writer::StoriesHelper
         description: story.description,
         cover: story.cover_image,
         updated: story.updated_at.strftime('%b %d, %Y'),
+        is_published: story.number_of_published.positive?,
         published: story.number_of_published,
         draft: story.number_of_draft,
         views: '1M',

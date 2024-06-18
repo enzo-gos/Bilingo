@@ -141,6 +141,7 @@ zh:
   confirmation:
     stories:
       delete: '您确定要继续删除这个故事吗？'
+      unpublish_all: '您确定要继续取消发布此故事吗？'
     chapters:
       delete: '你确定要继续删除这章节吗？'
 

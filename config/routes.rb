@@ -34,6 +34,7 @@ Rails.application.routes.draw do
       resources :stories, except: [:show] do
         member do
           patch :order
+          patch :unpublish_all
         end
         resources :chapters, except: [:new, :show] do
           member do

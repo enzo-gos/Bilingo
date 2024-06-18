@@ -171,6 +171,7 @@ en:
   confirmation:
     stories:
       delete: 'Are you sure you want to continue deleting this story?'
+      unpublish_all: 'Are you sure you want to continue unpublishing this story?'
     chapters:
       delete: 'Are you sure you want to continue deleting this chapter?'
 

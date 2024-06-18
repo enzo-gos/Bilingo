@@ -141,6 +141,7 @@ vi:
   confirmation:
     stories:
       delete: 'Bạn chắc chắn muốn tiếp tục xóa câu chuyện này?'
+      unpublish_all: 'Bạn có chắc chắn muốn tiếp tục bỏ xuất bản câu chuyện này không?'
     chapters:
       delete: 'Bạn chắc chắn muốn tiếp tục xóa chương này?'
 
