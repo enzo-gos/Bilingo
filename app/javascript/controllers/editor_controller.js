@@ -133,7 +133,16 @@ export default class extends Controller {
       credentials: 'same-origin',
       body: formData,
     }).then((response) => {
-      response.json().then(() => {
+      response.json().then((chapter) => {
+        console.log(chapter);
+        $('.toolbar-heading-info .story-name').html(chapter.title);
+        $('.chapter-info .chapter-title').html(chapter.title);
+
+        const date = new Date(chapter.updated_at);
+        const options = { year: 'numeric', month: 'short', day: 'numeric' };
+        const formattedDate = new Intl.DateTimeFormat('en-US', options).format(date);
+
+        $('.chapter-info .chapter-status small').html(formattedDate);
         this.savedStatus();
       });
     });
