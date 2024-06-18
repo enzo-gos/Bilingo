@@ -1,7 +1,7 @@
 @layer components {
   .chapter-sidebar {
     @apply fixed
-    top-[73px]
+    top-[75px]
     left-0
     bottom-0
     w-[240px]
@@ -22,11 +22,21 @@
     p-4
     bg-white
     border-b
+    border-r-[6px]
+    border-r-transparent
     border-gray-100;
   }
 
+  .chapter-sidebar .chapter-content {
+    @apply overflow-y-auto;
+  }
+
+  .chapter-sidebar.chapter-list .chapter-item.active {
+    @apply border-r-primary-600;
+  }
+
   .chapter-sidebar.chapter-list .chapter-item .drag-indicator {
-    @apply cursor-pointer;
+    @apply cursor-grab;
   }
 
   .chapter-sidebar .chapter-info {

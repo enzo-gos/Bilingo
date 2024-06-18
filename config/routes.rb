@@ -17,7 +17,7 @@ Rails.application.routes.draw do
   controllers: { omniauth_callbacks: 'users/omniauth_callbacks' }
 
   available_locales = -> { I18n.available_locales.map(&:to_s).join('|') }
-  scope "(:locale)", locale: Regexp.new(available_locales.call) do
+  scope '(:locale)', locale: Regexp.new(available_locales.call) do
     namespace :auth do
       get 'sign-in'
       get 'sign-up'
@@ -28,11 +28,20 @@ Rails.application.routes.draw do
     get 'profile' => 'profiles#index'
 
     namespace :writer do
-      resources :stories do
+      namespace :stories do
+        get 'all'
+      end
+      resources :stories, except: [:show] do
         member do
           patch :order
+          patch :unpublish_all
         end
-        resources :chapters do
+        resources :chapters, except: [:new, :show] do
+          member do
+            patch :order
+            patch :publish
+            patch :unpublish
+          end
         end
       end
     end

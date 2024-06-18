@@ -1,22 +1,25 @@
 .chapters
   .create-group
-    = link_to '#create-chapter', class: 'create-btn' do
+    = link_to writer_story_chapters_path(story), data: { turbo_method: :post }, class: 'create-btn' do
       = mi.shape(:add).round.md_18
       = t('chapter_status.new_part')
 
-  .sortable-list data-controller='sortable'
-    - chapters.map do |chapter|
+  .sortable-list data-controller='sortable' data-sortable-url==order_writer_story_chapter_path(story_id: story.id, id: ':id')
+    - format_chapters(story).map do |chapter|
       .sortable-item data-id==chapter[:id]
         .drag-indicator
           = mi.shape(:drag_indicator)
         .sortable-story
           .story-wrapper
             .story-info
-              = link_to edit_writer_story_chapter_path(chapter[:id]) do
-                strong.chapter-name = chapter[:title]
+              = link_to edit_writer_story_chapter_path(story_id: story.id, id: chapter[:id]) do
+                strong.chapter-name == optional_chapter_title(chapter)
               .chapter-info
                 .chapter-status
-                  strong = chapter[:published] ? t('chapter_status.published') : t('chapter_status.draft')
+                  - if chapter[:published]
+                    strong.publish = t('chapter_status.published')
+                  - else
+                    strong.draft = t('chapter_status.draft')
                   span -
                   small = chapter[:updated]
                 .chapter-analysis
@@ -32,11 +35,11 @@
                 .action-btn
                   = mi.shape(:more_horiz).css_class('action-btn-icon')
                 .dropdown-list
-                  = button_to writer_story_path(chapter[:id]), class: 'dropdown-item', method: :delete, form: {data: { turbo_confirm: t('confirmation.stories.delete') } } do
+                  = link_to writer_story_chapter_path(story_id: story.id, id: chapter[:id]), class: 'dropdown-item', data: { turbo_method: :delete, turbo_confirm: t('confirmation.chapters.delete') } do
                     = mi.shape(:delete).md_18.css_class('action-btn-icon')
                     = t('writer_space.delete')
                   - if chapter[:published]
-                    button.dropdown-item
+                    = link_to unpublish_writer_story_chapter_path(story_id: story.id, id: chapter[:id]), data: { turbo_method: :patch }, class: 'dropdown-item'
                       = mi.shape(:unpublished).md_18.css_class('action-btn-icon')
                       = t('writer_space.unpublish')
                   button.dropdown-item

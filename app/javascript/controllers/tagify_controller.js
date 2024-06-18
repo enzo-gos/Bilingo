@@ -6,9 +6,9 @@ export default class extends Controller {
   static targets = ['tagInput'];
   async connect() {
     if ($('html').attr('data-turbo-preview') !== undefined) return;
-    const tags = await (await fetch(this.data.get('url'))).json();
 
-    const _ = new Tagify(this.tagInputTarget, {
+    const tags = await (await fetch(this.data.get('url'))).json();
+    this.tagify = new Tagify(this.tagInputTarget, {
       whitelist: tags,
       focusable: false,
       delimiters: ',| ',
@@ -19,5 +19,10 @@ export default class extends Controller {
         fuzzySearch: true,
       },
     });
+  }
+
+  disconnect() {
+    this.tagify?.removeAllTags();
+    this.tagify?.destroy();
   }
 }

@@ -1,12 +1,15 @@
 .writer-toolbar.navbar-container
   .toolbar-heading
-    = link_to writer_stories_path, class: 'back-btn' do
+    = link_to edit_writer_story_path(@story), class: 'back-btn' do
       = mi.shape(:arrow_back).css_class('back-icon')
     .toolbar-heading-wrapper
       = image_tag @story.cover_image, width: 32
       .toolbar-heading-info
         small.title = @toolbar_title
-        b.story-name = t('writer_toolbar.untitled_chapter')
+        b.story-name == optional_chapter_title(@chapter)
+        .toolbar-chapter-status
+          small#word-count
+          small#save-status.saved-status Saved
 
   .toolbar-actions
     .dropdown.localization-dropdown
@@ -22,6 +25,23 @@
               span = "#{locale[:name]} (#{locale[:code].upcase})"
               = mi.shape(:check).round.md_18.css_class('text-green-600') if current_locale.to_s.downcase == locale[:code].to_s.downcase
 
-    button#submit-btn.action-btn.next-btn type='submit' form='newStoryForm'
-      = t('writer_toolbar.publish')
-    = link_to t('writer_toolbar.cancel'), writer_stories_path, class: 'action-btn cancel-btn'
+    = button_to t('writer_toolbar.publish'), publish_writer_story_chapter_path(story_id: @story.id, id: @chapter.id), method: :patch, id: 'submit-btn', class: 'action-btn next-btn' unless @chapter.published
+    button[id='submit-btn' form='editableForm' class=="action-btn #{published_class(@chapter)}"]
+      = @chapter.published ? t('writer_toolbar.publish_changes') : t('writer_toolbar.save')
+    = link_to t('writer_toolbar.cancel'), edit_writer_story_path(@story), class: 'action-btn cancel-btn' if @chapter.published
+
+    .dropdown.more-dropdown
+      .dropdown-btn.more-dropdown-btn
+        = mi.shape(:more_vert)
+      .dropdown-list.more-dropdown-list
+        .more-dropdown-wrapper
+          = link_to writer_story_chapter_path(story_id: @story.id, id: @chapter[:id], replace: true), class: 'dropdown-item', data: { turbo_method: :delete, turbo_confirm: t('confirmation.chapters.delete') } do
+            = mi.shape(:delete).md_18.css_class('action-btn-icon')
+            = t('writer_space.delete')
+          - if @chapter[:published]
+            = link_to unpublish_writer_story_chapter_path(story_id: @story.id, id: @chapter[:id]), data: { turbo_method: :patch }, class: 'dropdown-item'
+              = mi.shape(:unpublished).md_18.css_class('action-btn-icon')
+              = t('writer_space.unpublish')
+          button.dropdown-item
+            = mi.shape(:visibility).md_18.css_class('action-btn-icon')
+            = t('writer_space.view_as_reader')

@@ -2,15 +2,25 @@ class Writer::StoriesController < ApplicationController
   include TaggableHelper
 
   before_action :auth_user
-  before_action :prepare_story, except: [:new, :create, :index]
+  before_action :prepare_story, except: [:new, :create, :index, :all]
   before_action :set_updatable, only: [:edit, :update]
-  before_action :set_new_title, only: [:edit, :update]
-  before_action :set_edit_title, only: [:new, :create]
+  before_action :set_edit_title, only: [:edit, :update]
+  before_action :set_new_title, only: [:new, :create]
 
   layout 'writer/editor', except: [:index, :order, :destroy]
 
   def index
-    @my_stories = current_user.stories
+    @my_stories = current_user.stories.includes(:chapters).with_published
+  end
+
+  def all
+    respond_to do |format|
+      format.turbo_stream do
+        render turbo_stream: [
+          turbo_stream.update('workspace-main', partial: 'main', locals: { my_stories: current_user.stories.includes(:chapters) })
+        ]
+      end
+    end
   end
 
   def new
@@ -19,11 +29,11 @@ class Writer::StoriesController < ApplicationController
 
   def create
     result = StoryService::Creator.call(params: story_params, author: current_user)
-
-    @story = result.payload
+    payload = result.payload
+    @story = payload[:story]
 
     if result.success?
-      redirect_to edit_writer_story_path(@story)
+      redirect_to edit_writer_story_chapter_path(story_id: @story.id, id: payload[:chapter].id)
     else
       flash.now[:alert] = result.errors
       render :new, status: :unprocessable_entity
@@ -35,13 +45,18 @@ class Writer::StoriesController < ApplicationController
     head :ok
   end
 
+  def unpublish_all
+    @story.chapters.update_all(published: false)
+    redirect_back(fallback_location: root_path)
+  end
+
   def edit; end
 
   def update
     result = StoryService::Updater.call(params: story_params, story: @story)
 
     if result.success?
-      redirect_to edit_writer_story_path, notice: 'Story was successfully updated.'
+      redirect_to edit_writer_story_path, notice: t('writer_stories.update.success')
     else
       flash.now[:alert] = result.errors
       render :edit, status: :unprocessable_entity

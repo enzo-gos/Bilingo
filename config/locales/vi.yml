@@ -125,11 +125,14 @@ vi:
     next: 'Tiếp tục'
     save: 'Lưu'
     publish: 'Xuất bản'
+    publish_changes: 'Thay đổi xuất bản'
 
   chapter_status:
     new_part: 'Thêm mới'
     published: 'Đã xuất bản'
     draft: 'Bản nháp'
+
+  auto_save_disabled: 'Thông báo: Chế độ tự động lưu sẽ bị vô hiệu hóa sau khi chương được xuất bản.'
 
   toast:
     alert:
@@ -138,6 +141,9 @@ vi:
   confirmation:
     stories:
       delete: 'Bạn chắc chắn muốn tiếp tục xóa câu chuyện này?'
+      unpublish_all: 'Bạn có chắc chắn muốn tiếp tục bỏ xuất bản câu chuyện này không?'
+    chapters:
+      delete: 'Bạn chắc chắn muốn tiếp tục xóa chương này?'
 
   omniauth_callbacks:
     facebook_error: 'Không thể đăng nhập thông qua Facebook. Vui lòng hoàn tất đăng ký của bạn theo cách thủ công.'

@@ -11,7 +11,7 @@
 @import 'tailwind/profile/profile.css';
 
 @import 'tailwind/writer/toolbar.css';
-@import 'tailwind/writer/chapter_status.css';
+@import 'tailwind/writer/chapter_sidebar.css';
 
 @import 'tailwind/writer/writer.css';
 @import 'tailwind/writer/story.css';
@@ -64,3 +64,4 @@
     @apply min-h-screen;
   }
 }
+@import 'actiontext.css';
