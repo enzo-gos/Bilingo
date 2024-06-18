@@ -30,14 +30,12 @@ class Writer::ChaptersController < ApplicationController
   end
 
   def publish
-    @chapter.published = true
-    @chapter.save
+    @chapter.update(published: true)
     redirect_back(fallback_location: root_path)
   end
 
   def unpublish
-    @chapter.published = false
-    @chapter.save
+    @chapter.update(published: false)
     redirect_back(fallback_location: root_path)
   end
 

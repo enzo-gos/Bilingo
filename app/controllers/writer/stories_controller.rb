@@ -4,8 +4,8 @@ class Writer::StoriesController < ApplicationController
   before_action :auth_user
   before_action :prepare_story, except: [:new, :create, :index, :all]
   before_action :set_updatable, only: [:edit, :update]
-  before_action :set_new_title, only: [:edit, :update]
-  before_action :set_edit_title, only: [:new, :create]
+  before_action :set_edit_title, only: [:edit, :update]
+  before_action :set_new_title, only: [:new, :create]
 
   layout 'writer/editor', except: [:index, :order, :destroy]
 
