@@ -1,30 +1,33 @@
 .story-list
   h1.story-heading = t('story_list.heading')
-  - fake_top_story.map do |story|
+  - format_stories(@stories).map do |story|
     .story-book
       .book-cover-wrapper
-        = link_to '#story-1' do
+        = link_to story[:url] do
           = image_tag story[:cover], class: 'book-cover'
       .book-info
-        = link_to '#story-1' do
+        = link_to story[:url] do
           strong.book-title = story[:title]
         .book-author
           i = t('story_list.by')
-          = ' '
+          | &nbsp;
           i = link_to story[:author], '#story-1-author'
-        = link_to '#story-1' do
+        = link_to story[:url] do
           p.book-description == story[:description].truncate_words(40)
         small.book-meta
-          | Drama •
-          = ' '
-          = story[:chapters]
-          = ' '
-          = t('story_list.chapters')
+          = "#{story[:genres]} • #{story[:chapters]} #{t('story_list.chapters')}"
         .sharing
-          = link_to '#story-1-share', class: 'facebook-btn' do
-            = mi.shape(:facebook).outlined
+          = link_to story[:share], data: { turbo_stream: true, action: 'click->share-modal#open' }, class: 'facebook-btn' do
+            = mi.shape(:share).outlined
           = link_to '#story-1-flag', class: 'flag-btn' do
             = mi.shape(:flag).outlined
-        = link_to '#story-1-share', class: 'read-btn' do
+        = link_to story[:url], class: 'read-btn' do
           span = t('story.reading_now')
           = mi.shape(:chevron_right).md_18
+  - if @pagy && @pagy.pages > 1
+    == pagy_nav(@pagy)
+  - else
+    hr
+    = link_to stories_path, class: 'more-btn' do
+      = t('story_list.more_btn')
+      = mi.shape(:chevron_right).md_18

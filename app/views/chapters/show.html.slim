@@ -1,0 +1,21 @@
+.chapter.mx-auto
+  .chapter-cover
+    = image_tag @chapter.heading_image if @chapter.heading_image.attached?
+
+  .editor
+    .chapter-controls
+      = link_to t('chapter.previous_chapter'), @prev_chapter, class: "chapter-switch-btn#{@prev_chapter ? '' : ' disable'}"
+      = link_to t('chapter.next_chapter'), @next_chapter, class: "chapter-switch-btn#{@next_chapter ? '' : ' disable'}"
+
+    button.preferences-btn
+      = mi.shape(:settings).md_18
+      = t('chapter.preferences')
+
+    h2.chapter-title == optional_chapter_title(@chapter)
+    .editable
+      = @chapter.content
+
+    .chapter-controls
+      = link_to t('chapter.previous_chapter'), @prev_chapter, class: "chapter-switch-btn#{@prev_chapter ? '' : ' disable'}"
+      = link_to t('chapter.table_of_contents'), story_path(@story), class: 'chapter-switch-btn'
+      = link_to t('chapter.next_chapter'), @next_chapter, class: "chapter-switch-btn#{@next_chapter ? '' : ' disable'}"

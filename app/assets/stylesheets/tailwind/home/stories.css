@@ -17,6 +17,22 @@
     w-[640px];
   }
 
+  .stories > .story-list .more-btn {
+    @apply mx-auto
+    flex
+    items-center
+    justify-center
+    bg-primary-600
+    text-white
+    font-semibold
+    pl-5
+    pr-3.5
+    py-2.5
+    rounded
+    transition-all
+    hover:bg-primary-800;
+  }
+
   .stories > .story-list:last-child {
     @apply w-[300px]
     hidden
@@ -47,7 +63,7 @@
   }
 
   .story-book > .book-info {
-    @apply w-auto
+    @apply w-full
     p-2;
   }
 

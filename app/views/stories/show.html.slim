@@ -1,0 +1,48 @@
+.reader.story-details
+  .story-heading
+    .story-cover
+      = image_tag @story.cover_image
+    .story-info
+      .story-title = @story.name
+      .story-author = t('story_details.by_author', author_name: @story.author.fullname)
+      .story-tags
+        - @story.tag_list.each do |tag|
+          .story-tag-item = tag
+      .story-analysis
+        .analysis-item
+          .analysis-heading
+            = mi.shape(:visibility).css_class('analysis-icon outlined')
+            = t('story_details.reads')
+          .analysis-content
+            = @story.views
+
+        .analysis-item
+          .analysis-heading
+            = mi.shape(:comment).css_class('analysis-icon outlined')
+            = t('story_details.comments')
+          .analysis-content
+            = @story.views
+
+        .analysis-item
+          .analysis-heading
+            = mi.shape(:format_list_bulleted).css_class('analysis-icon')
+            = t('story_details.chapters')
+          .analysis-content
+            = @story.chapters.size
+      .actions-group
+        = link_to t('story_details.start_reading'), story_chapter_path(story_id: @story.id, id: @story.chapters.first.id), class: 'story-reading-btn'
+        = link_to share_path(@story), class: 'story-share-btn', data: { turbo_stream: true, action: 'click->share-modal#open' }
+          = mi.shape(:share).md_18
+        button.story-report-btn
+          = mi.shape(:flag).md_18
+  .story-description
+    .story-description-title = t('story_details.description')
+    = @story.description
+
+  .story-table-content
+    .story-table-content-title = t('story_details.table_of_content')
+    .story-table-list
+      - @story.chapters.each do |chapter|
+        = link_to story_chapter_path(story_id: @story.id, id: chapter.id), class: 'chapter-item'
+          .chapter-title = chapter.title
+          .chapter-published = time_ago_in_words(chapter.updated_at)

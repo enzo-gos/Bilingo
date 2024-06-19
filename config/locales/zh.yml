@@ -34,6 +34,7 @@ zh:
     heading: '故事'
     by: '作者'
     chapters: '章节'
+    more_btn: '查看更多'
 
   just_view_story_list:
     heading: '仅查看'
@@ -66,6 +67,21 @@ zh:
     drafting: '起草'
     reported: '已举报'
     stories_title: '故事'
+
+  story_details:
+    by_author: '作者 %{author_name}'
+    reads: '阅读'
+    comments: '评论'
+    chapters: '章节'
+    start_reading: '开始阅读'
+    description: '描述'
+    table_of_content: '目录'
+
+  chapter:
+    previous_chapter: '上一章'
+    next_chapter: '下一章'
+    preferences: '设置'
+    table_of_contents: '目录'
 
   writer_space:
     title: '我的故事'
@@ -152,6 +168,46 @@ zh:
     unexpected_error: '发生意外错误。请重试。'
     failure: '身份验证失败。请重试。'
     success: '已成功从 %{kind} 账户进行身份验证。'
+
+  datetime:
+    distance_in_words:
+      half_a_minute: '半分钟'
+      less_than_x_seconds:
+        one: '不到 1 秒'
+        other: '不到 %{count} 秒'
+      x_seconds:
+        one: '1 秒'
+        other: '%{count} 秒'
+      less_than_x_minutes:
+        one: '不到 1 分钟'
+        other: '不到 %{count} 分钟'
+      x_minutes:
+        one: '1 分钟'
+        other: '%{count} 分钟'
+      about_x_hours:
+        one: '大约 1 小时'
+        other: '大约 %{count} 小时'
+      x_days:
+        one: '1 天'
+        other: '%{count} 天'
+      about_x_months:
+        one: '大约 1 个月'
+        other: '大约 %{count} 个月'
+      x_months:
+        one: '1 个月'
+        other: '%{count} 个月'
+      about_x_years:
+        one: '大约 1 年'
+        other: '大约 %{count} 年'
+      over_x_years:
+        one: '超过 1 年'
+        other: '超过 %{count} 年'
+      almost_x_years:
+        one: '将近 1 年'
+        other: '将近 %{count} 年'
+      words_connector: ' '
+      two_words_connector: ' 和 '
+      last_word_connector: ' 和 '
 
   activerecord:
     attributes:

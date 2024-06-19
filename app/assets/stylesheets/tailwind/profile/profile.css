@@ -74,8 +74,7 @@
 
   .profile-container > .profile-stories {
     @apply max-w-7xl
-    mx-auto
-    h-96;
+    mx-auto;
   }
 
   .profile-container > .profile-stories > .list-title {
@@ -91,13 +90,15 @@
     @apply grid
     grid-cols-4
     mt-12
+    mb-28
+    gap-y-14
     place-items-center;
   }
 
   .profile-stories-grid > .story-book {
     @apply w-fit
     max-w-64
-    rounded
+    rounded-lg
     shadow
     overflow-hidden
     border;
@@ -127,7 +128,7 @@
 
   .profile-stories-grid > .story-book > .story-analysis {
     @apply flex
-    px-4
+    px-6
     pb-6
     justify-between;
   }

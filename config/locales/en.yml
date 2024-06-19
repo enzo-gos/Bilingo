@@ -63,6 +63,7 @@ en:
     heading: 'Stories'
     by: 'by'
     chapters: 'chapters'
+    more_btn: 'Load more'
 
   just_view_story_list:
     heading: 'Just View'
@@ -95,6 +96,21 @@ en:
     drafting: 'Drafting'
     reported: 'Reported'
     stories_title: 'Stories'
+
+  story_details:
+    by_author: 'by %{author_name}'
+    reads: 'Reads'
+    comments: 'Comments'
+    chapters: 'Chapters'
+    start_reading: 'Start Reading'
+    description: 'Description'
+    table_of_content: 'Table of Content'
+
+  chapter:
+    previous_chapter: 'Previous chapter'
+    next_chapter: 'Next chapter'
+    preferences: 'Preferences'
+    table_of_contents: 'Table of Contents'
 
   writer_space:
     title: 'My Stories'
