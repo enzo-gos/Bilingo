@@ -27,4 +27,14 @@ class Story < ApplicationRecord
   def number_of_draft
     chapters.where(published: false).count
   end
+
+  def views
+    chapters.sum(:views)
+  end
+
+  def genres
+    genres = [primary_genre.name]
+    genres |= [secondary_genre.name] if secondary_genre
+    genres
+  end
 end

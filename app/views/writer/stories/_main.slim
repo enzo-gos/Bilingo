@@ -1,7 +1,7 @@
 - if !my_stories.present? || my_stories.empty?
   .workspace-nocontent
     = mi.shape(:library_books).css_class('nocontent-icon')
-    p = t('writer_space.nocontent', fullname: fullname)
+    p = t('writer_space.nocontent', fullname: current_user.fullname)
 
 - format_my_stories(my_stories).map do |story|
   .sortable-item data-id==story[:id]

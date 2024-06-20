@@ -7,10 +7,10 @@
 
     .analysis
       .analysis-item
-        span 01
+        span = @published
         span = t('profile.published')
       .analysis-item
-        span 01
+        span = @draft
         span = t('profile.drafting')
       .analysis-item
         span 0
@@ -19,7 +19,7 @@
   .profile-stories
     h1.list-title = t('profile.stories_title')
     .profile-stories-grid
-      - fake_top_story.map do |story|
+      - format_stories(@stories).map do |story|
         .story-book
           .story-cover
             = image_tag story[:cover]

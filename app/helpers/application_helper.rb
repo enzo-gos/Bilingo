@@ -1,4 +1,6 @@
 module ApplicationHelper
+  include Pagy::Frontend
+
   def all_genres
     Genre.all
   end
@@ -65,9 +67,5 @@ module ApplicationHelper
 
   def current_locale
     I18n.locale
-  end
-
-  def fullname
-    "#{current_user.first_name} #{current_user.last_name}"
   end
 end

@@ -1,0 +1,187 @@
+@layer components {
+  .reader.story-details {
+    @apply max-w-5xl
+    w-full
+    p-7
+    mx-auto
+    text-gray-700;
+  }
+
+  .reader.story-details .story-heading {
+    @apply flex
+    flex-wrap
+    sm:flex-nowrap
+    text-center
+    sm:text-left
+    justify-center
+    gap-2
+    sm:gap-7;
+  }
+
+  .reader.story-details .story-cover {
+    @apply rounded-lg
+    border
+    overflow-hidden
+    w-48
+    min-w-48
+    min-h-72
+    h-72;
+  }
+
+  .reader.story-details .story-cover img {
+    @apply w-full
+    h-full
+    object-cover
+    object-center;
+  }
+
+  .reader.story-details .story-info {
+    @apply w-full
+    flex
+    flex-col
+    py-5;
+  }
+
+  .reader.story-details .story-info > .story-title {
+    @apply text-3xl
+    font-bold
+    mb-2;
+  }
+
+  .reader.story-details .story-info > .story-description {
+    @apply text-sm
+    my-4;
+  }
+
+  .reader.story-details .story-info > .story-tags {
+    @apply flex
+    justify-center
+    sm:justify-start
+    gap-2
+    my-6
+    sm:my-3;
+  }
+
+  .reader.story-details .story-info > .story-tags > .story-tag-item {
+    @apply bg-gray-100
+    rounded-full
+    py-1
+    px-4
+    text-sm;
+  }
+
+  .reader.story-details .story-info > .story-analysis {
+    @apply flex
+    justify-center
+    sm:justify-start
+    gap-2
+    mb-8
+    mt-2
+    sm:my-auto;
+  }
+
+  .reader.story-details .story-analysis > .analysis-item {
+    @apply flex
+    flex-col
+    items-center
+    border-l
+    pl-5
+    pr-4;
+  }
+
+  .reader.story-details .story-analysis > .analysis-item:first-child {
+    @apply border-none;
+  }
+
+  .reader.story-details .story-analysis > .analysis-item > .analysis-heading {
+    @apply text-sm
+    flex
+    items-center
+    gap-1;
+  }
+
+  .reader.story-details .story-analysis > .analysis-item > .analysis-content {
+    @apply text-sm;
+  }
+
+  .reader.story-details .story-analysis > .analysis-item .analysis-icon {
+    @apply text-lg;
+  }
+
+  .reader.story-details .story-reading-btn {
+    @apply bg-primary-600
+    w-fit
+    text-white
+    px-10
+    py-2.5
+    mt-auto
+    rounded-full
+    text-sm
+    font-bold
+    capitalize
+    transition-all
+    hover:bg-primary-700;
+  }
+
+  .reader.story-details .story-description,
+  .reader.story-details .story-table-content {
+    @apply my-7
+    border-t
+    py-5;
+  }
+
+  .reader.story-details .story-description {
+    @apply mb-0;
+  }
+
+  .reader.story-details .story-table-content {
+    @apply mt-0
+    border-t-0;
+  }
+
+  .reader.story-details .story-table-content .story-table-list {
+    @apply border
+    rounded-lg
+    mt-4
+    shadow-lg;
+  }
+
+  .reader.story-details .story-description > .story-description-title,
+  .reader.story-details .story-table-content > .story-table-content-title {
+    @apply mb-2
+    uppercase
+    font-semibold
+    text-gray-600;
+  }
+
+  .reader.story-details .story-table-content .chapter-item {
+    @apply flex
+    justify-between
+    p-4
+    hover:bg-gray-100;
+  }
+
+  .reader.story-details .actions-group {
+    @apply flex
+    mt-auto
+    justify-center
+    sm:justify-start
+    items-center
+    gap-4;
+  }
+
+  .reader.story-details .actions-group .story-share-btn,
+  .reader.story-details .actions-group .story-report-btn {
+    @apply flex
+    items-center
+    justify-center
+    bg-white
+    border
+    rounded-full
+    px-2
+    py-2
+    transition-all
+    hover:bg-primary-600
+    hover:text-white;
+  }
+}

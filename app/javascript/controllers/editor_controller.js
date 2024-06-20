@@ -23,10 +23,6 @@ export default class extends Controller {
             contentDefault: '<i class="material-icons md-18">format_italic</i>',
           },
           {
-            name: 'underline',
-            contentDefault: '<i class="material-icons md-18">format_underlined</i>',
-          },
-          {
             name: 'justifyLeft',
             contentDefault: '<i class="material-icons md-18">format_align_left</i>',
           },

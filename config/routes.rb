@@ -46,6 +46,10 @@ Rails.application.routes.draw do
       end
     end
 
+    resources :stories, only: [:index, :show] do
+      resources :chapters, only: [:show]
+    end
+
     root 'home#index'
   end
 end

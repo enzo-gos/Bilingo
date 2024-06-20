@@ -1,0 +1,41 @@
+@layer components {
+  .preferences-btn {
+    @apply border
+    py-2.5
+    px-5
+    transition-all
+    hover:bg-primary-600
+    hover:text-white
+    rounded-full
+    ml-auto
+    flex
+    items-center
+    gap-2
+    font-semibold;
+  }
+
+  .chapter-controls {
+    @apply flex
+    justify-between
+    border-y
+    py-6
+    my-8;
+  }
+
+  .chapter-controls .chapter-switch-btn {
+    @apply py-2.5
+    px-5
+    rounded
+    bg-primary-600
+    text-white
+    font-semibold
+    border
+    transition-all
+    hover:bg-primary-700;
+  }
+
+  .chapter-controls .chapter-switch-btn.disable {
+    @apply bg-gray-200
+    pointer-events-none;
+  }
+}

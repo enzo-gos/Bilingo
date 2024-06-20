@@ -19,4 +19,8 @@ class User < ApplicationRecord
       user.password = Devise.friendly_token[0, 20]
     end
   end
+
+  def fullname
+    "#{first_name} #{last_name}"
+  end
 end

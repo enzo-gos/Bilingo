@@ -6,6 +6,9 @@
 @import 'tailwind/home/carousel.css';
 @import 'tailwind/home/stories.css';
 
+@import 'tailwind/stories/story.css';
+@import 'tailwind/stories/chapter.css';
+
 @import 'tailwind/modals/auth_modal.css';
 @import 'tailwind/modals/share_modal.css';
 @import 'tailwind/profile/profile.css';
@@ -62,6 +65,47 @@
 
   .main-content {
     @apply min-h-screen;
+  }
+
+  .pagy.nav {
+    @apply flex
+    bg-white
+    w-full
+    p-4
+    gap-2
+    justify-center
+    border-t
+    border-gray-100;
+  }
+
+  .pagy.nav a {
+    @apply px-4
+    py-3
+    rounded 
+    text-primary-800
+    border
+    border-primary-600
+    hover:bg-primary-600
+    hover:text-white
+    flex
+    font-medium
+    items-center
+    leading-none;
+  }
+
+  .pagy.nav a[aria-disabled='true']:first-child,
+  .pagy.nav a[aria-disabled='true']:last-child {
+    @apply hidden;
+  }
+
+  .pagy.nav a:first-child {
+    content: '12312323';
+  }
+
+  .pagy.nav a.current {
+    @apply text-white
+    bg-primary-600
+    font-bold;
   }
 }
 @import 'actiontext.css';

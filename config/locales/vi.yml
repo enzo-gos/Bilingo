@@ -34,6 +34,7 @@ vi:
     heading: 'Câu truyện'
     by: 'bởi'
     chapters: 'chương'
+    more_btn: 'Xem thêm'
 
   just_view_story_list:
     heading: 'Đã xem'
@@ -66,6 +67,21 @@ vi:
     drafting: 'Đang viết'
     reported: 'Báo cáo'
     stories_title: 'Câu truyện'
+
+  story_details:
+    by_author: 'bởi %{author_name}'
+    reads: 'Lượt đọc'
+    comments: 'Bình luận'
+    chapters: 'Chương'
+    start_reading: 'Bắt đầu đọc'
+    description: 'Mô tả'
+    table_of_content: 'Mục lục'
+
+  chapter:
+    previous_chapter: 'Chương trước'
+    next_chapter: 'Chương tiếp theo'
+    preferences: 'Tùy chọn'
+    table_of_contents: 'Mục lục'
 
   writer_space:
     title: 'Truyện của tôi'
@@ -152,6 +168,46 @@ vi:
     unexpected_error: 'Đã xảy ra lỗi không mong muốn. Vui lòng thử lại.'
     failure: 'Xác thực thất bại. Vui lòng thử lại.'
     success: 'Xác thực thành công từ tài khoản %{kind}.'
+
+  datetime:
+    distance_in_words:
+      half_a_minute: 'nửa phút'
+      less_than_x_seconds:
+        one: 'chưa đến 1 giây'
+        other: 'chưa đến %{count} giây'
+      x_seconds:
+        one: '1 giây'
+        other: '%{count} giây'
+      less_than_x_minutes:
+        one: 'chưa đến 1 phút'
+        other: 'chưa đến %{count} phút'
+      x_minutes:
+        one: '1 phút'
+        other: '%{count} phút'
+      about_x_hours:
+        one: 'khoảng 1 giờ'
+        other: 'khoảng %{count} giờ'
+      x_days:
+        one: '1 ngày'
+        other: '%{count} ngày'
+      about_x_months:
+        one: 'khoảng 1 tháng'
+        other: 'khoảng %{count} tháng'
+      x_months:
+        one: '1 tháng'
+        other: '%{count} tháng'
+      about_x_years:
+        one: 'khoảng 1 năm'
+        other: 'khoảng %{count} năm'
+      over_x_years:
+        one: 'hơn 1 năm'
+        other: 'hơn %{count} năm'
+      almost_x_years:
+        one: 'gần 1 năm'
+        other: 'gần %{count} năm'
+      words_connector: ' '
+      two_words_connector: ' và '
+      last_word_connector: ' và '
 
   activerecord:
     attributes:
