@@ -1,22 +1,23 @@
 class ChaptersController < ApplicationController
   def show
+    params[:translate_code] ||= params[:locale]
+
     @story = Story.find(params[:story_id])
     @chapter = Chapter.find(params[:id])
 
     @prev_chapter = @chapter.higher_item ? story_chapter_path(story_id: @story.id, id: @chapter.higher_item.id) : nil
     @next_chapter = @chapter.lower_item ? story_chapter_path(story_id: @story.id, id: @chapter.lower_item.id) : nil
 
-    doc = Nokogiri::HTML.fragment(@chapter.content.body.to_s)
-    @html_segments = []
+    @translation = ChapterService::Translator.call(chapter: @chapter, source_language: @story.language_code, target_language: params[:translate_code])
 
-    client = Google::Cloud::Translate.translation_service
-    source_lang_code = @story.language_code.downcase
-
-    doc.children.each do |node|
-      @html_segments << node.to_html
+    respond_to do |format|
+      format.turbo_stream do
+        render turbo_stream: [
+          turbo_stream.update('translate-dropdown', partial: 'translate_dropdown', locals: { current_translate: params[:translate_code] }),
+          turbo_stream.update('story-content', partial: 'story_content', locals: { original: @translation[:original], translated: @translation[:translated], show_translate: @translation[:show_translate] })
+        ]
+      end
+      format.html
     end
-
-    @response = client.translate_text contents: @html_segments, mime_type: 'text/html', source_language_code: source_lang_code, target_language_code: 'vi', parent: "projects/#{ENV['CLOUD_PROJECT_ID']}"
-    @translated_title = client.translate_text contents: [@chapter.title], mime_type: 'text/html', source_language_code: source_lang_code, target_language_code: 'vi', parent: "projects/#{ENV['CLOUD_PROJECT_ID']}"
   end
 end

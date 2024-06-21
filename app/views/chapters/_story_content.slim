@@ -1,0 +1,6 @@
+h2.chapter-title.border-none == original[:title]
+h2.chapter-title == render_translate(translated[:title].translations.first.translated_text) if show_translate
+
+- original[:content].each_with_index do |paragraph, index|
+  == paragraph
+  == render_translate(translated[:content].translations[index].translated_text) if show_translate

@@ -1,0 +1,10 @@
+.dropdown
+  .dropdown-btn
+    span = current_translate
+    = mi.shape(:arrow_drop_down).md_18
+  .dropdown-list.lang-list
+    - fake_languages_with_codes.map do |lang|
+      .dropdown-item
+        = link_to({ translate_code: lang[:code] }, { class: 'lang navbar-link', data: { turbo_stream: true } }) do
+          span = "#{lang[:language]} (#{lang[:code].upcase})"
+          span = mi.shape(:check).round.md_18.css_class('text-green-600') if current_translate.to_s.downcase == lang[:code].to_s.downcase
