@@ -42,6 +42,7 @@
   .chapter .translate-text {
     @apply bg-primary-100/30
     -mt-1
+    mb-5
     px-4
     py-3
     rounded
