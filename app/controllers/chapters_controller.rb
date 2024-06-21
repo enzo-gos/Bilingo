@@ -13,9 +13,6 @@ class ChaptersController < ApplicationController
     source_lang_code = @story.language_code.downcase
 
     doc.children.each do |node|
-      node.set_attribute('source', source_lang_code)
-      node.set_attribute('dest', 'vi')
-
       @html_segments << node.to_html
     end
 
