@@ -66,3 +66,7 @@ gem 'sentry-ruby', '~> 5.17'
 gem 'sentry-rails', '~> 5.17'
 
 gem 'acts_as_list', '~> 1.2'
+
+gem 'google-cloud-translate', '~> 3.6'
+
+gem 'nokogiri', '~> 1.16'
