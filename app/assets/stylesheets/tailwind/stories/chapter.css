@@ -38,4 +38,20 @@
     @apply bg-gray-200
     pointer-events-none;
   }
+
+  .chapter .translate-text {
+    @apply bg-primary-100/30
+    -mt-1
+    mb-5
+    px-4
+    py-3
+    rounded
+    border
+    text-gray-700
+    border-primary-50;
+  }
+
+  .chapter .editor .editable .translate-text * {
+    @apply m-0;
+  }
 }
