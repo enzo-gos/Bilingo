@@ -1,5 +1,5 @@
 module Writer::StoriesHelper
-  def fake_languages
+  def fake_languages_with_codes
     [
       { code: 'en', language: 'English' },
       { code: 'fr', language: 'Français' },
@@ -56,7 +56,11 @@ module Writer::StoriesHelper
       { code: 'af', language: 'Afrikaans' },
       { code: 'mr', language: 'मराठी' },
       { code: 'other', language: 'Other' }
-    ].map { |lang| [lang[:language], lang[:code]] }
+    ]
+  end
+
+  def fake_languages
+    fake_languages_with_codes.map { |lang| [lang[:language], lang[:code]] }
   end
 
   def format_my_stories(my_stories)

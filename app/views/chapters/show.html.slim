@@ -7,17 +7,15 @@
       = link_to t('chapter.previous_chapter'), @prev_chapter, class: "chapter-switch-btn#{@prev_chapter ? '' : ' disable'}"
       = link_to t('chapter.next_chapter'), @next_chapter, class: "chapter-switch-btn#{@next_chapter ? '' : ' disable'}"
 
-    button.preferences-btn
-      = mi.shape(:settings).md_18
-      = t('chapter.preferences')
+    .chapter-options
+      button.preferences-btn
+        = mi.shape(:settings).md_18
+        = t('chapter.preferences')
+      #translate-dropdown
+        = render 'translate_dropdown', current_translate: current_translate
 
-    h2.chapter-title.border-none == optional_chapter_title(@chapter)
-    h2.chapter-title == render_translate(@translated_title.translations.first.translated_text)
-
-    .editable
-      - @html_segments.each_with_index do |paragraph, index|
-        == paragraph
-        == render_translate(@response.translations[index].translated_text)
+    #story-content.editable
+      = render 'story_content', original: @translation[:original], translated: @translation[:translated], show_translate: @translation[:show_translate]
 
     .chapter-controls
       = link_to t('chapter.previous_chapter'), @prev_chapter, class: "chapter-switch-btn#{@prev_chapter ? '' : ' disable'}"

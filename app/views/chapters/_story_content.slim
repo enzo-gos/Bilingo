@@ -1,0 +1,9 @@
+h2[class=="chapter-title#{show_translate ? ' border-none' : ' mb-5'}"] == original[:title]
+
+- if show_translate
+  h2.chapter-title.mb-5
+    == render_translate(translated[:title]&.translations&.first&.translated_text)
+
+- original[:content].each_with_index do |paragraph, index|
+  == paragraph
+  == render_translate(translated[:content]&.translations[index]&.translated_text) if show_translate

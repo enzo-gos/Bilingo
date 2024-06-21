@@ -3,11 +3,11 @@
     @apply border
     py-2.5
     px-5
+    bg-white
     transition-all
     hover:bg-primary-600
     hover:text-white
     rounded-full
-    ml-auto
     flex
     items-center
     gap-2
@@ -51,7 +51,77 @@
     border-primary-50;
   }
 
+  .chapter .editor {
+    @apply relative;
+  }
+
   .chapter .editor .editable .translate-text * {
     @apply m-0;
+  }
+
+  .chapter .editor .chapter-options {
+    @apply flex
+    justify-end
+    items-center
+    gap-2;
+  }
+
+  .chapter .editor .chapter-options .dropdown {
+    @apply relative
+    flex
+    items-center;
+  }
+
+  .chapter .editor .chapter-options .dropdown .dropdown-btn {
+    @apply flex
+    items-center
+    justify-between
+    min-w-16
+    border
+    p-2
+    px-4
+    pr-2
+    rounded-full;
+  }
+
+  .chapter .editor .chapter-options .dropdown > .dropdown-list {
+    @apply absolute
+    bg-white
+    top-full
+    invisible
+    opacity-0
+    shadow;
+  }
+
+  .chapter .editor .chapter-options .dropdown > .dropdown-list.lang-list {
+    @apply min-w-48
+    p-2
+    right-0
+    overflow-y-auto
+    max-h-56;
+  }
+
+  .chapter .editor .chapter-options .dropdown:hover > .dropdown-list {
+    @apply opacity-100
+    visible
+    border
+    transition-all;
+  }
+
+  .chapter .editor .chapter-options .dropdown > .dropdown-list > .dropdown-item > .lang {
+    @apply flex
+    text-sm
+    gap-2
+    p-3
+    items-center
+    whitespace-nowrap;
+  }
+
+  .chapter .editor .chapter-options .dropdown > .dropdown-list > .dropdown-item > .lang {
+    @apply gap-3;
+  }
+
+  .chapter .editor .chapter-options .dropdown > .dropdown-list > .dropdown-item > .lang .locale-icon {
+    @apply text-2xl;
   }
 }
