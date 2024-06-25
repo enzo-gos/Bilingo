@@ -15,7 +15,7 @@
         = render 'translate_dropdown', current_translate: current_translate
 
     #story-content.editable
-      = render 'story_content', original: @translation[:original], translated: @translation[:translated], show_translate: @translation[:show_translate]
+      = render 'story_content', original: @translation[:original], translated: @translation[:translated], rephrases: @rephrases, show_translate: @translation[:show_translate]
 
     .chapter-controls
       = link_to t('chapter.previous_chapter'), @prev_chapter, class: "chapter-switch-btn#{@prev_chapter ? '' : ' disable'}"
