@@ -39,15 +39,66 @@
     pointer-events-none;
   }
 
+  .chapter .translate-wrapper {
+    @apply flex
+    items-center;
+  }
+
   .chapter .translate-text {
-    @apply bg-primary-100/30
-    -mt-1
-    mb-5
+    @apply -mt-1
+    mb-4
+    gap-1
+    flex
+    flex-col
+    w-full;
+  }
+
+  .chapter .translate-actions {
+    @apply flex
+    items-center
+    gap-2
     px-4
-    py-3
-    rounded
+    text-gray-600;
+  }
+
+  .chapter .translate-actions .action-btn {
+    @apply rounded-full
     border
+    p-1
+    px-1
+    flex
+    items-center
+    transition-all
+    hover:bg-gray-200/70;
+  }
+
+  .chapter .translate-actions .action-icon {
+    @apply text-[14px];
+  }
+
+  .chapter .translate-text .translate-content {
+    @apply bg-primary-100/30
+    py-3
+    px-4
+    rounded
+    rounded-br-none
     text-gray-700
+    border
+    w-full
+    border-primary-50;
+  }
+
+  .chapter .translate-text .translate-info {
+    @apply text-[10px]
+    p-1
+    px-3
+    rounded-b
+    rounded-t-none
+    text-gray-700
+    bg-gray-100/40
+    w-fit
+    self-end
+    border
     border-primary-50;
   }
 

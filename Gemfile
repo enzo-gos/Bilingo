@@ -60,13 +60,15 @@ gem 'omniauth-rails_csrf_protection', '~> 1.0'
 
 gem 'pagy', '~> 8.4'
 gem 'acts-as-taggable-on', '~> 10.0'
+gem 'acts_as_list', '~> 1.2'
 
 gem 'stackprof', '~> 0.2.26'
 gem 'sentry-ruby', '~> 5.17'
 gem 'sentry-rails', '~> 5.17'
 
-gem 'acts_as_list', '~> 1.2'
+gem 'nokogiri', '~> 1.16'
 
 gem 'google-cloud-translate', '~> 3.6'
+gem 'gemini-ai', '~> 4.0'
 
-gem 'nokogiri', '~> 1.16'
+gem 'redis', '~> 5.2'

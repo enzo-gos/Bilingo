@@ -32,7 +32,8 @@ Rails.application.configure do
     config.action_controller.perform_caching = true
     config.action_controller.enable_fragment_cache_logging = true
 
-    config.cache_store = :memory_store
+    # config.cache_store = :memory_store
+    config.cache_store = :redis_cache_store, { url: "#{ENV.fetch('REDIS_URL') { 'redis://localhost:6379' }}/1", expires_in: 90.minutes }
     config.public_file_server.headers = {
       "Cache-Control" => "public, max-age=#{2.days.to_i}"
     }
@@ -100,4 +101,6 @@ Rails.application.configure do
   #   enable_starttls_auto: true
   # }
   # config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
+
+  config.hosts << ENV['NGROK_HOST'] if ENV['NGROK_HOST'].present?
 end

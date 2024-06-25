@@ -50,6 +50,20 @@ body {
   -webkit-animation: l13 1s infinite linear;
   animation: l13 1s infinite linear;
 
+  &-sm {
+    width: 16px;
+    height: 16px;
+    margin: auto;
+    aspect-ratio: 1;
+    border-radius: 50%;
+    background: radial-gradient(farthest-side, #af24ff 94%, #0000) top/3px 3px no-repeat,
+      conic-gradient(#0000 30%, #af24ff);
+    -webkit-mask: radial-gradient(farthest-side, #0000 calc(100% - 3px), #000 0);
+    mask: radial-gradient(farthest-side, #0000 calc(100% - 3px), #000 0);
+    -webkit-animation: l13 1s infinite linear;
+    animation: l13 1s infinite linear;
+  }
+
   @-webkit-keyframes l13 {
     100% {
       -webkit-transform: rotate(1turn);
