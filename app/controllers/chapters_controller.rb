@@ -32,14 +32,10 @@ class ChaptersController < ApplicationController
     original = @translation[:original][:content][index]
     translated = @translation[:translated][:content][index]
 
-    try = 0
-    begin
-      try += 1
-      rephrased = ChapterService::Rephraser.call(chapter: @chapter, dest_language: params[:translate_code], original: original, translated: translated)
-    rescue Faraday::TooManyRequestsError
-      retry if try < 5
-      error = true
-    end
+    response = ChapterService::Rephraser.call(chapter: @chapter, dest_language: params[:translate_code], original: original, translated: translated)
+
+    error = response.errors
+    rephrased = response.payload
 
     respond_to do |format|
       format.turbo_stream do

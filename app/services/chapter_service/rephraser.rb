@@ -12,27 +12,18 @@ class ChapterService::Rephraser < ApplicationService
   end
 
   def call
-    # cache_key = "rephrase_#{@dest_language}_#{@chapter.id}"
-    # cache_rephrases = Rails.cache.fetch(cache_key)
-
-    # if cache_rephrases.nil? || cache_rephrases[:cached_at] <= @chapter.updated_at
-    #   cache_rephrases = start_rephrase
-    #   Rails.cache.write(cache_key, cache_rephrases)
-    # end
-    # cache_rephrases
-    gemini(original: @original, translated: @translated)
+    try = 0
+    begin
+      try += 1
+      rephrased = gemini(original: @original, translated: @translated)
+    rescue Faraday::TooManyRequestsError
+      retry if try < 5
+      error = true
+    end
+    ServiceResponse.new(payload: rephrased, errors: error)
   end
 
   private
-
-  def start_rephrase
-    rephrases = []
-    @translated.each_with_index do |translated_text, index|
-      rephrased_text = translated_text.match?(/\b(hr|br)\b|\n|^\s*$/i) ? translated_text : gemini(original: @original[index], translated: translated_text)
-      rephrases << rephrased_text
-    end
-    { content: rephrases, cached_at: Time.now }
-  end
 
   def gemini(original:, translated:)
     client = Gemini.new(
