@@ -82,6 +82,8 @@ zh:
     next_chapter: '下一章'
     preferences: '设置'
     table_of_contents: '目录'
+    rephrased_by: '由 %{by} 重新表达'
+    translated_by: '由 %{by} 翻译'
 
   writer_space:
     title: '我的故事'

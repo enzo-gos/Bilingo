@@ -11,10 +11,10 @@ class ChapterService::Translator < ApplicationService
 
   def call
     doc = Nokogiri::HTML.fragment(@chapter.content.body.to_s)
-    html_segments = []
+    html_segments = {}
 
     doc.children.each do |node|
-      html_segments << node.to_html
+      html_segments.merge! Hash[node.get_attribute('data-p-id'), node.to_html]
     end
 
     show_translate = @source_language.downcase != @target_language.downcase
@@ -46,9 +46,14 @@ class ChapterService::Translator < ApplicationService
   def start_translate(html_segments)
     client = Google::Cloud::Translate.translation_service
     translated_title = client.translate_text(contents: [@chapter.title], mime_type: 'text/html', source_language_code: @source_language, target_language_code: @target_language, parent: "projects/#{ENV['CLOUD_PROJECT_ID']}")
-    translated_content = client.translate_text(contents: html_segments, mime_type: 'text/html', source_language_code: @source_language, target_language_code: @target_language, parent: "projects/#{ENV['CLOUD_PROJECT_ID']}")
+    translated_content = client.translate_text(contents: html_segments.values, mime_type: 'text/html', source_language_code: @source_language, target_language_code: @target_language, parent: "projects/#{ENV['CLOUD_PROJECT_ID']}")
     translated_mapped = translated_content.translations.map(&:translated_text)
+    translated_hashed = {}
 
-    { title: translated_title.translations.first.translated_text, content: translated_mapped, cached_at: Time.now }
+    html_segments.each do |key, _value|
+      translated_hashed[key] = translated_mapped[html_segments.keys.index(key)]
+    end
+
+    { title: translated_title.translations.first.translated_text, content: translated_hashed, cached_at: Time.now }
   end
 end

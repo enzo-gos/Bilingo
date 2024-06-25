@@ -82,6 +82,8 @@ vi:
     next_chapter: 'Chương tiếp theo'
     preferences: 'Tùy chọn'
     table_of_contents: 'Mục lục'
+    rephrased_by: 'Diễn đạt bởi %{by}'
+    translated_by: 'Dịch bởi %{by}'
 
   writer_space:
     title: 'Truyện của tôi'
