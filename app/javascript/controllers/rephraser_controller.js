@@ -2,9 +2,7 @@ import { Controller } from '@hotwired/stimulus';
 
 // Connects to data-controller="rephraser"
 export default class extends Controller {
-  connect() {
-    console.log(123123);
-  }
+  connect() {}
 
   rephrase(event) {
     const data_id = $(event.target).closest('.action-btn').attr('data-id');
