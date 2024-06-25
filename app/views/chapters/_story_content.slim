@@ -4,21 +4,24 @@ h2[class=="chapter-title#{show_translate ? ' border-none' : ' mb-5'}"] == origin
   h2.chapter-title.mb-5
     == render_translate(translated[:title])
 
-- translated[:content].each_with_index do |translated_text, index|
-  == original[:content][index]
-  - if show_translate && !translated_text&.match?(/\b(hr|br)\b|\n|^\s*$/i)
-    = turbo_frame_tag "chapter_#{index}", src: rephrase_story_chapter_path(index: index, translate_code: params[:translate_code], format: :turbo_stream), loading: :lazy do
-      .translate-wrapper
-        .translate-text
-          .translate-wrapper.translate-content
-            .w-full[id=="translate_index_#{index}"]
-              == translated_text
-            .[class="loader-sm !ml-3" id=="rephrase_index_#{index}"]
+. data-controller='rephraser'
+  - original[:content].each do |index, paragraph|
+    == paragraph
+    - if show_translate && !translated[:content][index]&.match?(/\b(hr|br)\b|\n|^\s*$/i)
+      = turbo_frame_tag "chapter_#{index}", src: rephrase_story_chapter_path(index: index, translate_code: params[:translate_code], format: :turbo_stream), loading: :lazy do
+        .translate-wrapper
+          .translate-text
+            .translate-wrapper.translate-content
+              .w-full[id=="translate_#{index}"]
+                == translated[:content][index]
+              .[class="loader-sm !ml-3" id=="rephrase_#{index}"]
 
-          .translate-wrapper.self-end
-            .translate-actions
-              button.action-btn = mi.shape(:replay).css_class('action-icon')
-              button.action-btn = mi.shape(:translate).css_class('action-icon')
+            .translate-wrapper.self-end
+              .translate-actions
+                = link_to rephrase_alt_story_chapter_path(index: index, translate_code: params[:translate_code]), data: { turbo_stream: true, action: 'click->rephraser#rephrase', id: index }, class: 'action-btn' do
+                  = mi.shape(:replay).css_class('action-icon')
+                = link_to translate_story_chapter_path(index: index, translate_code: params[:translate_code]), data: { turbo_stream: true }, class: 'action-btn' do
+                  = mi.shape(:translate).css_class('action-icon')
 
-            i.translate-info id=="translate_info_index_#{index}"
-              | Translate by Google
+              i.translate-info id=="translate_info_#{index}"
+                = t('chapter.translated_by', by: 'Google')

@@ -111,6 +111,8 @@ en:
     next_chapter: 'Next chapter'
     preferences: 'Preferences'
     table_of_contents: 'Table of Contents'
+    rephrased_by: 'Rephrased by %{by}'
+    translated_by: 'Translated by %{by}'
 
   writer_space:
     title: 'My Stories'

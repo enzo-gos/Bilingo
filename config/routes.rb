@@ -50,6 +50,8 @@ Rails.application.routes.draw do
       resources :chapters, only: [:show] do
         member do
           get :rephrase
+          get :translate
+          get :rephrase_alt
         end
       end
     end

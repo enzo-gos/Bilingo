@@ -94,7 +94,7 @@ export default class extends Controller {
       $(this.titleTarget).val($(this.titleEditorTarget).html());
     });
 
-    $('#word-count').html(`(${this.countWords()} words)`);
+    if (this.editor.getContent()) $('#word-count').html(`(${this.countWords()} words)`);
   }
 
   savingStatus() {
