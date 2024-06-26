@@ -11,6 +11,7 @@
 
 @import 'tailwind/modals/auth_modal.css';
 @import 'tailwind/modals/share_modal.css';
+@import 'tailwind/modals/setting_modal.css';
 @import 'tailwind/profile/profile.css';
 
 @import 'tailwind/writer/toolbar.css';
@@ -81,7 +82,7 @@
   .pagy.nav a {
     @apply px-4
     py-3
-    rounded 
+    rounded
     text-primary-800
     border
     border-primary-600

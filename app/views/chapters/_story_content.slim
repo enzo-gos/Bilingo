@@ -2,13 +2,15 @@ h2[class=="chapter-title#{show_translate ? ' border-none' : ' mb-5'}"] == origin
 
 - if show_translate
   h2.chapter-title.mb-5
-    == render_translate(translated[:title])
+    .translate-text.mb-5
+      .translate-content
+        = translated[:title]
 
 . data-controller='rephraser'
   - original[:content].each do |index, paragraph|
     == paragraph
     - if show_translate && !translated[:content][index]&.match?(/\b(hr|br)\b|\n|^\s*$/i)
-      = turbo_frame_tag "chapter_#{index}", src: rephrase_story_chapter_path(index: index, translate_code: params[:translate_code], format: :turbo_stream), loading: :lazy do
+      = turbo_frame_tag "chapter_#{index}", class: 'translation-details', src: rephrase_story_chapter_path(index: index, translate_code: params[:translate_code], format: :turbo_stream), loading: :lazy do
         .translate-wrapper
           .translate-text
             .translate-wrapper.translate-content

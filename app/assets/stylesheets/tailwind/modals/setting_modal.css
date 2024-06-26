@@ -1,0 +1,55 @@
+@layer components {
+  .setting-modal {
+    @apply base-modal
+    p-6
+    px-0
+    w-full
+    rounded-md
+    max-w-[500px]
+    border-none
+    shadow;
+  }
+
+  .setting-modal .close-btn {
+    @apply flex
+    items-center
+    rounded-full
+    text-gray-500;
+  }
+
+  .setting-modal .setting-modal-heading {
+    @apply flex
+    w-full
+    justify-between
+    border-b
+    px-6
+    pb-6;
+  }
+
+  .setting-modal .setting-modal-heading > .heading-title {
+    @apply text-lg
+    font-semibold
+    text-gray-500;
+  }
+
+  .setting-modal .modal-title {
+    @apply text-center
+    text-xl
+    font-bold
+    mb-6;
+  }
+
+  .setting-modal select,
+  .setting-modal input {
+    @apply flex
+    w-40
+    border-gray-200
+    mt-2;
+  }
+
+  #setting-modal-body {
+    @apply p-6
+    flex
+    gap-8;
+  }
+}

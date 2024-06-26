@@ -84,6 +84,12 @@ vi:
     table_of_contents: 'Mục lục'
     rephrased_by: 'Diễn đạt bởi %{by}'
     translated_by: 'Dịch bởi %{by}'
+    settings:
+      title: 'Cài đặt'
+      close: 'Đóng'
+      font_size: 'Cỡ chữ'
+      paragraph_spacing: 'Khoảng cách đoạn văn'
+      show_translate: 'Hiển thị dịch'
 
   writer_space:
     title: 'Truyện của tôi'

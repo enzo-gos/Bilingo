@@ -1,23 +1,25 @@
-.chapter.mx-auto
-  .chapter-cover
-    = image_tag @chapter.heading_image if @chapter.heading_image.attached?
+. data-controller='setting-modal'
+  = render 'setting_modal'
+  .chapter.mx-auto
+    .chapter-cover
+      = image_tag @chapter.heading_image if @chapter.heading_image.attached?
 
-  .editor
-    .chapter-controls
-      = link_to t('chapter.previous_chapter'), @prev_chapter, class: "chapter-switch-btn#{@prev_chapter ? '' : ' disable'}"
-      = link_to t('chapter.next_chapter'), @next_chapter, class: "chapter-switch-btn#{@next_chapter ? '' : ' disable'}"
+    .editor
+      .chapter-controls
+        = link_to t('chapter.previous_chapter'), @prev_chapter, class: "chapter-switch-btn#{@prev_chapter ? '' : ' disable'}"
+        = link_to t('chapter.next_chapter'), @next_chapter, class: "chapter-switch-btn#{@next_chapter ? '' : ' disable'}"
 
-    .chapter-options
-      button.preferences-btn
-        = mi.shape(:settings).md_18
-        = t('chapter.preferences')
-      #translate-dropdown
-        = render 'translate_dropdown', current_translate: current_translate
+      .chapter-options
+        button.preferences-btn data-action='click->setting-modal#open'
+          = mi.shape(:settings).md_18
+          = t('chapter.preferences')
+        #translate-dropdown
+          = render 'translate_dropdown', current_translate: current_translate
 
-    #story-content.editable
-      = render 'story_content', original: @translation[:original], translated: @translation[:translated], rephrases: @rephrases, show_translate: @translation[:show_translate]
+      #story-content.editable
+        = render 'story_content', original: @translation[:original], translated: @translation[:translated], rephrases: @rephrases, show_translate: @translation[:show_translate]
 
-    .chapter-controls
-      = link_to t('chapter.previous_chapter'), @prev_chapter, class: "chapter-switch-btn#{@prev_chapter ? '' : ' disable'}"
-      = link_to t('chapter.table_of_contents'), story_path(@story), class: 'chapter-switch-btn'
-      = link_to t('chapter.next_chapter'), @next_chapter, class: "chapter-switch-btn#{@next_chapter ? '' : ' disable'}"
+      .chapter-controls
+        = link_to t('chapter.previous_chapter'), @prev_chapter, class: "chapter-switch-btn#{@prev_chapter ? '' : ' disable'}"
+        = link_to t('chapter.table_of_contents'), story_path(@story), class: 'chapter-switch-btn'
+        = link_to t('chapter.next_chapter'), @next_chapter, class: "chapter-switch-btn#{@next_chapter ? '' : ' disable'}"
