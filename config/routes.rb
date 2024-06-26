@@ -52,6 +52,7 @@ Rails.application.routes.draw do
           get :rephrase
           get :translate
           get :rephrase_alt
+          get :summarize
         end
       end
     end

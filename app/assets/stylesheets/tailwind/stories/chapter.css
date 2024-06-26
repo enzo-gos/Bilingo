@@ -77,7 +77,7 @@
   }
 
   .chapter .translate-text .translate-content {
-    @apply bg-primary-100/30
+    @apply bg-primary-100/20
     py-3
     px-4
     rounded
@@ -88,11 +88,12 @@
     border-primary-50;
   }
 
-  .chapter .translate-text .translate-info {
+  .chapter .translate-info {
     @apply text-[10px]
     p-1
     px-3
     rounded-b
+    whitespace-nowrap
     rounded-t-none
     text-gray-700
     bg-gray-100/40
@@ -174,5 +175,29 @@
 
   .chapter .editor .chapter-options .dropdown > .dropdown-list > .dropdown-item > .lang .locale-icon {
     @apply text-2xl;
+  }
+
+  .chapter .summary_title {
+    @apply text-xl
+    font-semibold
+    w-full;
+  }
+
+  .chapter .divider {
+    @apply my-8;
+  }
+
+  .chapter .summary-content {
+    @apply w-full;
+  }
+
+  .chapter .summary-heading {
+    @apply flex
+    items-center
+    mb-4;
+  }
+
+  .chapter #original-summary {
+    @apply text-gray-700;
   }
 }
