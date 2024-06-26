@@ -1,3 +1,9 @@
+:root {
+  --chapter-font-size: 13px;
+  --chapter-p-height: 16px;
+  --chapter-translation: block;
+}
+
 @layer components {
   .preferences-btn {
     @apply border
@@ -46,7 +52,6 @@
 
   .chapter .translate-text {
     @apply -mt-1
-    mb-4
     gap-1
     flex
     flex-col
@@ -107,6 +112,11 @@
     @apply relative;
   }
 
+  .chapter .editor [data-p-id] {
+    @apply mt-[var(--chapter-p-height)];
+    font-size: var(--chapter-font-size);
+  }
+
   .chapter .editor .editable .translate-text * {
     @apply m-0;
   }
@@ -163,14 +173,10 @@
   .chapter .editor .chapter-options .dropdown > .dropdown-list > .dropdown-item > .lang {
     @apply flex
     text-sm
-    gap-2
     p-3
     items-center
-    whitespace-nowrap;
-  }
-
-  .chapter .editor .chapter-options .dropdown > .dropdown-list > .dropdown-item > .lang {
-    @apply gap-3;
+    whitespace-nowrap
+    gap-3;
   }
 
   .chapter .editor .chapter-options .dropdown > .dropdown-list > .dropdown-item > .lang .locale-icon {
@@ -199,5 +205,10 @@
 
   .chapter #original-summary {
     @apply text-gray-700;
+  }
+
+  .chapter .translation-details,
+  .chapter #translated-summary-type {
+    display: var(--chapter-translation);
   }
 }
