@@ -91,6 +91,21 @@ class ChaptersController < ApplicationController
     end
   end
 
+  def summarize
+    original = ChapterService::Summarizer.call(chapter: @chapter, target_language: @story.language_code.downcase, content: @chapter.content.body.to_s)
+    translated = ChapterService::Summarizer.call(chapter: @chapter, target_language: params[:translate_code], content: original)
+
+    respond_to do |format|
+      format.turbo_stream do
+        render turbo_stream: [
+          turbo_stream.update('original-summary', original),
+          turbo_stream.update('summary-info', t('chapter.rephrased_by', by: 'Gemini')),
+          turbo_stream.update('translated-summary', partial: 'translated_summary', locals: { content: translated })
+        ]
+      end
+    end
+  end
+
   def prepare_story
     @story = Story.find(params[:story_id])
   end

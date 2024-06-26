@@ -19,3 +19,4 @@ pin "process" # @2.0.1
 pin "trix"
 pin "@rails/actiontext", to: "actiontext.esm.js"
 pin "lodash.debounce" # @4.0.8
+pin "typeit" # @8.8.3

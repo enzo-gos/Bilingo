@@ -25,3 +25,22 @@ h2[class=="chapter-title#{show_translate ? ' border-none' : ' mb-5'}"] == origin
 
               i.translate-info id=="translate_info_#{index}"
                 = t('chapter.translated_by', by: 'Google')
+hr.divider
+.summary data-controller='summary'
+  = turbo_frame_tag 'chapter-summary', src: summarize_story_chapter_path(format: :turbo_stream), loading: :lazy do
+    .summary-heading
+      .[class="loader-sm !mr-3" data-summary-target='loader']
+      h2.summary_title Summary
+      .translate-wrapper.self-end
+        .translate-actions
+          = link_to summarize_story_chapter_path, data: { turbo_stream: true, action: 'click->summary#summarize' }, class: 'action-btn' do
+            = mi.shape(:replay).css_class('action-icon')
+
+      i.translate-info id='summary-info'
+        = t('chapter.rephrased_by', by: 'Gemini')
+
+    .summary-content
+      i#original-summary
+      i#translated-summary.hidden.w-full
+      .mt-6
+        i#translated-summary-type
