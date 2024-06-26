@@ -113,6 +113,12 @@ en:
     table_of_contents: 'Table of Contents'
     rephrased_by: 'Rephrased by %{by}'
     translated_by: 'Translated by %{by}'
+    settings:
+      title: 'Settings'
+      close: 'Close'
+      font_size: 'Font Size'
+      paragraph_spacing: 'Paragraph Spacing'
+      show_translate: 'Show Translate'
 
   writer_space:
     title: 'My Stories'

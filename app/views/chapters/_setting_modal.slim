@@ -1,17 +1,17 @@
 .modal-backdrop.modal-hidden data-setting-modal-target='backdrop'
 .setting-modal.modal-hidden data-setting-modal-target='modal'
   .setting-modal-heading
-    h1.heading-title Settings
+    h1.heading-title = t('chapter.settings.title')
     button.close-btn type='button' data-action='click->setting-modal#close'
       = mi.shape(:close).md_18.css_class('close-icon')
 
   = form_with id: 'setting-modal-body', data: { setting_modal_target: 'form' } do |f|
     .setting-wrapper
-      = f.label :fontsize, 'Font Size'
+      = f.label :fontsize, t('chapter.settings.font_size')
       = f.select :fontsize, page_settings[:font_size][:list], { selected: page_settings[:font_size][:default] }, { data: { setting_modal_target: 'fontsize' } }
     .setting-wrapper
-      = f.label :p_spacing, 'Paragraph Spacing'
+      = f.label :p_spacing, t('chapter.settings.paragraph_spacing')
       = f.number_field :p_spacing, min: page_settings[:p_space][:min], max: page_settings[:p_space][:max], value: page_settings[:p_space][:default], data: { setting_modal_target: 'pspace' }
     .setting-wrapper
-      = f.label :show_translate, 'Show Translate'
+      = f.label :show_translate, t('chapter.settings.show_translate')
       = f.select :show_translate, page_settings[:translation][:list], { selected: page_settings[:translation][:default] }, { data: { setting_modal_target: 'translation' } }
