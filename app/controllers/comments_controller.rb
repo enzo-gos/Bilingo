@@ -4,7 +4,7 @@ class CommentsController < ApplicationController
   before_action :prepare_chapter, except: [:index]
 
   def index
-    @chapter = Chapter.includes([:chapter, { comments: :commenter }]).find(params[:chapter_id])
+    @chapter = Chapter.includes([comments: :commenter]).find(params[:chapter_id])
     comments = @chapter.comments.group_by(&:paragraph_id).transform_values(&:first)
 
     respond_to do |format|
