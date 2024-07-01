@@ -1,0 +1,12 @@
+.[id=="comment-item#{comment[:id]}" class=="comment-item#{comment[:commenter] == current_user ? ' active' : ''}"]
+  .comment-avatar.text-avatar
+    = comment[:avatar]
+  .comment-info
+    .comment-name
+      = comment[:commenter].fullname
+    .comment-content
+      = comment[:comment]
+    .comment-status
+      small.during-time = time_ago_in_words(comment[:created_at])
+      button.reply-btn = t('comments.reply')
+      = link_to t('comments.delete'), story_chapter_comment_path(story_id: comment[:story_id], chapter_id: comment[:chapter_id], id: comment[:id]), class: 'delete-btn', data: { turbo_stream: true, turbo_method: :delete }

@@ -6,43 +6,63 @@ h2[class=="chapter-title#{show_translate ? ' border-none' : ' mb-5'}"] == origin
       .translate-content
         = translated[:title]
 
-. data-controller='rephraser'
-  - original[:content].each do |index, paragraph|
-    == paragraph
-    - if show_translate && !translated[:content][index]&.match?(/\b(hr|br)\b|\n|^\s*$/i)
-      = turbo_frame_tag "chapter_#{index}", class: 'translation-details', src: rephrase_story_chapter_path(index: index, translate_code: params[:translate_code], format: :turbo_stream), loading: :lazy do
-        .translate-wrapper
-          .translate-text
-            .translate-wrapper.translate-content
-              .w-full[id=="translate_#{index}"]
-                == translated[:content][index]
-              .[class="loader-sm !ml-3" id=="rephrase_#{index}"]
+.flex
+  .relative
+    .chapter-actions
+      = link_to share_path(@story), class: 'action-btn', data: { turbo_stream: true, action: 'click->share-modal#open click->comment#close' } do
+        = mi.shape(:share).css_class('action-icon')
+      = link_to story_chapter_comments_path(story_id: @story.id, chapter_id: @chapter.id), class: 'action-btn', data: { turbo_stream: true, action: 'click->comment#open' } do
+        = mi.shape(:comment).css_class('action-icon')
+  . data-controller='rephraser'
+    - original[:content].each do |index, paragraph|
+      .chapter-paragraph
+        .chapter-content
+          == paragraph
+          - if show_translate && !translated[:content][index]&.match?(/\b(hr|br)\b|\n|^\s*$/i)
+            = turbo_frame_tag "chapter_#{index}", class: 'translation-details', src: rephrase_story_chapter_path(index: index, translate_code: params[:translate_code], format: :turbo_stream), loading: :lazy do
+              .translate-wrapper
+                .translate-text
+                  .translate-wrapper.translate-content
+                    .w-full[id=="translate_#{index}"]
+                      == translated[:content][index]
+                    .[class="loader-sm !ml-3" id=="rephrase_#{index}"]
 
-            .translate-wrapper.self-end
-              .translate-actions
-                = link_to rephrase_alt_story_chapter_path(index: index, translate_code: params[:translate_code]), data: { turbo_stream: true, action: 'click->rephraser#rephrase', id: index }, class: 'action-btn' do
-                  = mi.shape(:replay).css_class('action-icon')
-                = link_to translate_story_chapter_path(index: index, translate_code: params[:translate_code]), data: { turbo_stream: true }, class: 'action-btn' do
-                  = mi.shape(:translate).css_class('action-icon')
+                  .translate-wrapper.self-end
+                    .translate-actions
+                      = link_to rephrase_alt_story_chapter_path(index: index, translate_code: params[:translate_code]), data: { turbo_stream: true, action: 'click->rephraser#rephrase', id: index }, class: 'action-btn' do
+                        = mi.shape(:replay).css_class('action-icon')
+                      = link_to translate_story_chapter_path(index: index, translate_code: params[:translate_code]), data: { turbo_stream: true }, class: 'action-btn' do
+                        = mi.shape(:translate).css_class('action-icon')
 
-              i.translate-info id=="translate_info_#{index}"
-                = t('chapter.translated_by', by: 'Google')
-hr.divider
-.summary data-controller='summary'
-  = turbo_frame_tag 'chapter-summary', src: summarize_story_chapter_path(format: :turbo_stream), loading: :lazy do
-    .summary-heading
-      .[class="loader-sm !mr-3" data-summary-target='loader']
-      h2.summary_title Summary
-      .translate-wrapper.self-end
-        .translate-actions
-          = link_to summarize_story_chapter_path, data: { turbo_stream: true, action: 'click->summary#summarize' }, class: 'action-btn' do
-            = mi.shape(:replay).css_class('action-icon')
+                    i.translate-info id=="translate_info_#{index}"
+                      = t('chapter.translated_by', by: 'Google')
+        - if index
+          - if @chapter.has_comment?(index.to_s)
+            .chapter-comment.active
+              = link_to story_chapter_comment_path(story_id: @chapter.story_id, chapter_id: @chapter.id, id: index.to_s), class: 'comment-btn', data: { turbo_stream: true, action: 'click->comment#open click->comment#highlight', id: index }  do
+                .flex.flex-col.items-center
+                  = mi.shape(:comment).css_class('round comment-icon')
+                  = @chapter.count_comments(index.to_s)
+          - else
+            .chapter-comment
+              = link_to story_chapter_comment_path(story_id: @chapter.story_id, chapter_id: @chapter.id, id: index.to_s), class: 'comment-btn', data: { turbo_stream: true, action: 'click->comment#open click->comment#highlight', id: index }  do
+                = mi.shape(:add_comment).css_class('round comment-icon')
+    hr.divider
+    .summary data-controller='summary'
+      = turbo_frame_tag 'chapter-summary', src: summarize_story_chapter_path(format: :turbo_stream), loading: :lazy do
+        .summary-heading
+          .[class="loader-sm !mr-3" data-summary-target='loader']
+          h2.summary_title Summary
+          .translate-wrapper.self-end
+            .translate-actions
+              = link_to summarize_story_chapter_path, data: { turbo_stream: true, action: 'click->summary#summarize' }, class: 'action-btn' do
+                = mi.shape(:replay).css_class('action-icon')
 
-      i.translate-info id='summary-info'
-        = t('chapter.rephrased_by', by: 'Gemini')
+          i.translate-info id='summary-info'
+            = t('chapter.rephrased_by', by: 'Gemini')
 
-    .summary-content
-      i#original-summary
-      i#translated-summary.hidden.w-full
-      .mt-6
-        i#translated-summary-type
+        .summary-content
+          i#original-summary
+          i#translated-summary.hidden.w-full
+          .mt-6
+            i#translated-summary-type

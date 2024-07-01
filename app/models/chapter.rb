@@ -2,11 +2,22 @@ class Chapter < ApplicationRecord
   require 'digest'
 
   belongs_to :story
+  has_many :comments, dependent: :destroy
+
   has_one_attached :heading_image, dependent: :destroy
   has_rich_text :content
+
   acts_as_list scope: [:story_id]
 
   before_update :generate_content_id
+
+  def has_comment?(p_id)
+    comments.where(paragraph_id: p_id).any?
+  end
+
+  def count_comments(p_id)
+    comments.where(paragraph_id: p_id).size
+  end
 
   private
 

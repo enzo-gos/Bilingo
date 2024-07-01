@@ -120,6 +120,11 @@ en:
       paragraph_spacing: 'Paragraph Spacing'
       show_translate: 'Show Translate'
 
+  comments:
+    reply: 'Reply'
+    placeholder: 'Write a comment...'
+    delete: 'Delete'
+
   writer_space:
     title: 'My Stories'
     new_story: 'New story'

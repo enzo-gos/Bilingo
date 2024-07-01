@@ -20,15 +20,28 @@
     font-semibold;
   }
 
-  .chapter-controls {
+  .reader.chapter {
+    @apply mx-auto
+    transition-all
+    duration-500
+    mr-0;
+  }
+
+  .reader.chapter.comment-active {
+    @apply mr-0
+    lg:mr-[330px];
+  }
+
+  .reader .chapter-controls {
     @apply flex
     justify-between
     border-y
     py-6
-    my-8;
+    my-8
+    mx-14;
   }
 
-  .chapter-controls .chapter-switch-btn {
+  .reader .chapter-controls .chapter-switch-btn {
     @apply py-2.5
     px-5
     rounded
@@ -40,17 +53,21 @@
     hover:bg-primary-700;
   }
 
-  .chapter-controls .chapter-switch-btn.disable {
+  .reader .chapter-controls .chapter-switch-btn.disable {
     @apply bg-gray-200
     pointer-events-none;
   }
 
-  .chapter .translate-wrapper {
+  .reader.chapter .editor .chapter-title {
+    @apply mx-14;
+  }
+
+  .reader.chapter .translate-wrapper {
     @apply flex
     items-center;
   }
 
-  .chapter .translate-text {
+  .reader.chapter .translate-text {
     @apply -mt-1
     gap-1
     flex
@@ -58,7 +75,7 @@
     w-full;
   }
 
-  .chapter .translate-actions {
+  .reader.chapter .translate-actions {
     @apply flex
     items-center
     gap-2
@@ -66,7 +83,7 @@
     text-gray-600;
   }
 
-  .chapter .translate-actions .action-btn {
+  .reader.chapter .translate-actions .action-btn {
     @apply rounded-full
     border
     p-1
@@ -77,11 +94,11 @@
     hover:bg-gray-200/70;
   }
 
-  .chapter .translate-actions .action-icon {
+  .reader.chapter .translate-actions .action-icon {
     @apply text-[14px];
   }
 
-  .chapter .translate-text .translate-content {
+  .reader.chapter .translate-text .translate-content {
     @apply bg-primary-100/20
     py-3
     px-4
@@ -93,7 +110,7 @@
     border-primary-50;
   }
 
-  .chapter .translate-info {
+  .reader.chapter .translate-info {
     @apply text-[10px]
     p-1
     px-3
@@ -108,33 +125,35 @@
     border-primary-50;
   }
 
-  .chapter .editor {
-    @apply relative;
+  .reader.chapter .editor {
+    @apply relative
+    max-w-6xl;
   }
 
-  .chapter .editor [data-p-id] {
+  .reader.chapter .editor [data-p-id] {
     margin-top: var(--chapter-p-height);
     font-size: var(--chapter-font-size);
   }
 
-  .chapter .editor .editable .translate-text * {
+  .reader.chapter .editor .editable .translate-text * {
     @apply m-0;
   }
 
-  .chapter .editor .chapter-options {
+  .reader.chapter .editor .chapter-options {
     @apply flex
     justify-end
     items-center
-    gap-2;
+    gap-2
+    mx-14;
   }
 
-  .chapter .editor .chapter-options .dropdown {
+  .reader.chapter .editor .chapter-options .dropdown {
     @apply relative
     flex
     items-center;
   }
 
-  .chapter .editor .chapter-options .dropdown .dropdown-btn {
+  .reader.chapter .editor .chapter-options .dropdown .dropdown-btn {
     @apply flex
     items-center
     justify-between
@@ -146,7 +165,7 @@
     rounded-full;
   }
 
-  .chapter .editor .chapter-options .dropdown > .dropdown-list {
+  .reader.chapter .editor .chapter-options .dropdown > .dropdown-list {
     @apply absolute
     bg-white
     top-full
@@ -155,7 +174,7 @@
     shadow;
   }
 
-  .chapter .editor .chapter-options .dropdown > .dropdown-list.lang-list {
+  .reader.chapter .editor .chapter-options .dropdown > .dropdown-list.lang-list {
     @apply min-w-48
     p-2
     right-0
@@ -163,14 +182,14 @@
     max-h-56;
   }
 
-  .chapter .editor .chapter-options .dropdown:hover > .dropdown-list {
+  .reader.chapter .editor .chapter-options .dropdown:hover > .dropdown-list {
     @apply opacity-100
     visible
     border
     transition-all;
   }
 
-  .chapter .editor .chapter-options .dropdown > .dropdown-list > .dropdown-item > .lang {
+  .reader.chapter .editor .chapter-options .dropdown > .dropdown-list > .dropdown-item > .lang {
     @apply flex
     text-sm
     p-3
@@ -179,36 +198,119 @@
     gap-3;
   }
 
-  .chapter .editor .chapter-options .dropdown > .dropdown-list > .dropdown-item > .lang .locale-icon {
+  .reader.chapter .editor .chapter-options .dropdown > .dropdown-list > .dropdown-item > .lang .locale-icon {
     @apply text-2xl;
   }
 
-  .chapter .summary_title {
+  .reader.chapter .summary {
+    @apply mr-14;
+  }
+
+  .reader.chapter .summary_title {
     @apply text-xl
     font-semibold
     w-full;
   }
 
-  .chapter .divider {
-    @apply my-8;
+  .reader.chapter .divider {
+    @apply my-8
+    mr-14;
   }
 
-  .chapter .summary-content {
+  .reader.chapter .summary-content {
     @apply w-full;
   }
 
-  .chapter .summary-heading {
+  .reader.chapter .summary-heading {
     @apply flex
     items-center
     mb-4;
   }
 
-  .chapter #original-summary {
+  .reader.chapter #original-summary {
     @apply text-gray-700;
   }
 
-  .chapter .translation-details,
-  .chapter #translated-summary-type {
+  .reader.chapter .translation-details,
+  .reader.chapter #translated-summary-type {
     display: var(--chapter-translation);
+  }
+
+  .reader.chapter .editor .editable .chapter-paragraph {
+    @apply flex
+    items-center
+    gap-3
+    text-gray-600;
+  }
+
+  .reader.chapter .editor .editable .chapter-paragraph .chapter-content {
+    @apply w-full;
+  }
+
+  .reader.chapter .editor .editable .chapter-paragraph:hover > .chapter-comment {
+    @apply visible opacity-100;
+  }
+
+  .reader.chapter .editor .editable .chapter-paragraph .chapter-comment.active {
+    @apply visible opacity-100;
+  }
+
+  .reader.chapter .editor .editable .chapter-paragraph .chapter-comment {
+    @apply invisible
+    opacity-0
+    ml-2
+    pl-3.5
+    border-l;
+  }
+
+  .reader.chapter .editor .editable .chapter-paragraph .chapter-comment .comment-icon {
+    @apply text-2xl
+    leading-none;
+  }
+
+  .reader.chapter .editor .editable .chapter-paragraph .chapter-comment.active {
+    @apply visible
+    opacity-100;
+  }
+
+  .reader.chapter .editor .editable .chapter-paragraph .chapter-comment .comment-btn {
+    @apply p-2
+    flex
+    rounded-full
+    border
+    border-transparent
+    transition-all
+    hover:border-gray-200/40
+    hover:bg-gray-100;
+  }
+
+  .reader.chapter .chapter-actions {
+    @apply sticky
+    top-[70px]
+    flex
+    flex-col
+    gap-4
+    items-center
+    bg-white
+    -ml-4
+    mr-4
+    p-4;
+  }
+
+  .reader.chapter .chapter-actions .action-btn {
+    @apply flex
+    border
+    rounded-full
+    transition-all
+    hover:bg-primary-600
+    text-gray-700
+    hover:text-white
+    hover:border-primary-600
+    p-2;
+  }
+
+  .reader.chapter .chapter-actions .action-btn .action-icon {
+    @apply text-2xl
+    leading-none;
   }
 }

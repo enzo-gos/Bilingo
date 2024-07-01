@@ -1,0 +1,11 @@
+= simple_form_for comment, url: url, method: :post, html: { class: 'comment-item comment-form', data: { turbo_stream: true } } do |f|
+  .comment-avatar.text-avatar
+    = current_user.last_name.first
+  .comment-info.w-full
+    .comment-name
+      = current_user.fullname
+    .comment-area
+      = f.text_area :comment, class: 'comment-input', placeholder: t('comments.placeholder'), rows: 1, data: { comment_target: 'commentInput' }
+      = button_tag type: :submit, class: 'comment-submit-btn' do
+        = mi.shape(:send).css_class('round comment-btn-icon')
+    = f.input :paragraph_id, label: false, input_html: { value: paragraph_id, hidden: true }

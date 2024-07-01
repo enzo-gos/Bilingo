@@ -91,6 +91,11 @@ zh:
       paragraph_spacing: '段落间距'
       show_translate: '显示翻译'
 
+  comments:
+    reply: '回复'
+    placeholder: '写评论...'
+    delete: '删除'
+
   writer_space:
     title: '我的故事'
     new_story: '新故事'
