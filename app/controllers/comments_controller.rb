@@ -19,7 +19,7 @@ class CommentsController < ApplicationController
   def show
     comment = Comment.new
 
-    all_comment = @chapter.comments.includes([:commenter]).where(paragraph_id: params[:id])
+    all_comment = @chapter.comments.includes([:commenter, :chapter]).where(paragraph_id: params[:id])
 
     respond_to do |format|
       format.turbo_stream do
@@ -48,7 +48,8 @@ class CommentsController < ApplicationController
             {
               comment: Comment.new,
               url: story_chapter_comments_path(story_id: @chapter.story_id, chapter_id: @chapter.id),
-              paragraph_id: comment.paragraph_id
+              paragraph_id: comment.paragraph_id,
+              mention: ''
             })
           ]
         else
@@ -65,6 +66,23 @@ class CommentsController < ApplicationController
     respond_to do |format|
       format.turbo_stream do
         render turbo_stream: []
+      end
+    end
+  end
+
+  def reply
+    comment = @chapter.comments.find(params[:comment_id])
+    respond_to do |format|
+      format.turbo_stream do
+        render turbo_stream: [
+          turbo_stream.update('comment-form', partial: 'chapters/comment/comment_form', locals:
+          {
+            comment: Comment.new,
+            url: story_chapter_comments_path(story_id: @chapter.story_id, chapter_id: @chapter.id),
+            paragraph_id: comment.paragraph_id,
+            mention: view_context.link_to(comment.commenter.fullname, profile_path(comment.commenter))
+          })
+        ]
       end
     end
   end

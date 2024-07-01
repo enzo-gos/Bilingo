@@ -5,7 +5,9 @@
     .comment-name
       = current_user.fullname
     .comment-area
-      = f.text_area :comment, class: 'comment-input', placeholder: t('comments.placeholder'), rows: 1, data: { comment_target: 'commentInput' }
+      p.comment-input contenteditable='true' data-action='input->comment#commenting' placeholder==t('comments.placeholder')
+        = mention
+      = f.text_area :comment, rows: 1, data: { comment_target: 'commentInput' }, hidden: true
       = button_tag type: :submit, class: 'comment-submit-btn' do
         = mi.shape(:send).css_class('round comment-btn-icon')
     = f.input :paragraph_id, label: false, input_html: { value: paragraph_id, hidden: true }

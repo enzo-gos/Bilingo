@@ -25,7 +25,7 @@ Rails.application.routes.draw do
 
     get 'share/:id' => 'share#index', as: :share
 
-    get 'profile' => 'profiles#index'
+    resources :profiles, only: [:index, :show]
 
     namespace :writer do
       namespace :stories do

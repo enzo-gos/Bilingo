@@ -19,6 +19,15 @@ export default class extends Controller {
     });
   }
 
+  commenting(event) {
+    $(this.commentInputTarget).val($(event.target).html());
+  }
+
+  reply() {
+    console.log('selc');
+    $(this.commentInputTarget).click();
+  }
+
   open() {
     $(this.commentBodyTarget).empty();
     const wrapper = $('<div>', { class: 'my-12' });

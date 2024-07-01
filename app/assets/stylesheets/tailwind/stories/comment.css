@@ -132,19 +132,36 @@
     relative;
   }
 
+  .comment .comment-list .comment-item .comment-area .comment-input[contenteditable='true']:empty:before {
+    @apply block
+    text-gray-400
+    font-medium;
+    content: attr(placeholder);
+  }
+
   .comment .comment-list .comment-item .comment-area .comment-input {
     @apply w-full
+    border
     border-gray-200
     rounded-2xl
     ring-0
     text-sm
     outline-none
-    py-3;
+    p-3
+    py-2.5
+    pt-3;
+  }
+
+  .comment .comment-list .comment-item .comment-area .comment-input a,
+  .comment .comment-list .comment-item .comment-info .comment-content a {
+    @apply font-semibold
+    text-primary-600
+    text-sm;
   }
 
   .comment .comment-list .comment-item .comment-area .comment-submit-btn {
     @apply absolute
-    bottom-3.5
+    bottom-1.5
     right-2
     p-1.5
     pl-2

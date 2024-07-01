@@ -1,6 +1,8 @@
 class Comment < ApplicationRecord
   include CommentsHelper
 
+  has_rich_text :comment
+
   belongs_to :commenter, class_name: :User
   belongs_to :chapter
 
