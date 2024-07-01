@@ -16,12 +16,12 @@ class Comment < ApplicationRecord
   private
 
   def broadcast_create_comment
-    broadcast_append_to "chapter_#{chapter.id}", partial: 'chapters/comment/comment', locals: { comment: comment_object(self) }, target: "comments_#{chapter.id}_#{paragraph_id}"
-    broadcast_update_to "chapter_#{chapter.id}", partial: 'chapters/comment_count', locals: { chapter: chapter, index: paragraph_id }, target: "comment_count_#{chapter.id}_#{paragraph_id}"
+    broadcast_append_to "chapter_#{chapter_id}", partial: 'chapters/comment/comment', locals: { comment: comment_object(self) }, target: "comments_#{chapter_id}_#{paragraph_id}"
+    broadcast_update_to "chapter_#{chapter_id}", partial: 'chapters/comment_count', locals: { chapter: chapter, index: paragraph_id }, target: "comment_count_#{chapter_id}_#{paragraph_id}"
   end
 
   def broadcast_destroy_comment
-    broadcast_remove_to "chapter_#{chapter.id}", target: "comment-item#{id}"
-    broadcast_update_to "chapter_#{chapter.id}", partial: 'chapters/comment_count', locals: { chapter: chapter, index: paragraph_id }, target: "comment_count_#{chapter.id}_#{paragraph_id}"
+    broadcast_remove_to "chapter_#{chapter_id}", target: "comment-item#{id}"
+    broadcast_update_to "chapter_#{chapter_id}", partial: 'chapters/comment_count', locals: { chapter: chapter, index: paragraph_id }, target: "comment_count_#{chapter_id}_#{paragraph_id}"
   end
 end
