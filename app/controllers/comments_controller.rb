@@ -49,8 +49,7 @@ class CommentsController < ApplicationController
               comment: Comment.new,
               url: story_chapter_comments_path(story_id: @chapter.story_id, chapter_id: @chapter.id),
               paragraph_id: comment.paragraph_id
-            }),
-            turbo_stream.append('comment-list', partial: 'chapters/comment/comment', locals: { comment: comment_object(comment) })
+            })
           ]
         else
           render turbo_stream: []
@@ -61,16 +60,11 @@ class CommentsController < ApplicationController
 
   def destroy
     comment = Comment.find(params[:id])
+    comment.destroy
 
     respond_to do |format|
       format.turbo_stream do
-        if comment.destroy
-          render turbo_stream: [
-            turbo_stream.remove("comment-item#{comment.id}")
-          ]
-        else
-          render turbo_stream: []
-        end
+        render turbo_stream: []
       end
     end
   end

@@ -247,7 +247,7 @@
     @apply w-full;
   }
 
-  .reader.chapter .editor .editable .chapter-paragraph:hover > .chapter-comment {
+  .reader.chapter .editor .editable .chapter-paragraph:hover .chapter-comment {
     @apply visible opacity-100;
   }
 
