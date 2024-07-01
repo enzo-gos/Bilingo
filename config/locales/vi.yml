@@ -94,6 +94,7 @@ vi:
   comments:
     reply: 'Trả lời'
     placeholder: 'Viết bình luận...'
+    delete: 'Xóa'
 
   writer_space:
     title: 'Truyện của tôi'

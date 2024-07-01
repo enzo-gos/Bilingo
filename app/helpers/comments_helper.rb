@@ -8,6 +8,8 @@ module CommentsHelper
   def comment_object(comment)
     {
       id: comment.id,
+      story_id: comment.chapter.story_id,
+      chapter_id: comment.chapter.id,
       avatar: comment.commenter.last_name.first,
       commenter: comment.commenter,
       p_id: comment.paragraph_id,

@@ -3,7 +3,6 @@
     .comment-group-item.comment-btn data-id==key data-action='click->comment#highlight'
       .comment-paragraph-header
         .comment-paragraph data-comment-target='commentParagraph' data-p-id==key
-          / = "Objectively, it was a beautiful day. The afternoon sun was shining, the breeze flowing off the ocean visible to the west was pleasant, and there were only enough wispy clouds in the sky to add visual interest to the paintings that would be made of this moment.".truncate_words(15)
         = link_to story_chapter_comment_path(id: comment.paragraph_id), data: { turbo_stream: true } do
           = mi.shape(:arrow_forward).md_18
 

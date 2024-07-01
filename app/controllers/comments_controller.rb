@@ -4,7 +4,7 @@ class CommentsController < ApplicationController
   before_action :prepare_chapter, except: [:index]
 
   def index
-    @chapter = Chapter.includes([comments: :commenter]).find(params[:chapter_id])
+    @chapter = Chapter.includes([:chapter, { comments: :commenter }]).find(params[:chapter_id])
     comments = @chapter.comments.group_by(&:paragraph_id).transform_values(&:first)
 
     respond_to do |format|
@@ -37,7 +37,6 @@ class CommentsController < ApplicationController
   end
 
   def create
-    @chapter = Chapter.find(params[:chapter_id])
     comment = @chapter.comments.new(comment_params)
     comment.commenter = current_user
 
@@ -52,6 +51,22 @@ class CommentsController < ApplicationController
               paragraph_id: comment.paragraph_id
             }),
             turbo_stream.append('comment-list', partial: 'chapters/comment/comment', locals: { comment: comment_object(comment) })
+          ]
+        else
+          render turbo_stream: []
+        end
+      end
+    end
+  end
+
+  def destroy
+    comment = Comment.find(params[:id])
+
+    respond_to do |format|
+      format.turbo_stream do
+        if comment.destroy
+          render turbo_stream: [
+            turbo_stream.remove("comment-item#{comment.id}")
           ]
         else
           render turbo_stream: []

@@ -44,7 +44,11 @@
     text-sm
     font-medium
     text-gray-700
-    bg-primary-50/30;
+    bg-primary-50/30
+    line-clamp-2
+    text-ellipsis
+    overflow-hidden
+    h-10;
   }
 
   .comment .comment-list {
@@ -112,10 +116,15 @@
     font-medium;
   }
 
-  .comment .comment-list .comment-item .comment-info .comment-status .reply-btn {
+  .comment .comment-list .comment-item .comment-info .comment-status .reply-btn,
+  .comment .comment-list .comment-item .comment-info .comment-status .delete-btn {
     @apply text-sm
     text-primary-500
     font-semibold;
+  }
+
+  .comment .comment-list .comment-item .comment-info .comment-status .delete-btn {
+    @apply text-red-500;
   }
 
   .comment .comment-list .comment-item .comment-area {

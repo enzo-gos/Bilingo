@@ -94,6 +94,7 @@ zh:
   comments:
     reply: '回复'
     placeholder: '写评论...'
+    delete: '删除'
 
   writer_space:
     title: '我的故事'

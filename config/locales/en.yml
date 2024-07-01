@@ -123,6 +123,7 @@ en:
   comments:
     reply: 'Reply'
     placeholder: 'Write a comment...'
+    delete: 'Delete'
 
   writer_space:
     title: 'My Stories'

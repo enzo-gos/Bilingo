@@ -20,14 +20,4 @@ module ChaptersHelper
       }
     }
   end
-
-  def has_comment?(p_id, chapter)
-    comments = chapter.comments.where(paragraph_id: p_id)
-    comments.exists?
-  end
-
-  def count_comment(p_id, chapter)
-    comments = chapter.comments.where(paragraph_id: p_id)
-    comments&.size
-  end
 end

@@ -1,6 +1,5 @@
 import { Controller } from '@hotwired/stimulus';
 import autosize from 'autosize';
-import { truncateByWords } from 'helpers/paragraph';
 
 // Connects to data-controller="comment"
 export default class extends Controller {
@@ -16,7 +15,7 @@ export default class extends Controller {
   commentGroupTargetConnected() {
     this.commentParagraphTargets.forEach((p) => {
       const pId = $(p).attr('data-p-id');
-      $(p).text(truncateByWords($(`[data-p-id="${pId}"]`).html(), 15));
+      $(p).text($(`[data-p-id="${pId}"]`).html());
     });
   }
 

@@ -37,12 +37,12 @@ h2[class=="chapter-title#{show_translate ? ' border-none' : ' mb-5'}"] == origin
                     i.translate-info id=="translate_info_#{index}"
                       = t('chapter.translated_by', by: 'Google')
         - if index
-          - if has_comment?(index.to_s, @chapter)
+          - if @chapter.has_comment?(index.to_s)
             .chapter-comment.active
               = link_to story_chapter_comment_path(story_id: @chapter.story_id, chapter_id: @chapter.id, id: index.to_s), class: 'comment-btn', data: { turbo_stream: true, action: 'click->comment#open click->comment#highlight', id: index }  do
                 .flex.flex-col.items-center
                   = mi.shape(:comment).css_class('round comment-icon')
-                  = count_comment(index.to_s, @chapter)
+                  = @chapter.count_comments(index.to_s)
           - else
             .chapter-comment
               = link_to story_chapter_comment_path(story_id: @chapter.story_id, chapter_id: @chapter.id, id: index.to_s), class: 'comment-btn', data: { turbo_stream: true, action: 'click->comment#open click->comment#highlight', id: index }  do
