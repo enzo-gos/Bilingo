@@ -93,6 +93,7 @@ vi:
 
   comments:
     reply: 'Trả lời'
+    placeholder: 'Viết bình luận...'
 
   writer_space:
     title: 'Truyện của tôi'

@@ -122,6 +122,7 @@ en:
 
   comments:
     reply: 'Reply'
+    placeholder: 'Write a comment...'
 
   writer_space:
     title: 'My Stories'
