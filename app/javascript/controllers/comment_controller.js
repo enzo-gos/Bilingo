@@ -43,6 +43,8 @@ export default class extends Controller {
   }
 
   highlight(event) {
+    this.unhighlight();
+
     const pId = $(event.target).closest('.comment-btn').attr('data-id');
     this.highlights = [...this.highlights, pId];
 
