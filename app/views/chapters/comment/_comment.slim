@@ -1,4 +1,4 @@
-.[id=="comment-item#{comment[:id]}" class=="comment-item#{comment[:commenter] == current_user ? ' active' : ''}"]
+.comment-item id=="comment-item#{comment[:id]}"
   .comment-avatar.text-avatar
     = comment[:avatar]
   .comment-info

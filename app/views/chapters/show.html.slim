@@ -1,4 +1,5 @@
-. data-controller='setting-modal comment'
+= turbo_stream_from "chapter_#{@chapter.id}"
+.[data-controller='setting-modal comment']
   = render 'setting_modal'
   .reader.chapter data-comment-target='chapter'
     .chapter-cover

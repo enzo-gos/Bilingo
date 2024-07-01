@@ -1,0 +1,10 @@
+- if chapter.has_comment?(index)
+  .chapter-comment.active
+    = link_to story_chapter_comment_path(story_id: chapter.story_id, chapter_id: chapter.id, id: index), class: 'comment-btn', data: { turbo_stream: true, action: 'click->comment#open click->comment#highlight', id: index }  do
+      .flex.flex-col.items-center
+        = mi.shape(:comment).css_class('round comment-icon')
+        = chapter.count_comments(index)
+- else
+  .chapter-comment
+    = link_to story_chapter_comment_path(story_id: chapter.story_id, chapter_id: chapter.id, id: index), class: 'comment-btn', data: { turbo_stream: true, action: 'click->comment#open click->comment#highlight', id: index }  do
+      = mi.shape(:add_comment).css_class('round comment-icon')
