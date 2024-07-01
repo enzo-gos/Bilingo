@@ -8,6 +8,7 @@
 
 @import 'tailwind/stories/story.css';
 @import 'tailwind/stories/chapter.css';
+@import 'tailwind/stories/comment.css';
 
 @import 'tailwind/modals/auth_modal.css';
 @import 'tailwind/modals/share_modal.css';

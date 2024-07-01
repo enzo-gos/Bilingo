@@ -1,0 +1,11 @@
+.[class=="comment-item#{comment[:commenter] == current_user ? ' active' : ''}"]
+  .comment-avatar.text-avatar
+    = comment[:avatar]
+  .comment-info
+    .comment-name
+      = comment[:commenter].fullname
+    .comment-content
+      = comment[:comment]
+    .comment-status
+      small.during-time = time_ago_in_words(comment[:created_at])
+      button.reply-btn Reply

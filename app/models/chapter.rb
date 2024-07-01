@@ -2,8 +2,11 @@ class Chapter < ApplicationRecord
   require 'digest'
 
   belongs_to :story
+  has_many :comments
+
   has_one_attached :heading_image, dependent: :destroy
   has_rich_text :content
+
   acts_as_list scope: [:story_id]
 
   before_update :generate_content_id

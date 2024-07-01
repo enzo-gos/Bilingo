@@ -54,6 +54,7 @@ Rails.application.routes.draw do
           get :rephrase_alt
           get :summarize
         end
+        resources :comments, only: [:index, :show, :create]
       end
     end
 

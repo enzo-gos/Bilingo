@@ -1,0 +1,176 @@
+@layer components {
+  .comment {
+    @apply fixed
+    top-0
+    bottom-0
+    bg-white
+    w-[330px]
+    z-max
+    border-l
+    pb-4
+    overflow-y-auto
+    transition-all
+    duration-500;
+  }
+
+  .comment #comment-form {
+    @apply sticky
+    top-[55px]
+    bg-white
+    border-b;
+  }
+
+  .comment .comment-header {
+    @apply flex
+    sticky
+    top-0
+    items-center
+    w-full
+    bg-white
+    justify-between
+    p-5;
+  }
+
+  .comment .comment-header .comment-title {
+    @apply text-xl
+    text-gray-700
+    font-semibold;
+  }
+
+  .comment .comment-paragraph {
+    @apply p-5
+    py-4
+    mb-3
+    text-sm
+    font-medium
+    text-gray-700
+    bg-primary-50/30;
+  }
+
+  .comment .comment-list {
+    @apply w-full
+    flex
+    flex-col;
+  }
+
+  .comment .comment-list .comment-item {
+    @apply flex
+    gap-3
+    p-3;
+  }
+
+  .comment .comment-list .comment-item.active {
+    @apply bg-primary-50/60;
+  }
+
+  .comment .comment-list .comment-item .comment-avatar {
+    @apply rounded-full
+    overflow-hidden
+    w-[35px]
+    min-w-[35px]
+    h-[35px];
+  }
+
+  .comment .comment-list .comment-item .comment-avatar.text-avatar {
+    @apply flex
+    items-center
+    justify-center
+    bg-primary-500
+    text-white
+    font-semibold;
+  }
+
+  .comment .comment-list .comment-item .comment-avatar img {
+    @apply w-full
+    object-center
+    object-cover;
+  }
+
+  .comment .comment-list .comment-item .comment-info {
+    @apply flex
+    flex-col
+    gap-3;
+  }
+
+  .comment .comment-list .comment-item .comment-info .comment-name {
+    @apply font-semibold
+    text-[12px];
+  }
+
+  .comment .comment-list .comment-item .comment-info .comment-content {
+    @apply text-sm;
+  }
+
+  .comment .comment-list .comment-item .comment-info .comment-status {
+    @apply flex
+    items-center
+    gap-3;
+  }
+
+  .comment .comment-list .comment-item .comment-info .comment-status .during-time {
+    @apply text-gray-600
+    font-medium;
+  }
+
+  .comment .comment-list .comment-item .comment-info .comment-status .reply-btn {
+    @apply text-sm
+    text-primary-500
+    font-semibold;
+  }
+
+  .comment .comment-list .comment-item .comment-area {
+    @apply w-full
+    relative;
+  }
+
+  .comment .comment-list .comment-item .comment-area .comment-input {
+    @apply w-full
+    border-gray-200
+    rounded-2xl
+    ring-0
+    text-sm
+    outline-none
+    py-3;
+  }
+
+  .comment .comment-list .comment-item .comment-area .comment-submit-btn {
+    @apply absolute
+    bottom-3.5
+    right-2
+    p-1.5
+    pl-2
+    pr-1
+    flex
+    items-center
+    justify-center
+    bg-primary-600
+    text-white
+    rounded-full;
+  }
+
+  .comment .comment-list .comment-item .comment-area .comment-submit-btn .comment-btn-icon {
+    @apply text-xl
+    leading-none;
+  }
+
+  .comment .comment-list.comment-group {
+    @apply gap-1;
+  }
+
+  .comment .comment-list.comment-group .comment-group-item {
+    @apply bg-primary-50/30
+    cursor-pointer
+    py-4
+    px-5;
+  }
+
+  .comment .comment-list .comment-paragraph-header {
+    @apply flex
+    items-center;
+  }
+
+  .comment .comment-list .comment-paragraph-header .comment-paragraph {
+    @apply bg-transparent
+    p-0;
+  }
+}

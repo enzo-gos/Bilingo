@@ -6,6 +6,7 @@ class User < ApplicationRecord
          :omniauthable, omniauth_providers: %i[facebook]
 
   has_many :stories, -> { includes([cover_image_attachment: :blob]).order(position: :asc) }, foreign_key: :author
+  has_many :comments, foreign_key: :commenter
 
   def self.from_omniauth(auth)
     name_split = auth.info.name.split

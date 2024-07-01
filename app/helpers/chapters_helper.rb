@@ -20,4 +20,34 @@ module ChaptersHelper
       }
     }
   end
+
+  def fake_comments
+    [
+      {
+        commenter: current_user,
+        p_id: '1jdlkj2kj2kljlkjl2jlkjldjl2lj',
+        comment: 'Hello World 1'
+      },
+      {
+        commenter: current_user,
+        p_id: '1jdlkj2kj2kljlkjl2jlkjldjl2lj',
+        comment: 'Hello World 2'
+      },
+      {
+        commenter: current_user,
+        p_id: '1jdlkj2kj2kljlkjl2jlkjldjl2lj',
+        comment: 'Hello World 3'
+      }
+    ]
+  end
+
+  def has_comment?(p_id, chapter)
+    comments = chapter.comments.where(paragraph_id: p_id)
+    comments.exists?
+  end
+
+  def count_comment(p_id, chapter)
+    comments = chapter.comments.where(paragraph_id: p_id)
+    comments&.size
+  end
 end

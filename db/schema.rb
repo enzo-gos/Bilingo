@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_06_17_085233) do
+ActiveRecord::Schema[7.1].define(version: 2024_06_27_035747) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -61,6 +61,17 @@ ActiveRecord::Schema[7.1].define(version: 2024_06_17_085233) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["story_id"], name: "index_chapters_on_story_id"
+  end
+
+  create_table "comments", force: :cascade do |t|
+    t.bigint "commenter_id", null: false
+    t.bigint "chapter_id", null: false
+    t.string "comment"
+    t.string "paragraph_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["chapter_id"], name: "index_comments_on_chapter_id"
+    t.index ["commenter_id"], name: "index_comments_on_commenter_id"
   end
 
   create_table "genres", force: :cascade do |t|
@@ -135,6 +146,8 @@ ActiveRecord::Schema[7.1].define(version: 2024_06_17_085233) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "comments", "chapters"
+  add_foreign_key "comments", "users", column: "commenter_id"
   add_foreign_key "stories", "genres", column: "primary_genre_id"
   add_foreign_key "stories", "genres", column: "secondary_genre_id"
   add_foreign_key "stories", "users", column: "author_id"

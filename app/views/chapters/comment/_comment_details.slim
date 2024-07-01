@@ -1,0 +1,7 @@
+.comment-list
+  #comment-form
+    = render 'chapters/comment/comment_form', comment: comment, url: story_chapter_comments_path(story_id: chapter.story_id, chapter_id: chapter.id), paragraph_id: paragraph_id
+
+  #comment-list
+    - format_comments(all_comment).each do |comment|
+      = render 'chapters/comment/comment', comment: comment
