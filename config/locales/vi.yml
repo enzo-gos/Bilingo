@@ -91,6 +91,9 @@ vi:
       paragraph_spacing: 'Khoảng cách đoạn văn'
       show_translate: 'Hiển thị dịch'
 
+  comments:
+    reply: 'Trả lời'
+
   writer_space:
     title: 'Truyện của tôi'
     new_story: 'Truyện mới'
