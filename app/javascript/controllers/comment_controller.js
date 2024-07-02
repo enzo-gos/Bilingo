@@ -24,7 +24,6 @@ export default class extends Controller {
   }
 
   reply() {
-    console.log('selc');
     $(this.commentInputTarget).click();
   }
 
