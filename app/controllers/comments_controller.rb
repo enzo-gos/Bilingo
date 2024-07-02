@@ -4,13 +4,13 @@ class CommentsController < ApplicationController
   before_action :prepare_chapter, except: [:index]
 
   def index
-    @chapter = Chapter.includes([comments: :commenter]).find(params[:chapter_id])
+    @chapter = Chapter.includes([comments: [:commenter, :rich_text_comment]]).find(params[:chapter_id])
     comments = @chapter.comments.group_by(&:paragraph_id).transform_values(&:first)
 
     respond_to do |format|
       format.turbo_stream do
         render turbo_stream: [
-          turbo_stream.update('comment-body', partial: 'chapters/comment/comment_list', locals: { comments: comments })
+          turbo_stream.update('comment-body', partial: 'chapters/comment/comment_list', locals: { comments: comments, chapter_id: @chapter.id })
         ]
       end
     end
@@ -19,7 +19,7 @@ class CommentsController < ApplicationController
   def show
     comment = Comment.new
 
-    all_comment = @chapter.comments.includes([:commenter, :chapter]).where(paragraph_id: params[:id])
+    all_comment = @chapter.comments.includes([:commenter, :rich_text_comment]).where(paragraph_id: params[:id])
 
     respond_to do |format|
       format.turbo_stream do

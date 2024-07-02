@@ -18,8 +18,10 @@ class Comment < ApplicationRecord
   private
 
   def broadcast_create_comment
-    broadcast_append_to "chapter_#{chapter_id}", partial: 'chapters/comment/comment', locals: { comment: comment_object(self) }, target: "comments_#{chapter_id}_#{paragraph_id}"
+    broadcast_append_to "chapter_#{chapter_id}", partial: 'chapters/comment/comment', locals: { comment: comment_object(self), show_only: false }, target: "comments_#{chapter_id}_#{paragraph_id}"
     broadcast_update_to "chapter_#{chapter_id}", partial: 'chapters/comment_count', locals: { chapter: chapter, index: paragraph_id }, target: "comment_count_#{chapter_id}_#{paragraph_id}"
+
+    broadcast_append_to "chapter_#{chapter_id}", partial: 'chapters/comment/comment_item', locals: { key: paragraph_id, comment: comment_object(self) }, target: "comment_list_#{chapter_id}" if chapter.count_comments(paragraph_id) == 1
   end
 
   def broadcast_destroy_comment

@@ -69,7 +69,6 @@ ActiveRecord::Schema[7.1].define(version: 2024_07_01_084136) do
     t.string "paragraph_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "comment"
     t.index ["chapter_id"], name: "index_comments_on_chapter_id"
     t.index ["commenter_id"], name: "index_comments_on_commenter_id"
   end

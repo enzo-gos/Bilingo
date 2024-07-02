@@ -1,0 +1,7 @@
+.comment-group-item.comment-btn data-comment-target='commentGroup' data-id==key data-action='click->comment#highlight'
+  .comment-paragraph-header
+    .comment-paragraph data-comment-target='commentParagraph' data-p-id==key
+    = link_to story_chapter_comment_path(story_id: comment[:story_id], chapter_id: comment[:chapter_id], id: comment[:p_id]), data: { turbo_stream: true } do
+      = mi.shape(:arrow_forward).md_18
+
+  = render 'chapters/comment/comment', comment: comment, show_only: true

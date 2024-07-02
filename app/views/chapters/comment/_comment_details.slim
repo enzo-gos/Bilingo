@@ -4,4 +4,4 @@
 
   .[id=="comments_#{chapter.id}_#{paragraph_id}"]
     - format_comments(all_comment).each do |comment|
-      = render 'chapters/comment/comment', comment: comment
+      = render 'chapters/comment/comment', comment: comment, show_only: false
