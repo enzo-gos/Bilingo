@@ -197,6 +197,7 @@
 
   .comment .comment-list .comment-paragraph-header .comment-paragraph {
     @apply bg-transparent
-    p-0;
+    p-0
+    w-full;
   }
 }

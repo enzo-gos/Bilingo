@@ -4,7 +4,7 @@
       = inline_svg_tag 'icons/share/facebook.svg', class: 'share-icon fb-icon'
   .telegram-option.share-option
     = inline_svg_tag 'icons/share/telegram.svg', class: 'share-icon telegram-icon'
-  .twitter-option.share-option
+  = link_to "https://twitter.com/intent/tweet?url=#{url}", class: "twitter-option share-option", target: "_blank" do
     = inline_svg_tag 'icons/share/x.svg', class: 'share-icon x-icon'
   .linkedin-option.share-option
     = inline_svg_tag 'icons/share/linkedin.svg', class: 'share-icon in-icon'
