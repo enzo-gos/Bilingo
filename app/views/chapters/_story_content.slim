@@ -13,7 +13,7 @@ h2[class=="chapter-title#{show_translate ? ' border-none' : ' mb-5'}"] == origin
         = mi.shape(:share).css_class('action-icon')
       = link_to story_chapter_comments_path(story_id: @story.id, chapter_id: @chapter.id), class: 'action-btn', data: { turbo_stream: true, action: 'click->comment#open' } do
         = mi.shape(:comment).css_class('action-icon')
-  . data-controller='rephraser'
+  .w-full data-controller='rephraser'
     - original[:content].each do |index, paragraph|
       .chapter-paragraph
         .chapter-content

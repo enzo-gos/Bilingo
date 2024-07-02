@@ -1,8 +1,9 @@
 .social-options
-  .facebook-option.share-option
-    = inline_svg_tag 'icons/share/facebook.svg', class: 'share-icon fb-icon'
-  .instagram-option.share-option
-    = inline_svg_tag 'icons/share/instagram.svg', class: 'share-icon ins-icon'
+  . data-href==url data-layout="" data-size=""
+    = link_to "https://www.facebook.com/sharer/sharer.php?u=#{url}", class: "facebook-option share-option", target: "_blank" do
+      = inline_svg_tag 'icons/share/facebook.svg', class: 'share-icon fb-icon'
+  .telegram-option.share-option
+    = inline_svg_tag 'icons/share/telegram.svg', class: 'share-icon telegram-icon'
   .twitter-option.share-option
     = inline_svg_tag 'icons/share/x.svg', class: 'share-icon x-icon'
   .linkedin-option.share-option
