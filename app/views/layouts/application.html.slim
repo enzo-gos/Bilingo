@@ -1,7 +1,7 @@
 doctype html
 html lang==I18n.locale
   head
-    title Bilingo
+    = display_meta_tags(default_meta_tags)
     meta name="viewport" content="width=device-width,initial-scale=1"
     meta name="turbo-prefetch" content="false"
     = csrf_meta_tags
@@ -11,12 +11,16 @@ html lang==I18n.locale
     = javascript_importmap_tags
 
     link [href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet"]
+    script [async='true' defer='true' crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v20.0&appId=489100387019480" nonce="siQ585mk"]
 
   body data-controller='auth-modal share-modal'
     = render 'shared/navbar'
     = render 'shared/modal/auth_modal'
     = render 'shared/modal/share_modal'
     = render 'shared/toast/container'
+
+    #fb-root
     main.main-content
       = yield
+
     = render 'shared/footer'

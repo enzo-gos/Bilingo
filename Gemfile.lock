@@ -262,6 +262,8 @@ GEM
     material_icons (4.0.0)
       railties (>= 3.2)
     matrix (0.4.2)
+    meta-tags (2.21.0)
+      actionpack (>= 6.0.0, < 7.2)
     mini_mime (1.1.5)
     minitest (5.23.1)
     msgpack (1.7.2)
@@ -565,6 +567,7 @@ DEPENDENCIES
   jbuilder
   letter_opener (~> 1.10)
   material_icons (~> 4.0)
+  meta-tags (~> 2.21)
   nokogiri (~> 1.16)
   omniauth-facebook (~> 10.0)
   omniauth-rails_csrf_protection (~> 1.0)

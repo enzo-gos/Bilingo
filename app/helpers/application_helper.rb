@@ -1,6 +1,27 @@
 module ApplicationHelper
   include Pagy::Frontend
 
+  def default_meta_tags
+    {
+      site: 'Bilingo',
+      title: 'Home',
+      reverse: true,
+      separator: '|',
+      description: "#{t('footer.description')} #{t('footer.description_continued')}",
+      keywords: 'multilingual storytelling, AI-powered story reading, language learning stories, multilingual literature, AI narration, interactive stories, language translation stories, AI language support, bilingual storybooks, voice-assisted reading, AI story narrator, language diversity stories, multilingual audiobooks, AI reading companion, cross-language storytelling',
+      canonical: request.original_url,
+      noindex: !Rails.env.production?,
+      og: {
+        site_name: 'Bilingo',
+        title: 'Home',
+        description: "#{t('footer.description')} #{t('footer.description_continued')}",
+        type: 'website',
+        url: request.original_url,
+        image: image_url('favicon.ico')
+      }
+    }
+  end
+
   def all_genres
     Genre.all
   end
