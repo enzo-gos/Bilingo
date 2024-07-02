@@ -32,6 +32,17 @@
     lg:mr-[330px];
   }
 
+  .reader.chapter .chapter-cover {
+    overflow: hidden;
+  }
+
+  .reader.chapter .chapter-cover img {
+    @apply w-full
+    h-full
+    object-cover
+    object-center;
+  }
+
   .reader .chapter-controls {
     @apply flex
     justify-between
