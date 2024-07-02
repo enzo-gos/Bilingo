@@ -88,8 +88,8 @@ module Writer::StoriesHelper
         title: chapter.title,
         updated: chapter.updated_at.strftime('%b %d, %Y'),
         published: chapter.published,
-        views: chapter.story_views.size,
-        comments: chapter.comments.size
+        views: number_to_human(chapter.story_views.size, units: { thousand: 'K', million: 'M' }),
+        comments: number_to_human(chapter.comments.size, units: { thousand: 'K', million: 'M' })
       }
     end
   end

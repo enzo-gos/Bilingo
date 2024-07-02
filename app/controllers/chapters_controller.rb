@@ -4,7 +4,6 @@ class ChaptersController < ApplicationController
   before_action :prepare_translation
 
   def show
-    # @chapter.increment!(:views)
     @story.track_view(request.remote_ip, @chapter.id)
 
     params[:translate_code] ||= params[:locale]
