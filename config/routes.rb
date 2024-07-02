@@ -35,6 +35,7 @@ Rails.application.routes.draw do
         member do
           patch :order
           patch :unpublish_all
+          get :analytics
         end
         resources :chapters, except: [:new, :show] do
           member do

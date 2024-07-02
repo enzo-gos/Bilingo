@@ -96,6 +96,11 @@ vi:
     placeholder: 'Viết bình luận...'
     delete: 'Xóa'
 
+  charts:
+    story_views_by_day: 'Lượt xem truyện theo ngày'
+    date: 'Ngày'
+    number_of_views: 'Số lượt xem'
+
   writer_space:
     title: 'Truyện của tôi'
     new_story: 'Truyện mới'

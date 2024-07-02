@@ -4,6 +4,9 @@ class ChaptersController < ApplicationController
   before_action :prepare_translation
 
   def show
+    # @chapter.increment!(:views)
+    @story.track_view(request.remote_ip, @chapter.id)
+
     params[:translate_code] ||= params[:locale]
     @prev_chapter = @chapter.higher_item ? story_chapter_path(story_id: @story.id, id: @chapter.higher_item.id) : nil
     @next_chapter = @chapter.lower_item ? story_chapter_path(story_id: @story.id, id: @chapter.lower_item.id) : nil

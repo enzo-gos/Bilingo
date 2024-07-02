@@ -4,7 +4,7 @@ class Comment < ApplicationRecord
   has_rich_text :comment
 
   belongs_to :commenter, class_name: :User
-  belongs_to :chapter
+  belongs_to :chapter, counter_cache: true
 
   validates :comment,
             :commenter,

@@ -96,6 +96,11 @@ zh:
     placeholder: '写评论...'
     delete: '删除'
 
+  charts:
+    story_views_by_day: '故事每日浏览量'
+    date: '日期'
+    number_of_views: '浏览次数'
+
   writer_space:
     title: '我的故事'
     new_story: '新故事'

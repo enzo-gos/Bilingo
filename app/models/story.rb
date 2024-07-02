@@ -4,6 +4,7 @@ class Story < ApplicationRecord
   belongs_to :author, class_name: :User
 
   has_many :chapters, -> { order(position: :asc) }, dependent: :destroy
+  has_many :story_views, dependent: :destroy
   has_one_attached :cover_image, dependent: :destroy
 
   acts_as_taggable_on :tags
@@ -29,12 +30,31 @@ class Story < ApplicationRecord
   end
 
   def views
-    chapters.sum(:views)
+    story_views.size
+  end
+
+  def comments
+    chapters.joins(:comments).count
   end
 
   def genres
     genres = [primary_genre.name]
     genres |= [secondary_genre.name] if secondary_genre
     genres
+  end
+
+  def track_view(ip_address, chapter_id)
+    story_views.create_or_find_by(ip_address: ip_address, chapter_id: chapter_id, viewed_on: Date.current)
+  end
+
+  def views_by_day(year = Date.current.year, month = Date.current.month)
+    start_date = Date.new(year, month, 1)
+    end_date = start_date.end_of_month
+
+    story_views
+      .where(viewed_on: start_date..end_date)
+      .group(:viewed_on)
+      .count
+      .transform_keys(&:day)
   end
 end

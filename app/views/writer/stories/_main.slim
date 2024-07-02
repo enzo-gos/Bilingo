@@ -38,7 +38,7 @@
           | #{t('writer_space.continue_writing')}
           = mi.shape(:arrow_forward).css_class('writting-btn-icon')
         .action-group
-          button.action-btn
+          = link_to analytics_writer_story_path(story[:id]), class: 'action-btn' do
             = mi.shape(:bar_chart).css_class('action-btn-icon')
             | #{t('writer_space.stats')}
           = link_to share_path(story[:id]), class: 'action-btn', data: { action: 'click->share-modal#open', turbo_stream: true } do
