@@ -125,6 +125,11 @@ en:
     placeholder: 'Write a comment...'
     delete: 'Delete'
 
+  charts:
+    story_views_by_day: 'Story Views by Day'
+    date: 'Date'
+    number_of_views: 'Number of Views'
+
   writer_space:
     title: 'My Stories'
     new_story: 'New story'

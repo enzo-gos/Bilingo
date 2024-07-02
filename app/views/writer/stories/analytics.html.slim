@@ -1,5 +1,3 @@
-- story_meta(@story)
-
 .reader.story-details
   .story-heading
     .story-cover
@@ -31,20 +29,9 @@
             = t('story_details.chapters')
           .analysis-content
             = @story.chapters.size
-      .actions-group
-        = link_to t('story_details.start_reading'), story_chapter_path(story_id: @story.id, id: @story.chapters.first.id), class: 'story-reading-btn'
-        = link_to share_path(@story), class: 'story-share-btn', data: { turbo_stream: true, action: 'click->share-modal#open' }
-          = mi.shape(:share).md_18
-        button.story-report-btn
-          = mi.shape(:flag).md_18
   .story-description
-    .story-description-title = t('story_details.description')
-    = @story.description
-
-  .story-table-content
-    .story-table-content-title = t('story_details.table_of_content')
-    .story-table-list
-      - @story.chapters.each do |chapter|
-        = link_to story_chapter_path(story_id: @story.id, id: chapter.id), class: 'chapter-item'
-          .chapter-title = chapter.title
-          .chapter-published = time_ago_in_words(chapter.updated_at)
+    = line_chart @views_by_day,
+      title: t('charts.story_views_by_day'),
+      xtitle: t('charts.date'),
+      ytitle: t('charts.number_of_views'),
+      colors: ['#b00']

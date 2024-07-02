@@ -3,6 +3,7 @@ class Chapter < ApplicationRecord
 
   belongs_to :story
   has_many :comments, dependent: :destroy
+  has_many :story_views, dependent: :destroy
 
   has_one_attached :heading_image, dependent: :destroy
   has_rich_text :content

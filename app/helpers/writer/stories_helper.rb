@@ -75,8 +75,8 @@ module Writer::StoriesHelper
         is_published: story.number_of_published.positive?,
         published: story.number_of_published,
         draft: story.number_of_draft,
-        views: '1M',
-        comments: '10K'
+        views: number_to_human(story.views, units: { thousand: 'K', million: 'M' }),
+        comments: number_to_human(story.comments, units: { thousand: 'K', million: 'M' })
       }
     end
   end
@@ -88,8 +88,8 @@ module Writer::StoriesHelper
         title: chapter.title,
         updated: chapter.updated_at.strftime('%b %d, %Y'),
         published: chapter.published,
-        views: chapter.views,
-        comments: 0
+        views: number_to_human(chapter.story_views.size, units: { thousand: 'K', million: 'M' }),
+        comments: number_to_human(chapter.comments.size, units: { thousand: 'K', million: 'M' })
       }
     end
   end

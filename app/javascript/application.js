@@ -8,5 +8,8 @@ import 'slick-carousel';
 window.jQuery = jquery;
 window.$ = jquery;
 
-import "trix"
-import "@rails/actiontext"
+import 'trix';
+import '@rails/actiontext';
+
+import 'chartkick';
+import 'Chart.bundle';

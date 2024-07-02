@@ -7,7 +7,7 @@ class Writer::StoriesController < ApplicationController
   before_action :set_edit_title, only: [:edit, :update]
   before_action :set_new_title, only: [:new, :create]
 
-  layout 'writer/editor', except: [:index, :order, :destroy]
+  layout 'writer/editor', except: [:index, :order, :destroy, :analytics]
 
   def index
     @my_stories = current_user.stories.includes(:chapters).with_published
@@ -69,6 +69,19 @@ class Writer::StoriesController < ApplicationController
     else
       redirect_to writer_stories_path, alert: t('writer_stories.destroy.failure')
     end
+  end
+
+  def analytics
+    start_date = Date.current.beginning_of_month
+    end_date = Date.current.end_of_month
+
+    views_data = @story.story_views
+      .where(viewed_on: start_date..end_date)
+      .group(:viewed_on)
+      .count
+
+    @views_by_day = (start_date..end_date).each_with_object({}) { |date, hash| hash[date] = 0 }
+    @views_by_day.merge!(views_data)
   end
 
   private

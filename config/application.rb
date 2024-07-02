@@ -29,7 +29,7 @@ module Bilingo
     # config.active_job.queue_name_prefix = "an_optional_queue_prefix"
 
     config.time_zone = 'Hanoi'
-    config.active_record.default_timezone = :local # Or :utc
+    config.active_record.default_timezone = :utc # Or :utc
 
     config.i18n.available_locales = %i[en vi zh]
     config.i18n.default_locale = :vi

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_07_01_084136) do
+ActiveRecord::Schema[7.1].define(version: 2024_07_02_090816) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -56,10 +56,11 @@ ActiveRecord::Schema[7.1].define(version: 2024_07_01_084136) do
     t.string "title", default: ""
     t.boolean "published", default: false
     t.integer "position"
-    t.bigint "views", default: 0
     t.bigint "story_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "story_views_count", default: 0
+    t.integer "comments_count", default: 0
     t.index ["story_id"], name: "index_chapters_on_story_id"
   end
 
@@ -89,9 +90,22 @@ ActiveRecord::Schema[7.1].define(version: 2024_07_01_084136) do
     t.bigint "author_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "story_views_count", default: 0
     t.index ["author_id"], name: "index_stories_on_author_id"
     t.index ["primary_genre_id"], name: "index_stories_on_primary_genre_id"
     t.index ["secondary_genre_id"], name: "index_stories_on_secondary_genre_id"
+  end
+
+  create_table "story_views", force: :cascade do |t|
+    t.string "ip_address"
+    t.bigint "story_id", null: false
+    t.bigint "chapter_id", null: false
+    t.date "viewed_on"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["chapter_id"], name: "index_story_views_on_chapter_id"
+    t.index ["story_id", "ip_address", "chapter_id", "viewed_on"], name: "idx_on_story_id_ip_address_chapter_id_viewed_on_aa92ab436e", unique: true
+    t.index ["story_id"], name: "index_story_views_on_story_id"
   end
 
   create_table "taggings", force: :cascade do |t|
@@ -150,5 +164,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_07_01_084136) do
   add_foreign_key "stories", "genres", column: "primary_genre_id"
   add_foreign_key "stories", "genres", column: "secondary_genre_id"
   add_foreign_key "stories", "users", column: "author_id"
+  add_foreign_key "story_views", "chapters"
+  add_foreign_key "story_views", "stories"
   add_foreign_key "taggings", "tags"
 end

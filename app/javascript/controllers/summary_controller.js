@@ -7,17 +7,22 @@ export default class extends Controller {
   connect() {}
 
   translatedTargetConnected() {
+    $('#translated-summary-type').empty();
+
     const html = $(this.translatedTarget).html();
     $(this.loaderTarget).addClass('!hidden');
 
-    new TypeIt('#translated-summary-type', {
+    this.typeit = new TypeIt('#translated-summary-type', {
       speed: 20,
       strings: html,
     }).go();
   }
 
   summarize() {
-    const html = $(this.translatedTarget).html();
+    this.typeit.freeze();
+    this.typeit.destroy();
+
+    $(this.translatedTarget).text('');
     $(this.loaderTarget).removeClass('!hidden');
   }
 }

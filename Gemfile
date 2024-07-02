@@ -73,4 +73,8 @@ gem 'gemini-ai', '~> 4.0'
 
 gem 'redis', '~> 5.2'
 
-gem "meta-tags", "~> 2.21"
+gem 'meta-tags', '~> 2.21'
+
+gem 'chartkick', '~> 5.0'
+
+gem 'groupdate', '~> 6.4'

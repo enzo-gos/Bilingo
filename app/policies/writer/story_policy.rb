@@ -19,6 +19,10 @@ class Writer::StoryPolicy < ApplicationPolicy
     by_author?
   end
 
+  def analytics?
+    by_author?
+  end
+
   private
 
   def by_author?
