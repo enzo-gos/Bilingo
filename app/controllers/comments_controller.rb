@@ -4,13 +4,13 @@ class CommentsController < ApplicationController
   before_action :prepare_chapter, except: [:index]
 
   def index
-    @chapter = Chapter.includes([comments: :commenter]).find(params[:chapter_id])
+    @chapter = Chapter.includes([comments: [:commenter, :rich_text_comment]]).find(params[:chapter_id])
     comments = @chapter.comments.group_by(&:paragraph_id).transform_values(&:first)
 
     respond_to do |format|
       format.turbo_stream do
         render turbo_stream: [
-          turbo_stream.update('comment-body', partial: 'chapters/comment/comment_list', locals: { comments: comments })
+          turbo_stream.update('comment-body', partial: 'chapters/comment/comment_list', locals: { comments: comments, chapter_id: @chapter.id })
         ]
       end
     end
@@ -19,7 +19,7 @@ class CommentsController < ApplicationController
   def show
     comment = Comment.new
 
-    all_comment = @chapter.comments.includes([:commenter]).where(paragraph_id: params[:id])
+    all_comment = @chapter.comments.includes([:commenter, :rich_text_comment]).where(paragraph_id: params[:id])
 
     respond_to do |format|
       format.turbo_stream do
@@ -48,7 +48,8 @@ class CommentsController < ApplicationController
             {
               comment: Comment.new,
               url: story_chapter_comments_path(story_id: @chapter.story_id, chapter_id: @chapter.id),
-              paragraph_id: comment.paragraph_id
+              paragraph_id: comment.paragraph_id,
+              mention: ''
             })
           ]
         else
@@ -65,6 +66,23 @@ class CommentsController < ApplicationController
     respond_to do |format|
       format.turbo_stream do
         render turbo_stream: []
+      end
+    end
+  end
+
+  def reply
+    comment = @chapter.comments.find(params[:comment_id])
+    respond_to do |format|
+      format.turbo_stream do
+        render turbo_stream: [
+          turbo_stream.update('comment-form', partial: 'chapters/comment/comment_form', locals:
+          {
+            comment: Comment.new,
+            url: story_chapter_comments_path(story_id: @chapter.story_id, chapter_id: @chapter.id),
+            paragraph_id: comment.paragraph_id,
+            mention: view_context.link_to(comment.commenter.fullname, profile_path(comment.commenter))
+          })
+        ]
       end
     end
   end

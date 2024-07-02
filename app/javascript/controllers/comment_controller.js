@@ -3,7 +3,7 @@ import autosize from 'autosize';
 
 // Connects to data-controller="comment"
 export default class extends Controller {
-  static targets = ['commentList', 'chapter', 'commentInput', 'commentBody', 'commentGroup', 'commentParagraph'];
+  static targets = ['commentList', 'chapter', 'commentInput', 'commentBody', 'commentGroupItem'];
   connect() {
     this.highlights = [];
   }
@@ -12,11 +12,19 @@ export default class extends Controller {
     autosize($(this.commentInputTarget));
   }
 
-  commentGroupTargetConnected() {
-    this.commentParagraphTargets.forEach((p) => {
-      const pId = $(p).attr('data-p-id');
-      $(p).text($(`[data-p-id="${pId}"]`).html());
-    });
+  commentGroupItemTargetConnected(event) {
+    const pId = $(event).attr('data-id');
+    $(event)
+      .find(`.comment-paragraph[data-p-id="${pId}"]`)
+      .text($(`[data-p-id="${pId}"]`).html());
+  }
+
+  commenting(event) {
+    $(this.commentInputTarget).val($(event.target).html());
+  }
+
+  reply() {
+    $(this.commentInputTarget).click();
   }
 
   open() {

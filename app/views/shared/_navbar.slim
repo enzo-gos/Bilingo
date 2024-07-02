@@ -45,7 +45,7 @@ header.sticky.top-0.z-max data-controller='navbar'
             span.avatar-text = current_user.last_name.first
           .dropdown-list.profile-list
             .dropdown-item
-              = link_to profile_path, class: 'account-option' do
+              = link_to profiles_path, class: 'account-option' do
                 = mi.shape(:account_circle).md_18
                 = t('navbar.user_profile')
             .dropdown-item

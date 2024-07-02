@@ -8,5 +8,6 @@
       = comment[:comment]
     .comment-status
       small.during-time = time_ago_in_words(comment[:created_at])
-      button.reply-btn = t('comments.reply')
-      = link_to t('comments.delete'), story_chapter_comment_path(story_id: comment[:story_id], chapter_id: comment[:chapter_id], id: comment[:id]), class: 'delete-btn', data: { turbo_stream: true, turbo_method: :delete }
+      - unless show_only
+        = link_to t('comments.reply'), story_chapter_comment_reply_path(story_id: comment[:story_id], chapter_id: comment[:chapter_id], comment_id: comment[:id]), class: 'reply-btn', data: { turbo_stream: true, action: 'click->comment#reply' }
+        = link_to t('comments.delete'), story_chapter_comment_path(story_id: comment[:story_id], chapter_id: comment[:chapter_id], id: comment[:id]), class: 'delete-btn', data: { turbo_stream: true, turbo_method: :delete }
