@@ -27,5 +27,7 @@ class Comment < ApplicationRecord
   def broadcast_destroy_comment
     broadcast_remove_to "chapter_#{chapter_id}", target: "comment-item#{id}"
     broadcast_update_to "chapter_#{chapter_id}", partial: 'chapters/comment_count', locals: { chapter: chapter, index: paragraph_id }, target: "comment_count_#{chapter_id}_#{paragraph_id}"
+
+    broadcast_remove_to "chapter_#{chapter_id}", target: "comment_list_#{chapter_id}_item_#{paragraph_id}" if chapter.count_comments(paragraph_id) == 0
   end
 end
