@@ -50,6 +50,9 @@ vi:
       forgot_password: 'Quên mật khẩu?'
       no_account: 'Chưa có tài khoản?'
       no_account_link: 'Đăng ký'
+      email_placeholder: 'Nhập địa chỉ email của bạn'
+      password_placeholder: 'Nhập mật khẩu của bạn'
+      submit_button: 'Đăng nhập'
 
     sign_up:
       title: 'Tham gia Bilingo'

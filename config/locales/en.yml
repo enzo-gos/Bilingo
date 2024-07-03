@@ -79,6 +79,9 @@ en:
       forgot_password: 'Forgot password?'
       no_account: "Don't have an account?"
       no_account_link: 'Sign up'
+      email_placeholder: 'Enter your email address'
+      password_placeholder: 'Enter your password'
+      submit_button: 'Sign in'
 
     sign_up:
       title: 'Join Bilingo'
