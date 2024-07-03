@@ -46,10 +46,10 @@ end
 
   story = Story.find_or_create_by!(
     name: "Story #{i + 1}",
-    primary_genre: primary_genre,
-    secondary_genre: secondary_genre,
     author_id: 1
   ) do |s|
+    s.primary_genre = primary_genre
+    s.secondary_genre = secondary_genre
     s.description = long_description(i + 1)
     s.language_code = "EN"
     s.position = i + 1
@@ -64,6 +64,25 @@ end
   ) do |c|
     c.published = true
     c.position = 1
-    c.views = 0
+  end
+end
+
+# Ensure admin role exists
+admin_role = Role.find_or_create_by!(name: 'admin')
+
+# Ensure user role exists
+user_role = Role.find_or_create_by!(name: 'user')
+
+users_data = [
+  { email: 'enzo.nguyen.gos@gmail.com', first_name: 'Nguyen', last_name: 'Enzo', password: '123123', roles: [admin_role] },
+]
+
+users_data.each do |user_data|
+  user = User.find_or_create_by!(email: user_data[:email]) do |u|
+    u.password = user_data[:password]
+    u.first_name = user_data[:first_name]
+    u.last_name = user_data[:last_name]
+    u.password = user_data[:password]
+    u.roles = user_data[:roles] || [user_role]
   end
 end

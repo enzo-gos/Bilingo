@@ -8,16 +8,26 @@ Rails.application.routes.draw do
     namespace :v1 do
       resources :example, only: [:index, :show]
       namespace :meta_data do
-        get 'tags'
+        get :tags
       end
     end
   end
 
   devise_for :users,
-  controllers: { omniauth_callbacks: 'users/omniauth_callbacks' }
+  only: :omniauth_callbacks,
+  controllers: {omniauth_callbacks: 'users/omniauth_callbacks'}
 
   available_locales = -> { I18n.available_locales.map(&:to_s).join('|') }
   scope '(:locale)', locale: Regexp.new(available_locales.call) do
+
+    devise_for :users,
+    path: :auth, path_names: {
+      sign_in: :login,
+      sign_out: :logout,
+      sign_up: :register
+    },
+    skip: :omniauth_callbacks
+
     namespace :auth do
       get 'sign-in'
       get 'sign-up'
@@ -29,7 +39,7 @@ Rails.application.routes.draw do
 
     namespace :writer do
       namespace :stories do
-        get 'all'
+        get :all
       end
       resources :stories, except: [:show] do
         member do
@@ -60,7 +70,19 @@ Rails.application.routes.draw do
         end
       end
     end
-
     root 'home#index'
+  end
+
+  namespace :admin do
+    resources :users, only: [:index, :edit, :update] do
+      member do
+        patch :make_admin
+        patch :remove_admin
+        patch :ban
+        patch :unban
+        get :ban_history
+      end
+    end
+    root 'dashboards#index'
   end
 end

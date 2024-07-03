@@ -61,6 +61,8 @@ class CommentsController < ApplicationController
 
   def destroy
     comment = Comment.find(params[:id])
+    authorize comment
+
     comment.destroy
 
     respond_to do |format|

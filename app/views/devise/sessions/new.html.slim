@@ -1,18 +1,25 @@
-h2 Log in
+.auth-container
+  h1.auth-title = t('auth.sign_in.title')
+  .auth-form
+    = simple_form_for resource, url: session_path(resource), defaults: { input_html: { class: 'auth-form-input' } } do |f|
+      = f.input :email,
+                required: false,
+                autofocus: true,
+                placeholder: t('auth.sign_in.email_placeholder')
+      = f.input :password,
+                required: false,
+                placeholder: t('auth.sign_in.password_placeholder')
+      = f.button :submit, t('auth.sign_in.submit_button'), class: 'submit-btn'
 
-= simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
-  .form-inputs
-    = f.input :email,
-              required: false,
-              autofocus: true,
-              input_html: { autocomplete: "email" }
-    = f.input :password,
-              required: false,
-              input_html: { autocomplete: "current-password" }
-    - if devise_mapping.rememberable?
-      = f.input :remember_me, as: :boolean
+    = link_to t('auth.sign_in.forgot_password'), '#forgot', class: 'forgot-password-btn'
 
-  .form-actions
-    = f.button :submit, "Log in"
+    .alternative-devider
+      .line
+      = t('auth.sign_in.or')
+      .line
 
-= render "devise/shared/links"
+    .auth-actions
+      = button_to user_facebook_omniauth_authorize_path, class: 'auth-btn facebook-btn', method: :post, data: { turbo: false } do
+        = inline_svg_tag 'icons/facebook_icon.svg', class: 'auth-btn-icon'
+      .button.auth-btn.google-btn
+        = inline_svg_tag 'icons/google_icon.svg', class: 'auth-btn-icon'
