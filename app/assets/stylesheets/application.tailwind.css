@@ -22,6 +22,8 @@
 @import 'tailwind/writer/story.css';
 @import 'tailwind/writer/chapter.css';
 
+@import 'tailwind/auth/base.css';
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;

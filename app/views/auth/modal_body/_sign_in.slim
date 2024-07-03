@@ -11,8 +11,7 @@
   = t('auth.sign_in.or')
   .line
 
-.button.auth-btn.email-btn
-  span = t('auth.sign_in.email')
+= link_to t('auth.sign_in.email'), new_user_session_path, class: 'button auth-btn email-btn'
 
 .forgot-password
   = link_to t('auth.sign_in.forgot_password'), '#forgot-password'

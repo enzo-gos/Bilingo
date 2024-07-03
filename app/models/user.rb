@@ -1,4 +1,5 @@
 class User < ApplicationRecord
+  rolify
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
@@ -18,6 +19,7 @@ class User < ApplicationRecord
       user.first_name = name_split[1]
       user.avatar = auth.info.image
       user.password = Devise.friendly_token[0, 20]
+      user.add_role :user
     end
   end
 

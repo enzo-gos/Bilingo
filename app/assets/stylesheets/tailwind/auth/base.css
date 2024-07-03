@@ -1,0 +1,111 @@
+@layer components {
+  .auth-container {
+    @apply max-w-xl
+    mx-auto
+    my-auto;
+  }
+
+  .auth-title {
+    @apply text-2xl
+    font-semibold
+    text-center
+    py-4
+    my-8;
+  }
+
+  .auth-form {
+    @apply p-10
+    border
+    border-gray-200
+    rounded-xl
+    shadow-sm;
+  }
+
+  .auth-form .auth-form-input {
+    @apply w-full
+    p-2
+    px-4
+    border
+    border-gray-200
+    outline-none
+    ring-0
+    mt-2
+    mb-5
+    rounded-md;
+  }
+
+  .auth-form .submit-btn {
+    @apply bg-primary-600
+    w-full
+    p-2.5
+    font-semibold
+    rounded-md
+    text-white
+    cursor-pointer
+    transition-all
+    capitalize
+    hover:bg-primary-700;
+  }
+
+  .auth-form .forgot-password-btn {
+    @apply block
+    w-fit
+    ml-auto
+    my-4;
+  }
+
+  .auth-form .auth-actions {
+    @apply flex
+    justify-center
+    gap-4;
+  }
+
+  .auth-form .auth-btn {
+    @apply flex
+    items-center
+    justify-center
+    gap-2
+    p-2
+    font-medium
+    rounded-full
+    transition-all
+    whitespace-nowrap;
+  }
+
+  .auth-form .auth-btn.facebook-btn {
+    @apply bg-[#316FF6]
+    hover:bg-[#2f519c]
+    text-white;
+  }
+
+  .auth-form .auth-btn.google-btn {
+    @apply border
+    hover:bg-gray-100;
+  }
+
+  .auth-form .auth-btn > .auth-btn-icon {
+    @apply text-3xl;
+  }
+
+  .auth-form .auth-btn.facebook-btn > .auth-btn-icon {
+    @apply fill-white;
+  }
+
+  .auth-form .alternative-devider {
+    @apply flex
+    gap-3
+    items-center
+    text-[12px]
+    text-gray-500
+    w-full
+    my-2
+    mb-4;
+  }
+
+  .auth-form .alternative-devider > .line {
+    @apply border-t
+    border-gray-200
+    h-1
+    w-full;
+  }
+}

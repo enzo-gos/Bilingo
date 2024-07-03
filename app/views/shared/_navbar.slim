@@ -44,6 +44,11 @@ header.sticky.top-0.z-max data-controller='navbar'
           .dropdown-btn.user-profile
             span.avatar-text = current_user.last_name.first
           .dropdown-list.profile-list
+            - if current_user.has_role?(:admin)
+              .dropdown-item
+                = link_to admin_root_path(locale: nil), class: 'account-option' do
+                  = mi.shape(:dashboard).md_18
+                  = t('navbar.dashboard')
             .dropdown-item
               = link_to profiles_path, class: 'account-option' do
                 = mi.shape(:account_circle).md_18

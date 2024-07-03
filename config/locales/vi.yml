@@ -10,6 +10,7 @@ vi:
     my_stories: 'Câu truyện của tôi'
     user_profile: 'Hồ sơ người dùng'
     settings: 'Cài đặt'
+    dashboard: 'Bảng điều khiển'
     logout: 'Đăng xuất'
     sign_in: 'Đăng nhập'
     sign_up: 'Đăng ký'
