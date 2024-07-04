@@ -2,6 +2,10 @@ module Admin
   class BaseController < ApplicationController
     before_action :authorize_admin
 
+    def default_url_options(options = {})
+      { locale: nil }.merge options
+    end
+
     private
 
     def authorize_admin

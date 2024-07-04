@@ -23,6 +23,11 @@
 @import 'tailwind/writer/chapter.css';
 
 @import 'tailwind/auth/base.css';
+@import 'tailwind/admin/navbar.css';
+@import 'tailwind/admin/sidebar.css';
+@import 'tailwind/admin/dashboard.css';
+
+@import 'actiontext.css';
 
 @tailwind base;
 @tailwind components;
@@ -111,5 +116,13 @@
     bg-primary-600
     font-bold;
   }
+
+  .admin-body {
+    @apply bg-slate-50;
+  }
+
+  .admin-layout {
+    @apply ml-20
+    mr-1;
+  }
 }
-@import 'actiontext.css';

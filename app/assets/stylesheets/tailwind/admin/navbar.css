@@ -1,0 +1,105 @@
+.admin-navbar {
+  @apply border
+  p-4
+  py-2
+  flex
+  bg-white
+  sticky
+  top-0;
+}
+
+.admin-navbar .navbar-header {
+  @apply flex
+  items-center
+  gap-1;
+}
+
+.admin-navbar .navbar-header .header-title {
+  @apply text-2xl
+  font-semibold
+  bg-gradient-to-r
+    from-primary-600
+    via-purple-500
+    to-indigo-400
+    text-transparent
+    bg-clip-text;
+}
+
+.admin-navbar .navbar-footer {
+  @apply ml-auto
+  flex
+  items-center;
+}
+
+.admin-navbar .navbar-footer .profile {
+  @apply flex
+  gap-3;
+}
+
+.admin-navbar .navbar-footer .profile .avatar-text {
+  @apply rounded-full
+  flex
+  items-center
+  justify-center
+  bg-primary-700
+  font-bold
+  text-white
+  w-12
+  h-12
+  overflow-hidden;
+}
+
+.admin-navbar .navbar-footer .profile .info {
+  @apply flex
+  flex-col
+  justify-evenly;
+}
+
+.admin-navbar .navbar-footer .profile .info .username {
+  @apply text-base
+  font-semibold;
+}
+
+.admin-navbar .navbar-footer .profile .info .role {
+  @apply text-sm
+  font-medium
+  text-secondary-500;
+}
+
+.admin-navbar .navbar-footer .actions {
+  @apply flex
+  gap-2;
+}
+
+.admin-navbar .navbar-footer .divider {
+  @apply border-r
+  border-secondary-300
+  h-7
+  mx-5;
+}
+
+.admin-navbar .navbar-footer .actions .action-btn {
+  @apply rounded-full
+  p-2
+  border
+  flex
+  items-center
+  justify-center
+  cursor-pointer
+  transition-all
+  hover:bg-slate-100;
+}
+
+.admin-navbar .navbar-footer .actions .action-btn.logout-btn {
+  @apply border-primary-400;
+}
+
+.admin-navbar .navbar-footer .actions .action-icon {
+  @apply text-2xl
+  leading-none
+  text-secondary-800;
+}
+
+.admin-navbar .navbar-footer .actions .action-btn.logout-btn .action-icon {
+  @apply text-primary-700;
+}
