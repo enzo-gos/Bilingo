@@ -27,7 +27,7 @@ module ApplicationHelper
   end
 
   def all_topics
-    ActsAsTaggableOn::Tag.for_context(:tags).map { |tag| "# #{tag}" }
+    ActsAsTaggableOn::Tag.for_context(:tags)
   end
 
   def fake_top_story

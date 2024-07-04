@@ -57,6 +57,9 @@ Rails.application.routes.draw do
       end
     end
 
+    resources :genres, only: [:show]
+    resources :topics, only: [:show]
+
     resources :stories, only: [:index, :show] do
       resources :chapters, only: [:show] do
         member do

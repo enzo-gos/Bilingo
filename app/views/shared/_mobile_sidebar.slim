@@ -9,13 +9,13 @@
           b.genres-title = t('navbar.genres')
           .genres-list
             - all_genres.each do |genre|
-              = link_to genre.name
+              = link_to genre.name, genre_path(genre.name)
       .dropdown-item
         .topic
           b.topic-title = t('navbar.trending_topics')
           .topic-list
             - all_topics.each do |topic|
-              = link_to topic
+              = link_to "# #{topic}", topic_path(topic.name)
 
   .sidebar-dropdown
     .dropdown-btn
