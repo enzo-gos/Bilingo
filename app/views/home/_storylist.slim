@@ -1,6 +1,6 @@
 .story-list
   h1.story-heading = t('story_list.heading')
-  - format_stories(@stories).map do |story|
+  - format_stories(@stories).each do |story|
     .story-book
       .book-cover-wrapper
         = link_to story[:url] do
