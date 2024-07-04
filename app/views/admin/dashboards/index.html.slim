@@ -1,0 +1,27 @@
+.dashboard-container
+  h1.dashboard-title Dashboard
+  hr.mb-10.mt-4
+  .dashboard
+    .views-chart
+      = line_chart @views_by_day,
+        title: 'Story Views by Day',
+        xtitle: 'Date',
+        ytitle: 'Number of Views',
+        colors: ['#b00']
+    .analytic
+      .analytic-item
+        = mi.shape(:visibility).css_class('analytic-icon outlined eye-icon')
+        .analytic-info
+          .info-title Visits
+          .info-number
+            = @analysis_data[:views]
+      .analytic-item
+        = mi.shape(:people_alt).css_class('analytic-icon outlined user-icon')
+        .analytic-info
+          .info-title Users
+          .info-number = @analysis_data[:users]
+      .analytic-item
+        = mi.shape(:library_books).css_class('analytic-icon outlined story-icon')
+        .analytic-info
+          .info-title Stories
+          .info-number = @analysis_data[:stories]
