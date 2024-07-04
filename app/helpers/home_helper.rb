@@ -8,8 +8,8 @@ module HomeHelper
         description: story.description,
         genres: story.genres.join(' / '),
         views: story.views,
-        comments: '15K',
-        chapters: story.chapters.size,
+        comments: story.comments,
+        chapters: story.number_of_published,
         url: story_path(story),
         share: share_path(story)
       }

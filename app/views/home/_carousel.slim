@@ -1,5 +1,5 @@
 .carousel.hidden data-controller='carousel'
-  - fake_top_story.map do |story|
+  - top_story.each do |story|
     .slider-wrapper
       .backdrop-fill.blur-background
         = image_tag story[:cover], class: 'backdrop-img', width: 220
@@ -23,5 +23,5 @@
             br
             == story[:description]
 
-          = link_to t('carousel.reading'), '#read', class: 'reading-btn'
+          = link_to t('carousel.reading'), story[:url], class: 'reading-btn'
         = image_tag story[:cover], class: 'book-cover', width: 220

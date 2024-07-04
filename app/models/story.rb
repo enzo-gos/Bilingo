@@ -19,7 +19,31 @@ class Story < ApplicationRecord
             :language_code,
             presence: true
 
-  scope :with_published, -> { where(chapters: { published: true }).distinct }
+  scope :with_published, -> { joins(:chapters).where(chapters: { published: true }).distinct }
+
+  scope :top_viewed, ->(limit = 3) {
+    subquery = StoryView.select('story_id, COUNT(*) AS view_count').group(:story_id)
+
+    left_outer_joins(:story_views)
+      .select('stories.*, COALESCE(subquery.view_count, 0) AS view_count')
+      .joins("LEFT OUTER JOIN (#{subquery.to_sql}) AS subquery ON subquery.story_id = stories.id")
+      .group('stories.id, subquery.view_count')
+      .order('subquery.view_count DESC NULLS LAST, stories.id')
+      .limit(limit)
+  }
+
+  scope :recently_read, ->(limit = 5) {
+    select('stories.*, recent_views.viewed_on')
+      .joins(
+        "INNER JOIN (
+          SELECT DISTINCT ON (story_id) story_id, viewed_on
+          FROM story_views
+          ORDER BY story_id, viewed_on DESC
+        ) AS recent_views ON stories.id = recent_views.story_id"
+      )
+      .order('recent_views.viewed_on DESC')
+      .limit(limit)
+  }
 
   def number_of_published
     chapters.where(published: true).count

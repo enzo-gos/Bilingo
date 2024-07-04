@@ -30,7 +30,7 @@
             = mi.shape(:format_list_bulleted).css_class('analysis-icon')
             = t('story_details.chapters')
           .analysis-content
-            = @story.chapters.size
+            = @story.number_of_published
       .actions-group
         = link_to t('story_details.start_reading'), story_chapter_path(story_id: @story.id, id: @story.chapters.first.id), class: 'story-reading-btn'
         = link_to share_path(@story), class: 'story-share-btn', data: { turbo_stream: true, action: 'click->share-modal#open' }
