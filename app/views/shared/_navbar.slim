@@ -11,12 +11,12 @@ header.sticky.top-0.z-max data-controller='navbar'
             h1 = t('navbar.genres')
             .dropdown-list-genre
               - all_genres.each do |genre|
-                = link_to genre.name
+                = link_to genre.name, genre_path(genre.name)
           .dropdown-list-wrapper
             h1 = t('navbar.trending_topics')
             .dropdown-list-topic
               - all_topics.each do |topic|
-                = link_to topic
+                = link_to "# #{topic}", topic_path(topic.name)
 
     .search-box
       = form_with url: '#search', method: :get, class: 'search-form' do |f|
