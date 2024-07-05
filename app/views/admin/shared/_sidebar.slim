@@ -1,8 +1,8 @@
 .admin-sidebar
   .group-actions
-    .sidebar-link.active
+    = link_to admin_root_path, class: "sidebar-link#{current_page?(admin_root_path) ? ' active' : ''}" do
       = mi.shape(:space_dashboard).outlined
-    .sidebar-link
+    = link_to admin_users_path, class: "sidebar-link#{controller_name == 'users' ? ' active' : ''}" do
       = mi.shape(:people_alt).outlined
     .sidebar-link
       = mi.shape(:library_books).outlined

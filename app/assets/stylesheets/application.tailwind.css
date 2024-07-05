@@ -25,7 +25,7 @@
 @import 'tailwind/auth/base.css';
 @import 'tailwind/admin/navbar.css';
 @import 'tailwind/admin/sidebar.css';
-@import 'tailwind/admin/dashboard.css';
+@import 'tailwind/admin/base.css';
 
 @import 'actiontext.css';
 
@@ -124,5 +124,176 @@
   .admin-layout {
     @apply ml-20
     mr-1;
+  }
+
+  .management-table {
+    @apply flex
+    bg-white
+    flex-row
+    overflow-hidden
+    text-left
+    text-sm
+    text-secondary-700
+    sm:inline-table;
+  }
+
+  .admin-body .management-table .table-heading,
+  .admin-body .management-table .table-body {
+    @apply divide-y
+    divide-gray-100
+    border-gray-100;
+  }
+
+  .admin-body .management-table .table-heading {
+    @apply bg-gray-50;
+  }
+
+  .admin-body .management-table .table-heading th {
+    @apply font-medium
+    text-secondary-900;
+  }
+
+  .admin-body .management-table .table-body {
+    @apply border-t
+    flex-1
+    sm:flex-none;
+  }
+
+  .admin-body .management-table .table-body tr {
+    @apply hover:bg-gray-50/80;
+  }
+
+  .admin-body .management-table .table-heading > tr > th:last-child,
+  .admin-body .management-table .table-body > tr > td:last-child {
+    @apply h-11
+    sm:h-auto;
+  }
+
+  .admin-body .management-table .table-heading > tr > th:last-child {
+    @apply flex
+    items-center
+    justify-start
+    sm:justify-end;
+  }
+
+  .management-table tr {
+    @apply flex
+    flex-col
+    flex-nowrap
+    sm:table-row
+    mb-4;
+  }
+
+  .management-table tr td,
+  .management-table tr th {
+    @apply px-4
+    py-2
+    lg:px-6
+    sm:py-4;
+  }
+
+  .admin-body .search-container {
+    @apply flex
+    items-center
+    gap-4;
+  }
+
+  .admin-body .search-input-wrapper {
+    @apply w-full
+    relative;
+  }
+
+  .admin-body .search-icon {
+    @apply pointer-events-none
+    absolute
+    inset-y-0
+    left-0
+    flex
+    items-center
+    px-3
+    text-secondary-600;
+  }
+
+  .admin-body .search-input {
+    @apply form-input
+    pl-11;
+  }
+
+  .admin-body .table-container {
+    @apply overflow-hidden
+    rounded-lg border
+    border-gray-200
+    flex
+    flex-col;
+  }
+
+  .admin-body .table-container .navigation {
+    @apply flex
+    bg-white
+    justify-end
+    border-t;
+  }
+
+  .admin-body .table-container .navigation .pagy {
+    @apply w-fit
+    border-none;
+  }
+
+  .admin-body .create-btn {
+    @apply ml-auto
+    border
+    bg-primary-600
+    p-3
+    px-4
+    text-white
+    rounded-lg
+    text-sm
+    flex
+    items-center
+    gap-2
+    font-semibold
+    transition-all
+    my-4
+    hover:bg-primary-700;
+  }
+
+  .management-table .action-buttons {
+    @apply flex
+    justify-end
+    gap-4
+    sm:gap-3;
+  }
+
+  .management-table .action-icon {
+    @apply h-6
+    w-6;
+  }
+
+  .management-table .action-buttons .edit-btn {
+    @apply transition-all
+    hover:text-blue-500;
+  }
+
+  .management-table .action-buttons .delete-btn {
+    @apply transition-all
+    hover:text-red-500;
+  }
+
+  .management-table .action-buttons .delete-btn:disabled {
+    @apply text-gray-300;
+  }
+
+  .management-table .action-buttons .ban-btn {
+    @apply transition-all
+    hover:text-yellow-500;
+  }
+
+  .management-table .action-buttons .ban-btn:disabled {
+    @apply text-gray-300;
+  }
+
+  .management-table .empty-state {
+    @apply px-6
+    py-4;
   }
 }

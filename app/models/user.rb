@@ -9,6 +9,16 @@ class User < ApplicationRecord
   has_many :stories, -> { includes([cover_image_attachment: :blob]).order(position: :asc) }, foreign_key: :author
   has_many :comments, foreign_key: :commenter
 
+  validates :first_name, :last_name, presence: true
+
+  def active_for_authentication?
+    super && account_active?
+  end
+
+  def account_active?
+    active == true
+  end
+
   def self.from_omniauth(auth)
     name_split = auth.info.name.split
 

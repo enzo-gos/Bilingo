@@ -1,7 +1,5 @@
 module Admin
   class DashboardsController < BaseController
-    layout 'admin/base'
-
     def index
       start_date = Date.current.beginning_of_month
       end_date = Date.current.end_of_month

@@ -79,3 +79,9 @@ body {
     }
   }
 }
+
+@media (min-width: 640px) {
+  thead tr:not(:first-child) {
+    display: none;
+  }
+}
