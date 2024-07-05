@@ -41,7 +41,7 @@ module Admin
 
     def unban
       @employee.update(active: true)
-      redirect_to admin_users_path, notice: 'Employee was successfully unclocked.'
+      redirect_to admin_users_path, notice: 'Employee was successfully unlocked.'
     end
 
     private
@@ -52,6 +52,7 @@ module Admin
 
     def prepare_employee
       @employee = User.find(params[:id])
+      authorize @employee, policy_class: Admin::UserPolicy
     end
 
     def new_employee_params
