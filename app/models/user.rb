@@ -22,7 +22,7 @@ class User < ApplicationRecord
   def self.from_omniauth(auth)
     name_split = auth.info.name.split
 
-    fuser = User.find_or_create_by!(email: auth.info.email) do |user|
+    User.find_or_create_by!(email: auth.info.email) do |user|
       user.provider = auth.provider
       user.uid = auth.uid
       user.last_name = name_split[0]
@@ -31,8 +31,6 @@ class User < ApplicationRecord
       user.password = Devise.friendly_token[0, 20]
       user.add_role :user
     end
-
-    fuser.account_active? ? fuser : nil
   end
 
   def fullname
