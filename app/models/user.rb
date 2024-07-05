@@ -11,6 +11,14 @@ class User < ApplicationRecord
 
   validates :first_name, :last_name, presence: true
 
+  def active_for_authentication?
+    super && account_active?
+  end
+
+  def account_active?
+    active == true
+  end
+
   def self.from_omniauth(auth)
     name_split = auth.info.name.split
 
@@ -24,7 +32,7 @@ class User < ApplicationRecord
       user.add_role :user
     end
 
-    fuser.active == true ? fuser : nil
+    fuser.account_active? ? fuser : nil
   end
 
   def fullname

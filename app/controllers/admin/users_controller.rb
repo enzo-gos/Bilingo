@@ -47,7 +47,7 @@ module Admin
     private
 
     def prepare_employee_list
-      @employees = User.includes([:roles]).all
+      @employees = User.includes([:roles]).all.order(:id)
     end
 
     def prepare_employee
