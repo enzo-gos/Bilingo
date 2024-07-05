@@ -224,7 +224,19 @@
     rounded-lg border
     border-gray-200
     flex
-    flex-col-reverse;
+    flex-col;
+  }
+
+  .admin-body .table-container .navigation {
+    @apply flex
+    bg-white
+    justify-end
+    border-t;
+  }
+
+  .admin-body .table-container .navigation .pagy {
+    @apply w-fit
+    border-none;
   }
 
   .admin-body .create-btn {

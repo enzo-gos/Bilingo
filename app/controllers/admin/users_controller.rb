@@ -1,9 +1,11 @@
 module Admin
   class UsersController < BaseController
-    before_action :prepare_employee_list, only: [:index]
     before_action :prepare_employee, except: [:create, :new, :index]
 
-    def index; end
+    def index
+      employee_list = User.includes([:roles]).all.order(:id)
+      @pagy, @employees = pagy(employee_list)
+    end
 
     def new
       @employee = User.new
@@ -45,10 +47,6 @@ module Admin
     end
 
     private
-
-    def prepare_employee_list
-      @employees = User.includes([:roles]).all.order(:id)
-    end
 
     def prepare_employee
       @employee = User.find(params[:id])
