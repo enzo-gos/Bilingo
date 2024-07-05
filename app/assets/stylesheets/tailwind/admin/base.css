@@ -1,0 +1,217 @@
+@layer components {
+  .dashboard-container {
+    @apply xl:mx-auto
+    xl:w-fit
+    w-full
+    py-10;
+  }
+
+  .dashboard-title {
+    @apply text-2xl
+    font-semibold;
+  }
+
+  .user-container {
+    @apply dashboard-container
+    max-w-7xl
+    sm:w-full
+    sm:mx-auto;
+  }
+
+  .user-title {
+    @apply dashboard-title;
+  }
+
+  .dashboard {
+    @apply flex
+    flex-col-reverse
+    xl:flex-row
+    gap-10;
+  }
+
+  .dashboard .views-chart {
+    @apply w-full
+    xl:min-w-[72rem]
+    border
+    border-gray-200/60
+    p-8
+    rounded
+    bg-white;
+  }
+
+  .dashboard .analytic {
+    @apply w-full
+    xl:min-w-[26rem]
+    border
+    border-gray-200/60
+    p-8
+    rounded
+    bg-white
+    flex
+    xl:flex-col
+    xl:justify-center;
+  }
+
+  .dashboard .analytic .analytic-item {
+    @apply xl:border-b
+    py-5
+    flex
+    items-center
+    gap-4
+    w-full;
+  }
+
+  .dashboard .analytic .analytic-item:last-child {
+    @apply border-none;
+  }
+
+  .dashboard .analytic .analytic-item .analytic-icon {
+    @apply p-3.5
+    rounded-full;
+  }
+
+  .dashboard .analytic .analytic-item .analytic-icon.user-icon {
+    @apply bg-teal-50
+    text-teal-600;
+  }
+
+  .dashboard .analytic .analytic-item .analytic-icon.eye-icon {
+    @apply bg-blue-50
+    text-blue-600;
+  }
+
+  .dashboard .analytic .analytic-item .analytic-icon.story-icon {
+    @apply bg-violet-50
+    text-violet-600;
+  }
+
+  .dashboard .analytic .analytic-item .analytic-info {
+    @apply flex
+    flex-col;
+  }
+
+  .dashboard .analytic-info .info-title {
+    @apply font-medium
+    text-secondary-600;
+  }
+
+  .dashboard .analytic-info .info-number {
+    @apply font-medium
+    text-secondary-800
+    text-2xl;
+  }
+
+  .admin-body .admin-create-form {
+    @apply mx-auto
+    mt-10
+    max-w-5xl
+    bg-white
+    shadow-md
+    rounded-lg
+    px-8
+    py-5
+    space-y-6;
+  }
+
+  .admin-body .admin-create-form .form-body {
+    @apply md:grid
+    md:grid-cols-2
+    md:gap-6;
+  }
+
+  .admin-body .admin-create-form .form-body .form-header {
+    @apply md:col-span-1;
+  }
+
+  .admin-body .admin-create-form .form-body .form-header .title {
+    @apply text-lg
+    font-medium
+    leading-6
+    text-gray-900;
+  }
+
+  .admin-body .admin-create-form .form-body .form-header .description {
+    @apply mt-1
+    text-sm
+    text-gray-500;
+  }
+
+  .admin-body .admin-create-form .form-body .form-content {
+    @apply mt-5
+    md:mt-0
+    md:col-span-2;
+  }
+
+  .admin-body .admin-create-form .form-body .form-content .form-group {
+    @apply grid
+    grid-cols-6
+    gap-6;
+  }
+
+  .admin-body .admin-create-form .create-form-input {
+    @apply mt-1
+    focus:ring-indigo-500
+    focus:border-indigo-500
+    block
+    w-full
+    py-2.5
+    shadow-sm
+    sm:text-sm
+    border-gray-300
+    rounded-md;
+  }
+
+  .admin-body .admin-create-form .create-form-checkbox {
+    @apply h-4
+    w-4
+    text-indigo-600
+    focus:ring-indigo-500
+    border-gray-300
+    rounded;
+  }
+
+  .admin-body .admin-create-form .submit-btn {
+    @apply inline-flex
+    justify-center
+    py-2
+    px-4
+    border
+    border-transparent
+    shadow-sm
+    cursor-pointer
+    text-sm
+    font-medium
+    rounded-md
+    text-white
+    bg-indigo-600
+    hover:bg-indigo-700
+    focus:outline-none
+    focus:ring-2
+    focus:ring-offset-2
+    focus:ring-indigo-500;
+  }
+
+  .admin-body .admin-create-form .cancel-btn {
+    @apply inline-flex
+    justify-center
+    py-2
+    px-4
+    border
+    border-transparent
+    shadow-sm
+    text-sm
+    font-medium
+    rounded-md
+    text-gray-700
+    bg-gray-100
+    hover:bg-gray-200
+    focus:outline-none
+    focus:ring-2
+    focus:ring-offset-2
+    focus:ring-indigo-500 mr-2;
+  }
+
+  .admin-body .field_with_errors .error {
+    @apply text-red-500;
+  }
+}

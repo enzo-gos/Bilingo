@@ -1,0 +1,26 @@
+= simple_form_for [:admin, employee], method: method, html: { class: 'admin-create-form' }, defaults: { input_html: { class: 'create-form-input' } } do |f|
+  .form-body
+    .form-header
+      h3.title User Information
+      p.description Manage user account details here.
+    .form-content
+      .form-group
+        .col-span-6.sm:col-span-4
+          = f.input :email, required: true, placeholder: 'Enter your email address'
+        .col-span-6.sm:col-span-1
+          = f.input :first_name, required: true, placeholder: 'First Name'
+        .col-span-6.sm:col-span-1
+          = f.input :last_name, required: true, placeholder: 'Last Name'
+
+      .form-group.mt-4
+        - if employee.new_record?
+          .col-span-6.sm:col-span-3
+            = f.input :password, required: true, placeholder: 'Enter your password'
+        .col-span-6.sm:col-span-2
+          = f.input :role_ids, label: :Role, collection: Role.all, prompt: "Select a role", required: true
+        .col-span-6.sm:col-span-1
+          = f.input :active, collection: [['Active', true], ['In Active', false]], prompt: "Select a role", required: true
+
+  .px-4.py-3.text-right.sm:px-6
+    = link_to 'Cancel', admin_users_path, class: 'cancel-btn'
+    = f.button :submit, class: 'submit-btn'

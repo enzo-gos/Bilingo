@@ -9,10 +9,12 @@ class User < ApplicationRecord
   has_many :stories, -> { includes([cover_image_attachment: :blob]).order(position: :asc) }, foreign_key: :author
   has_many :comments, foreign_key: :commenter
 
+  validates :first_name, :last_name, presence: true
+
   def self.from_omniauth(auth)
     name_split = auth.info.name.split
 
-    User.find_or_create_by!(email: auth.info.email) do |user|
+    fuser = User.find_or_create_by!(email: auth.info.email) do |user|
       user.provider = auth.provider
       user.uid = auth.uid
       user.last_name = name_split[0]
@@ -21,6 +23,8 @@ class User < ApplicationRecord
       user.password = Devise.friendly_token[0, 20]
       user.add_role :user
     end
+
+    fuser.active == true ? fuser : nil
   end
 
   def fullname

@@ -1,7 +1,7 @@
 class Story < ApplicationRecord
   belongs_to :primary_genre, class_name: :Genre
   belongs_to :secondary_genre, class_name: :Genre, optional: true
-  belongs_to :author, class_name: :User
+  belongs_to :author, class_name: :User, counter_cache: true
 
   has_many :chapters, -> { order(position: :asc) }, dependent: :destroy
   has_many :story_views, dependent: :destroy

@@ -3,7 +3,7 @@ class Comment < ApplicationRecord
 
   has_rich_text :comment
 
-  belongs_to :commenter, class_name: :User
+  belongs_to :commenter, class_name: :User, counter_cache: true
   belongs_to :chapter, counter_cache: true
 
   validates :comment,
@@ -28,6 +28,6 @@ class Comment < ApplicationRecord
     broadcast_remove_to "chapter_#{chapter_id}", target: "comment-item#{id}"
     broadcast_update_to "chapter_#{chapter_id}", partial: 'chapters/comment_count', locals: { chapter: chapter, index: paragraph_id }, target: "comment_count_#{chapter_id}_#{paragraph_id}"
 
-    broadcast_remove_to "chapter_#{chapter_id}", target: "comment_list_#{chapter_id}_item_#{paragraph_id}" if chapter.count_comments(paragraph_id) == 0
+    broadcast_remove_to "chapter_#{chapter_id}", target: "comment_list_#{chapter_id}_item_#{paragraph_id}" if chapter.count_comments(paragraph_id).zero?
   end
 end
