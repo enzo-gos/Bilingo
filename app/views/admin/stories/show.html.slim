@@ -1,0 +1,37 @@
+.reader.story-details
+  .story-heading
+    .story-cover
+      = image_tag @story.cover_image
+    .story-info
+      .story-title = @story.name
+      .story-author = t('story_details.by_author', author_name: @story.author.fullname)
+      .story-tags
+        - @story.tag_list.each do |tag|
+          .story-tag-item = tag
+      .story-analysis
+        .analysis-item
+          .analysis-heading
+            = mi.shape(:visibility).css_class('analysis-icon outlined')
+            = t('story_details.reads')
+          .analysis-content
+            = number_to_human(@story.views, units: { thousand: 'K', million: 'M' })
+
+        .analysis-item
+          .analysis-heading
+            = mi.shape(:comment).css_class('analysis-icon outlined')
+            = t('story_details.comments')
+          .analysis-content
+            = number_to_human(@story.comments, units: { thousand: 'K', million: 'M' })
+
+        .analysis-item
+          .analysis-heading
+            = mi.shape(:format_list_bulleted).css_class('analysis-icon')
+            = t('story_details.chapters')
+          .analysis-content
+            = @story.chapters.size
+  .story-description
+    = line_chart @views_by_day,
+      title: t('charts.story_views_by_day'),
+      xtitle: t('charts.date'),
+      ytitle: t('charts.number_of_views'),
+      colors: ['#b00']

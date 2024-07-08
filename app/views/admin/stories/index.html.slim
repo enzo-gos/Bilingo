@@ -1,0 +1,9 @@
+.story-container
+  h1.story-title Manage Stories
+  hr.mb-10.mt-4
+  .search-container.mb-4
+    .search-input-wrapper
+      .search-icon
+        = mi.shape(:search).round.md_24
+      input.search-input[type="email" placeholder="Search for anything..."]
+  = render 'admin/shared/story_manage_table', stories: @stories, pagy: @pagy

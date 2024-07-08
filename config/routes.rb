@@ -77,10 +77,24 @@ Rails.application.routes.draw do
   end
 
   namespace :admin do
-    resources :users do
+    resources :users, except: [:show] do
       member do
         patch :ban
         patch :unban
+      end
+    end
+
+    resources :stories, only: [:index, :show, :destroy] do
+      member do
+        patch :ban
+        patch :unban
+        get :delete
+      end
+      resources :ban_requests, except: [:destroy] do
+        member do
+          patch :accept
+          patch :close
+        end
       end
     end
     root 'dashboards#index'

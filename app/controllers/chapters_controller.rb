@@ -5,6 +5,7 @@ class ChaptersController < ApplicationController
 
   def show
     @story.track_view(request.remote_ip, @chapter.id)
+    authorize @story
 
     params[:translate_code] ||= params[:locale]
     @prev_chapter = @chapter.higher_item ? story_chapter_path(story_id: @story.id, id: @chapter.higher_item.id) : nil

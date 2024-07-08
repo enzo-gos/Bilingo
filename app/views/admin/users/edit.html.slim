@@ -1,1 +1,4 @@
-= render 'user_form', employee: @employee, method: :patch
+.max-w-5xl.mx-auto
+  = render 'user_form', employee: @employee, method: :patch
+  hr.my-20
+  = render 'admin/shared/story_manage_table', stories: @stories, pagy: @pagy

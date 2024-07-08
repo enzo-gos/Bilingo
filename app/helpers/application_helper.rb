@@ -31,7 +31,7 @@ module ApplicationHelper
   end
 
   def top_story
-    Story.top_viewed.includes([:author, { cover_image_attachment: :blob }]).map do |story|
+    Story.with_published.top_viewed.includes([:author, { cover_image_attachment: :blob }]).map do |story|
       {
         cover: story.cover_image,
         title: story.name,

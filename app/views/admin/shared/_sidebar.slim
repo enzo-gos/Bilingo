@@ -4,7 +4,7 @@
       = mi.shape(:space_dashboard).outlined
     = link_to admin_users_path, class: "sidebar-link#{controller_name == 'users' ? ' active' : ''}" do
       = mi.shape(:people_alt).outlined
-    .sidebar-link
+    = link_to admin_stories_path, class: "sidebar-link#{controller_name == 'stories' ? ' active' : ''}" do
       = mi.shape(:library_books).outlined
     .sidebar-link
       = mi.shape(:report).outlined
