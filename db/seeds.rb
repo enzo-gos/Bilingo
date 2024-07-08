@@ -53,6 +53,7 @@ end
     s.description = long_description(i + 1)
     s.language_code = "EN"
     s.position = i + 1
+    s.banned = false
     s.cover_image.attach(io: File.open("app/assets/images/books/#{book_covers.sample}"), filename: "cover_image_#{i + 1}.jpg", content_type: 'image/jpeg')
     selected_tags = ActsAsTaggableOn::Tag.order("RANDOM()").limit(3).pluck(:name)
     s.tag_list.add(*selected_tags)

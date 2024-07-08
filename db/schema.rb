@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_07_05_050141) do
+ActiveRecord::Schema[7.1].define(version: 2024_07_05_092043) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -101,6 +101,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_07_05_050141) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "story_views_count", default: 0
+    t.boolean "banned", default: false
     t.index ["author_id"], name: "index_stories_on_author_id"
     t.index ["primary_genre_id"], name: "index_stories_on_primary_genre_id"
     t.index ["secondary_genre_id"], name: "index_stories_on_secondary_genre_id"

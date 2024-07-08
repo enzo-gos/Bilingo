@@ -5,7 +5,8 @@
   flex
   bg-white
   sticky
-  top-0;
+  top-0
+  z-max;
 }
 
 .admin-navbar .navbar-header {

@@ -10,26 +10,31 @@ class ChapterService::Translator < ApplicationService
   end
 
   def call
-    doc = Nokogiri::HTML.fragment(@chapter.content.body.to_s)
-    html_segments = {}
+    begin
+      doc = Nokogiri::HTML.fragment(@chapter.content.body.to_s)
+      html_segments = {}
 
-    doc.children.each do |node|
-      html_segments.merge! Hash[node.get_attribute('data-p-id'), node.to_html]
-    end
-
-    show_translate = @source_language.downcase != @target_language.downcase
-
-    if show_translate
-      cache_key = "translate_#{@target_language}_#{@chapter.id}"
-      cache_translate = Rails.cache.fetch(cache_key)
-
-      if cache_translate.nil? || cache_translate[:cached_at] <= @chapter.updated_at
-        cache_translate = start_translate(html_segments)
-        Rails.cache.write(cache_key, cache_translate)
+      doc.children.each do |node|
+        html_segments.merge! Hash[node.get_attribute('data-p-id'), node.to_html]
       end
-    end
 
-    show_translate = cache_translate
+      show_translate = @source_language.downcase != @target_language.downcase
+
+      if show_translate
+        cache_key = "translate_#{@target_language}_#{@chapter.id}"
+        cache_translate = Rails.cache.fetch(cache_key)
+
+        if cache_translate.nil? || cache_translate[:cached_at] <= @chapter.updated_at
+          cache_translate = start_translate(html_segments)
+          Rails.cache.write(cache_key, cache_translate)
+        end
+      end
+
+      show_translate = !cache_translate.nil?
+    rescue Google::Cloud::InvalidArgumentError
+      show_translate = false
+      cache_translate = nil
+    end
 
     {
       original: {

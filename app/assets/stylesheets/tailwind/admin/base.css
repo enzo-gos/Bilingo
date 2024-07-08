@@ -11,14 +11,16 @@
     font-semibold;
   }
 
-  .user-container {
+  .user-container,
+  .story-container {
     @apply dashboard-container
     max-w-7xl
     sm:w-full
     sm:mx-auto;
   }
 
-  .user-title {
+  .user-title,
+  .story-title {
     @apply dashboard-title;
   }
 
@@ -213,5 +215,69 @@
 
   .admin-body .field_with_errors .error {
     @apply text-red-500;
+  }
+
+  .reader.story-details .story-delete-btn {
+    @apply bg-red-600
+    w-fit
+    text-white
+    px-10
+    py-2.5
+    mt-auto
+    rounded-full
+    text-sm
+    font-bold
+    capitalize
+    transition-all
+    hover:bg-red-700;
+  }
+
+  .delete-form {
+    @apply flex
+    flex-col
+    gap-3;
+  }
+
+  .delete-form .form-input {
+    @apply w-full
+    border-gray-400/60;
+  }
+
+  .delete-form .form-label {
+    @apply mb-3
+    block
+    text-lg;
+  }
+
+  .delete-form .trix-input {
+    @apply min-h-60;
+  }
+
+  .delete-form .submit-btn {
+    @apply bg-primary-600
+    hover:bg-primary-700
+    px-6
+    py-3
+    text-white
+    text-sm
+    font-semibold
+    w-fit
+    ml-auto
+    rounded
+    transition-all
+    cursor-pointer;
+  }
+
+  .request-delete-container .close-btn {
+    @apply ml-auto
+    block
+    w-fit
+    p-2
+    bg-white
+    rounded
+    text-center
+    leading-none
+    border
+    hover:bg-gray-50;
   }
 }

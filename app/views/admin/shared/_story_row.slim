@@ -1,0 +1,23 @@
+td = story.id
+td = image_tag story.cover_image, alt: :cover_image, width: 50
+td = story.name
+td = link_to story.author.fullname, edit_admin_user_path(story.author), class: 'hover:text-primary-500'
+td = "#{story.number_of_published}"
+td = story.comments
+td = story.story_views.size
+td
+  .action-buttons
+    = link_to admin_story_path(story.id), class: 'analysis-btn' do
+      = mi.shape(:bar_chart).css_class('outlined action-icon')
+
+    - unless story.banned
+      = button_to ban_admin_story_path(story.id), method: :patch, data: { turbo_confirm: 'Are you sure you want to ban this story?' }, class: 'ban-btn' do
+        = mi.shape(:block).css_class('outlined action-icon')
+    - else
+      = button_to unban_admin_story_path(story.id), method: :patch, data: { turbo_confirm: 'Are you sure you want to unlock this story?' }, class: 'ban-btn' do
+        = mi.shape(:lock_open).css_class('outlined action-icon')
+
+    = link_to delete_admin_story_path(story.id), class: 'delete-btn' do
+      = mi.shape(:report).css_class('outlined action-icon')
+    / = button_to admin_story_path(story.id), method: :delete, data: { turbo_confirm: 'Are you sure you want to delete this story?' }, class: 'delete-btn' do
+    /   = mi.shape(:delete).css_class('outlined action-icon')

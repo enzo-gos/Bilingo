@@ -21,7 +21,10 @@ module Admin
       end
     end
 
-    def edit; end
+    def edit
+      story_list = @employee.stories.includes([:author, { cover_image_attachment: :blob }]).order(:id)
+      @pagy, @stories = pagy(story_list)
+    end
 
     def update
       if @employee.update(update_employee_params)

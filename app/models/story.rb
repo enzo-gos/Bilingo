@@ -19,7 +19,7 @@ class Story < ApplicationRecord
             :language_code,
             presence: true
 
-  scope :with_published, -> { joins(:chapters).where(chapters: { published: true }).distinct }
+  scope :with_published, -> { joins(:chapters).where(chapters: { published: true }, banned: false) }
 
   scope :top_viewed, ->(limit = 3) {
     subquery = StoryView.select('story_id, COUNT(*) AS view_count').group(:story_id)

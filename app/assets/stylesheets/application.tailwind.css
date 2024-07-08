@@ -274,9 +274,20 @@
     hover:text-blue-500;
   }
 
+  .management-table .action-buttons .analysis-btn {
+    @apply transition-all
+    hover:text-blue-500;
+  }
+
   .management-table .action-buttons .delete-btn {
     @apply transition-all
     hover:text-red-500;
+  }
+
+  .management-table .action-buttons .check-btn {
+    @apply text-green-600
+    transition-all
+    hover:text-green-500;
   }
 
   .management-table .action-buttons .delete-btn:disabled {
