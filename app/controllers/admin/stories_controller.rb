@@ -31,7 +31,7 @@ module Admin
       respond_to do |format|
         format.turbo_stream do
           render turbo_stream: [
-            turbo_stream.update(helpers.dom_id(@story), partial: 'story_row', locals: { story: @story })
+            turbo_stream.update(helpers.dom_id(@story), partial: 'admin/shared/story_row', locals: { story: @story })
           ]
         end
         format.html { redirect_to admin_stories_path, notice: 'Story was successfully banned.' }
@@ -43,7 +43,7 @@ module Admin
       respond_to do |format|
         format.turbo_stream do
           render turbo_stream: [
-            turbo_stream.update(helpers.dom_id(@story), partial: 'story_row', locals: { story: @story })
+            turbo_stream.update(helpers.dom_id(@story), partial: 'admin/shared/story_row', locals: { story: @story })
           ]
         end
         format.html { redirect_to admin_stories_path, notice: 'Story was successfully unlocked.' }
