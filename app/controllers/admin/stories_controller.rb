@@ -58,7 +58,7 @@ module Admin
     end
 
     def prepare_banned_requests
-      @requests = BannedRequest.includes([:rich_text_reason]).all.where(story: @story)
+      @requests = @story.banned_requests.includes([:rich_text_reason])
     end
   end
 end
