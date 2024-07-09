@@ -1,6 +1,6 @@
 FactoryBot.define do
   factory :banned_request do
-    title { "MyString" }
+    title { 'MyString' }
     story { nil }
     requester { nil }
     status { 1 }
