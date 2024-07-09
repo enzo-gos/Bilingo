@@ -1,6 +1,7 @@
 module Admin
   class StoriesController < BaseController
     before_action :prepare_story, except: [:index]
+    before_action :prepare_banned_requests, only: [:delete]
 
     def index
       story_list = Story.includes([:author, { cover_image_attachment: :blob }]).all.order(:id)
@@ -30,7 +31,7 @@ module Admin
       respond_to do |format|
         format.turbo_stream do
           render turbo_stream: [
-            turbo_stream.update(helpers.dom_id(@story), partial: 'admin/shared/story_row', locals: { story: @story })
+            turbo_stream.update(helpers.dom_id(@story), partial: 'story_row', locals: { story: @story })
           ]
         end
         format.html { redirect_to admin_stories_path, notice: 'Story was successfully banned.' }
@@ -42,7 +43,7 @@ module Admin
       respond_to do |format|
         format.turbo_stream do
           render turbo_stream: [
-            turbo_stream.update(helpers.dom_id(@story), partial: 'admin/shared/story_row', locals: { story: @story })
+            turbo_stream.update(helpers.dom_id(@story), partial: 'story_row', locals: { story: @story })
           ]
         end
         format.html { redirect_to admin_stories_path, notice: 'Story was successfully unlocked.' }
@@ -54,6 +55,10 @@ module Admin
     def prepare_story
       @story = Story.find(params[:id])
       authorize @story, policy_class: Admin::StoryPolicy
+    end
+
+    def prepare_banned_requests
+      @requests = BannedRequest.includes([:rich_text_reason]).all.where(story: @story)
     end
   end
 end

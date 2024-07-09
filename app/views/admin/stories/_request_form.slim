@@ -1,0 +1,10 @@
+.story-description.request-delete-container
+  strong.text-red-600 Note: When creating a request, the story will be banned.
+  = button_tag class: 'close-btn', type: :button, data: { request_form_target: 'closeBtn', action: 'click->request-form#closeForm' }
+    = mi.shape(:close).md_18
+
+  = simple_form_for banned_request, url: admin_story_ban_requests_path(story_id: story), method: :post, html: { class: 'delete-form' } do |f|
+    = f.input :title, input_html: { class: 'form-input', placeholder: 'Enter the title' }, label_html: { class: 'form-label' }
+    .form-trix
+      = f.rich_text_area :reason, class: 'trix-input'
+    = f.button :submit, 'Send Request', class: 'submit-btn'

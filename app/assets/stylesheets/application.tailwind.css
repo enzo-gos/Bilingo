@@ -279,15 +279,19 @@
     hover:text-blue-500;
   }
 
-  .management-table .action-buttons .delete-btn {
-    @apply transition-all
-    hover:text-red-500;
-  }
-
   .management-table .action-buttons .check-btn {
     @apply text-green-600
     transition-all
     hover:text-green-500;
+  }
+
+  .management-table .action-buttons .check-btn:disabled {
+    @apply text-gray-300;
+  }
+
+  .management-table .action-buttons .delete-btn {
+    @apply transition-all
+    hover:text-red-500;
   }
 
   .management-table .action-buttons .delete-btn:disabled {
@@ -306,5 +310,25 @@
   .management-table .empty-state {
     @apply px-6
     py-4;
+  }
+
+  .management-table .status {
+    @apply text-center;
+  }
+
+  .management-table .status.closed {
+    @apply text-red-600;
+  }
+
+  .management-table .status.open {
+    @apply text-blue-600;
+  }
+
+  .management-table .status.handled {
+    @apply text-yellow-600;
+  }
+
+  .management-table .status.accepted {
+    @apply text-green-600;
   }
 }
