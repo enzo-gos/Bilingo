@@ -62,7 +62,7 @@
               td = request.title
               td = request.reason
               td = request.created_at.strftime("%Y-%m-%d %H:%M:%S")
-              td class=="status #{request.status_str.downcase}" = request.status_str
+              td class=="status #{request.status}" = request.status
               td
                 .action-buttons
                   = button_to accept_admin_story_ban_request_path(story_id: @story.id, id: request.id), method: :patch, class: 'check-btn', disabled: request.closed? || request.accepted? do

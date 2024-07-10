@@ -313,7 +313,8 @@
   }
 
   .management-table .status {
-    @apply text-center;
+    @apply text-center
+    capitalize;
   }
 
   .management-table .status.closed {

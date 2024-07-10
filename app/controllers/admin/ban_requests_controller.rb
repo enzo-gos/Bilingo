@@ -40,8 +40,8 @@ module Admin
       @banned_request = BannedRequest.find(params[:id])
       authorize @banned_request, policy_class: Admin::BannedRequestPolicy
 
-      @banned_request.update(status: BannedRequest.close_status)
-      @story.update(banned: @story.banned_requests.where(status: [BannedRequest.open_status, BannedRequest.handle_status]).any?)
+      @banned_request.closed!
+      @story.update(banned: @story.banned_requests.where(status: [:open, :handled]).any?)
 
       redirect_back fallback_location: root_path, notice: 'Banned request was successfully closed.'
     end
@@ -50,8 +50,8 @@ module Admin
       @banned_request = BannedRequest.find(params[:id])
       authorize @banned_request, policy_class: Admin::BannedRequestPolicy
 
-      @banned_request.update(status: BannedRequest.accept_status)
-      @story.update(banned: @story.banned_requests.where(status: [BannedRequest.open_status, BannedRequest.handle_status]).any?)
+      @banned_request.accepted!
+      @story.update(banned: @story.banned_requests.where(status: [:open, :handled]).any?)
 
       redirect_back fallback_location: root_path, notice: 'Banned request was successfully accepted.'
     end
