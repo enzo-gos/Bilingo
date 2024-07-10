@@ -1,6 +1,7 @@
 module Admin
   class StoriesController < BaseController
     before_action :prepare_story, except: [:index]
+    before_action :prepare_banned_requests, only: [:delete]
 
     def index
       story_list = Story.includes([:author, { cover_image_attachment: :blob }]).all.order(:id)
@@ -54,6 +55,10 @@ module Admin
     def prepare_story
       @story = Story.find(params[:id])
       authorize @story, policy_class: Admin::StoryPolicy
+    end
+
+    def prepare_banned_requests
+      @requests = @story.banned_requests.includes([:rich_text_reason])
     end
   end
 end

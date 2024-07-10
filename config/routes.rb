@@ -90,6 +90,12 @@ Rails.application.routes.draw do
         patch :unban
         get :delete
       end
+      resources :ban_requests, except: [:destroy] do
+        member do
+          patch :accept
+          patch :close
+        end
+      end
     end
     root 'dashboards#index'
   end

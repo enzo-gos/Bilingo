@@ -31,3 +31,47 @@
             = @story.chapters.size
       .actions-group
         = button_to 'Permanently Delete', admin_story_path(@story), method: :delete, data: { turbo_confirm: 'Are you sure you want to delete this story?' }, class: 'story-delete-btn'
+  #request-form data-request-form-target='form'
+
+  .story-description
+    h1.story-title Banned Requests
+    = link_to new_admin_story_ban_request_path(story_id: @story), class: "create-btn !mt-0 !w-fit", type: :button, data: { turbo_stream: true, request_form_target: 'createBtn', action: 'click->request-form#openForm' }
+      | Create Request
+      = mi.shape(:add).md_18
+    .table-container
+      table.management-table
+        thead.table-heading
+          - @requests.each do |story|
+            tr
+              th [scope="col"]
+                | ID
+              th [scope="col"]
+                | Title
+              th [scope="col"]
+                | Reason
+              th [scope="col"]
+                | Created At
+              th [scope="col"]
+                | Status
+              th [scope="col"]
+                | Actions
+        tbody.table-body
+          - @requests.each do |request|
+            tr id==dom_id(request)
+              td = request.id
+              td = request.title
+              td = request.reason
+              td = request.created_at.strftime("%Y-%m-%d %H:%M:%S")
+              td class=="status #{request.status}" = request.status
+              td
+                .action-buttons
+                  = button_to accept_admin_story_ban_request_path(story_id: @story.id, id: request.id), method: :patch, class: 'check-btn', disabled: request.closed? || request.accepted? do
+                    = mi.shape(:check).css_class('outlined action-icon')
+
+                  = button_to close_admin_story_ban_request_path(story_id: @story.id, id: request.id), method: :patch, class: 'delete-btn', disabled: request.closed? || request.accepted? do
+                    = mi.shape(:delete).css_class('outlined action-icon')
+
+          - if @requests.empty?
+            tr
+              td.empty-state colspan='6'
+                | There are no requests available
