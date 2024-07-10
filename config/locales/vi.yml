@@ -81,6 +81,11 @@ vi:
     description: 'Mô tả'
     table_of_content: 'Mục lục'
 
+  report_story:
+    request: 'Báo cáo'
+    title_placeholder: 'Nhập tiêu đề'
+    send_request: 'Gửi yêu cầu'
+
   chapter:
     previous_chapter: 'Chương trước'
     next_chapter: 'Chương tiếp theo'

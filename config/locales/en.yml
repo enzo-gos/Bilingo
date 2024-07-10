@@ -110,6 +110,11 @@ en:
     description: 'Description'
     table_of_content: 'Table of Content'
 
+  report_story:
+    request: 'Report Request'
+    title_placeholder: 'Enter the title'
+    send_request: 'Send Request'
+
   chapter:
     previous_chapter: 'Previous chapter'
     next_chapter: 'Next chapter'
