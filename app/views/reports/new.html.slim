@@ -1,6 +1,4 @@
-- story_meta(@story)
-
-.reader.story-details
+.reader.story-details data-controller='request-form'
   .story-heading
     .story-cover
       = image_tag @story.cover_image
@@ -30,21 +28,12 @@
             = mi.shape(:format_list_bulleted).css_class('analysis-icon')
             = t('story_details.chapters')
           .analysis-content
-            = @story.number_of_published
-      .actions-group
-        = link_to t('story_details.start_reading'), story_chapter_path(story_id: @story.id, id: @story.chapters.first.id), class: 'story-reading-btn'
-        = link_to share_path(@story), class: 'story-share-btn', data: { turbo_stream: true, action: 'click->share-modal#open' }
-          = mi.shape(:share).md_18
-        = link_to new_story_reports_path(story_id: @story.id), class: 'story-report-btn'
-          = mi.shape(:flag).md_18
-  .story-description
-    .story-description-title = t('story_details.description')
-    = @story.description
+            = @story.chapters.size
 
-  .story-table-content
-    .story-table-content-title = t('story_details.table_of_content')
-    .story-table-list
-      - @story.chapters.each do |chapter|
-        = link_to story_chapter_path(story_id: @story.id, id: chapter.id), class: 'chapter-item'
-          .chapter-title = chapter.title
-          .chapter-published = time_ago_in_words(chapter.updated_at)
+  .story-description
+    h1.story-title.mb-6 = t('report_story.request')
+    = simple_form_for @report_request, url: story_reports_path(story_id: @story), method: :post, html: { class: 'delete-form' } do |f|
+      = f.input :title, input_html: { class: 'form-input', placeholder: t('report_story.title_placeholder') }, label_html: { class: 'form-label' }
+      .form-trix
+        = f.rich_text_area :reason, class: 'trix-input'
+      = f.button :submit, t('report_story.send_request'), class: 'submit-btn'

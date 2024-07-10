@@ -19,7 +19,7 @@
         .sharing
           = link_to story[:share], data: { turbo_stream: true, action: 'click->share-modal#open' }, class: 'facebook-btn' do
             = mi.shape(:share).outlined
-          = link_to '#story-1-flag', class: 'flag-btn' do
+          = link_to new_story_reports_path(story_id: story[:id]), class: 'flag-btn' do
             = mi.shape(:flag).outlined
         = link_to story[:url], class: 'read-btn' do
           span = t('story.reading_now')

@@ -2,6 +2,7 @@ module HomeHelper
   def format_stories(stories)
     stories.map do |story|
       {
+        id: story.id,
         cover: story.cover_image,
         title: story.name,
         author: story.author.fullname,
