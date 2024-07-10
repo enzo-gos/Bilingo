@@ -12,7 +12,7 @@ class ReportsController < ApplicationController
     @report_request.reporter = current_user
 
     if @report_request.save
-      redirect_to story_path(@story), notice: 'Report was successfully created.'
+      redirect_to story_path(@story), notice: t('report_story.success')
     else
       render :new, status: :unprocessable_entity
     end

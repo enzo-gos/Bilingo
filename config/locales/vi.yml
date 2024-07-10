@@ -85,6 +85,7 @@ vi:
     request: 'Báo cáo'
     title_placeholder: 'Nhập tiêu đề'
     send_request: 'Gửi yêu cầu'
+    success: 'Báo cáo đã được tạo thành công.'
 
   chapter:
     previous_chapter: 'Chương trước'

@@ -114,6 +114,7 @@ en:
     request: 'Report Request'
     title_placeholder: 'Enter the title'
     send_request: 'Send Request'
+    success: 'Report was successfully created.'
 
   chapter:
     previous_chapter: 'Previous chapter'

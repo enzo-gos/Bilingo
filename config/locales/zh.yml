@@ -85,6 +85,7 @@ zh:
     request: '举报请求'
     title_placeholder: '输入标题'
     send_request: '发送请求'
+    success: '举报成功创建。'
 
   chapter:
     previous_chapter: '上一章'
