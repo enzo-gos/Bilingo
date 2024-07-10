@@ -61,6 +61,7 @@ Rails.application.routes.draw do
     resources :topics, only: [:show]
 
     resources :stories, only: [:index, :show] do
+      resource :reports, only: [:create, :new]
       resources :chapters, only: [:show] do
         member do
           get :rephrase

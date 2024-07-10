@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_07_08_045526) do
+ActiveRecord::Schema[7.1].define(version: 2024_07_09_072811) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -118,6 +118,17 @@ ActiveRecord::Schema[7.1].define(version: 2024_07_08_045526) do
     t.index ["secondary_genre_id"], name: "index_stories_on_secondary_genre_id"
   end
 
+  create_table "story_reports", force: :cascade do |t|
+    t.string "title"
+    t.integer "status", default: 0
+    t.bigint "story_id", null: false
+    t.bigint "reporter_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["reporter_id"], name: "index_story_reports_on_reporter_id"
+    t.index ["story_id"], name: "index_story_reports_on_story_id"
+  end
+
   create_table "story_views", force: :cascade do |t|
     t.string "ip_address"
     t.bigint "story_id", null: false
@@ -199,6 +210,8 @@ ActiveRecord::Schema[7.1].define(version: 2024_07_08_045526) do
   add_foreign_key "stories", "genres", column: "primary_genre_id"
   add_foreign_key "stories", "genres", column: "secondary_genre_id"
   add_foreign_key "stories", "users", column: "author_id"
+  add_foreign_key "story_reports", "stories"
+  add_foreign_key "story_reports", "users", column: "reporter_id"
   add_foreign_key "story_views", "chapters"
   add_foreign_key "story_views", "stories"
   add_foreign_key "taggings", "tags"

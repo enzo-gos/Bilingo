@@ -332,4 +332,8 @@
   .management-table .status.accepted {
     @apply text-green-600;
   }
+
+  .field_with_errors .error {
+    @apply text-red-500;
+  }
 }
