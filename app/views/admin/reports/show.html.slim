@@ -30,14 +30,31 @@
           .analysis-content
             = @story.chapters.size
       .actions-group
-        = button_to 'Permanently Delete', admin_story_path(@story), method: :delete, data: { turbo_confirm: 'Are you sure you want to delete this story?' }, class: 'story-delete-btn'
-  #request-form data-request-form-target='form'
+        - if @report.accepted?
+          .status-tag.accept-status = @report.status
+        - elsif @report.closed?
+          .status-tag.close-status = @report.status
+        - else
+            = button_to 'Mark as done', accept_admin_report_path(@report), method: :patch, data: { turbo_confirm: 'Are you sure you want to accept this report?' }, class: 'story-accept-btn'
+            = button_to 'Close', close_admin_report_path(@report), method: :patch, data: { turbo_confirm: 'Are you sure you want to close this report?' }, class: 'story-delete-btn'
+        = link_to story_path(@story), class: 'visit-btn', target: '_blank' do
+          = mi.shape(:public).md_18
+  .story-description
+    .report-title = @report.title
+    .report-reason = @report.reason
+
+    i.report-reporter = "by #{@report.reporter.fullname}"
+
+    #request-form data-request-form-target='form'
 
   .story-description
-    h1.story-title Banned Requests
-    = link_to new_admin_story_ban_request_path(story_id: @story), class: "create-btn !mt-0 !w-fit", type: :button, data: { turbo_stream: true, request_form_target: 'createBtn', action: 'click->request-form#openForm' }
-      | Create Request
-      = mi.shape(:add).md_18
+    .flex.items-center
+      .story-title.mb-4 Banned Requests
+      - if @report.open?
+        .report-actions.mb-4 data-request-form-target='createBtn'
+          = link_to new_admin_story_ban_request_path(story_id: @report.story.id, story_report_id: @report.id), class: 'report-action-btn create-request-btn', data: { turbo_stream: true, action: 'click->report-form-modal#close click->request-form-modal#open' } do
+            | Ban Request
+            = mi.shape(:edit_note).css_class('outlined action-icon')
     .table-container
       table.management-table
         thead.table-heading

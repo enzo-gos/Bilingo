@@ -1,6 +1,7 @@
 class BannedRequest < ApplicationRecord
   belongs_to :story
   belongs_to :requester, class_name: :User
+  belongs_to :story_report, optional: true
 
   has_rich_text :reason
 

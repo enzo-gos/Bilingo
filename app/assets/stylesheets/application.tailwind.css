@@ -269,12 +269,14 @@
     w-6;
   }
 
-  .management-table .action-buttons .edit-btn {
-    @apply transition-all
-    hover:text-blue-500;
+  .management-table .action-buttons .info-btn {
+    @apply text-sky-500;
   }
 
-  .management-table .action-buttons .analysis-btn {
+  .management-table .action-buttons .edit-btn,
+  .management-table .action-buttons .analysis-btn,
+  .management-table .action-buttons .create-request-btn,
+  .management-table .action-buttons .info-btn {
     @apply transition-all
     hover:text-blue-500;
   }
@@ -285,17 +287,9 @@
     hover:text-green-500;
   }
 
-  .management-table .action-buttons .check-btn:disabled {
-    @apply text-gray-300;
-  }
-
   .management-table .action-buttons .delete-btn {
     @apply transition-all
     hover:text-red-500;
-  }
-
-  .management-table .action-buttons .delete-btn:disabled {
-    @apply text-gray-300;
   }
 
   .management-table .action-buttons .ban-btn {
@@ -303,7 +297,10 @@
     hover:text-yellow-500;
   }
 
-  .management-table .action-buttons .ban-btn:disabled {
+  .management-table .action-buttons .create-request-btn:disabled,
+  .management-table .action-buttons .delete-btn:disabled,
+  .management-table .action-buttons .ban-btn:disabled,
+  .management-table .action-buttons .check-btn:disabled {
     @apply text-gray-300;
   }
 

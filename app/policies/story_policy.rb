@@ -1,5 +1,5 @@
 class StoryPolicy < ApplicationPolicy
   def show?
-    record.banned == false
+    user.has_role?(:admin) || record.banned == false
   end
 end

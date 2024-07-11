@@ -98,6 +98,13 @@ Rails.application.routes.draw do
         end
       end
     end
+
+    resources :reports, only: [:index, :show] do
+      member do
+        patch :close
+        patch :accept
+      end
+    end
     root 'dashboards#index'
   end
 end

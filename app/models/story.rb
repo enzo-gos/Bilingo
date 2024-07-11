@@ -6,6 +6,7 @@ class Story < ApplicationRecord
   has_many :chapters, -> { order(position: :asc) }, dependent: :destroy
   has_many :story_views, dependent: :destroy
   has_many :banned_requests, dependent: :destroy
+  has_many :story_reports, dependent: :destroy
   has_one_attached :cover_image, dependent: :destroy
 
   acts_as_taggable_on :tags

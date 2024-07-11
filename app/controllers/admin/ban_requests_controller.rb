@@ -7,7 +7,7 @@ module Admin
       respond_to do |format|
         format.turbo_stream do
           render turbo_stream: [
-            turbo_stream.update('request-form', partial: 'admin/stories/request_form', locals: { banned_request: BannedRequest.new, story: @story })
+            turbo_stream.update('request-form', partial: 'admin/stories/request_form', locals: { banned_request: BannedRequest.new, story: @story, story_report_id: params[:story_report_id] })
           ]
         end
         format.html
@@ -28,7 +28,7 @@ module Admin
             redirect_back fallback_location: root_path, notice: 'Banned request was successfully sent.'
           else
             render turbo_stream: [
-              turbo_stream.update('request-form', partial: 'admin/stories/request_form', locals: { banned_request: @banned_request, story: @story })
+              turbo_stream.update('request-form', partial: 'admin/stories/request_form', locals: { banned_request: @banned_request, story: @story, story_report_id: params[:story_report_id] })
             ]
           end
         end
@@ -63,7 +63,7 @@ module Admin
     end
 
     def banned_request_params
-      params.require(:banned_request).permit(:title, :reason)
+      params.require(:banned_request).permit(:title, :reason, :story_report_id)
     end
   end
 end
