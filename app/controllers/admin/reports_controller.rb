@@ -6,12 +6,16 @@ module Admin
 
     def show
       @report = StoryReport.find(params[:id])
+      authorize @report, policy_class: Admin::StoryReportPolicy
+
       @requests = @report.banned_requests
       @story = @report.story
     end
 
     def close
       @report_request = StoryReport.find(params[:id])
+      authorize @report_request, policy_class: Admin::StoryReportPolicy
+
       @report_request.closed!
 
       redirect_back fallback_location: root_path, notice: 'Reported request was successfully closed.'
@@ -19,6 +23,8 @@ module Admin
 
     def accept
       @report_request = StoryReport.find(params[:id])
+      authorize @report_request, policy_class: Admin::StoryReportPolicy
+
       @report_request.accepted!
 
       redirect_back fallback_location: root_path, notice: 'Reported request was successfully closed.'

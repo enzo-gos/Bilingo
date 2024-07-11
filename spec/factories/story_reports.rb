@@ -1,6 +1,6 @@
 FactoryBot.define do
   factory :story_report do
-    title { "MyString" }
+    title { 'MyString' }
     story { nil }
     reporter { nil }
     status { 1 }
