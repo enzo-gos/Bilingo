@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_07_09_072811) do
+ActiveRecord::Schema[7.1].define(version: 2024_07_11_053218) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -59,8 +59,10 @@ ActiveRecord::Schema[7.1].define(version: 2024_07_09_072811) do
     t.bigint "requester_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "story_report_id"
     t.index ["requester_id"], name: "index_banned_requests_on_requester_id"
     t.index ["story_id"], name: "index_banned_requests_on_story_id"
+    t.index ["story_report_id"], name: "index_banned_requests_on_story_report_id"
   end
 
   create_table "chapters", force: :cascade do |t|

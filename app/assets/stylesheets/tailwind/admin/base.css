@@ -217,7 +217,8 @@
     @apply text-red-500;
   }
 
-  .reader.story-details .story-delete-btn {
+  .reader.story-details .story-delete-btn,
+  .reader.story-details .story-accept-btn {
     @apply bg-red-600
     w-fit
     text-white
@@ -230,6 +231,11 @@
     capitalize
     transition-all
     hover:bg-red-700;
+  }
+
+  .reader.story-details .story-accept-btn {
+    @apply bg-green-600
+    hover:bg-green-700;
   }
 
   .delete-form {
@@ -279,5 +285,82 @@
     leading-none
     border
     hover:bg-gray-50;
+  }
+
+  .banned-request-modal {
+    @apply base-modal
+    p-8
+    w-full
+    max-w-3xl;
+  }
+
+  .report-title {
+    @apply text-lg
+    font-semibold
+    mb-4;
+  }
+
+  .report-container {
+    @apply min-h-60;
+  }
+
+  .report-reporter {
+    @apply my-2
+    block;
+  }
+
+  .report-actions {
+    @apply flex
+    items-center
+    w-fit
+    ml-auto;
+  }
+
+  .report-action-btn {
+    @apply flex
+    items-center
+    gap-2
+    px-4
+    py-2
+    rounded
+    font-semibold;
+  }
+
+  .report-action-btn.create-request-btn {
+    @apply bg-primary-600
+    text-white;
+  }
+
+  .status-tag {
+    @apply text-center
+    px-6
+    py-2
+    rounded-full
+    border-2
+    w-fit
+    capitalize
+    font-semibold;
+  }
+
+  .status-tag.accept-status {
+    @apply border-green-500
+    text-green-500;
+  }
+
+  .status-tag.close-status {
+    @apply border-red-500
+    text-red-500;
+  }
+
+  .visit-btn {
+    @apply border
+    border-primary-600
+    text-primary-600
+    rounded-full
+    flex
+    items-center
+    justify-center
+    leading-none
+    p-2;
   }
 }

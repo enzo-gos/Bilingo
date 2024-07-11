@@ -1,0 +1,60 @@
+. data-controller='request-form-modal report-form-modal'
+  = render 'admin/shared/modal/banned_request_modal'
+  .story-container
+    h1.story-title Manage Reports
+    hr.mb-10.mt-4
+    .search-container.mb-4
+      .search-input-wrapper
+        .search-icon
+          = mi.shape(:search).round.md_24
+        input.search-input[type="email" placeholder="Search for anything..."]
+    .table-container
+      table.management-table
+        thead.table-heading
+          - @story_reports.each do |request|
+            tr
+              th [scope="col"]
+                | ID
+              th [scope="col"]
+                .h-24.sm:h-auto Story
+              th [scope="col"]
+                | Reporter
+              th [scope="col"]
+                | Title
+              th [scope="col"]
+                | Created At
+              th [scope="col"]
+                | Status
+              th [scope="col"]
+                | Actions
+        tbody.table-body
+          - @story_reports.each do |request|
+            tr id==dom_id(request)
+              td = request.id
+              td.w-fit
+                .flex.items-center.gap-3
+                  = image_tag request.story.cover_image, alt: :cover_image, width: 50
+                  .flex.flex-col.gap-2
+                    .whitespace-nowrap = request.story.name
+                    .whitespace-nowrap = request.story.author.fullname
+              td.whitespace-nowrap = request.reporter.fullname
+              td
+                .line-clamp-2.text-ellipsis = request.title
+              td = request.created_at.strftime("%Y-%m-%d %H:%M:%S")
+              td class=="status #{request.status}" = request.status
+              td
+                .action-buttons
+                  = button_to close_admin_report_path(request), method: :patch, class: 'delete-btn', disabled: request.closed? || request.accepted?, data: { turbo_confirm: 'Are you sure you want to close this request?' } do
+                    = mi.shape(:close).css_class('outlined action-icon')
+
+                  = link_to admin_report_path(request), class: 'info-btn' do
+                    = mi.shape(:info).css_class('outlined action-icon')
+
+
+          - if @story_reports.empty?
+            tr
+              td.empty-state colspan='6'
+                | There are no reports available
+      - if @pagy && @pagy.pages > 1
+        .navigation
+          == pagy_nav(@pagy)
