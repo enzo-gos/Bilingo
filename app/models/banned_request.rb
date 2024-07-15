@@ -18,6 +18,6 @@ class BannedRequest < ApplicationRecord
   private
 
   def send_notifications
-    BannedRequestNotifier.with(record: self, icon: :report).deliver(story.author) if accepted? || open?
+    BannedRequestNotifier.with(record: self, icon: :report).deliver(story.author) unless handled?
   end
 end

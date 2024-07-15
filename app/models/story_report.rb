@@ -12,4 +12,12 @@ class StoryReport < ApplicationRecord
             presence: true
 
   enum :status, [:open, :accepted, :closed], validate: true
+
+  after_create_commit :send_notifications
+
+  private
+
+  def send_notifications
+    ReportNotifier.with(record: self, icon: :report).deliver(User.with_role(:admin))
+  end
 end

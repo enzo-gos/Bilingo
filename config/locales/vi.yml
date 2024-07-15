@@ -87,6 +87,7 @@ vi:
     send_request: 'Gửi yêu cầu'
     success: 'Báo cáo đã được tạo thành công.'
     confirm_mark_as_solved: 'Bạn có chắc chắn muốn đánh dấu báo cáo này là đã giải quyết không?'
+    solved: 'Yêu cầu báo cáo đã được đánh dấu là đã giải quyết thành công.'
     status:
       mark_as_solved: 'Đánh dấu đã giải quyết'
       accepted: 'Đã chấp nhận'
@@ -100,6 +101,7 @@ vi:
       status:
         open: 'bị cấm'
         accepted: 'được chấp nhận'
+        closed: 'được chấp nhận'
 
   chapter:
     previous_chapter: 'Chương trước'

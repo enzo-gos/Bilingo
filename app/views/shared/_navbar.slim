@@ -41,11 +41,11 @@ header.sticky.top-0.z-max data-controller='navbar'
               .writer-title = t('navbar.my_stories')
 
       - if current_user.present?
-        .dropdown.notification-dropdown
+        .dropdown.notification-dropdown data-controller='notification' data-notification-url==notification_mark_as_read_path(':id')
           #notification_index_count.dropdown-btn.notification-btn
             = render 'shared/notifications/bell', notification_count: current_user.unread_notifications_count
           #notifications.dropdown-list.notification-list
-            - current_user.notifications.unread.each do |notification|
+            - current_user.notifications.each do |notification|
               = render 'shared/notifications/notification', notification: notification
 
           / - if current_user.notifications.unread.count > 5
@@ -101,4 +101,3 @@ header.sticky.top-0.z-max data-controller='navbar'
   = render 'shared/mobile_sidebar', data_navbar_target: 'mobileSidebar'
 
 #notification-popup data-controller='notification-popup'
-

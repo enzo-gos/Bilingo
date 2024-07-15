@@ -290,7 +290,18 @@
     py-5
     px-4
     hover:bg-slate-50
-    cursor-pointer;
+    cursor-pointer
+    relative;
+  }
+
+  .dropdown-item.notification-item .unread-dot {
+    @apply absolute
+    top-3
+    right-3
+    w-3
+    h-3
+    bg-primary-500
+    rounded-full;
   }
 
   .dropdown-item.notification-item:last-child {

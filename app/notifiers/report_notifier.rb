@@ -10,10 +10,22 @@ class ReportNotifier < ApplicationNotifier
   #   config.method = 'new_report'
   # end
 
-  deliver_by :action_cable do |config|
-    config.channel = 'Noticed::NotificationsChannel'
-    config.stream = -> { recipient }
-    config.message = -> { params.merge(user_id: recipient.id) }
+  deliver_by :turbo_stream, class: 'DeliveryMethods::AdminTurboStream'
+
+  def message
+    "Reason: #{record.reason}".html_safe
+  end
+
+  def title
+    "<b>#{record.reporter.fullname}</b> has reported <b>#{record.story.name}</b>".html_safe
+  end
+
+  def icon
+    params[:icon]
+  end
+
+  def destination_path
+    admin_report_path(id: record.id)
   end
   #
   # bulk_deliver_by :slack do |config|

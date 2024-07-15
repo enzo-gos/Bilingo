@@ -10,7 +10,7 @@ class BannedRequestNotifier < ApplicationNotifier
   #   config.method = 'new_report'
   # end
 
-  deliver_by :turbo_stream, class: 'DeliveryMethods::TurboStream'
+  deliver_by :turbo_stream, class: 'DeliveryMethods::UserTurboStream'
 
   def message
     t('notifications.banned_request.reason', title: record.title, reason: record.reason.body.to_plain_text.truncate_words(20)).html_safe

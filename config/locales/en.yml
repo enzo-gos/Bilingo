@@ -116,6 +116,7 @@ en:
     send_request: 'Send Request'
     success: 'Report was successfully created.'
     confirm_mark_as_solved: 'Are you sure you want to mark as solved this report?'
+    solved: 'Reported request was successfully mark as solved.'
     status:
       mark_as_solved: 'Mark as solved'
       accepted: 'Accepted'
@@ -129,6 +130,7 @@ en:
       status:
         open: 'banned'
         accepted: 'accepted'
+        closed: 'accepted'
 
   chapter:
     previous_chapter: 'Previous chapter'

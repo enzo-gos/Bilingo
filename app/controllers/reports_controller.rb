@@ -23,7 +23,7 @@ class ReportsController < ApplicationController
 
   def solved
     @request.handled!
-    redirect_back fallback_location: root_path, notice: 'Reported request was successfully mark as solved.'
+    redirect_back fallback_location: root_path, notice: t('report_story.solved')
   end
 
   private
