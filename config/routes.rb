@@ -61,7 +61,11 @@ Rails.application.routes.draw do
     resources :topics, only: [:show]
 
     resources :stories, only: [:index, :show] do
-      resource :reports, only: [:create, :new]
+      resources :reports, only: [:create, :new, :show] do
+        member do
+          patch :solved
+        end
+      end
       resources :chapters, only: [:show] do
         member do
           get :rephrase
@@ -74,6 +78,7 @@ Rails.application.routes.draw do
         end
       end
     end
+
     root 'home#index'
   end
 

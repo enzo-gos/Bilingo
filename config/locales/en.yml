@@ -115,6 +115,12 @@ en:
     title_placeholder: 'Enter the title'
     send_request: 'Send Request'
     success: 'Report was successfully created.'
+    confirm_mark_as_solved: 'Are you sure you want to mark as solved this report?'
+    status:
+      mark_as_solved: 'Mark as solved'
+      accepted: 'Accepted'
+      closed: 'Closed'
+      handled: 'Pending'
 
   chapter:
     previous_chapter: 'Previous chapter'

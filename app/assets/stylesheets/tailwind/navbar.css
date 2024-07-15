@@ -154,8 +154,43 @@
     md:block;
   }
 
-  .navbar-container .dropdown.profile-dropdown {
+  .navbar-container .dropdown.profile-dropdown,
+  .navbar-container .dropdown.notification-dropdown {
     @apply inline-block;
+  }
+
+  .navbar-container .dropdown.notification-dropdown {
+    @apply ml-10
+    mr-3;
+  }
+
+  .navbar-container .dropdown > .dropdown-btn.notification-btn {
+    @apply flex
+    items-center
+    justify-center
+    text-secondary-700
+    rounded-full
+    p-2
+    relative
+    cursor-pointer;
+  }
+
+  .navbar-container .dropdown > .dropdown-btn .notification-count {
+    @apply absolute
+    top-0
+    right-1
+    flex
+    items-center
+    justify-center
+    text-[9px]
+    leading-none
+    py-1.5
+    px-2
+    rounded-full
+    font-bold
+    translate-x-1/2
+    bg-primary-500
+    text-white;
   }
 
   .navbar-container .dropdown > .dropdown-list {
@@ -188,6 +223,14 @@
 
   .navbar-container .dropdown > .dropdown-list.profile-list {
     @apply right-0;
+  }
+
+  .navbar-container .dropdown > .dropdown-list.notification-list {
+    @apply min-w-[400px]
+    right-0
+    max-h-[80vh]
+    lg:max-h-[500px]
+    overflow-y-auto;
   }
 
   .navbar-container .dropdown > .dropdown-list .dropdown-list-genre,
@@ -239,6 +282,39 @@
     transition-all;
   }
 
+  .dropdown-item.notification-item {
+    @apply flex
+    items-center
+    gap-4
+    border-b
+    py-5
+    px-4
+    hover:bg-slate-50
+    cursor-pointer;
+  }
+
+  .dropdown-item.notification-item:last-child {
+    @apply border-none;
+  }
+
+  .dropdown-item.notification-item .notification-icon {
+    @apply text-4xl;
+  }
+
+  .dropdown-item.notification-item .report {
+    @apply text-yellow-500;
+  }
+
+  .dropdown-item .notification-title {
+    @apply mb-2;
+  }
+
+  .dropdown-item .notification-content {
+    @apply text-sm
+    mb-2
+    text-secondary-700;
+  }
+
   .navbar-container .dropdown > .dropdown-list > .dropdown-item > .writer,
   .navbar-container .dropdown > .dropdown-list > .dropdown-item > .localization {
     @apply flex
@@ -270,5 +346,19 @@
   .navbar-container .dropdown > .dropdown-list > .dropdown-item > .writer > .writer-title {
     @apply whitespace-nowrap
     text-sm;
+  }
+
+  #notification-popup {
+    @apply w-[350px]
+    fixed
+    bottom-5
+    -left-full
+    border
+    rounded-md
+    shadow-lg
+    bg-slate-50
+    overflow-hidden
+    transition-all
+    duration-700;
   }
 }

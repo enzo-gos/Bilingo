@@ -352,6 +352,11 @@
     text-red-500;
   }
 
+  .status-tag.pending-status {
+    @apply border-yellow-500
+    text-yellow-500;
+  }
+
   .visit-btn {
     @apply border
     border-primary-600

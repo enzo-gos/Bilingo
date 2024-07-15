@@ -33,5 +33,9 @@ module Bilingo
 
     config.i18n.available_locales = %i[en vi zh]
     config.i18n.default_locale = :vi
+
+    config.to_prepare do
+      Noticed::Notification.include Noticed::NotificationExtensions
+    end
   end
 end

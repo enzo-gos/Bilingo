@@ -3,6 +3,7 @@ class StoryReport < ApplicationRecord
   belongs_to :reporter, class_name: :User
 
   has_many :banned_requests, dependent: :destroy
+  has_many :notification_mentions, as: :record, dependent: :destroy, class_name: 'Noticed::Event'
 
   has_rich_text :reason
 

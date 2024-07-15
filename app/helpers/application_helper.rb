@@ -83,4 +83,8 @@ module ApplicationHelper
   def current_locale
     I18n.locale
   end
+
+  def format_notification(count)
+    count > 99 ? '99+' : count.to_s
+  end
 end

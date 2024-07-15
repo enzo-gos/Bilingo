@@ -1,6 +1,7 @@
 class ReportsController < ApplicationController
   before_action :auth_user
   before_action :prepare_story
+  before_action :prepare_request, only: [:show, :solved]
 
   def new
     @report_request = StoryReport.new
@@ -18,6 +19,13 @@ class ReportsController < ApplicationController
     end
   end
 
+  def show; end
+
+  def solved
+    @request.handled!
+    redirect_back fallback_location: root_path, notice: 'Reported request was successfully mark as solved.'
+  end
+
   private
 
   def report_request_params
@@ -26,6 +34,11 @@ class ReportsController < ApplicationController
 
   def prepare_story
     @story = Story.find(params[:story_id])
+  end
+
+  def prepare_request
+    @request = BannedRequest.find(params[:id])
+    authorize @request
   end
 
   def auth_user
