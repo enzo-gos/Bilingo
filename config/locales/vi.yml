@@ -93,6 +93,14 @@ vi:
       closed: 'Đã đóng'
       handled: 'Đang xử lý'
 
+  notifications:
+    banned_request:
+      title: 'Truyện <b>%{story}</b> của bạn đã <b>%{status}</b>!'
+      reason: 'Lý do: %{title} <br /> %{reason}'
+      status:
+        open: 'bị cấm'
+        accepted: 'được chấp nhận'
+
   chapter:
     previous_chapter: 'Chương trước'
     next_chapter: 'Chương tiếp theo'

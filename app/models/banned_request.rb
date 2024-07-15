@@ -13,11 +13,11 @@ class BannedRequest < ApplicationRecord
 
   enum :status, [:open, :handled, :accepted, :closed], validate: true
 
-  after_create_commit :send_notifications
+  after_save_commit :send_notifications
 
   private
 
   def send_notifications
-    BannedRequestNotifier.with(record: self, icon: :report).deliver(story.author)
+    BannedRequestNotifier.with(record: self, icon: :report).deliver(story.author) if accepted? || open?
   end
 end

@@ -93,6 +93,14 @@ zh:
       closed: '已关闭'
       handled: '待处理'
 
+  notifications:
+    banned_request:
+      title: '您的<b>%{story}</b>已被<b>%{status}</b>!'
+      reason: '原因: %{title} <br /> %{reason}'
+      status:
+        open: '禁止'
+        accepted: '接受'
+
   chapter:
     previous_chapter: '上一章'
     next_chapter: '下一章'

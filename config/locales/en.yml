@@ -122,6 +122,14 @@ en:
       closed: 'Closed'
       handled: 'Pending'
 
+  notifications:
+    banned_request:
+      title: 'Your <b>%{story}</b> has been <b>%{status}</b>!'
+      reason: 'Reason: %{title} <br /> %{reason}'
+      status:
+        open: 'banned'
+        accepted: 'accepted'
+
   chapter:
     previous_chapter: 'Previous chapter'
     next_chapter: 'Next chapter'

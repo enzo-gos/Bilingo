@@ -13,11 +13,11 @@ class BannedRequestNotifier < ApplicationNotifier
   deliver_by :turbo_stream, class: 'DeliveryMethods::TurboStream'
 
   def message
-    "Reason: #{record.title} <br /> #{record.reason.body.to_plain_text.truncate_words(20)}".html_safe
+    t('notifications.banned_request.reason', title: record.title, reason: record.reason.body.to_plain_text.truncate_words(20)).html_safe
   end
 
   def title
-    "Your <b>#{record.story.name}</b> has been <b>banned</b>!".html_safe
+    t('notifications.banned_request.title', story: record.story.name, status: t("notifications.banned_request.status.#{record.status}")).html_safe
   end
 
   def icon
@@ -27,8 +27,6 @@ class BannedRequestNotifier < ApplicationNotifier
   def destination_path
     story_report_path(story_id: record.story.id, id: record.id)
   end
-
-  private
 
   #
   # bulk_deliver_by :slack do |config|
