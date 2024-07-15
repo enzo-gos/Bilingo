@@ -78,3 +78,5 @@ gem 'meta-tags', '~> 2.21'
 gem 'chartkick', '~> 5.0'
 
 gem 'groupdate', '~> 6.4'
+
+gem 'noticed', '~> 2.4'

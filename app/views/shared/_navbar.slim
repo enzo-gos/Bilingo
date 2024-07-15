@@ -1,3 +1,4 @@
+= turbo_stream_from "notifications_#{current_user&.id}"
 header.sticky.top-0.z-max data-controller='navbar'
   nav.navbar-container
     .navbar-group__left
@@ -38,6 +39,18 @@ header.sticky.top-0.z-max data-controller='navbar'
           .dropdown-item
             = link_to writer_stories_path, class: 'writer navbar-link' do
               .writer-title = t('navbar.my_stories')
+
+      - if current_user.present?
+        .dropdown.notification-dropdown
+          #notification_index_count.dropdown-btn.notification-btn
+            = render 'shared/notifications/bell', notification_count: current_user.unread_notifications_count
+          #notifications.dropdown-list.notification-list
+            - current_user.notifications.unread.each do |notification|
+              = render 'shared/notifications/notification', notification: notification
+
+          / - if current_user.notifications.unread.count > 5
+          /   .dropdown-item.view-all
+          /     = link_to "View all notifications", notifications_path
 
       - if user_signed_in?
         .dropdown.profile-dropdown
@@ -86,3 +99,6 @@ header.sticky.top-0.z-max data-controller='navbar'
                 = mi.shape(:check).round.md_18.css_class('text-green-600') if current_locale.to_s.downcase == locale[:code].to_s.downcase
 
   = render 'shared/mobile_sidebar', data_navbar_target: 'mobileSidebar'
+
+#notification-popup data-controller='notification-popup'
+

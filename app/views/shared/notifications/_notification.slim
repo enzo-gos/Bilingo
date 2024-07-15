@@ -1,0 +1,6 @@
+= link_to notification.event.destination_path, class: 'dropdown-item notification-item' do
+  = mi.shape(notification.event.icon).css_class("notification-icon outlined #{notification.event.icon}")
+  .notification-info
+    .notification-title = notification.event.title
+    .notification-content = notification.event.message
+    small.text-secondary-600 = time_ago_in_words(notification.created_at)

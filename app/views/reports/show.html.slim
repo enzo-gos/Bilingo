@@ -1,6 +1,4 @@
-- story_meta(@story)
-
-.reader.story-details
+.reader.story-details data-controller='request-form'
   .story-heading
     .story-cover
       = image_tag @story.cover_image
@@ -30,21 +28,20 @@
             = mi.shape(:format_list_bulleted).css_class('analysis-icon')
             = t('story_details.chapters')
           .analysis-content
-            = @story.number_of_published
+            = @story.chapters.size
       .actions-group
-        = link_to t('story_details.start_reading'), story_chapter_path(story_id: @story.id, id: @story.chapters.first.id), class: 'story-reading-btn'
-        = link_to share_path(@story), class: 'story-share-btn', data: { turbo_stream: true, action: 'click->share-modal#open' }
-          = mi.shape(:share).md_18
-        = link_to new_story_report_path(story_id: @story.id), class: 'story-report-btn'
-          = mi.shape(:flag).md_18
+        - if @request.accepted?
+          .status-tag.accept-status = t("report_story.status.#{@request.status}")
+        - elsif @request.closed?
+          .status-tag.close-status = t("report_story.status.#{@request.status}")
+        - elsif @request.handled?
+          .status-tag.pending-status = t("report_story.status.#{@request.status}")
+        - else
+          = button_to 'Mark as solved', solved_story_report_path(story_id: @story.id, id: @request.id), method: :patch, data: { turbo_confirm: t('report_story.confirm_mark_as_solved') }, class: 'story-accept-btn'
+        = link_to edit_writer_story_path(@story), class: 'visit-btn', target: '_blank' do
+          = mi.shape(:edit).md_18
   .story-description
-    .story-description-title = t('story_details.description')
-    = @story.description
+    .report-title = @request.title
+    .report-reason = @request.reason
 
-  .story-table-content
-    .story-table-content-title = t('story_details.table_of_content')
-    .story-table-list
-      - @story.chapters.each do |chapter|
-        = link_to story_chapter_path(story_id: @story.id, id: chapter.id), class: 'chapter-item'
-          .chapter-title = chapter.title
-          .chapter-published = time_ago_in_words(chapter.updated_at)
+    i.report-reporter = "by #{@request.requester.fullname}"

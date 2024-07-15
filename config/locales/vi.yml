@@ -86,6 +86,20 @@ vi:
     title_placeholder: 'Nhập tiêu đề'
     send_request: 'Gửi yêu cầu'
     success: 'Báo cáo đã được tạo thành công.'
+    confirm_mark_as_solved: 'Bạn có chắc chắn muốn đánh dấu báo cáo này là đã giải quyết không?'
+    status:
+      mark_as_solved: 'Đánh dấu đã giải quyết'
+      accepted: 'Đã chấp nhận'
+      closed: 'Đã đóng'
+      handled: 'Đang xử lý'
+
+  notifications:
+    banned_request:
+      title: 'Truyện <b>%{story}</b> của bạn đã <b>%{status}</b>!'
+      reason: 'Lý do: %{title} <br /> %{reason}'
+      status:
+        open: 'bị cấm'
+        accepted: 'được chấp nhận'
 
   chapter:
     previous_chapter: 'Chương trước'
