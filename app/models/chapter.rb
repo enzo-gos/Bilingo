@@ -10,7 +10,7 @@ class Chapter < ApplicationRecord
 
   acts_as_list scope: [:story_id]
 
-  before_update :generate_content_id
+  before_save :generate_content_id
 
   def has_comment?(p_id)
     comments.where(paragraph_id: p_id).any?
@@ -26,10 +26,9 @@ class Chapter < ApplicationRecord
     html_content = content.body.to_s
     fragment = Nokogiri::HTML.fragment(html_content)
 
-    fragment.children.each do |child|
-      next if child['id'].present?
-
-      child['data-p-id'] = Digest::SHA256.hexdigest(child.to_s)
+    fragment.children.each_with_index do |child, index|
+      child['data-p-id'] = ''
+      child['data-p-id'] = Digest::SHA256.hexdigest("#{index}_#{child}")
     end
 
     content.body = fragment.to_html

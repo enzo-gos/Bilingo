@@ -42,6 +42,6 @@
                     = link_to unpublish_writer_story_chapter_path(story_id: story.id, id: chapter[:id]), data: { turbo_method: :patch }, class: 'dropdown-item'
                       = mi.shape(:unpublished).md_18.css_class('action-btn-icon')
                       = t('writer_space.unpublish')
-                  button.dropdown-item
+                  = link_to story_chapter_path(story_id: story.id, id: chapter[:id]), class: 'dropdown-item'
                     = mi.shape(:visibility).md_18.css_class('action-btn-icon')
                     = t('writer_space.view_as_reader')

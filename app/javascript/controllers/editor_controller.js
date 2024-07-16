@@ -131,7 +131,7 @@ export default class extends Controller {
     }).then((response) => {
       response.json().then((chapter) => {
         $('.toolbar-heading-info .story-name').html(chapter.title);
-        $('.chapter-info .chapter-title').html(chapter.title);
+        $(`.chapter-item[data-id="${chapter.id}"]`).find('.chapter-info .chapter-title').html(chapter.title);
 
         const date = new Date(chapter.updated_at);
         const options = { year: 'numeric', month: 'short', day: 'numeric' };
