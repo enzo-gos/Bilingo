@@ -1,23 +1,23 @@
 # To deliver this notification:
 #
-# ReportNotifier.with(record: @post, message: "New post").deliver(User.all)
+# SolvedRequestNotifier.with(record: @post, message: "New post").deliver(User.all)
 
-class ReportNotifier < ApplicationNotifier
+class SolvedRequestNotifier < ApplicationNotifier
   # Add your delivery methods
   #
   # deliver_by :email do |config|
-  #   config.mailer = 'AdminMailer'
-  #   config.method = 'new_report'
+  #   config.mailer = "UserMailer"
+  #   config.method = "new_post"
   # end
 
   deliver_by :turbo_stream, class: 'DeliveryMethods::AdminTurboStream'
 
   def message
-    "Reason: #{record.reason}".html_safe
+    "Report: #{record.reason}".html_safe
   end
 
   def title
-    "<b>#{record.reporter.fullname}</b> has reported <b>#{record.story.name}</b>".html_safe
+    "<b>#{record.story.author.fullname}</b> has solved report on <b>#{record.story.name}</b>".html_safe
   end
 
   def icon
@@ -25,9 +25,9 @@ class ReportNotifier < ApplicationNotifier
   end
 
   def destination_path
-    admin_report_path(id: record.id)
+    admin_report_path(id: record.story_report.id)
   end
-  #
+
   # bulk_deliver_by :slack do |config|
   #   config.url = -> { Rails.application.credentials.slack_webhook_url }
   # end

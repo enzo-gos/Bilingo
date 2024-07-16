@@ -130,7 +130,6 @@ export default class extends Controller {
       body: formData,
     }).then((response) => {
       response.json().then((chapter) => {
-        console.log(chapter);
         $('.toolbar-heading-info .story-name').html(chapter.title);
         $('.chapter-info .chapter-title').html(chapter.title);
 

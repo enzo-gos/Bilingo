@@ -1,3 +1,4 @@
-.notification-count
-  = format_notification(notification_count)
+- if notification_count > 0
+  .notification-count
+    = format_notification(notification_count)
 = mi.shape(:notifications).css_class('action-icon outlined')

@@ -37,6 +37,8 @@ Rails.application.routes.draw do
 
     resources :profiles, only: [:index, :show]
 
+    patch 'notifications/:id' => 'notifications#read', as: :notification_mark_as_read
+
     namespace :writer do
       namespace :stories do
         get :all

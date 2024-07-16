@@ -87,6 +87,7 @@ zh:
     send_request: '发送请求'
     success: '举报成功创建。'
     confirm_mark_as_solved: '您确定要将此报告标记为已解决吗？'
+    solved: '举报请求已成功标记为已解决。'
     status:
       mark_as_solved: '标记为已解决'
       accepted: '已接受'
@@ -100,6 +101,7 @@ zh:
       status:
         open: '禁止'
         accepted: '接受'
+        closed: '接受'
 
   chapter:
     previous_chapter: '上一章'

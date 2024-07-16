@@ -9,6 +9,10 @@
   z-max;
 }
 
+.admin-navbar.navbar-container .dropdown.notification-dropdown {
+  @apply mx-2;
+}
+
 .admin-navbar .navbar-header {
   @apply flex
   items-center

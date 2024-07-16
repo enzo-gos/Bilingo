@@ -1,4 +1,6 @@
-= link_to notification.event.destination_path, class: 'dropdown-item notification-item' do
+= link_to notification.event.destination_path, class: 'dropdown-item notification-item', data: { notification_id: notification.id, action: 'click->notification#mark_as_read' } do
+  - if notification.unread?
+    .unread-dot
   = mi.shape(notification.event.icon).css_class("notification-icon outlined #{notification.event.icon}")
   .notification-info
     .notification-title = notification.event.title

@@ -1,18 +1,28 @@
-.admin-navbar
-  = link_to root_path(locale: nil), class: 'navbar-header' do
-    = image_tag 'favicon.ico', size: 28
-    .header-title Bilingo
-  .navbar-footer
-    .actions
-      = link_to root_path, class: 'action-btn' do
-        = mi.shape(:home).css_class('action-icon outlined')
-      .action-btn
-        = mi.shape(:notifications).css_class('action-icon outlined')
-      = button_to destroy_user_session_path, method: :delete, class: 'action-btn logout-btn'
-        = mi.shape(:exit_to_app).css_class('action-icon outlined')
-    .divider
-    .profile
-      span.avatar-text = current_user.last_name.first
-      .info
-        .username = current_user.fullname
-        .role = current_user.roles.pluck(:name).map(&:capitalize).join(',')
+. data-controller='notification' data-notification-url==notification_mark_as_read_path(':id')
+  = turbo_stream_from "notifications_admin"
+  .admin-navbar.navbar-container
+    = link_to root_path(locale: nil), class: 'navbar-header' do
+      = image_tag 'favicon.ico', size: 28
+      .header-title Bilingo
+    .navbar-footer
+      .actions
+        = link_to root_path, class: 'action-btn' do
+          = mi.shape(:home).css_class('action-icon outlined')
+        - if current_user.present?
+          .dropdown.notification-dropdown
+            #notification_index_count.dropdown-btn.action-btn
+              = render 'shared/notifications/bell', notification_count: current_user.unread_notifications_count
+            #notifications.dropdown-list.notification-list
+              - current_user.notifications.each do |notification|
+                = render 'shared/notifications/notification', notification: notification
+
+        = button_to destroy_user_session_path, method: :delete, class: 'action-btn logout-btn'
+          = mi.shape(:exit_to_app).css_class('action-icon outlined')
+      .divider
+      .profile
+        span.avatar-text = current_user.last_name.first
+        .info
+          .username = current_user.fullname
+          .role = current_user.roles.pluck(:name).map(&:capitalize).join(',')
+
+  #notification-popup.z-max data-controller='notification-popup'
