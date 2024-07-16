@@ -55,11 +55,18 @@
     @apply w-32
     min-w-32
     sm:w-[135px]
-    sm:min-w-[135px];
+    sm:min-w-[135px]
+    h-[202px]
+    min-h-[202px]
+    rounded
+    overflow-hidden;
   }
 
-  .story-book > .book-cover-wrapper > .book-cover {
-    @apply w-full;
+  .story-book > .book-cover-wrapper .book-cover {
+    @apply w-full
+    h-full
+    object-center
+    object-cover;
   }
 
   .story-book > .book-info {
@@ -173,9 +180,17 @@
     blur-sm;
   }
 
-  .view-story-book .book-cover {
+  .view-story-book .story-main-cover-wrapper {
     @apply w-16
+    h-24
     rounded-none;
+  }
+
+  .view-story-book .book-cover {
+    @apply w-full
+    h-full
+    object-center
+    object-cover;
   }
 
   .view-story-book .story-controls {

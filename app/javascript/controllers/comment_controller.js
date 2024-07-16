@@ -3,13 +3,22 @@ import autosize from 'autosize';
 
 // Connects to data-controller="comment"
 export default class extends Controller {
-  static targets = ['commentList', 'chapter', 'commentInput', 'commentBody', 'commentGroupItem'];
+  static targets = ['commentList', 'chapter', 'commentInput', 'commentBody', 'commentGroupItem', 'commentItem'];
   connect() {
     this.highlights = [];
   }
 
   commentInputTargetConnected() {
     autosize($(this.commentInputTarget));
+  }
+
+  commentItemTargetConnected(event) {
+    const currentUserId = $('[data-comment-user-id]').attr('data-comment-user-id');
+    const commenterId = $(event).attr('data-commenter-id');
+
+    if (commenterId == currentUserId) {
+      $(event).find('.delete-btn').removeClass('hidden');
+    }
   }
 
   commentGroupItemTargetConnected(event) {

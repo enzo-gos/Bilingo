@@ -6,6 +6,7 @@ class StoriesController < ApplicationController
 
   def show
     @story = Story.includes([:chapters]).find(params[:id])
+    @chapters = @story.chapters.where(published: true)
     authorize @story
   end
 end

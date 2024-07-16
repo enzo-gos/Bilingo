@@ -1,4 +1,4 @@
-.comment-item id=="comment-item#{comment[:id]}"
+.comment-item data-comment-target='commentItem' data-commenter-id==comment[:commenter].id id=="comment-item#{comment[:id]}"
   .comment-avatar.text-avatar
     = comment[:avatar]
   .comment-info
@@ -10,5 +10,4 @@
       small.during-time = time_ago_in_words(comment[:created_at])
       - unless show_only
         = link_to t('comments.reply'), story_chapter_comment_reply_path(story_id: comment[:story_id], chapter_id: comment[:chapter_id], comment_id: comment[:id]), class: 'reply-btn', data: { turbo_stream: true, action: 'click->comment#reply' }
-        - if current_user == comment[:commenter]
-          = link_to t('comments.delete'), story_chapter_comment_path(story_id: comment[:story_id], chapter_id: comment[:chapter_id], id: comment[:id]), class: 'delete-btn', data: { turbo_stream: true, turbo_method: :delete }
+        = link_to t('comments.delete'), story_chapter_comment_path(story_id: comment[:story_id], chapter_id: comment[:chapter_id], id: comment[:id]), class: 'delete-btn hidden', data: { turbo_stream: true, turbo_method: :delete, comment_target: 'deleteCommentBtn' }

@@ -20,4 +20,8 @@ module ChaptersHelper
       }
     }
   end
+
+  def empty_str?(str)
+    str.gsub(/<[^>]*>/, '').gsub(/&nbsp;/, '').gsub(/(^\s*)|(\s*$)/, '').gsub(/[ ]{2,}/, '').gsub(/\n /, '').strip.empty?
+  end
 end

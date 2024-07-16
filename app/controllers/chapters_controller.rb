@@ -5,11 +5,9 @@ class ChaptersController < ApplicationController
 
   def show
     @story.track_view(request.remote_ip, @chapter.id)
-    authorize @story
 
-    params[:translate_code] ||= params[:locale]
-    @prev_chapter = @chapter.higher_item ? story_chapter_path(story_id: @story.id, id: @chapter.higher_item.id) : nil
-    @next_chapter = @chapter.lower_item ? story_chapter_path(story_id: @story.id, id: @chapter.lower_item.id) : nil
+    @prev_chapter = @chapter.higher_item&.published ? story_chapter_path(story_id: @story.id, id: @chapter.higher_item.id) : nil
+    @next_chapter = @chapter.lower_item&.published ? story_chapter_path(story_id: @story.id, id: @chapter.lower_item.id) : nil
 
     respond_to do |format|
       format.turbo_stream do
@@ -111,10 +109,12 @@ class ChaptersController < ApplicationController
 
   def prepare_story
     @story = Story.find(params[:story_id])
+    authorize @story
   end
 
   def prepare_chapter
     @chapter = Chapter.find(params[:id])
+    authorize @chapter
   end
 
   def prepare_translation

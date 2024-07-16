@@ -93,9 +93,21 @@
     @apply text-lg mb-1 inline-block;
   }
 
-  .book-cover {
-    @apply rounded-md
+  .carousel .book-cover-wrapper {
+    @apply min-w-[220px]
+    w-[220px]
+    min-h-[330px]
+    h-[330px]
+    rounded-md
+    overflow-hidden
     shadow-[0_0px_40px_5px_rgba(255,255,255,0.6)];
+  }
+
+  .carousel .book-cover {
+    @apply w-full 
+    h-full
+    object-center 
+    object-cover;
   }
 
   .carousel .book-info > .reading-btn {
