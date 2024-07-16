@@ -42,7 +42,7 @@ h2[class=="chapter-title#{show_translate ? ' border-none' : ' mb-5'}"] == origin
 
     hr.divider
     .summary data-controller='summary'
-      = turbo_frame_tag 'chapter-summary', src: summarize_story_chapter_path(format: :turbo_stream), loading: :lazy do
+      = turbo_frame_tag 'chapter-summary', src: summarize_story_chapter_path(format: :turbo_stream, translate_code: params[:translate_code]), loading: :lazy do
         .summary-heading
           .[class="loader-sm !mr-3" data-summary-target='loader']
           h2.summary_title Summary
