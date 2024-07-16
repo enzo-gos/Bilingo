@@ -44,7 +44,7 @@
   .story-table-content
     .story-table-content-title = t('story_details.table_of_content')
     .story-table-list
-      - @story.chapters.each do |chapter|
+      - @chapters.each do |chapter|
         = link_to story_chapter_path(story_id: @story.id, id: chapter.id), class: 'chapter-item'
           .chapter-title = chapter.title
           .chapter-published = time_ago_in_words(chapter.updated_at)

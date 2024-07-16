@@ -24,4 +24,5 @@
             == story[:description]
 
           = link_to t('carousel.reading'), story[:url], class: 'reading-btn'
-        = image_tag story[:cover], class: 'book-cover', width: 220
+        .book-cover-wrapper
+          = image_tag story[:cover], class: 'book-cover'

@@ -6,7 +6,8 @@
         .backdrop-fill.blur-background
           = image_tag story[:cover], class: 'backdrop-img'
         .backdrop-fill.fill-background
-        = image_tag story[:cover], class: 'book-cover'
+        .story-main-cover-wrapper
+          = image_tag story[:cover], class: 'book-cover'
 
       = link_to story[:url] do
         h1.story-title = story[:title]

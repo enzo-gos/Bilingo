@@ -26,6 +26,11 @@
     gap-2;
   }
 
+  .writer-toolbar > .toolbar-heading .toolbar-heading-wrapper img {
+    @apply object-center
+    object-cover;
+  }
+
   .writer-toolbar > .toolbar-heading .toolbar-heading-info {
     @apply flex
     flex-col;

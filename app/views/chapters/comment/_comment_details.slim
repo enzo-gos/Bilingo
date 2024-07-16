@@ -1,5 +1,6 @@
 .comment-list
   - if current_user.present?
+    .[data-comment-user-id==current_user.id]
     #comment-form
       = render 'chapters/comment/comment_form', comment: comment, url: story_chapter_comments_path(story_id: chapter.story_id, chapter_id: chapter.id), paragraph_id: paragraph_id, mention: ''
 
