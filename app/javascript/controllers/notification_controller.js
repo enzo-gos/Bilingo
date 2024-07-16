@@ -3,11 +3,7 @@ import { Controller } from '@hotwired/stimulus';
 // Connects to data-controller="notification"
 export default class extends Controller {
   static targets = [];
-  connect() {
-    $(this.readBtnTarget).on('click', () => {
-      console.log('123123123');
-    });
-  }
+  connect() {}
 
   mark_as_read(event) {
     const url = this.data
