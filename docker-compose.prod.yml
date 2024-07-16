@@ -30,6 +30,8 @@ services:
       - .env
     networks:
       - bilingo-net
+    volumes:
+      - ./postgres-data:/var/lib/postgresql/data
 
   bilingords:
     image: redis:latest
