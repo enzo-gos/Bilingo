@@ -22,7 +22,7 @@ class ChapterPolicy < ApplicationPolicy
   private
 
   def by_admin?
-    user.has_role?(:admin)
+    user.present? && user.has_role?(:admin)
   end
 
   def published?
@@ -30,6 +30,6 @@ class ChapterPolicy < ApplicationPolicy
   end
 
   def by_author?
-    record.story.author == user
+    user.present? && record.story.author == user
   end
 end

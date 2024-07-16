@@ -22,7 +22,7 @@ class StoryPolicy < ApplicationPolicy
   private
 
   def by_admin?
-    user.has_role?(:admin)
+    user.present? && user.has_role?(:admin)
   end
 
   def active?
