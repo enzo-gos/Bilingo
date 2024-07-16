@@ -96,8 +96,6 @@ class ChaptersController < ApplicationController
     original = ChapterService::Summarizer.call(chapter: @chapter, target_language: @story.language_code.downcase, content: @chapter.content.body.to_s)
     translated = ChapterService::Summarizer.call(chapter: @chapter, target_language: params[:translate_code], content: original)
 
-    p params[:translate_code]
-
     respond_to do |format|
       format.turbo_stream do
         render turbo_stream: [
