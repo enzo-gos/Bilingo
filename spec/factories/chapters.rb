@@ -1,8 +1,8 @@
 FactoryBot.define do
   factory :chapter do
-    title { 'MyString' }
+    title { Faker::Book.title }
+    content { Faker::Lorem.paragraph }
     published { false }
-    position { 1 }
-    views { '' }
+    association :story
   end
 end

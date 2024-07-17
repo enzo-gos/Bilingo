@@ -1,6 +1,8 @@
 FactoryBot.define do
   factory :story_view do
-    story { nil }
-    view_on { '2024-07-02' }
+    viewed_on { Date.current }
+    ip_address { Faker::Internet.ip_v4_address }
+    association :story
+    association :chapter
   end
 end

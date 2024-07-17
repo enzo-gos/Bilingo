@@ -1,10 +1,11 @@
 FactoryBot.define do
   factory :story do
-    name { 'MyString' }
-    description { 'MyText' }
-    language_code { 'MyString' }
-    primary_genre { nil }
-    secondary_genre { nil }
-    author { nil }
+    name { Faker::Book.title }
+    description { Faker::Lorem.paragraph }
+    language_code { 'en' }
+    cover_image { Rack::Test::UploadedFile.new('spec/fixtures/files/cover_image.jpg', 'image/jpeg') }
+    tag_list { '[{"value":"tag1"}, {"value":"tag2"}]' }
+    association :author, factory: :user
+    association :primary_genre, factory: :genre
   end
 end
