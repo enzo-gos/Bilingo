@@ -117,7 +117,7 @@ Metrics/ModuleLength:
   Max: 300
 
 Metrics/MethodLength:
-  Max: 50
+  Max: 60
 
 Metrics/ParameterLists:
   Enabled: false
