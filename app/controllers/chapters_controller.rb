@@ -6,8 +6,11 @@ class ChaptersController < ApplicationController
   def show
     @story.track_view(request.remote_ip, @chapter.id)
 
-    @prev_chapter = @chapter.higher_item&.published ? story_chapter_path(story_id: @story.id, id: @chapter.higher_item.id) : nil
-    @next_chapter = @chapter.lower_item&.published ? story_chapter_path(story_id: @story.id, id: @chapter.lower_item.id) : nil
+    next_chap = @chapter.next_chapter
+    prev_chap = @chapter.prev_chapter
+
+    @prev_chapter = next_chap ? story_chapter_path(story_id: @story.id, id: next_chap.id) : nil
+    @next_chapter = prev_chap ? story_chapter_path(story_id: @story.id, id: prev_chap.id) : nil
 
     respond_to do |format|
       format.turbo_stream do

@@ -146,6 +146,10 @@
     font-size: var(--chapter-font-size);
   }
 
+  .reader.chapter .editor [data-p-id] * {
+    font-size: var(--chapter-font-size);
+  }
+
   .reader.chapter .editor .editable .translate-text * {
     @apply m-0;
   }
@@ -230,6 +234,10 @@
 
   .reader.chapter .summary-content {
     @apply w-full;
+  }
+
+  .reader.chapter .summary-content * {
+    font-size: var(--chapter-font-size);
   }
 
   .reader.chapter .summary-heading {

@@ -20,6 +20,14 @@ class Chapter < ApplicationRecord
     comments.where(paragraph_id: p_id).size
   end
 
+  def next_chapter
+    Chapter.where('position < ? AND published = ?', position, true).order(position: :desc).first
+  end
+
+  def prev_chapter
+    Chapter.where('position > ? AND published = ?', position, true).order(position: :asc).first
+  end
+
   private
 
   def generate_content_id

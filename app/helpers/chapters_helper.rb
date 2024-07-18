@@ -10,7 +10,7 @@ module ChaptersHelper
         default: 13
       },
       p_space: {
-        min: 16,
+        min: 10,
         max: 40,
         default: 16
       },
