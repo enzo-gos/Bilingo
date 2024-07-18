@@ -27,7 +27,7 @@ module ApplicationHelper
   end
 
   def all_topics
-    ActsAsTaggableOn::Tag.for_context(:tags)
+    ActsAsTaggableOn::Tag.for_context(:tags).most_used(12)
   end
 
   def top_story
