@@ -131,7 +131,7 @@ class ChaptersController < ApplicationController
   end
 
   def prepare_chapter
-    @chapter = Chapter.find(params[:id])
+    @chapter = @story.chapters.find(params[:id])
     authorize @chapter
   end
 

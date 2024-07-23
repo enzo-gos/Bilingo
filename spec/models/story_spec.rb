@@ -50,7 +50,7 @@ RSpec.describe Story, type: :model do
       let!(:story_view) { create(:story_view, story: story) }
 
       it 'returns stories ordered by recently viewed' do
-        expect(Story.recently_read.first).to eq(story)
+        expect(Story.recently_read(story_view.ip_address).first).to eq(story)
       end
     end
   end

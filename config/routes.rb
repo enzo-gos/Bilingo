@@ -63,6 +63,9 @@ Rails.application.routes.draw do
     resources :topics, only: [:show]
 
     resources :stories, only: [:index, :show] do
+      member do
+        post :follow
+      end
       resources :reports, only: [:create, :new, :show] do
         member do
           patch :solved

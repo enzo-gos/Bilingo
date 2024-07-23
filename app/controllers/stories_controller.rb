@@ -9,4 +9,10 @@ class StoriesController < ApplicationController
     @chapters = @story.chapters.where(published: true)
     authorize @story
   end
+
+  def follow
+    story = Story.find(params[:id])
+    story.toggle_bookmark!(current_user)
+    redirect_back fallback_location: root_path
+  end
 end

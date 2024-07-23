@@ -11,6 +11,7 @@ class Story < ApplicationRecord
 
   acts_as_taggable_on :tags
   acts_as_list scope: [:author_id], add_new_at: :top
+  acts_as_votable
 
   validates :name,
             :author,
@@ -34,16 +35,12 @@ class Story < ApplicationRecord
       .limit(limit)
   }
 
-  scope :recently_read, ->(limit = 5) {
-    select('stories.*, recent_views.viewed_on')
-      .joins(
-        "INNER JOIN (
-          SELECT DISTINCT ON (story_id) story_id, viewed_on
-          FROM story_views
-          ORDER BY story_id, viewed_on DESC
-        ) AS recent_views ON stories.id = recent_views.story_id"
-      )
-      .order('recent_views.viewed_on DESC')
+  scope :recently_read, ->(ip_address, limit = 5) {
+    joins(:story_views)
+      .where(story_views: { ip_address: ip_address })
+      .select('stories.*, MAX(story_views.viewed_on) AS last_viewed_on')
+      .group('stories.id')
+      .order('last_viewed_on DESC')
       .limit(limit)
   }
 
@@ -82,5 +79,17 @@ class Story < ApplicationRecord
       .group(:viewed_on)
       .count
       .transform_keys(&:day)
+  end
+
+  def bookmark?(user)
+    user.voted_up_on? self, vote_scope: :bookmark
+  end
+
+  def toggle_bookmark!(user)
+    if bookmark?(user)
+      downvote_from user, vote_scope: :bookmark
+    else
+      vote_by voter: user, vote_scope: :bookmark
+    end
   end
 end

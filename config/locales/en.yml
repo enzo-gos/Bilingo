@@ -131,6 +131,9 @@ en:
         open: 'banned'
         accepted: 'accepted'
         closed: 'accepted'
+    publish_chapter:
+      title: '<b>%{story}</b> has been updated with a new chapter <b>%{chapter}</b>!'
+      message: 'Reading it now'
 
   chapter:
     previous_chapter: 'Previous chapter'

@@ -4,6 +4,7 @@ class Chapter < ApplicationRecord
   belongs_to :story
   has_many :comments, dependent: :destroy
   has_many :story_views, dependent: :destroy
+  has_many :notification_mentions, as: :record, dependent: :destroy, class_name: 'Noticed::Event'
 
   has_one_attached :heading_image, dependent: :destroy
   has_rich_text :content
@@ -11,6 +12,7 @@ class Chapter < ApplicationRecord
   acts_as_list scope: [:story_id]
 
   before_save :generate_content_id
+  after_update_commit :notice_published_chapter
 
   def has_comment?(p_id)
     comments.where(paragraph_id: p_id).any?
@@ -21,11 +23,11 @@ class Chapter < ApplicationRecord
   end
 
   def next_chapter
-    Chapter.where('position < ? AND published = ?', position, true).order(position: :desc).first
+    Chapter.where('story_id = ? AND position < ? AND published = ?', story_id, position, true).order(position: :desc).first
   end
 
   def prev_chapter
-    Chapter.where('position > ? AND published = ?', position, true).order(position: :asc).first
+    Chapter.where('story_id = ? AND position > ? AND published = ?', story_id, position, true).order(position: :asc).first
   end
 
   private
@@ -40,5 +42,9 @@ class Chapter < ApplicationRecord
     end
 
     content.body = fragment.to_html
+  end
+
+  def notice_published_chapter
+    Writer::PublishChapterNotifier.with(record: self, icon: :info).deliver(story.get_upvotes(vote_scope: 'bookmark').map(&:voter)) if published
   end
 end

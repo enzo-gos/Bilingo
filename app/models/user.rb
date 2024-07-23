@@ -11,6 +11,8 @@ class User < ApplicationRecord
   has_many :notifications, -> { includes([{ event: { record: [:rich_text_reason, :reporter, :author, { story: [:author] }, :story_report] } }]).order(created_at: :desc) }, as: :recipient, dependent: :destroy, class_name: 'Noticed::Notification'
   has_many :notification_mentions, as: :record, dependent: :destroy, class_name: 'Noticed::Event'
 
+  acts_as_voter
+
   validates :first_name, :last_name, presence: true
 
   def active_for_authentication?

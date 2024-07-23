@@ -33,6 +33,8 @@
             = @story.number_of_published
       .actions-group
         = link_to t('story_details.start_reading'), story_chapter_path(story_id: @story.id, id: @story.chapters.first.id), class: 'story-reading-btn'
+        = button_to follow_story_path(@story), method: :post, class: "story-bookmark-btn#{ @story.bookmark?(current_user) ? ' active' : ''}"
+          = mi.shape(:bookmark).md_18
         = link_to share_path(@story), class: 'story-share-btn', data: { turbo_stream: true, action: 'click->share-modal#open' }
           = mi.shape(:share).md_18
         = link_to new_story_report_path(story_id: @story.id), class: 'story-report-btn'

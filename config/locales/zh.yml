@@ -102,6 +102,9 @@ zh:
         open: '禁止'
         accepted: '接受'
         closed: '接受'
+    publish_chapter:
+      title: '<b>%{story}</b> 已更新新章节 <b>%{chapter}</b>！'
+      message: '现在正在阅读'
 
   chapter:
     previous_chapter: '上一章'
