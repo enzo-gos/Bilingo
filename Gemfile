@@ -80,3 +80,7 @@ gem 'chartkick', '~> 5.0'
 gem 'groupdate', '~> 6.4'
 
 gem 'noticed', '~> 2.4'
+
+gem "acts_as_favoritor", "~> 6.0"
+
+gem "acts_as_votable", "~> 0.14.0"

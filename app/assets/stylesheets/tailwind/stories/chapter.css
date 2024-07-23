@@ -61,6 +61,7 @@
     font-semibold
     border
     transition-all
+    text-center
     hover:bg-primary-700;
   }
 

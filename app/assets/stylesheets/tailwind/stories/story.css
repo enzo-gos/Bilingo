@@ -173,7 +173,8 @@
   }
 
   .reader.story-details .actions-group .story-share-btn,
-  .reader.story-details .actions-group .story-report-btn {
+  .reader.story-details .actions-group .story-report-btn,
+  .reader.story-details .actions-group .story-bookmark-btn {
     @apply flex
     items-center
     justify-center
@@ -185,5 +186,10 @@
     transition-all
     hover:bg-primary-600
     hover:text-white;
+  }
+
+  .reader.story-details .actions-group .story-bookmark-btn.active {
+    @apply bg-primary-600
+    text-white;
   }
 }

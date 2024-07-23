@@ -23,6 +23,10 @@ class StoryPolicy < ApplicationPolicy
     by_admin? || active?
   end
 
+  def follow
+    user.present? && active?
+  end
+
   private
 
   def by_admin?

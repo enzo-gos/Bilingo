@@ -102,6 +102,9 @@ vi:
         open: 'bị cấm'
         accepted: 'được chấp nhận'
         closed: 'được chấp nhận'
+    publish_chapter:
+      title: '<b>%{story}</b> đã được cập nhật với chương mới <b>%{chapter}</b>!'
+      message: 'Đọc ngay bây giờ'
 
   chapter:
     previous_chapter: 'Chương trước'

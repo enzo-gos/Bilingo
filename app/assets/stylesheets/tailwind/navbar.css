@@ -316,6 +316,10 @@
     @apply text-yellow-500;
   }
 
+  .dropdown-item.notification-item .info {
+    @apply text-sky-500;
+  }
+
   .dropdown-item .notification-title {
     @apply mb-2;
   }

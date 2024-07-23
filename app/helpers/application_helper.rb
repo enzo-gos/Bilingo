@@ -46,7 +46,7 @@ module ApplicationHelper
   end
 
   def recently_read
-    Story.recently_read.includes([:author, { cover_image_attachment: :blob }]).map do |story|
+    Story.recently_read(request.remote_ip).includes([:author, { cover_image_attachment: :blob }]).map do |story|
       {
         cover: story.cover_image,
         title: story.name,
