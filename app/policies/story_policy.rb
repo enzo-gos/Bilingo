@@ -19,6 +19,10 @@ class StoryPolicy < ApplicationPolicy
     by_admin? || active?
   end
 
+  def summarize_alt?
+    by_admin? || active?
+  end
+
   private
 
   def by_admin?

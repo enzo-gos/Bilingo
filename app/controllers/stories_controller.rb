@@ -1,6 +1,6 @@
 class StoriesController < ApplicationController
   def index
-    @stories = Story.includes([:author, :chapters, { cover_image_attachment: :blob }, :primary_genre, :secondary_genre]).order(updated_at: :desc).with_published
+    @stories = StoryQuery.new(name: params[:q]).call
     @pagy, @stories = pagy(@stories)
   end
 

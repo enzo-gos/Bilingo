@@ -11,7 +11,7 @@
         .book-author
           i = t('story_list.by')
           | &nbsp;
-          i = link_to story[:author], '#story-1-author'
+          i = link_to story[:author], profile_path(story[:author_id])
         = link_to story[:url] do
           p.book-description == story[:description].truncate_words(40)
         small.book-meta

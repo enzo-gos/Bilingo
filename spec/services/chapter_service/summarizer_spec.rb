@@ -35,7 +35,8 @@ RSpec.describe ChapterService::Summarizer do
         chapter: chapter,
         target_language: target_language,
         content: content,
-        model: model
+        model: model,
+        cached: true
       ).and_call_original
 
       described_class.call(
