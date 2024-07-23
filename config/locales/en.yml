@@ -98,7 +98,7 @@ en:
   profile:
     published: 'Published'
     drafting: 'Drafting'
-    reported: 'Reported'
+    reported: 'Banned'
     stories_title: 'Stories'
 
   story_details:

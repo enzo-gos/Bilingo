@@ -1,23 +1,24 @@
 class ChapterService::Summarizer < ApplicationService
-  def initialize(chapter:, target_language:, content:, model: 'gemini-1.5-flash')
+  def initialize(chapter:, target_language:, content:, model: 'gemini-1.5-flash', cached: true)
     @chapter = chapter
     @target_language = target_language
     @model = model
     @content = content
+    @cached = cached
   end
 
-  def self.call(chapter:, target_language:, content:, model: 'gemini-1.5-flash')
-    new(chapter: chapter, target_language: target_language, content: content, model: model).call
+  def self.call(chapter:, target_language:, content:, model: 'gemini-1.5-flash', cached: true)
+    new(chapter: chapter, target_language: target_language, content: content, model: model, cached: cached).call
   end
 
   def call
     cache_key = "summary_#{@target_language}_#{@chapter.id}"
-    cache_summary = Rails.cache.fetch(cache_key)
+    cache_summary = @cached ? Rails.cache.fetch(cache_key) : nil
 
     if cache_summary.nil? || cache_summary[:cached_at] <= @chapter.updated_at
       begin
         summarized = gemini(content: @content)
-        Rails.cache.write(cache_key, { data: summarized, cached_at: Time.now })
+        Rails.cache.write(cache_key, { data: summarized, cached_at: Time.now }) if @cached
       rescue Faraday::TooManyRequestsError
         retry
       end

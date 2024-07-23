@@ -48,7 +48,7 @@ h2[class=="chapter-title#{show_translate ? ' border-none' : ' mb-5'}"] == origin
           h2.summary_title Summary
           .translate-wrapper.self-end
             .translate-actions
-              = link_to summarize_story_chapter_path, data: { turbo_stream: true, action: 'click->summary#summarize' }, class: 'action-btn' do
+              = link_to summarize_alt_story_chapter_path, data: { turbo_stream: true, action: 'click->summary#summarize' }, class: 'action-btn' do
                 = mi.shape(:replay).css_class('action-icon')
 
           i.translate-info id='summary-info'

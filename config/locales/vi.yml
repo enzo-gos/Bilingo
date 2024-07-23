@@ -69,7 +69,7 @@ vi:
   profile:
     published: 'Đã xuất bản'
     drafting: 'Đang viết'
-    reported: 'Báo cáo'
+    reported: 'Bị chặn'
     stories_title: 'Câu truyện'
 
   story_details:

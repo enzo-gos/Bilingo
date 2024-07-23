@@ -19,6 +19,10 @@ class ChapterPolicy < ApplicationPolicy
     published? || by_admin? || by_author?
   end
 
+  def summarize_alt?
+    published? || by_admin? || by_author?
+  end
+
   private
 
   def by_admin?

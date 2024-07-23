@@ -74,6 +74,7 @@ Rails.application.routes.draw do
           get :translate
           get :rephrase_alt
           get :summarize
+          get :summarize_alt
         end
         resources :comments, except: [:update] do
           get :reply

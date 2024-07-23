@@ -20,6 +20,6 @@ class ProfilesController < ApplicationController
   def set_author_info
     @published = @stories.where(id: Chapter.where(published: true).select(:story_id)).size
     @draft = @stories.size - @published
-    @report = @stories.where(banned: true).size
+    @banned = @stories.where(banned: true).size
   end
 end
