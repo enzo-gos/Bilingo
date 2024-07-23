@@ -6,6 +6,7 @@ module HomeHelper
         cover: story.cover_image,
         title: story.name,
         author: story.author.fullname,
+        author_id: story.author.id,
         description: story.description,
         genres: story.genres.join(' / '),
         views: story.views,

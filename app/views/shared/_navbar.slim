@@ -21,10 +21,10 @@
                   = link_to "# #{topic}", topic_path(topic.name)
 
       .search-box
-        = form_with url: '#search', method: :get, class: 'search-form' do |f|
-          = f.button :button, type: :submit, class: 'search-btn' do
+        = form_with url: stories_path, method: :get, class: 'search-form' do |f|
+          = f.button :action, type: :submit, class: 'search-btn', value: 'search' do
             = inline_svg_tag 'icons/search_icon.svg'
-          = f.text_field :query, class: 'search-input', placeholder: t('navbar.search')
+          = f.text_field :q, class: 'search-input', placeholder: t('navbar.search')
 
       .navbar-group__right
         .dropdown
