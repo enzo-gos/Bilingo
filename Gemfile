@@ -61,6 +61,7 @@ gem 'omniauth-rails_csrf_protection', '~> 1.0'
 gem 'pagy', '~> 8.4'
 gem 'acts-as-taggable-on', '~> 10.0'
 gem 'acts_as_list', '~> 1.2'
+gem 'acts_as_votable', '~> 0.14.0'
 
 gem 'stackprof', '~> 0.2.26'
 gem 'sentry-ruby', '~> 5.17'
@@ -80,7 +81,3 @@ gem 'chartkick', '~> 5.0'
 gem 'groupdate', '~> 6.4'
 
 gem 'noticed', '~> 2.4'
-
-gem 'acts_as_favoritor', '~> 6.0'
-
-gem 'acts_as_votable', '~> 0.14.0'
