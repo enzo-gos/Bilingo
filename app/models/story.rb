@@ -82,7 +82,7 @@ class Story < ApplicationRecord
   end
 
   def bookmark?(user)
-    user.voted_up_on? self, vote_scope: :bookmark
+    user&.voted_up_on?(self, vote_scope: :bookmark)
   end
 
   def toggle_bookmark!(user)
