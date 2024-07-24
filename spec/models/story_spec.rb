@@ -113,5 +113,25 @@ RSpec.describe Story, type: :model do
         expect(story.views_by_day).to eq({ Date.current.day => 1 })
       end
     end
+
+    describe '#bookmark?' do
+      let!(:user) { create(:user) }
+      it 'returns true if the user has bookmarked the story' do
+        story.toggle_bookmark!(user)
+        expect(story.bookmark?(user)).to be(true)
+      end
+
+      it 'returns false if the user has not bookmarked the story' do
+        expect(story.bookmark?(user)).to be(false)
+      end
+    end
+
+    describe '#toggle_bookmark!' do
+      let!(:user) { create(:user) }
+      it 'toggles the bookmark status' do
+        expect { story.toggle_bookmark!(user) }.to change { user.voted_up_on?(story, vote_scope: :bookmark) }.from(false).to(true)
+        expect { story.toggle_bookmark!(user) }.to change { user.voted_up_on?(story, vote_scope: :bookmark) }.from(true).to(false)
+      end
+    end
   end
 end

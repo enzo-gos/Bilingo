@@ -42,6 +42,9 @@ RSpec.describe StoryReport, type: :model do
         expect(notification.message).to eq("Reason: #{story_report.reason}".html_safe)
         expect(notification.title).to eq("<b>#{story_report.reporter.fullname}</b> has reported <b>#{story_report.story.name}</b>".html_safe)
         expect(notification.icon).to eq(:report)
+
+        url = notification.destination_path
+        expect(url).to eq(Rails.application.routes.url_helpers.admin_report_path(id: story_report.id))
       end
     end
   end

@@ -1,15 +1,39 @@
 require 'rails_helper'
 
-# Specs in this file have access to a helper object that includes
-# the StoriesHelper. For example:
-#
-# describe StoriesHelper do
-#   describe "string concat" do
-#     it "concats two strings with spaces" do
-#       expect(helper.concat_strings("this","that")).to eq("this that")
-#     end
-#   end
-# end
 RSpec.describe StoriesHelper, type: :helper do
-  pending "add some examples to (or delete) #{__FILE__}"
+  describe '#story_meta' do
+    let(:story) do
+      create(
+        :story,
+        description: Faker::Lorem.paragraph,
+        tag_list: Faker::Lorem.words(number: 3),
+        primary_genre: primary_genre,
+        secondary_genre: secondary_genre,
+        cover_image: cover_image
+      )
+    end
+    let(:primary_genre) { create(:genre, name: Faker::Book.genre) }
+    let(:secondary_genre) { create(:genre, name: Faker::Book.genre) }
+    let(:cover_image) { fixture_file_upload('spec/fixtures/files/cover_image.jpg', 'image/jpg') }
+
+    before do
+      allow(helper).to receive(:rails_blob_url).and_return('http://example.com/cover_image.jpg')
+    end
+
+    it 'sets meta tags for the story' do
+      expect(helper).to receive(:set_meta_tags).with(
+        title: story.name,
+        description: story.description,
+        image: 'http://example.com/cover_image.jpg',
+        keywords: "#{story.tag_list.join(', ')}, #{story.primary_genre.name}, #{story.secondary_genre&.name}",
+        og: {
+          title: story.name,
+          description: story.description,
+          image: 'http://example.com/cover_image.jpg'
+        }
+      )
+
+      helper.story_meta(story)
+    end
+  end
 end

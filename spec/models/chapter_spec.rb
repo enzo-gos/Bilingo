@@ -39,6 +39,45 @@ RSpec.describe Chapter, type: :model do
     end
   end
 
+  describe '#next_chapter' do
+    let!(:story) { create(:story) }
+    let!(:chapter) { create(:chapter, story: story, position: 3, published: true) }
+    let!(:next_chapter_unplished) { create(:chapter, story: story, position: 2, published: false) }
+
+    it 'returns chapter if next published chapter available' do
+      next_chapter = create(:chapter, story: story, position: 1, published: true)
+
+      expected_chapter = chapter.next_chapter
+      expect(expected_chapter).to eq(next_chapter)
+    end
+
+    it 'returns nil if next published chapter unavailable' do
+      create(:chapter, story: story, position: 1, published: false)
+
+      expected_chapter = chapter.next_chapter
+      expect(expected_chapter).to eq(nil)
+    end
+  end
+
+  describe '#prev_chapter' do
+    let!(:story) { create(:story) }
+    let!(:chapter) { create(:chapter, story: story, position: 3, published: true) }
+    let!(:prev_chapter_unpublished) { create(:chapter, story: story, position: 5, published: false) }
+    it 'returns chapter if prev published chapter available' do
+      prev_chapter = create(:chapter, story: story, position: 4, published: true)
+
+      expected_chapter = chapter.prev_chapter
+      expect(expected_chapter).to eq(prev_chapter)
+    end
+
+    it 'returns nil if prev published chapter unavailable' do
+      create(:chapter, story: story, position: 4, published: false)
+
+      expected_chapter = chapter.prev_chapter
+      expect(expected_chapter).to eq(nil)
+    end
+  end
+
   describe '#count_comments' do
     let(:chapter) { create(:chapter) }
     let(:paragraph_id) { SecureRandom.uuid }
