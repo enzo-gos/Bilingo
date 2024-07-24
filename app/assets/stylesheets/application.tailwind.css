@@ -123,7 +123,8 @@
 
   .admin-layout {
     @apply ml-20
-    mr-1;
+    mr-1
+    mt-20;
   }
 
   .management-table {
