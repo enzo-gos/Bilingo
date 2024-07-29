@@ -8,7 +8,7 @@ vi:
     write: 'Viết truyện'
     write_new_story: 'Viết câu truyện mới'
     my_stories: 'Câu truyện của tôi'
-    user_profile: 'Hồ sơ người dùng'
+    user_profile: 'Hồ sơ tác giả'
     settings: 'Cài đặt'
     dashboard: 'Bảng điều khiển'
     logout: 'Đăng xuất'
@@ -78,6 +78,7 @@ vi:
     comments: 'Bình luận'
     chapters: 'Chương'
     start_reading: 'Bắt đầu đọc'
+    continue_reading: 'Tiếp tục đọc'
     description: 'Mô tả'
     table_of_content: 'Mục lục'
 

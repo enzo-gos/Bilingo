@@ -34,6 +34,6 @@ class ChapterPolicy < ApplicationPolicy
   end
 
   def by_author?
-    user.present? && record.story.author == user
+    user.present? && record.story.author == user.author
   end
 end

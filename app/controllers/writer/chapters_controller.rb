@@ -51,11 +51,15 @@ class Writer::ChaptersController < ApplicationController
   end
 
   def update
-    @chapter.update(chapter_params)
+    updated = @chapter.update(chapter_params)
 
     respond_to do |format|
       format.json { render json: @chapter }
-      format.html { redirect_back(fallback_location: root_path, notice: t('writer_stories.update.success')) }
+      if updated
+        format.html { redirect_back(fallback_location: root_path, notice: t('writer_stories.update.success')) }
+      else
+        format.html { redirect_back(fallback_location: root_path, alert: @chapter.errors.full_messages) }
+      end
     end
   end
 

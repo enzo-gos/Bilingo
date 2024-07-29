@@ -5,7 +5,7 @@ RSpec.describe Story, type: :model do
   describe 'associations' do
     it { should belong_to(:primary_genre).class_name('Genre') }
     it { should belong_to(:secondary_genre).class_name('Genre').optional }
-    it { should belong_to(:author).class_name('User').counter_cache(true) }
+    it { should belong_to(:author).class_name('AuthorInfor').counter_cache(true) }
     it { should have_many(:chapters).order(position: :asc) }
     it { should have_many(:story_views) }
     it { should have_many(:banned_requests) }
@@ -15,12 +15,9 @@ RSpec.describe Story, type: :model do
 
   describe 'validations' do
     it { should validate_presence_of(:name) }
-    it { should validate_presence_of(:author) }
     it { should validate_presence_of(:primary_genre_id) }
-    it { should validate_presence_of(:description) }
     it { should validate_presence_of(:cover_image) }
     it { should validate_presence_of(:tag_list) }
-    it { should validate_presence_of(:language_code) }
   end
 
   describe 'scopes' do

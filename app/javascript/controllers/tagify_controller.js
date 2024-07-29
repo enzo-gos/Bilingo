@@ -11,7 +11,7 @@ export default class extends Controller {
     this.tagify = new Tagify(this.tagInputTarget, {
       whitelist: tags,
       focusable: false,
-      delimiters: ',| ',
+      delimiters: ',',
       trim: true,
       dropdown: {
         position: 'input',

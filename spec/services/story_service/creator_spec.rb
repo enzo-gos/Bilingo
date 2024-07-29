@@ -2,7 +2,7 @@
 require 'rails_helper'
 
 RSpec.describe StoryService::Creator do
-  let(:author) { create(:user) }
+  let(:author) { create(:user).author }
   let(:primary_genre) { create(:genre) }
   let(:valid_params) { attributes_for(:story).merge(tag_list: '[{ "value": "tag1" }, { "value": "tag2" }]', primary_genre_id: primary_genre.id) }
   let(:invalid_params) { attributes_for(:story, name: nil).merge(tag_list: '[{ "value": "tag1" }, { "value": "tag2" }]') }

@@ -14,7 +14,8 @@ module CommentsHelper
       commenter: comment.commenter,
       p_id: comment.paragraph_id,
       comment: comment.comment,
-      created_at: comment.created_at
+      created_at: comment.created_at,
+      is_author: comment.is_author
     }
   end
 end

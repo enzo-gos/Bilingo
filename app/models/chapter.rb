@@ -14,6 +14,12 @@ class Chapter < ApplicationRecord
   before_save :generate_content_id
   after_update_commit :notice_published_chapter
 
+  validates_length_of :content, maximum: 65000
+
+  validates :title, length: {
+    maximum: 150
+  }
+
   def has_comment?(p_id)
     comments.where(paragraph_id: p_id).any?
   end
@@ -34,7 +40,31 @@ class Chapter < ApplicationRecord
 
   def generate_content_id
     html_content = content.body.to_s
-    fragment = Nokogiri::HTML.fragment(html_content)
+
+    doc = Nokogiri::HTML(html_content)
+
+    doc.xpath('//*[@*[starts-with(name(), "data-")]]').each do |node|
+      node.attributes.each do |name, _|
+        node.remove_attribute(name) if name.start_with?('data-')
+      end
+    end
+
+    clean_attrs = ['style', 'dir', 'id', 'onclick', 'onerror', 'onload', 'onmouseover', 'onsubmit', 'action', 'class']
+    doc.xpath('//*[@*]').each do |node|
+      clean_attrs.each { |attr| node.remove_attribute(attr) if node[attr] }
+    end
+
+    clean_tags = ['meta', 'link', 'script', 'style', 'iframe', 'frame', 'embed', 'object', 'applet', 'form', 'input', 'button', 'a', 'select', 'option', 'img']
+    clean_tags.each { |tag| doc.css(tag).remove }
+
+    doc.css('div').each do |div|
+      div.swap(div.children)
+    end
+
+    sanitized_html = doc.to_html
+
+    safe_html = Loofah.fragment(sanitized_html).scrub!(:prune).to_html
+    fragment = Nokogiri::HTML.fragment(safe_html)
 
     fragment.children.each_with_index do |child, index|
       child['data-p-id'] = ''

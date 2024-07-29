@@ -10,14 +10,14 @@ class Writer::StoriesController < ApplicationController
   layout 'writer/editor', except: [:index, :order, :destroy, :analytics]
 
   def index
-    @my_stories = current_user.stories.includes(:chapters).with_published
+    @my_stories = current_user.author.stories.includes(:chapters).with_published
   end
 
   def all
     respond_to do |format|
       format.turbo_stream do
         render turbo_stream: [
-          turbo_stream.update('workspace-main', partial: 'main', locals: { my_stories: current_user.stories.includes(:chapters) })
+          turbo_stream.update('workspace-main', partial: 'main', locals: { my_stories: current_user.author.stories.includes(:chapters) })
         ]
       end
     end
@@ -28,7 +28,7 @@ class Writer::StoriesController < ApplicationController
   end
 
   def create
-    result = StoryService::Creator.call(params: story_params, author: current_user)
+    result = StoryService::Creator.call(params: story_params, author: current_user.author)
     payload = result.payload
     @story = payload[:story]
 

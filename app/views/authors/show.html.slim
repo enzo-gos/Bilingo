@@ -2,8 +2,11 @@
   .profile-heading
     .wallpaper-color
     .user-avatar
-      span.avatar-text = @author.last_name.first
-    h1.profile-name = "#{@author.last_name} #{@author.first_name}"
+      - unless @author.avatar.attached?
+        span.avatar-text = @author.nickname.first
+      - else
+        = image_tag @author.avatar
+    h1.profile-name = @author.nickname
 
     .analysis
       .analysis-item
@@ -14,7 +17,7 @@
         span = t('profile.drafting')
       .analysis-item
         span = @banned
-        span = t('profile.reported')
+        span = t('profile.followers')
 
   .profile-stories
     h1.list-title = t('profile.stories_title')

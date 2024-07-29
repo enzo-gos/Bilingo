@@ -21,7 +21,7 @@
           p.book-description
             b = t('carousel.description')
             br
-            == story[:description]
+            == story[:description].truncate_words(80)
 
           = link_to t('carousel.reading'), story[:url], class: 'reading-btn'
         .book-cover-wrapper

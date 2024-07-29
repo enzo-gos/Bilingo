@@ -1,7 +1,7 @@
 td = story.id
 td = image_tag story.cover_image, alt: :cover_image, width: 50
 td = story.name
-td = link_to story.author.fullname, edit_admin_user_path(story.author), class: 'hover:text-primary-500'
+td = link_to story.author.nickname, edit_admin_user_path(story.author), class: 'hover:text-primary-500'
 td = "#{story.number_of_published}"
 td = story.comments
 td = story.story_views.size

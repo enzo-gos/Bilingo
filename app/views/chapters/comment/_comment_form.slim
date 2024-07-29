@@ -1,9 +1,18 @@
 = simple_form_for comment, url: url, method: :post, html: { class: 'comment-item comment-form', data: { turbo_stream: true } } do |f|
   .comment-avatar.text-avatar
-    = current_user.last_name.first
+    = current_user.author.nickname.first
   .comment-info.w-full
-    .comment-name
-      = current_user.fullname
+    .commenter-info
+      .comment-name
+        = current_user.fullname
+        | &nbsp;
+      .comment-nickname
+        | Nickname:&nbsp;
+        = current_user.author.nickname
+    #user-comment-role.hidden
+      = current_user.roles.pluck(:name).join(',')
+    #user-comment-author.hidden
+      = author
     .comment-area
       p.comment-input contenteditable='true' data-action='input->comment#commenting' placeholder==t('comments.placeholder')
         = mention

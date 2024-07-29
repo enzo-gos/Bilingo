@@ -3,7 +3,7 @@ module Admin
     before_action :prepare_employee, except: [:create, :new, :index]
 
     def index
-      employee_list = User.includes([:roles]).all.order(:id)
+      employee_list = User.includes([:roles, :author]).all.order(:id)
       @pagy, @employees = pagy(employee_list)
     end
 
@@ -22,7 +22,7 @@ module Admin
     end
 
     def edit
-      story_list = @employee.stories.includes([:author, { cover_image_attachment: :blob }]).order(:id)
+      story_list = @employee.author.stories.includes([:author, { cover_image_attachment: :blob }]).order(:id)
       @pagy, @stories = pagy(story_list)
     end
 

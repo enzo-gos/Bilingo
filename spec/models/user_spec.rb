@@ -54,8 +54,7 @@ RSpec.describe User, type: :model do
         uid: '123456789',
         info: {
           email: Faker::Internet.email,
-          name: 'Doe John',
-          image: 'http://example.com/avatar.jpg'
+          name: 'Doe John'
         }
       )
     end
@@ -75,7 +74,6 @@ RSpec.describe User, type: :model do
       expect(user.uid).to eq('123456789')
       expect(user.first_name).to eq('John')
       expect(user.last_name).to eq('Doe')
-      expect(user.avatar).to eq('http://example.com/avatar.jpg')
     end
   end
 

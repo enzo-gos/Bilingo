@@ -6,10 +6,14 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable,
          :omniauthable, omniauth_providers: %i[facebook]
 
-  has_many :stories, -> { includes([cover_image_attachment: :blob]).order(position: :asc) }, foreign_key: :author
+  has_one :author, class_name: :AuthorInfor
+  accepts_nested_attributes_for :author
+
   has_many :comments, foreign_key: :commenter
   has_many :notifications, -> { includes([{ event: { record: [:rich_text_reason, :reporter, :author, { story: [:author] }, :story_report] } }]).order(created_at: :desc) }, as: :recipient, dependent: :destroy, class_name: 'Noticed::Notification'
   has_many :notification_mentions, as: :record, dependent: :destroy, class_name: 'Noticed::Event'
+
+  after_create_commit :create_author_info
 
   acts_as_voter
 
@@ -31,7 +35,7 @@ class User < ApplicationRecord
       user.uid = auth.uid
       user.last_name = name_split[0]
       user.first_name = name_split[1]
-      user.avatar = auth.info.image
+      # user.avatar = auth.info.image
       user.password = Devise.friendly_token[0, 20]
       user.add_role :user
     end
@@ -43,5 +47,11 @@ class User < ApplicationRecord
 
   def unread_notifications_count
     notifications.unread.size
+  end
+
+  private
+
+  def create_author_info
+    AuthorInfor.create(nickname: "#{fullname} #{id}", user_id: id)
   end
 end

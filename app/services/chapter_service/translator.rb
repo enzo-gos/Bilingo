@@ -1,7 +1,7 @@
 class ChapterService::Translator < ApplicationService
   def initialize(chapter:, source_language:, target_language:)
     @chapter = chapter
-    @source_language = source_language
+    @source_language = source_language || ''
     @target_language = target_language
   end
 
@@ -19,6 +19,8 @@ class ChapterService::Translator < ApplicationService
       end
 
       show_translate = @source_language.downcase != @target_language.downcase
+
+      cache_translate = start_translate(html_segments)
 
       if show_translate
         cache_key = "translate_#{@target_language}_#{@chapter.id}"

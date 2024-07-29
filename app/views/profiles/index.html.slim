@@ -1,37 +1,24 @@
-.profile-container
-  .profile-heading
-    .wallpaper-color
-    .user-avatar
-      span.avatar-text = current_user.last_name.first
-    h1.profile-name = "#{current_user.last_name} #{current_user.first_name}"
+.max-w-2xl.mx-auto.mt-10
+  = simple_form_for @user, method: :patch, url: profile_path(@user), html: { multipart: true, class: 'p-6 bg-white rounded-lg shadow-md border flex flex-col gap-4' }, defaults: { input_html: { class: 'form-profile-input' }, label_html: { class: 'form-profile-label' } } do |f|
+    .mx-auto
+      .profile-avatar.dropzone.dropzone-default.dz-clickable data-controller='dropzone' data-dropzone-max-file-size='5' data-dropzone-max-files='1' data-dropzone-accepted-files='image/jpg,image/png,image/jpeg'
 
-    .analysis
-      .analysis-item
-        span = @published
-        span = t('profile.published')
-      .analysis-item
-        span = @draft
-        span = t('profile.drafting')
-      .analysis-item
-        span = @banned
-        span = t('profile.reported')
+        - if @user.author.avatar.attached?
+          #preview-info data-dropzone-preview-image==url_for(@user.author.avatar) data-dropzone-preview-filename==@user.author.avatar.blob.filename data-dropzone-preview-filesize==@user.author.avatar.blob.byte_size
 
-  .profile-stories
-    h1.list-title = t('profile.stories_title')
-    .profile-stories-grid
-      - format_stories(@stories).map do |story|
-        = link_to story_path(story[:id]), class: 'story-book' do
-          .story-cover
-            = image_tag story[:cover]
-          .story-name
-            = story[:title]
-          .story-analysis
-            .counter
-              = mi.shape(:visibility).outlined.md_18
-              = story[:views]
-            .counter
-              = mi.shape(:comment).outlined.md_18
-              = story[:comments]
-            .counter
-              = mi.shape(:format_list_bulleted).outlined.md_18
-              = story[:chapters]
+        .added-info
+          = mi.shape(:wallpaper).md_48
+          .notice Upload Avatar
+        = f.fields_for :author do |author_form|
+          = author_form.input :avatar, label: false, input_html: { data: { dropzone_target: 'input', direct_upload_url: '/rails/active_storage/direct_uploads' }, hidden: true }
+
+    .flex.w-full.items-center.justify-between.gap-3
+      = f.input :first_name, label: 'First Name'
+      = f.input :last_name, label: 'Last Name'
+      = f.fields_for :author do |author_form|
+        = author_form.input :nickname, label: 'Nickname', input_html: { class: 'form-profile-input' }, label_html: { class: 'form-profile-label' }
+
+    = f.input :email, label: 'Email', input_html: { readonly: true }
+
+    .form-profile-group.justify-end.mt-8
+      = f.button :submit, 'Update Profile', class: 'cursor-pointer bg-primary-500 text-white font-semibold text-sm py-3 px-6 rounded-md hover:bg-primary-600'

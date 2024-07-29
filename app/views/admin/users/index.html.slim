@@ -36,7 +36,7 @@
             td = user.id
             td = user.email
             td = user.fullname
-            td = user.stories.size
+            td = user.author.stories.size
             td = user.comments.size
             td = user.roles.length > 0 ? user.roles.pluck(:name).join(', ') : 'User'
             td

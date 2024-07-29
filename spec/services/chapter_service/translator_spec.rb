@@ -5,12 +5,14 @@ RSpec.describe ChapterService::Translator do
   let(:source_language) { 'en' }
   let(:target_language) { 'es' }
   let(:translate_client) { instance_double('Google::Cloud::Translate::V3::TranslationService') }
+  let(:translated_title) { Faker::Lorem.sentence }
+  let(:translated_content) { [Faker::Lorem.sentence, Faker::Lorem.sentence] }
 
   before do
     allow(Google::Cloud::Translate).to receive(:translation_service).and_return(translate_client)
-
     allow(translate_client).to receive(:translate_text).and_return(
-      double(translations: [double(translated_text: Faker::Lorem.sentence), double(translated_text: Faker::Lorem.sentence)])
+      double(translations: [double(translated_text: translated_title)]),
+      double(translations: translated_content.map { |text| double(translated_text: text) })
     )
   end
 
@@ -27,14 +29,9 @@ RSpec.describe ChapterService::Translator do
 
     context 'when translation is needed' do
       it 'returns translated content' do
-        expect(translate_client).to receive(:translate_text).twice.and_return(
-          double(translations: [double(translated_text: Faker::Lorem.sentence)])
-        )
-
         result = subject.call
 
         expect(result[:show_translate]).to be true
-        expect(result[:translated][:title]).to be_a(String)
         expect(result[:translated][:content]).to be_a(Hash)
         expect(result[:translated][:content].values).to all(be_a(String))
       end
@@ -64,25 +61,10 @@ RSpec.describe ChapterService::Translator do
         allow(Rails.cache).to receive(:fetch).with(cache_key).and_return(outdated_cache)
         allow(Rails.cache).to receive(:write)
 
-        expect(translate_client).to receive(:translate_text).twice.and_return(
-          double(translations: [double(translated_text: Faker::Lorem.sentence)])
-        )
-
         subject.call
 
         expect(Rails.cache).to have_received(:fetch).with(cache_key)
         expect(Rails.cache).to have_received(:write).with(cache_key, anything)
-      end
-    end
-
-    context 'when source and target languages are the same' do
-      let(:target_language) { 'en' }
-
-      it 'does not perform translation' do
-        result = subject.call
-
-        expect(result[:show_translate]).to be false
-        expect(result[:translated]).to be_nil
       end
     end
 

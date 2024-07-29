@@ -36,7 +36,7 @@
                   = image_tag request.story.cover_image, alt: :cover_image, width: 50
                   .flex.flex-col.gap-2
                     .whitespace-nowrap = request.story.name
-                    .whitespace-nowrap = request.story.author.fullname
+                    .whitespace-nowrap = request.story.author.nickname
               td.whitespace-nowrap = request.reporter.fullname
               td
                 .line-clamp-2.text-ellipsis = request.title

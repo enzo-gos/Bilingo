@@ -91,7 +91,13 @@ export default class extends Controller {
     });
 
     $(this.titleEditorTarget).on('input', () => {
-      $(this.titleTarget).val($(this.titleEditorTarget).html());
+      $(this.titleTarget).val($(this.titleEditorTarget).text());
+    });
+
+    $(this.titleEditorTarget).on('paste', (event) => {
+      event.preventDefault();
+      const clipboarddata = window.event.clipboardData.getData('text/plain');
+      $(this.titleEditorTarget).text(clipboarddata);
     });
 
     if (this.editor.getContent()) $('#word-count').html(`(${this.countWords()} words)`);

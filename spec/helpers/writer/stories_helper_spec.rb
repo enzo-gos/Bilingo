@@ -3,7 +3,7 @@ require 'rails_helper'
 
 RSpec.describe Writer::StoriesHelper, type: :helper do
   let(:user) { create(:user) }
-  let(:story) { create(:story, author: user) }
+  let(:story) { create(:story, author: user.author) }
   let(:chapter) { create(:chapter, story: story) }
 
   describe '#fake_languages_with_codes' do
@@ -30,7 +30,7 @@ RSpec.describe Writer::StoriesHelper, type: :helper do
         id: story.id,
         title: story.name,
         language: story.language_code,
-        description: story.description,
+        description: story.description.body.to_s,
         cover: story.cover_image,
         updated: story.updated_at.strftime('%b %d, %Y'),
         is_published: story.number_of_published.positive?,

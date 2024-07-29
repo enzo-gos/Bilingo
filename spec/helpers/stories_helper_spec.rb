@@ -23,12 +23,12 @@ RSpec.describe StoriesHelper, type: :helper do
     it 'sets meta tags for the story' do
       expect(helper).to receive(:set_meta_tags).with(
         title: story.name,
-        description: story.description,
+        description: story.description.body.to_s,
         image: 'http://example.com/cover_image.jpg',
         keywords: "#{story.tag_list.join(', ')}, #{story.primary_genre.name}, #{story.secondary_genre&.name}",
         og: {
           title: story.name,
-          description: story.description,
+          description: story.description.body.to_s,
           image: 'http://example.com/cover_image.jpg'
         }
       )

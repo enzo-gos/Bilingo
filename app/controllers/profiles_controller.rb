@@ -1,25 +1,29 @@
 class ProfilesController < ApplicationController
-  before_action :set_author, only: [:show]
-  before_action :set_stories, only: [:index, :show]
-  before_action :set_author_info, only: [:index, :show]
+  before_action :auth_user
 
-  def index; end
+  def index
+    @user = current_user
+  end
 
-  def show; end
+  def update
+    @user = User.find(params[:id])
+    if @user.update(user_params)
+      redirect_to profiles_path, notice: 'Profile updated successfully.'
+    else
+      render :index, status: :unprocessable_entity
+    end
+  end
 
   private
 
-  def set_author
-    @author = User.find(params[:id])
+  def user_params
+    params.require(:user).permit(:first_name, :last_name, :email, author_attributes: [:id, :nickname, :avatar])
   end
 
-  def set_stories
-    @stories = (@author || current_user).stories.includes(:primary_genre, :secondary_genre, :author, { cover_image_attachment: :blob })
-  end
-
-  def set_author_info
-    @published = @stories.where(id: Chapter.where(published: true).select(:story_id)).size
-    @draft = @stories.size - @published
-    @banned = @stories.where(banned: true).size
+  def auth_user
+    unless user_signed_in?
+      flash[:info] = t('auth.not_signed_in')
+      redirect_to root_path
+    end
   end
 end

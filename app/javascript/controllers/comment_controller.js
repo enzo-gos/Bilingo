@@ -16,8 +16,16 @@ export default class extends Controller {
     const currentUserId = $('[data-comment-user-id]').attr('data-comment-user-id');
     const commenterId = $(event).attr('data-commenter-id');
 
-    if (commenterId == currentUserId) {
+    if (
+      commenterId == currentUserId ||
+      $('#user-comment-role').text().split(',').includes('admin') ||
+      $('#user-comment-author').text() === 'true'
+    ) {
       $(event).find('.delete-btn').removeClass('hidden');
+    }
+
+    if (currentUserId && commenterId != currentUserId) {
+      $(event).find('.reply-btn').removeClass('hidden');
     }
   }
 

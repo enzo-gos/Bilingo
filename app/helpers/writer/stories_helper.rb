@@ -69,7 +69,7 @@ module Writer::StoriesHelper
         id: story.id,
         title: story.name,
         language: story.language_code,
-        description: story.description,
+        description: story.description.body.to_s,
         cover: story.cover_image,
         updated: story.updated_at.strftime('%b %d, %Y'),
         is_published: story.number_of_published.positive?,

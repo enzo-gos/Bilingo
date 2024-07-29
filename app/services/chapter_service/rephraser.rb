@@ -53,6 +53,7 @@ class ChapterService::Rephraser < ApplicationService
       rephrased = gemini(original: @original, translated: @translated)
     rescue Faraday::TooManyRequestsError
       retry if try < 5
+      rephrased = @translated
       error = true
     end
 

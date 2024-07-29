@@ -7,7 +7,7 @@
     @apply fixed
     top-[62px]
     right-2
-    z-max
+    z-[10000]
     max-w-xs
     bg-white
     border

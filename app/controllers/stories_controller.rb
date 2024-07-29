@@ -6,8 +6,11 @@ class StoriesController < ApplicationController
 
   def show
     @story = Story.includes([:chapters]).find(params[:id])
-    @chapters = @story.chapters.where(published: true)
     authorize @story
+
+    @chapters = @story.chapters.where(published: true)
+    @pagy, @chapters = pagy(@chapters)
+    @recently_read = @story.most_recent_chapter_for(request.remote_ip)
   end
 
   def follow

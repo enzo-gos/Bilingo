@@ -1,0 +1,14 @@
+.story-table-content
+  .story-table-content-title = t('story_details.table_of_content')
+  .story-table-list
+    - @chapters.each do |chapter|
+      = link_to story_chapter_path(story_id: @story.id, id: chapter.id), class: 'chapter-item', data: { turbo_frame: '_top' }
+        - if @recently_read && chapter.id == @recently_read
+          span class='w-0 h-0 border-y-4 border-l-8 border-transparent border-l-primary-600 mr-1'
+          / span class='h-0 w-0 border-y-8 border-x-transparent border-l-[16px] border-b-primary-600'
+        .chapter-title = chapter.title
+        .chapter-published.ml-auto = time_ago_in_words(chapter.updated_at)
+
+  - if @pagy && @pagy.pages > 1
+    .navigation
+      == pagy_nav(@pagy)

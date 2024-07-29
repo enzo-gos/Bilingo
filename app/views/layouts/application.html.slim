@@ -17,7 +17,8 @@ html lang==I18n.locale
     = render 'shared/navbar'
     = render 'shared/modal/auth_modal'
     = render 'shared/modal/share_modal'
-    = render 'shared/toast/container'
+    #toast-flash
+      = render 'shared/toast/container'
 
     #fb-root
     main.main-content

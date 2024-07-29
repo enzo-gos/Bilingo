@@ -56,7 +56,10 @@
         - if user_signed_in?
           .dropdown.profile-dropdown
             .dropdown-btn.user-profile
-              span.avatar-text = current_user.last_name.first
+              - unless current_user.author.avatar.attached?
+                span.avatar-text = current_user.last_name.first
+              - else
+                = image_tag current_user.author.avatar
             .dropdown-list.profile-list
               - if current_user.has_role?(:admin)
                 .dropdown-item
@@ -64,11 +67,11 @@
                     = mi.shape(:dashboard).md_18
                     = t('navbar.dashboard')
               .dropdown-item
-                = link_to profiles_path, class: 'account-option' do
+                = link_to author_path(current_user.author), class: 'account-option' do
                   = mi.shape(:account_circle).md_18
                   = t('navbar.user_profile')
               .dropdown-item
-                = link_to '#setting', class: 'account-option' do
+                = link_to profiles_path, class: 'account-option' do
                   = mi.shape(:settings).md_18
                   = t('navbar.settings')
               .px-2.my-1

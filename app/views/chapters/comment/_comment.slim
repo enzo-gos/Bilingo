@@ -2,12 +2,17 @@
   .comment-avatar.text-avatar
     = comment[:avatar]
   .comment-info
-    .comment-name
-      = comment[:commenter].fullname
+    .commenter-info
+      = link_to author_path(comment[:commenter].author), class: 'comment-name' do
+        = comment[:commenter].fullname
+        span.comment-author = " - Author" if comment[:is_author]
+      .comment-nickname
+        | Nickname:&nbsp;
+        = comment[:commenter].author.nickname
     .comment-content
       = comment[:comment]
     .comment-status
       small.during-time = time_ago_in_words(comment[:created_at])
       - unless show_only
-        = link_to t('comments.reply'), story_chapter_comment_reply_path(story_id: comment[:story_id], chapter_id: comment[:chapter_id], comment_id: comment[:id]), class: 'reply-btn', data: { turbo_stream: true, action: 'click->comment#reply' }
+        = link_to t('comments.reply'), story_chapter_comment_reply_path(story_id: comment[:story_id], chapter_id: comment[:chapter_id], comment_id: comment[:id]), class: 'reply-btn hidden', data: { turbo_stream: true, action: 'click->comment#reply' }
         = link_to t('comments.delete'), story_chapter_comment_path(story_id: comment[:story_id], chapter_id: comment[:chapter_id], id: comment[:id]), class: 'delete-btn hidden', data: { turbo_stream: true, turbo_method: :delete, comment_target: 'deleteCommentBtn' }

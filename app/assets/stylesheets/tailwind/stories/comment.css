@@ -101,6 +101,21 @@
     text-[12px];
   }
 
+  .comment .comment-list .comment-item .comment-info .comment-name .comment-author {
+    @apply text-[11px]
+    font-medium
+    text-primary-600
+    italic;
+  }
+
+  .comment .comment-list .comment-item .comment-info .comment-nickname {
+    @apply text-secondary-500
+    text-[10px]
+    font-medium
+    italic
+    mt-0.5;
+  }
+
   .comment .comment-list .comment-item .comment-info .comment-content {
     @apply text-sm;
   }

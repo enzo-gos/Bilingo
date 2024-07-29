@@ -1,7 +1,7 @@
 class ChapterService::Summarizer < ApplicationService
   def initialize(chapter:, target_language:, content:, model: 'gemini-1.5-flash', cached: true)
     @chapter = chapter
-    @target_language = target_language
+    @target_language = target_language&.downcase || ''
     @model = model
     @content = content
     @cached = cached

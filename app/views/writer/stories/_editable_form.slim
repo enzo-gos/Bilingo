@@ -22,7 +22,7 @@
         = f.input :name, label: t('new-story-form.title'), input_html: { placeholder: t('new-story-form.untitled_story') }
 
       .info-wrapper
-        = f.input :description, as: :text, label: t('new-story-form.description'), input_html: { class: 'story-input description', rows: 5 }
+        = f.rich_text_area :description, label: t('new-story-form.description'), class: 'description trix-input h-32 overflow-y-auto'
 
       hr
       .info-wrapper

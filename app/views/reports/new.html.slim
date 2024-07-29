@@ -4,7 +4,7 @@
       = image_tag @story.cover_image
     .story-info
       .story-title = @story.name
-      .story-author = t('story_details.by_author', author_name: @story.author.fullname)
+      .story-author = t('story_details.by_author', author_name: @story.author.nickname)
       .story-tags
         - @story.tag_list.each do |tag|
           .story-tag-item = tag

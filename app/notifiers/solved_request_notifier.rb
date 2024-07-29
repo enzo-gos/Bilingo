@@ -17,7 +17,7 @@ class SolvedRequestNotifier < ApplicationNotifier
   end
 
   def title
-    "<b>#{record.story.author.fullname}</b> has solved report on <b>#{record.story.name}</b>".html_safe
+    "<b>#{record.story.author.nickname}</b> has solved report on <b>#{record.story.name}</b>".html_safe
   end
 
   def icon

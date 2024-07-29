@@ -96,7 +96,7 @@ class ChaptersController < ApplicationController
   end
 
   def summarize
-    original = ChapterService::Summarizer.call(chapter: @chapter, target_language: @story.language_code.downcase, content: @chapter.content.body.to_s)
+    original = ChapterService::Summarizer.call(chapter: @chapter, target_language: @story.language_code, content: @chapter.content.body.to_s)
     translated = ChapterService::Summarizer.call(chapter: @chapter, target_language: params[:translate_code], content: original)
 
     respond_to do |format|

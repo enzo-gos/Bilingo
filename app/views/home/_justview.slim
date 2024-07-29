@@ -13,7 +13,7 @@
         h1.story-title = story[:title]
 
       = link_to story[:url] do
-        p.story-description = story[:description].truncate_words(20)
+        p.story-description == story[:description].truncate_words(20)
 
       .story-controls
         = link_to story[:url], class: 'read-btn' do

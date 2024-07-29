@@ -34,6 +34,6 @@ class Writer::ChapterPolicy < ApplicationPolicy
   private
 
   def by_author?
-    record.story.author == user
+    user.present? && record.story.author == user.author
   end
 end

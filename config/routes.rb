@@ -10,6 +10,11 @@ Rails.application.routes.draw do
       namespace :meta_data do
         get :tags
       end
+      namespace :crawler do
+        namespace :populars do
+          get :new
+        end
+      end
     end
   end
 
@@ -35,7 +40,8 @@ Rails.application.routes.draw do
 
     get 'share/:id' => 'share#index', as: :share
 
-    resources :profiles, only: [:index, :show]
+    resources :profiles, only: [:index, :update]
+    resources :authors, only: [:show]
 
     patch 'notifications/:id' => 'notifications#read', as: :notification_mark_as_read
 

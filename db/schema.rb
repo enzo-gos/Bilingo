@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_07_23_072224) do
+ActiveRecord::Schema[7.1].define(version: 2024_07_29_060747) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -52,6 +52,19 @@ ActiveRecord::Schema[7.1].define(version: 2024_07_23_072224) do
     t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
   end
 
+  create_table "author_infors", force: :cascade do |t|
+    t.string "nickname"
+    t.bigint "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "stories_count", default: 0
+    t.bigint "aid", default: 0
+    t.boolean "crawler", default: false
+    t.index ["id", "aid"], name: "index_author_infors_on_id_and_aid", unique: true
+    t.index ["nickname"], name: "index_author_infors_on_nickname", unique: true
+    t.index ["user_id"], name: "index_author_infors_on_user_id"
+  end
+
   create_table "banned_requests", force: :cascade do |t|
     t.string "title"
     t.integer "status", default: 0
@@ -74,6 +87,9 @@ ActiveRecord::Schema[7.1].define(version: 2024_07_23_072224) do
     t.datetime "updated_at", null: false
     t.integer "story_views_count", default: 0
     t.integer "comments_count", default: 0
+    t.bigint "cid", default: 0
+    t.boolean "crawler", default: false
+    t.index ["id", "cid"], name: "index_chapters_on_id_and_cid", unique: true
     t.index ["story_id"], name: "index_chapters_on_story_id"
   end
 
@@ -83,26 +99,9 @@ ActiveRecord::Schema[7.1].define(version: 2024_07_23_072224) do
     t.string "paragraph_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.boolean "is_author", default: false
     t.index ["chapter_id"], name: "index_comments_on_chapter_id"
     t.index ["commenter_id"], name: "index_comments_on_commenter_id"
-  end
-
-  create_table "favorites", force: :cascade do |t|
-    t.string "favoritable_type", null: false
-    t.bigint "favoritable_id", null: false
-    t.string "favoritor_type", null: false
-    t.bigint "favoritor_id", null: false
-    t.string "scope", default: "favorite", null: false
-    t.boolean "blocked", default: false, null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["blocked"], name: "index_favorites_on_blocked"
-    t.index ["favoritable_id", "favoritable_type"], name: "fk_favoritables"
-    t.index ["favoritable_type", "favoritable_id", "favoritor_type", "favoritor_id", "scope"], name: "uniq_favorites__and_favoritables", unique: true
-    t.index ["favoritable_type", "favoritable_id"], name: "index_favorites_on_favoritable"
-    t.index ["favoritor_id", "favoritor_type"], name: "fk_favorites"
-    t.index ["favoritor_type", "favoritor_id"], name: "index_favorites_on_favoritor"
-    t.index ["scope"], name: "index_favorites_on_scope"
   end
 
   create_table "genres", force: :cascade do |t|
@@ -147,17 +146,19 @@ ActiveRecord::Schema[7.1].define(version: 2024_07_23_072224) do
 
   create_table "stories", force: :cascade do |t|
     t.string "name"
-    t.text "description"
     t.string "language_code"
     t.integer "position"
     t.bigint "primary_genre_id", null: false
     t.bigint "secondary_genre_id"
-    t.bigint "author_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "story_views_count", default: 0
     t.boolean "banned", default: false
+    t.bigint "author_id"
+    t.bigint "rid", default: 0
+    t.boolean "crawler", default: false
     t.index ["author_id"], name: "index_stories_on_author_id"
+    t.index ["id", "rid"], name: "index_stories_on_id_and_rid", unique: true
     t.index ["primary_genre_id"], name: "index_stories_on_primary_genre_id"
     t.index ["secondary_genre_id"], name: "index_stories_on_secondary_genre_id"
   end
@@ -180,6 +181,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_07_23_072224) do
     t.date "viewed_on"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.datetime "view_updated_at"
     t.index ["chapter_id"], name: "index_story_views_on_chapter_id"
     t.index ["story_id", "ip_address", "chapter_id", "viewed_on"], name: "idx_on_story_id_ip_address_chapter_id_viewed_on_aa92ab436e", unique: true
     t.index ["story_id"], name: "index_story_views_on_story_id"
@@ -263,13 +265,14 @@ ActiveRecord::Schema[7.1].define(version: 2024_07_23_072224) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "author_infors", "users"
   add_foreign_key "banned_requests", "stories"
   add_foreign_key "banned_requests", "users", column: "requester_id"
   add_foreign_key "comments", "chapters"
   add_foreign_key "comments", "users", column: "commenter_id"
+  add_foreign_key "stories", "author_infors", column: "author_id"
   add_foreign_key "stories", "genres", column: "primary_genre_id"
   add_foreign_key "stories", "genres", column: "secondary_genre_id"
-  add_foreign_key "stories", "users", column: "author_id"
   add_foreign_key "story_reports", "stories"
   add_foreign_key "story_reports", "users", column: "reporter_id"
   add_foreign_key "story_views", "chapters"

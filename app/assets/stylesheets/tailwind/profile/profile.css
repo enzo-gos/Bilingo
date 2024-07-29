@@ -138,4 +138,100 @@
     gap-1
     items-center;
   }
+
+  .form-profile-input {
+    @apply block
+    w-full
+    px-3
+    py-2
+    border
+    border-gray-300
+    rounded-md
+    shadow-sm
+    focus:outline-none
+    focus:ring-indigo-500
+    focus:border-indigo-500
+    sm:text-sm;
+  }
+
+  .form-profile-label {
+    @apply block
+    text-sm
+    font-medium
+    text-gray-700
+    mb-1;
+  }
+
+  .form-profile-group {
+    @apply mb-4
+    flex
+    justify-stretch
+    w-full;
+  }
+
+  .profile-avatar.dropzone {
+    @apply w-48
+    min-w-48
+    h-48
+    min-h-48
+    bg-gray-200/40
+    border-none
+    items-center
+    justify-center
+    relative
+    rounded-full
+    mb-10
+    p-0;
+  }
+
+  .profile-avatar img {
+    @apply w-full
+    h-full
+    object-cover
+    object-center;
+  }
+
+  .profile-avatar > .added-info {
+    @apply absolute
+    left-1/2
+    top-1/2
+    -translate-x-1/2
+    -translate-y-1/2
+    text-center
+    text-gray-500
+    font-medium
+    pointer-events-none;
+  }
+
+  .profile-avatar > .added-info > .notice {
+    @apply my-1
+    text-sm
+    whitespace-nowrap;
+  }
+
+  .profile-avatar .dz-preview.dz-image-preview {
+    @apply w-full
+    flex
+    flex-col
+    bg-transparent
+    m-0;
+  }
+
+  .profile-avatar.dropzone .dz-preview .dz-image {
+    @apply w-48
+    h-48
+    rounded-full;
+  }
+
+  .profile-avatar.dropzone .dz-preview .dz-image img {
+    @apply w-full
+    h-full
+    object-center
+    object-cover;
+  }
+
+  .profile-avatar.dropzone .dz-remove {
+    @apply py-2
+    text-sm;
+  }
 }

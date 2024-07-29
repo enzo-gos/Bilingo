@@ -26,6 +26,6 @@ class Writer::StoryPolicy < ApplicationPolicy
   private
 
   def by_author?
-    record.author == user
+    user.present? && record.author == user.author
   end
 end

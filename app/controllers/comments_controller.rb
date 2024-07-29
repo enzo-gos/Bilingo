@@ -19,7 +19,7 @@ class CommentsController < ApplicationController
   def show
     comment = Comment.new
 
-    all_comment = @chapter.comments.includes([:commenter, :rich_text_comment]).where(paragraph_id: params[:id])
+    all_comment = @chapter.comments.includes([{ commenter: :author }, :rich_text_comment]).where(paragraph_id: params[:id])
 
     respond_to do |format|
       format.turbo_stream do
@@ -29,7 +29,8 @@ class CommentsController < ApplicationController
             comment: comment,
             all_comment: all_comment,
             chapter: @chapter,
-            paragraph_id: params[:id]
+            paragraph_id: params[:id],
+            author: current_user&.author == @chapter.story.author
           })
         ]
       end
@@ -40,6 +41,8 @@ class CommentsController < ApplicationController
     comment = @chapter.comments.new(comment_params)
     comment.commenter = current_user
 
+    authorize comment
+
     respond_to do |format|
       format.turbo_stream do
         if comment.save
@@ -49,11 +52,16 @@ class CommentsController < ApplicationController
               comment: Comment.new,
               url: story_chapter_comments_path(story_id: @chapter.story_id, chapter_id: @chapter.id),
               paragraph_id: comment.paragraph_id,
+              author: current_user == @chapter.story.author,
               mention: ''
             })
           ]
         else
-          render turbo_stream: []
+          error = comment.errors.find { |err| err.attribute == :profanity_word }
+          flash.now[:alert] = error.type if error.present?
+          render turbo_stream: [
+            turbo_stream.update('toast-flash', partial: 'shared/toast/container')
+          ]
         end
       end
     end
@@ -74,6 +82,8 @@ class CommentsController < ApplicationController
 
   def reply
     comment = @chapter.comments.find(params[:comment_id])
+    authorize comment
+
     respond_to do |format|
       format.turbo_stream do
         render turbo_stream: [
@@ -82,7 +92,8 @@ class CommentsController < ApplicationController
             comment: Comment.new,
             url: story_chapter_comments_path(story_id: @chapter.story_id, chapter_id: @chapter.id),
             paragraph_id: comment.paragraph_id,
-            mention: view_context.link_to(comment.commenter.fullname, profile_path(comment.commenter))
+            author: current_user == @chapter.story.author,
+            mention: "#{view_context.link_to(comment.commenter.author.nickname, author_path(comment.commenter.author))}&nbsp;".html_safe
           })
         ]
       end

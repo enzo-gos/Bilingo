@@ -81,3 +81,11 @@ gem 'chartkick', '~> 5.0'
 gem 'groupdate', '~> 6.4'
 
 gem 'noticed', '~> 2.4'
+
+gem "httparty", "~> 0.22.0"
+
+gem "image_processing", "~> 1.13"
+
+gem "loofah", "~> 2.22"
+
+gem "profanity_filter", "~> 0.1.1"

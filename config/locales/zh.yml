@@ -8,7 +8,7 @@ zh:
     write: '写作'
     write_new_story: '撰写新故事'
     my_stories: '我的故事'
-    user_profile: '用户资料'
+    user_profile: '作者资料'
     settings: '设置'
     dashboard: '仪表板'
     logout: '登出'
@@ -78,6 +78,7 @@ zh:
     comments: '评论'
     chapters: '章节'
     start_reading: '开始阅读'
+    continue_reading: '继续阅读'
     description: '描述'
     table_of_content: '目录'
 

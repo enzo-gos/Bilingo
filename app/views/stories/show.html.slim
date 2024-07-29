@@ -1,12 +1,12 @@
 - story_meta(@story)
 
-.reader.story-details
+.reader.story-details data-controller='story-view'
   .story-heading
     .story-cover
       = image_tag @story.cover_image
     .story-info
       .story-title = @story.name
-      = link_to t('story_details.by_author', author_name: @story.author.fullname), profile_path(@story.author), class: 'story-author'
+      = link_to t('story_details.by_author', author_name: @story.author.nickname), author_path(@story.author), class: 'story-author'
       .story-tags
         - @story.tag_list.each do |tag|
           = link_to tag, topic_path(tag), class: 'story-tag-item'
@@ -32,21 +32,21 @@
           .analysis-content
             = @story.number_of_published
       .actions-group
-        = link_to t('story_details.start_reading'), story_chapter_path(story_id: @story.id, id: @story.chapters.first.id), class: 'story-reading-btn'
+        = link_to @recently_read ? t('story_details.continue_reading') : t('story_details.start_reading'), story_chapter_path(story_id: @story.id, id: @recently_read || @story.chapters.first.id), class: 'story-reading-btn'
         = button_to follow_story_path(@story), method: :post, class: "story-bookmark-btn#{ @story.bookmark?(current_user) ? ' active' : ''}"
           = mi.shape(:bookmark).md_18
         = link_to share_path(@story), class: 'story-share-btn', data: { turbo_stream: true, action: 'click->share-modal#open' }
           = mi.shape(:share).md_18
         = link_to new_story_report_path(story_id: @story.id), class: 'story-report-btn'
           = mi.shape(:flag).md_18
-  .story-description
+  .story-description.story-description-minimize data-story-view-target='description'
     .story-description-title = t('story_details.description')
-    = @story.description
+    = @story.description.body.to_s
 
-  .story-table-content
-    .story-table-content-title = t('story_details.table_of_content')
-    .story-table-list
-      - @chapters.each do |chapter|
-        = link_to story_chapter_path(story_id: @story.id, id: chapter.id), class: 'chapter-item'
-          .chapter-title = chapter.title
-          .chapter-published = time_ago_in_words(chapter.updated_at)
+    button.action-btn.more-btn data-action='click->story-view#details' data-story-view-target='moreBtn'
+      = 'Show more'
+
+    button.action-btn.less-btn data-action='click->story-view#minimize' data-story-view-target='lessBtn'
+      = 'Show less'
+  = turbo_frame_tag 'chapters' do
+   = render 'chapter_list', chapters: @chapters, pagy: @pagy

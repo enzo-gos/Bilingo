@@ -133,7 +133,54 @@
   }
 
   .reader.story-details .story-description {
-    @apply mb-0;
+  }
+
+  .reader.story-details .story-description-minimize {
+    @apply h-72
+    relative
+    overflow-hidden;
+  }
+
+  .reader.story-details .story-description-minimize::after {
+    @apply absolute
+    bottom-0
+    left-0
+    right-0
+    h-20
+    bg-gradient-to-b
+    from-white
+    to-gray-100
+    opacity-90;
+    content: '';
+  }
+
+  .reader.story-details .story-description .action-btn {
+    @apply font-semibold
+    text-lg;
+  }
+
+  .reader.story-details .story-description .more-btn {
+    @apply hidden;
+  }
+
+  .reader.story-details .story-description .less-btn {
+    @apply block
+    w-fit
+    mx-auto
+    mt-4;
+  }
+
+  .reader.story-details .story-description.story-description-minimize .more-btn {
+    @apply absolute
+    bottom-5
+    z-10
+    left-1/2
+    -translate-x-1/2
+    block;
+  }
+
+  .reader.story-details .story-description.story-description-minimize .less-btn {
+    @apply hidden;
   }
 
   .reader.story-details .story-table-content {
@@ -159,6 +206,7 @@
   .reader.story-details .story-table-content .chapter-item {
     @apply flex
     justify-between
+    items-center
     p-4
     hover:bg-gray-100;
   }

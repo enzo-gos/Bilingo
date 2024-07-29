@@ -31,12 +31,12 @@ module ApplicationHelper
   end
 
   def top_story
-    Story.with_published.top_viewed.includes([:author, { cover_image_attachment: :blob }]).map do |story|
+    Story.with_published.top_viewed.includes([:author, { cover_image_attachment: :blob }, :rich_text_description]).map do |story|
       {
         cover: story.cover_image,
         title: story.name,
-        author: story.author.fullname,
-        description: story.description,
+        author: story.author.nickname,
+        description: story.description.body.to_s,
         views: story.views,
         comments: story.comments,
         chapters: story.number_of_published,
@@ -46,12 +46,12 @@ module ApplicationHelper
   end
 
   def recently_read
-    Story.recently_read(request.remote_ip).includes([:author, { cover_image_attachment: :blob }]).map do |story|
+    Story.recently_read(request.remote_ip).includes([:author, { cover_image_attachment: :blob }, :rich_text_description]).map do |story|
       {
         cover: story.cover_image,
         title: story.name,
-        author: story.author.fullname,
-        description: story.description,
+        author: story.author.nickname,
+        description: story.description.body.to_s,
         views: story.views,
         comments: story.comments,
         chapters: story.number_of_published,
