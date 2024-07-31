@@ -122,6 +122,14 @@ Rails.application.routes.draw do
         patch :accept
       end
     end
+
+    resource :crawlers, only: [:index, :show] do
+      member do
+        get :fetch_ongoing
+        post :fetch_ongoing
+      end
+    end
+
     root 'dashboards#index'
   end
 end

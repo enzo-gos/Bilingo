@@ -1,0 +1,37 @@
+h1.story-title Progress
+hr.mt-4
+
+.table-container.mt-8
+  table.management-table
+    thead.table-heading
+      - stories.each do |story|
+        tr
+          th [scope="col"]
+            | ID
+          th [scope="col"]
+            .h-24.sm:h-auto
+          th [scope="col"]
+            | Name
+          th [scope="col"]
+            | Author
+          th [scope="col"]
+            | Chapters
+          th [scope="col"]
+            | Comments
+          th [scope="col"]
+            | Views
+          th [scope="col"]
+            | Actions
+    tbody.table-body
+      - stories.each do |story|
+        tr id==dom_id(story)
+          = render 'admin/shared/story_row', story: story
+
+      - if stories.empty?
+        tr
+          td.empty-state colspan='6'
+            | There are no stories available
+
+  - if pagy && pagy.pages > 1
+    .navigation
+      == pagy_nav(pagy)

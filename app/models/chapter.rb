@@ -14,11 +14,7 @@ class Chapter < ApplicationRecord
   before_save :generate_content_id
   after_update_commit :notice_published_chapter
 
-  validates_length_of :content, maximum: 65000
-
-  validates :title, length: {
-    maximum: 150
-  }
+  validates :title, length: { maximum: 150 }
 
   def has_comment?(p_id)
     comments.where(paragraph_id: p_id).any?
@@ -75,6 +71,6 @@ class Chapter < ApplicationRecord
   end
 
   def notice_published_chapter
-    Writer::PublishChapterNotifier.with(record: self, icon: :info).deliver(story.get_upvotes(vote_scope: 'bookmark').map(&:voter)) if published
+    Writer::PublishChapterNotifier.with(record: self, icon: :info).deliver(story.get_upvotes(vote_scope: 'bookmark').map(&:voter)) if published && story
   end
 end

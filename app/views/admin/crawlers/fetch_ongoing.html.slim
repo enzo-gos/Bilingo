@@ -1,0 +1,24 @@
+= turbo_frame_tag 'ongoing' do
+  = form_with(method: :post, data: { turbo: false }, html: { class: 'admin-create-form' }) do |f|
+    .form-body
+      .form-header
+        h3.title Crawl On-Going Stories Options
+        p.description Manage on-going stories crawler details here.
+      .form-content
+        .form-group
+          .col-span-6.sm:col-span-4
+            = f.text_field :crawl_url, required: true, class: 'create-form-input', value: 'https://www.royalroad.com/fictions/active-popular', readonly: true
+          .col-span-6.sm:col-span-1
+            = f.select :rank, options_for_select([['Top 10', '10'], ['Top 20', '20'], ['Top 50', '50']], selected: '10'), { prompt: 'Select rank' }, class: 'create-form-input'
+          .col-span-6.sm:col-span-1
+            = f.select :schedule, options_for_select([['Every Week', 'every_week'], ['Every Month', 'every_month']], selected: 'every_week'), { prompt: 'Select schedule' }, class: 'create-form-input'
+
+    .px-4.py-3.text-right.sm:px-6
+      = f.submit 'Preview', class: 'cancel-btn'
+      = f.submit 'Crawl', class: 'submit-btn'
+  = turbo_stream_from 'preview_ongoing_story'
+  #preview_crawler.admin-create-form
+    .form-header
+      h3.title Previews
+
+

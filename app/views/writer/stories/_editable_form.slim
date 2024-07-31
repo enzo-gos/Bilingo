@@ -19,7 +19,7 @@
 
     div[data-writer-navigation-target='content' class== updatable_content(@updatable)]
       .info-wrapper
-        = f.input :name, label: t('new-story-form.title'), input_html: { placeholder: t('new-story-form.untitled_story') }
+        = f.input :name, label: t('new-story-form.title'), input_html: { placeholder: t('new-story-form.untitled_story'), maxlength: 64 }
 
       .info-wrapper
         = f.rich_text_area :description, label: t('new-story-form.description'), class: 'description trix-input h-32 overflow-y-auto'

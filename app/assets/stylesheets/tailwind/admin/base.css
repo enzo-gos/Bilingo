@@ -342,7 +342,10 @@
     font-semibold;
   }
 
-  .status-tag.accept-status {
+  .status-tag.accept-status,
+  .success,
+  .created,
+  .updated {
     @apply border-green-500
     text-green-500;
   }
@@ -352,7 +355,12 @@
     text-red-500;
   }
 
-  .status-tag.pending-status {
+  .status-tag.pending-status,
+  .waiting,
+  .creating,
+  .updating,
+  .crawling,
+  .processing {
     @apply border-yellow-500
     text-yellow-500;
   }

@@ -29,6 +29,9 @@ class Story < ApplicationRecord
             :tag_list,
             presence: true
 
+  validates :name, length: { maximum: 150 }
+  validates_length_of :description, maximum: 10000
+
   scope :with_published, -> { joins(:chapters).where(chapters: { published: true }, banned: false).distinct }
 
   scope :top_viewed, ->(limit = 3) {

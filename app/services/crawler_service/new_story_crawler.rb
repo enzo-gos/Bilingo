@@ -1,5 +1,5 @@
 # app/services/wattpad_api_service.rb
-class CrawlerService::NewStoryFetcher < ApplicationService
+class CrawlerService::NewStoryCrawler < ApplicationService
   require 'open-uri'
 
   PERMIT_IMAGE_FORMAT = %w[png jpg jpeg].freeze
@@ -28,15 +28,19 @@ class CrawlerService::NewStoryFetcher < ApplicationService
   def parse_response(response)
     if response.success?
       doc = Nokogiri::HTML(response.parsed_response)
+
       story_elements = doc.css('.fiction-list-item.row')
+
+      stories = []
 
       story_elements.each do |story_element|
         story_url = crawler_story_url(story_element)
-        PreviewCrawlerJob.perform_async(story_url)
+        OngoingCrawlerJob.perform_async(story_url)
 
         @rank -= 1
         break if @rank.zero?
       end
+      stories
     else
       Rails.logger.error("RoyalRoad API request failed: #{response.code}")
       []

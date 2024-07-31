@@ -7,7 +7,7 @@ module HomeHelper
         title: story.name,
         author: story.author.nickname,
         author_id: story.author.id,
-        description: story.description.body.to_s,
+        description: story.description.body.to_plain_text,
         genres: story.genres.join(' / '),
         views: story.views,
         comments: story.comments,

@@ -1,0 +1,58 @@
+.story-container
+  h1.story-title Story Crawler
+  hr.mt-4
+
+  ul.flex.flex-wrap.-mb-px
+    li.me-2
+      a.inline-block.p-4.text-blue-600.border-b-2.border-blue-600.rounded-t-lg.active.dark:text-blue-500.dark:border-blue-500 href="#" Popular
+
+  = link_to fetch_ongoing_admin_crawlers_path, class: 'create-btn w-fit'
+    	span.whitespace-nowrap Crawler
+    	= mi.shape(:auto_awesome).round.md_18
+
+  = turbo_stream_from 'process_ongoing_story'
+  #ongoing_crawler class='admin-create-form !max-w-7xl'
+    .form-header
+      h3.title Progress
+    - @busy_jobs.each do |story_hash|
+      = render 'admin/crawlers/preview_item', story_hash: story_hash, status: story_hash[:status]
+    end
+
+  h1.story-title.mt-14 On-Going Story Crawled
+  hr.mt-4
+
+  .table-container.mt-8
+    table.management-table
+      thead.table-heading
+        - @stories.each do |story|
+          tr
+            th [scope="col"]
+              | ID
+            th [scope="col"]
+              .h-24.sm:h-auto
+            th [scope="col"]
+              | Name
+            th [scope="col"]
+              | Author
+            th [scope="col"]
+              | Chapters
+            th [scope="col"]
+              | Comments
+            th [scope="col"]
+              | Views
+            th [scope="col"]
+              | Actions
+      tbody.table-body
+        - @stories.each do |story|
+          tr id==dom_id(story)
+            = render 'admin/shared/story_row', story: story
+
+        - if @stories.empty?
+          tr
+            td.empty-state colspan='6'
+              | There are no stories available
+
+    - if @pagy && @pagy.pages > 1
+      .navigation
+        == pagy_nav(@pagy)
+

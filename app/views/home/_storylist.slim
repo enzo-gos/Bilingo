@@ -14,7 +14,7 @@
           - if story[:author]
             i = link_to story[:author], author_path(story[:author_id])
         = link_to story[:url] do
-          p.book-description == story[:description].truncate_words(40)
+          p.book-description = story[:description].truncate_words(40)
         small.book-meta
           = "#{story[:genres]} • #{story[:chapters]} #{t('story_list.chapters')}"
         .sharing
@@ -27,7 +27,7 @@
           = mi.shape(:chevron_right).md_18
   - if @pagy && @pagy.pages > 1
     == pagy_nav(@pagy)
-  - elsif current_page?(root_path) && @stories.size > 5
+  - elsif current_page?(root_path) && @stories_count > 5
     hr
     = link_to stories_path, class: 'more-btn' do
       = t('story_list.more_btn')

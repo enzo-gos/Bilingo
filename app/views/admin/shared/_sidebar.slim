@@ -8,3 +8,5 @@
       = mi.shape(:library_books).outlined
     = link_to admin_reports_path, class: "sidebar-link#{controller_name == 'reports' ? ' active' : ''}" do
       = mi.shape(:report).outlined
+    = link_to admin_crawlers_path, class: "sidebar-link#{controller_name == 'crawlers' ? ' active' : ''}" do
+      = mi.shape(:auto_mode).outlined

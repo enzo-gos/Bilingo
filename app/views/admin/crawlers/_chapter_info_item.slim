@@ -1,0 +1,9 @@
+.flex.gap-3.items-center
+  = image_tag story_hash[:meta][:image_url], width: '60px', height: '100px'
+  .flex.flex-col.gap-2
+    h2.text-sm.text-gray-700 = "#{story_hash[:story][:name]} - #{story_hash[:story][:primary_genre][:name]}"
+    p.text-sm.text-gray-500 = "ID: #{story_hash[:story][:rid]}"
+    p.text-sm.text-gray-500 = "Author: #{story_hash[:author][:nickname]}"
+    p.text-sm.text-gray-500 = "Chapters: #{story_hash[:chapter_status]&.size || story_hash[:chapters].size}"
+  - if status
+    div class=="ml-auto capitalize #{status}" = status

@@ -1,0 +1,7 @@
+.flex.flex-col
+  div id=="crawler_chapter_items#{story_hash[:story][:rid]}"
+    = render 'admin/crawlers/chapter_info_item', story_hash: story_hash, status: status
+  div[class="max-h-[300px] overflow-y-auto" id=="crawl_chapters_#{story_hash[:story][:rid]}"]
+    - story_hash[:chapter_status]&.each do |key, value|
+      = render 'admin/crawlers/chapter_item', chapter: value.merge!({ crawler_status: story_hash[:chapter_status][key], cid: key })
+    end

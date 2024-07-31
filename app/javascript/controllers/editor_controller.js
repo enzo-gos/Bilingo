@@ -98,6 +98,8 @@ export default class extends Controller {
       event.preventDefault();
       const clipboarddata = window.event.clipboardData.getData('text/plain');
       $(this.titleEditorTarget).text(clipboarddata);
+      $(this.titleTarget).val($(this.titleEditorTarget).text());
+      this.save();
     });
 
     if (this.editor.getContent()) $('#word-count').html(`(${this.countWords()} words)`);
