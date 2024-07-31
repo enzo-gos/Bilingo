@@ -7,6 +7,6 @@ class StoryQuery < ApplicationQuery
 
   def call
     name_param = options.fetch(:name, nil)
-    name_param ? relation.where("stories.name ILIKE :name", name: "%#{name_param}%") : relation
+    name_param ? relation.where("stories.name ILIKE :name OR stories.description ILIKE :name", name: "%#{name_param}%") : relation
   end
 end
