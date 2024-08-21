@@ -91,3 +91,5 @@ gem 'loofah', '~> 2.22'
 gem 'profanity_filter', '~> 0.1.1'
 
 gem 'sidekiq-status', '~> 3.0'
+
+gem "cloudinary", "~> 2.1"
